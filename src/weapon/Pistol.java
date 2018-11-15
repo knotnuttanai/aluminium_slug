@@ -7,9 +7,8 @@ public class Pistol extends Gun {
 		super(damage, 20);
 	}
 	
-	@Override
 	public void shoot() {
-		amount--;
+		this.amount--;
 		if(amount == 0) reload();
 	}
 	

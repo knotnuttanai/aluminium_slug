@@ -1,10 +1,11 @@
 package character;
 
-public class Character {
+public class Person {
 	protected int direction;
 	protected int health;
+	protected double PosX, PosY;
 
-	public Character(int health, int direction) {
+	public Person(int health, int direction) {
 		this.health = health;
 		this.direction = direction;
 		
@@ -17,6 +18,15 @@ public class Character {
 	
 	public void dead() {
 		//disappear from screen
+		
 	}
 
+	public double getPosX() {
+		return PosX;
+	}
+	
+	public double getPosY() {
+		return PosY;
+	}
+	
 }

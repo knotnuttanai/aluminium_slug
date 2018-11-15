@@ -9,8 +9,5 @@ public class Gun {
 		this.amount = amount;
 	}
 	
-	public void shoot() {
-		this.amount--;
-	}
 
 }
