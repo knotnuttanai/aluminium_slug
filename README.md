@@ -1,0 +1,2 @@
+# aluminium_slug
+ทำไงดีวะสัสสส
