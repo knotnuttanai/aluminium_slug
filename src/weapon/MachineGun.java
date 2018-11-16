@@ -1,7 +1,5 @@
 package weapon;
 
-import application.EntityDataBase;
-import application.GameScene;
 import character.Hero;
 import character.Person;
 import javafx.scene.paint.Color;
@@ -21,8 +19,6 @@ public class MachineGun extends Gun {
 		posY = A.getPosY();
 		gun = new Rectangle(posX+6,posY+5,20, 5);
 		gun.setFill(Color.RED);
-		EntityDataBase.addGun(this);
-		GameScene.addView(gun);
 	}
 	
 	public void shoot() {
