@@ -1,4 +1,4 @@
-package weapon;
+/*package weapon;
 
 public class Pistol extends Gun {
 	private final static int damage = 10;
@@ -18,3 +18,4 @@ public class Pistol extends Gun {
 	}
 
 }
+*/
