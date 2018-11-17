@@ -30,8 +30,8 @@ public class Foreground {
 	public void setPosX() {
 		update();
 	}
-	public void moveScreen() {
-		veloX = -2;
+	public void moveScreen(int direction) {
+		veloX = direction*2;
 	}
 
 	public void stop() {

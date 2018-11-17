@@ -80,7 +80,7 @@ public abstract class Person implements Movable{
 		posY += veloY;
 	}
 	public boolean isHitByBullet(Bullet b) {
-		if(this.posX <= b.getPosX()+5 && this.posX >= b.getPosX()-5 /*&& (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())*/) {
+		if(this.posX <= b.getPosX()+10 && this.posX >= b.getPosX()-10 && (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())) {
 			System.out.println("HIT!!");
 			return true;
 		}else {

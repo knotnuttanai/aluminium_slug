@@ -3,6 +3,7 @@ package weapon;
 import application.GameEntity;
 import character.Hero;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Bullet {
@@ -11,13 +12,15 @@ public class Bullet {
 	private double veloX;
 	private double veloY;
 	public boolean isHit;
-	
+	Image bullet;
 	public Bullet(Hero hero) {
 		posX = hero.getPosX();
 		posY = hero.getPosY();
 		veloX = 10;
 		veloY = 0;
 		isHit = false;
+		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",50, 70, false, false);
+		
 		System.out.println("shoot");
 		
 				
@@ -29,10 +32,12 @@ public class Bullet {
 	}
 	public void render(GraphicsContext gc) {
 		//gc.clearRect(posX-5, posY, 5, 5);
-		gc.setFill(Color.RED);
+		/*gc.setFill(Color.RED);
 		gc.setStroke(Color.BLACK);
 		
 		gc.fillRect(posX+30, posY+30, 8, 8);
+		*/
+		gc.drawImage(bullet, posX, posY);
 		
 	}
 	public void addBullet() {

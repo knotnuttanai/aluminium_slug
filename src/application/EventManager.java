@@ -40,7 +40,10 @@ public class EventManager {
 					
 				}
 				else if(event.getCode() == KeyCode.D) {
-					fg.moveScreen();
+					fg.moveScreen(-1);
+				}
+				else if(event.getCode() == KeyCode.A) {
+					fg.moveScreen(1);
 				}
 			
 			}
@@ -54,7 +57,10 @@ public class EventManager {
 				if(event.getCode() == KeyCode.D) {
 					fg.stop();
 				}
-				
+				else if(event.getCode() == KeyCode.A) {
+					fg.stop();
+					
+				}
 			}
 		});
 		
