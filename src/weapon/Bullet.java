@@ -27,7 +27,7 @@ public class Bullet {
 	}
 	public void render(GraphicsContext gc) {
 		//gc.clearRect(posX-5, posY, 5, 5);
-		gc.setFill(Color.YELLOW);
+		gc.setFill(Color.BLACK);
 		gc.fillRect(posX+30, posY+30, 5, 5);
 		
 	}

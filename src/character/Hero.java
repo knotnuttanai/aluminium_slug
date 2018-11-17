@@ -1,6 +1,7 @@
 package character;
 
 import application.GameEntity;
+import environment.Foreground;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -22,6 +23,10 @@ public class Hero extends Person {
 		gc.drawImage(marco, posX, posY);
 		//gc.setFill(Color.BISQUE);
 		//gc.fillRect(posX, posY, 30, 60);
+		
+	}
+	public void Walk(int direction) {
+		
 		
 	}
 	public void shoot() {

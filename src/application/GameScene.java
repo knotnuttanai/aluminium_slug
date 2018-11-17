@@ -27,6 +27,7 @@ public class GameScene {
 	public void blink() {
 		view.clearRect(0, 0, 1280, 720);
 		
+		
 	}
 	public GraphicsContext getView() {
 		return view;

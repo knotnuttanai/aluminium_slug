@@ -26,8 +26,8 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Walk(int direction) {
-		//posX += direction*2;
-		Foreground.update();
+		posX += direction*2;
+		
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public abstract class Person implements Movable{
 			}
 		}
 		else if(!isJumpUp) {
-			/*if(veloY > 0 && veloY < 10) {
+			if(veloY > 0 && veloY < 10) {
 				veloY += GRAVITY;
 			}
 			else if(veloY == 10) {
@@ -64,17 +64,13 @@ public abstract class Person implements Movable{
 				posY = base;
 				return;
 			}
-		}*/
-		if(posY == base) {
-			veloY += 0;
 		}
-		else {
-			veloY += GRAVITY;
-		}
+		
+		
 		
 		posX += veloX;
 		posY += veloY;
 	}
 	
-	}
 }
+

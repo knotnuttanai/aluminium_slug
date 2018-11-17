@@ -5,11 +5,15 @@ import javafx.scene.image.Image;
 
 public class Foreground {
 	private Image fg;
-	private static double posX = 0;
+	private double posX;
 	private double posY;
+	private double veloX;
+	
 
 	public Foreground() {
 		fg = new Image("file:res/images/foreground2.png");
+		veloX = 0;
+		posX = 0;
 	}
 	
 	public void render(GraphicsContext gc) {
@@ -18,12 +22,21 @@ public class Foreground {
 		
 	}
 	
-	public static void update() {
-		posX -= 10;
+	public void update() {
+		posX += veloX;
+				
 	}
 	
 	public void setPosX() {
 		update();
+	}
+	public void moveScreen() {
+		veloX = -2;
+	}
+
+	public void stop() {
+		// TODO Auto-generated method stub
+		veloX = 0;
 	}
 
 }

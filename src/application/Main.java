@@ -12,12 +12,12 @@ public class Main extends Application {
 		Hero hero = new Hero(50, 250, 50);
 		
 		loop = new GameLoop();
-		EventManager ev = new EventManager(loop.getGameScene().getScene(), hero);
+		EventManager ev = new EventManager(loop.getGameScene().getScene(), hero, loop.getFg());
 		ev.setPlayerControl();
 		
 		primaryStage = loop.getGameScene().getStage();
  		primaryStage.show();
- 		(new Thread(loop)).start();
+ 		loop.start();
 		
 	}
 
