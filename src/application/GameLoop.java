@@ -1,6 +1,7 @@
 package application;
 
 import character.Hero;
+import environment.Foreground;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import weapon.Bullet;
@@ -9,10 +10,12 @@ public class GameLoop implements Runnable{
 	private boolean running;
 	private GameScene gameScene;
 	private Canvas canvas;
+	Foreground fg;
 	public GameLoop() {
-		canvas = new Canvas(1280 ,720);
+		canvas = new Canvas(640 ,480);
 		running = true;
 		gameScene = new GameScene(canvas);
+		fg = new Foreground();
 	}
 	@Override
 	public void run() {
@@ -42,15 +45,19 @@ public class GameLoop implements Runnable{
 		}
 		for(Bullet x: GameEntity.bullets) {
 			x.update();
-	}
+		}
+		
 	}
 	private void renderContent() {
+		fg.render(gameScene.getView());
 		for(Hero x: GameEntity.hero) {
 			x.render(gameScene.getView());
 		}
 		for(Bullet x: GameEntity.bullets) {
 			x.render(gameScene.getView());
 		}
+		
+		
 		
 	}
 	public GameScene getGameScene() {
