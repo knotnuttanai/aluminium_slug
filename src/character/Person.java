@@ -5,12 +5,20 @@ public abstract class Person implements Movable{
 	protected double posX;
 	protected double posY;
 	protected boolean isAlive;
-	
+	protected double veloY;
+	protected double veloX;
+	protected static final double GRAVITY = 1;
+	protected boolean isJumpUp;
+	protected double base;
 	
 	public Person(double posX, double posY , int health) {
 		this.posX = posX;
 		this.posY = posY;
 		this.health = health;
+		veloX = 0;
+		veloY = 0;
+		isJumpUp = false;
+		base = posY;
 		
 	}
 
@@ -21,8 +29,9 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Jump() {
-		while(posY > 400) posY -= 2;
-		while(posY < 500) posY += 2;
+		
+		isJumpUp = true;
+		veloY = -10;
 		
 	}
 
@@ -33,6 +42,36 @@ public abstract class Person implements Movable{
 	public double getPosY() {
 		return posY;
 	}
-	public abstract void update();
+	public void update() {
+		// TODO Auto-generated method stub
+		
+		if(isJumpUp) {
+			veloY += GRAVITY;
+			if(veloY > 0) {
+				this.isJumpUp = false;
+				
+			}
+		}
+		else if(!isJumpUp) {
+			/*if(veloY > 0 && veloY < 10) {
+				veloY += GRAVITY;
+			}
+			else if(veloY == 10) {
+				veloY = 0;
+				posY = base;
+				return;
+			}
+		}*/
+		if(posY == base) {
+			veloY += 0;
+		}
+		else {
+			veloY += GRAVITY;
+		}
+		
+		posX += veloX;
+		posY += veloY;
+	}
 	
+	}
 }

@@ -16,8 +16,9 @@ public class EventManager {
 		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				hero.shoot();
-			}		
+				hero.Jump();
+			}
+				
 		});
 	}
 }

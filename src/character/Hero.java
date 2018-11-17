@@ -13,14 +13,7 @@ public class Hero extends Person {
 		GameEntity.createHero(this);
 	}
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		//posX += 0;
-		//posY += 0;
-	}
-
-	@Override
+	
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
