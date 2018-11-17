@@ -1,5 +1,6 @@
 package application;
 
+import character.Enemy;
 import character.Hero;
 import environment.Foreground;
 import javafx.animation.AnimationTimer;
@@ -38,6 +39,7 @@ public class GameLoop implements Runnable{
 				@Override
 				public void handle(long now) {
 					// TODO Auto-generated method stub
+					
 					gameScene.blink();
 					updateContent();
 					renderContent();
@@ -64,6 +66,8 @@ public class GameLoop implements Runnable{
 	}
 	private void updateContent() {
 		// TODO Auto-generated method stub
+		GameEntity.calculateHit();
+		GameEntity.clearDead();
 		gameScene.getFg().update();
 		for(Hero x: GameEntity.hero) {
 			x.update();
@@ -71,6 +75,10 @@ public class GameLoop implements Runnable{
 		for(Bullet x: GameEntity.bullets) {
 			x.update();
 		}
+		for(Enemy x : GameEntity.enemies) {
+			x.update();
+		}
+		
 		
 	}
 	private void renderContent() {
@@ -80,6 +88,9 @@ public class GameLoop implements Runnable{
 			x.render(gameScene.getView());
 		}
 		for(Bullet x: GameEntity.bullets) {
+			x.render(gameScene.getView());
+		}
+		for(Enemy x : GameEntity.enemies) {
 			x.render(gameScene.getView());
 		}
 		

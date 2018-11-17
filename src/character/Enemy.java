@@ -1,5 +1,25 @@
 package character;
 
-public class Enemy {
+import application.GameEntity;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
+public class Enemy extends Person {
+	Image marco;
+	public Enemy(double posX, double posY, int health) {
+		super(posX, posY, health);
+		// TODO Auto-generated constructor stub
+		marco = new Image("file:res/images/marco2.png");
+	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		gc.drawImage(marco, posX, posY);
+	}
+	public void addEnemy() {
+		GameEntity.createEnemy(this);
+	}
+	
+	
 }

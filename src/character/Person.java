@@ -1,6 +1,7 @@
 package character;
 
 import environment.Foreground;
+import weapon.Bullet;
 
 public abstract class Person implements Movable{
 	protected int health;
@@ -14,6 +15,7 @@ public abstract class Person implements Movable{
 	protected double base;
 	protected boolean isJump;
 	
+	
 	public Person(double posX, double posY , int health) {
 		this.posX = posX;
 		this.posY = posY;
@@ -23,12 +25,13 @@ public abstract class Person implements Movable{
 		isJumpUp = false;
 		base = posY;
 		isJump = false;
+		isAlive = true;
 		
 	}
 
 	@Override
 	public void Walk(int direction) {
-		posX += direction*2;
+		veloX = direction*2;
 		
 	}
 
@@ -36,7 +39,7 @@ public abstract class Person implements Movable{
 	public void Jump() {
 		if(!isJump) {
 		isJumpUp = true;
-		veloY = -12;
+		veloY = -15;
 		isJump = true;
 		}
 		
@@ -75,6 +78,19 @@ public abstract class Person implements Movable{
 		
 		posX += veloX;
 		posY += veloY;
+	}
+	public boolean isHitByBullet(Bullet b) {
+		if(this.posX == b.getPosX() && (this.posY <= b.getPosY()+5 && this.posY >= b.getPosY())) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public void setDead() {
+		isAlive = false ;
+	}
+	public boolean isAlive() {
+		return isAlive;
 	}
 	
 }

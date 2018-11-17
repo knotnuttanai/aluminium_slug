@@ -10,12 +10,14 @@ public class Bullet {
 	private double posY;
 	private double veloX;
 	private double veloY;
+	public boolean isHit;
 	
 	public Bullet(Hero hero) {
 		posX = hero.getPosX();
 		posY = hero.getPosY();
 		veloX = 5;
 		veloY = 0;
+		isHit = false;
 		System.out.println("shoot");
 		
 				
@@ -33,6 +35,36 @@ public class Bullet {
 	}
 	public void addBullet() {
 		GameEntity.createBullet(this);
+	}
+	public double getPosX() {
+		return posX;
+	}
+	public void setPosX(double posX) {
+		this.posX = posX;
+	}
+	public double getPosY() {
+		return posY;
+	}
+	public void setPosY(double posY) {
+		this.posY = posY;
+	}
+	public double getVeloX() {
+		return veloX;
+	}
+	public void setVeloX(double veloX) {
+		this.veloX = veloX;
+	}
+	public double getVeloY() {
+		return veloY;
+	}
+	public void setVeloY(double veloY) {
+		this.veloY = veloY;
+	}
+	public void setHit() {
+		isHit = true;
+	}
+	public boolean isHit() {
+		return isHit;
 	}
 
 }
