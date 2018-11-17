@@ -12,11 +12,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		Hero hero = new Hero(200, 250, 50);
 		
-			Enemy enemy = new Enemy(450, 250, 50);
-			enemy.addEnemy();
-			Enemy enemy2 = new Enemy(400, 250, 50);
-			enemy2.addEnemy();
-		
+			
+			
 		loop = new GameLoop();
 		EventManager ev = new EventManager(loop.getGameScene().getScene(), hero, loop.getFg());
 		ev.setPlayerControl();

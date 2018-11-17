@@ -80,7 +80,8 @@ public abstract class Person implements Movable{
 		posY += veloY;
 	}
 	public boolean isHitByBullet(Bullet b) {
-		if(this.posX == b.getPosX() && (this.posY <= b.getPosY()+5 && this.posY >= b.getPosY())) {
+		if(this.posX <= b.getPosX()+5 && this.posX >= b.getPosX()-5 /*&& (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())*/) {
+			System.out.println("HIT!!");
 			return true;
 		}else {
 			return false;
@@ -92,6 +93,39 @@ public abstract class Person implements Movable{
 	public boolean isAlive() {
 		return isAlive;
 	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public double getVeloY() {
+		return veloY;
+	}
+
+	public void setVeloY(double veloY) {
+		this.veloY = veloY;
+	}
+
+	public double getVeloX() {
+		return veloX;
+	}
+
+	public void setVeloX(double veloX) {
+		this.veloX = veloX;
+	}
+
+	public void setPosX(double posX) {
+		this.posX = posX;
+	}
+
+	public void setPosY(double posY) {
+		this.posY = posY;
+	}
+	
 	
 }
 

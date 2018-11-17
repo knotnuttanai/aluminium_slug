@@ -10,6 +10,7 @@ public class Enemy extends Person {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
 		marco = new Image("file:res/images/marco2.png");
+		veloX = -1;
 	}
 
 	@Override
@@ -20,6 +21,10 @@ public class Enemy extends Person {
 	public void addEnemy() {
 		GameEntity.createEnemy(this);
 	}
-	
-	
+	public void walk() {
+		veloX = -1;
+	}
+	public void stop() {
+		veloX = 0;
+	}
 }
