@@ -1,5 +1,6 @@
 package application;
 
+import character.Hero;
 import character.Person;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -9,31 +10,22 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import weapon.Bullet;
 
 public class Main extends Application {
-
+	private GameLoop loop;
+	private GameScene scene;
 	@Override
 	public void start(Stage primaryStage) {
+		Hero hero = new Hero(50, 50, 50);
 		
-		Person marco = new Person(200,500,200);
-		Group root = new Group();
-		Rectangle marcoMan = marco.getMan();
-		root.getChildren().add(marcoMan);
+		loop = new GameLoop();
+		EventManager ev = new EventManager(loop.getGameScene().getScene(), hero);
+		ev.setPlayerControl();
 		
-		marcoMan.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent ke) {
-				if (ke.getCode() == KeyCode.D) {
-					marco.Walk(1);
-					System.out.println(marco.getPosX());
-				}
-			}
-		});
-				
-		Scene scene = new Scene(root,1280,720);
-		
- 		primaryStage.setScene(scene);
+		primaryStage = loop.getGameScene().getStage();
  		primaryStage.show();
+ 		(new Thread(loop)).start();
 	}
 
 	public static void main(String[] args) {

@@ -3,19 +3,18 @@ package character;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Person implements Movable{
+public abstract class Person implements Movable{
 	protected int health;
 	protected double posX;
 	protected double posY;
 	protected boolean isAlive;
-	protected Rectangle Man;
 	
-	public Person(int posX, int posY , int health) {
+	
+	public Person(double posX, double posY , int health) {
 		this.posX = posX;
 		this.posY = posY;
 		this.health = health;
-		Man = new Rectangle(posX, posY, 10, 30);
-		Man.setFill(Color.BLACK);
+		
 	}
 
 	@Override
@@ -37,10 +36,11 @@ public class Person implements Movable{
 	public double getPosY() {
 		return posY;
 	}
-
-	public Rectangle getMan() {
-		return Man;
-	}
+	public abstract void update();
+	
+		
+	
+	
 	
 	
 
