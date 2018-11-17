@@ -13,13 +13,13 @@ public class GameLoop implements Runnable{
 	private long previousTime;
 	private double multiplyer;
 	private Thread thread;
-	Foreground fg;
+	
 	private double timePass;
 	public GameLoop() {
 		canvas = new Canvas(640 ,480);
 		
 		gameScene = new GameScene(canvas);
-		fg = new Foreground();
+		
 		previousTime = System.nanoTime();
 		multiplyer = 1000000000/60;
 		timePass = 0;
@@ -64,7 +64,7 @@ public class GameLoop implements Runnable{
 	}
 	private void updateContent() {
 		// TODO Auto-generated method stub
-		fg.update();
+		gameScene.getFg().update();
 		for(Hero x: GameEntity.hero) {
 			x.update();
 		}
@@ -75,7 +75,7 @@ public class GameLoop implements Runnable{
 	}
 	private void renderContent() {
 		gameScene.blink();
-		fg.render(gameScene.getView());
+		gameScene.getFg().render(gameScene.getView());
 		for(Hero x: GameEntity.hero) {
 			x.render(gameScene.getView());
 		}
@@ -94,11 +94,9 @@ public class GameLoop implements Runnable{
 		this.gameScene = gameScene;
 	}
 	public Foreground getFg() {
-		return fg;
+		return gameScene.getFg();
 	}
-	public void setFg(Foreground fg) {
-		this.fg = fg;
-	}
+	
 	
 
 }

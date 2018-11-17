@@ -25,10 +25,7 @@ public class Hero extends Person {
 		//gc.fillRect(posX, posY, 30, 60);
 		
 	}
-	public void Walk(int direction) {
-		
-		
-	}
+	
 	public void shoot() {
 		Bullet bullet = new Bullet(this);
 		bullet.addBullet();

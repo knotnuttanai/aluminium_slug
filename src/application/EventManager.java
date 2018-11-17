@@ -10,12 +10,14 @@ import javafx.scene.input.MouseEvent;
 
 public class EventManager {
 	private Scene scene;
+	private boolean done;
 	private Hero hero;
 	private Foreground fg;
 	public EventManager(Scene scene, Hero hero, Foreground fg) {
 		this.scene = scene;
 		this.hero = hero;
 		this.fg =fg;
+		done = false;
 	}
 	public void setPlayerControl() {
 		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -31,7 +33,11 @@ public class EventManager {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.W) {
-					hero.Jump();
+					
+						hero.Jump();
+						done = true;
+					
+					
 				}
 				else if(event.getCode() == KeyCode.D) {
 					fg.moveScreen();
@@ -48,6 +54,7 @@ public class EventManager {
 				if(event.getCode() == KeyCode.D) {
 					fg.stop();
 				}
+				
 			}
 		});
 		

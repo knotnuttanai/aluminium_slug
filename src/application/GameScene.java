@@ -1,5 +1,6 @@
 package application;
 
+import environment.Foreground;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -12,7 +13,9 @@ public class GameScene {
 	private Group root;
 	private Canvas canvas;
 	private GraphicsContext view;
+	private Foreground fg;
 	public GameScene(Canvas canvas) {
+		fg = new Foreground();
 		root = new Group();
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
@@ -58,6 +61,12 @@ public class GameScene {
 	}
 	public void setCanvas(Canvas canvas) {
 		this.canvas = canvas;
+	}
+	public Foreground getFg() {
+		return fg;
+	}
+	public void setFg(Foreground fg) {
+		this.fg = fg;
 	}
 	
 	

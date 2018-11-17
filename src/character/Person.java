@@ -12,6 +12,7 @@ public abstract class Person implements Movable{
 	protected static final double GRAVITY = 1;
 	protected boolean isJumpUp;
 	protected double base;
+	protected boolean isJump;
 	
 	public Person(double posX, double posY , int health) {
 		this.posX = posX;
@@ -21,6 +22,7 @@ public abstract class Person implements Movable{
 		veloY = 0;
 		isJumpUp = false;
 		base = posY;
+		isJump = false;
 		
 	}
 
@@ -32,9 +34,11 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Jump() {
-		
+		if(!isJump) {
 		isJumpUp = true;
-		veloY = -10;
+		veloY = -12;
+		isJump = true;
+		}
 		
 	}
 
@@ -62,6 +66,7 @@ public abstract class Person implements Movable{
 			else if(veloY == 10) {
 				veloY = 0;
 				posY = base;
+				isJump = false;
 				return;
 			}
 		}
