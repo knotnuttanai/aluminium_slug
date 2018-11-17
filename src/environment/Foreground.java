@@ -9,7 +9,7 @@ public class Foreground {
 	private double posY;
 
 	public Foreground() {
-		fg = new Image("file:res/images/foreground.png");
+		fg = new Image("file:res/images/foreground2.png");
 	}
 	
 	public void render(GraphicsContext gc) {
@@ -19,7 +19,7 @@ public class Foreground {
 	}
 	
 	public static void update() {
-		posX -= 2;
+		posX -= 10;
 	}
 	
 	public void setPosX() {

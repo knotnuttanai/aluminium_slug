@@ -17,7 +17,7 @@ public class GameScene {
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
-		scene = new Scene(root, 1280, 720);
+		scene = new Scene(root, 640, 480);
 		stage = new Stage();
 		stage.setScene(scene);
 	}

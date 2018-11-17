@@ -12,7 +12,7 @@ public class GameLoop implements Runnable{
 	private Canvas canvas;
 	Foreground fg;
 	public GameLoop() {
-		canvas = new Canvas(1280 ,720);
+		canvas = new Canvas(640 ,480);
 		running = true;
 		gameScene = new GameScene(canvas);
 		fg = new Foreground();
