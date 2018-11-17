@@ -24,8 +24,8 @@ public class Hero extends Person {
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		gc.setFill(Color.RED);
-		gc.fillRect(posX, posY, 10, 10);
+		gc.setFill(Color.BISQUE);
+		gc.fillRect(posX, posY, 30, 60);
 		
 	}
 	public void shoot() {

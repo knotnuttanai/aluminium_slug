@@ -3,6 +3,8 @@ package application;
 import character.Hero;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class EventManager {
@@ -17,6 +19,12 @@ public class EventManager {
 			@Override
 			public void handle(MouseEvent event) {
 				hero.shoot();
+			}		
+		});
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.D) hero.Walk(1);
 			}		
 		});
 	}

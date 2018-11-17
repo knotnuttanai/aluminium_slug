@@ -9,7 +9,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		Hero hero = new Hero(50, 50, 50);
+		Hero hero = new Hero(50, 420, 50);
 		
 		loop = new GameLoop();
 		EventManager ev = new EventManager(loop.getGameScene().getScene(), hero);
@@ -18,6 +18,7 @@ public class Main extends Application {
 		primaryStage = loop.getGameScene().getStage();
  		primaryStage.show();
  		(new Thread(loop)).start();
+		
 	}
 
 	public static void main(String[] args) {

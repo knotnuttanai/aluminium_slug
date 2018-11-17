@@ -1,5 +1,7 @@
 package character;
 
+import environment.Foreground;
+
 public abstract class Person implements Movable{
 	protected int health;
 	protected double posX;
@@ -16,7 +18,8 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Walk(int direction) {
-		posX += direction*2;
+		//posX += direction*2;
+		Foreground.update();
 	}
 
 	@Override
