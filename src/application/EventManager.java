@@ -1,5 +1,7 @@
 package application;
 
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
+
 import character.Hero;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -16,18 +18,10 @@ public class EventManager {
 	}
 	public void setPlayerControl() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
 			@Override
 			public void handle(KeyEvent event) {
-				// TODO Auto-generated method stub
-				hero.shoot();
-				
-			}
-			
-
-		
-
-		
+				if(event.getCode() == KeyCode.SPACE) hero.shoot();
+			}		
 		});
 	}
 }
