@@ -4,7 +4,6 @@ import application.GameEntity;
 import character.Hero;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 public class Bullet {
 	private double posX;

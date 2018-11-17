@@ -1,8 +1,5 @@
 package character;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-
 public abstract class Person implements Movable{
 	protected int health;
 	protected double posX;
@@ -38,10 +35,4 @@ public abstract class Person implements Movable{
 	}
 	public abstract void update();
 	
-		
-	
-	
-	
-	
-
 }
