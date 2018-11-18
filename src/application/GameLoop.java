@@ -3,6 +3,7 @@ package application;
 import character.Enemy;
 import character.Hero;
 import environment.Foreground;
+import environment.Terrain;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.Canvas;
@@ -72,6 +73,7 @@ public class GameLoop implements Runnable{
 	}
 	private void updateContent() {
 		// TODO Auto-generated method stub
+		GameEntity.checkStand();
 		ev.keyHandle();
 		if(heroWalkOverBase()) {
 			ev.setHeroWalkOverBase(true);
@@ -110,6 +112,9 @@ public class GameLoop implements Runnable{
 			x.render(gameScene.getView());
 		}
 		for(Enemy x : GameEntity.enemies) {
+			x.render(gameScene.getView());
+		}
+		for(Terrain x : GameEntity.terrains) {
 			x.render(gameScene.getView());
 		}
 		

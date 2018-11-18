@@ -31,7 +31,7 @@ public class Hero extends Person implements Shootable{
 	}
 	public void update() {
 		// TODO Auto-generated method stub
-		
+		/*
 		if(isJumpUp) {
 			veloY += GRAVITY;
 			if(veloY > 0) {
@@ -50,7 +50,7 @@ public class Hero extends Person implements Shootable{
 				return;
 			}
 		}
-		
+		*/
 		
 		
 		posX += veloX;
