@@ -37,7 +37,7 @@ public class Bullet {
 		
 		gc.fillRect(posX+30, posY+30, 8, 8);
 		*/
-		gc.drawImage(bullet, posX, posY);
+		gc.drawImage(bullet, posX+40, posY-10);
 		
 	}
 	public void addBullet() {

@@ -46,7 +46,7 @@ public class EventManager {
 					
 					
 				}
-				else if(event.getCode() == KeyCode.D ) {
+				if(event.getCode() == KeyCode.D ) {
 					if(doneMovingLeft) {
 						fg.moveScreen(-1);
 						for(Enemy x: GameEntity.enemies) {
@@ -65,7 +65,7 @@ public class EventManager {
 						
 					}
 				}
-				else if(event.getCode() == KeyCode.A) {
+				if(event.getCode() == KeyCode.A) {
 					if(!isAtTheEndOfScreen()) {
 						fg.moveScreen(0);
 						hero.Walk(-1);
@@ -80,7 +80,7 @@ public class EventManager {
 					doneMovingLeft = false;
 				}
 				
-				else if(event.getCode() == KeyCode.SPACE) {
+				if(event.getCode() == KeyCode.SPACE) {
 					hero.shoot();
 					if(!doneMovingLeft) {
 					if(heroWalkOverBase()) {
