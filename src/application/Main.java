@@ -12,7 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Hero hero = new Hero(200, 250, 50);
-		Terrain terrain = new Terrain(150, 250, 50, 50);
+		Terrain terrain = new Terrain(200, 400, 50, 50);
 			
 			
 		loop = new GameLoop();

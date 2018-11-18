@@ -29,33 +29,6 @@ public class Hero extends Person implements Shootable{
 		
 		GameEntity.createHero(this);
 	}
-	public void update() {
-		// TODO Auto-generated method stub
-		/*
-		if(isJumpUp) {
-			veloY += GRAVITY;
-			if(veloY > 0) {
-				this.isJumpUp = false;
-				
-			}
-		}
-		else if(!isJumpUp) {
-			if(veloY > 0 && veloY < 10) {
-				veloY += GRAVITY;
-			}
-			else if(veloY == 10) {
-				veloY = 0;
-				posY = base;
-				isJump = false;
-				return;
-			}
-		}
-		*/
-		
-		
-		posX += veloX;
-		posY += veloY;
-	}
 	
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub

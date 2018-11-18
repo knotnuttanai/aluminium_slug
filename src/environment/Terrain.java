@@ -29,18 +29,19 @@ public class Terrain {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 	if(b.intersects(personBound)) {
 		if(!trigger) {
-			p.setVeloY(0);
-			System.out.println("standd");
-			trigger = true;
-		}
-			p.setHasVerticalCollition(true);
+			
 			p.setPosY(this.posY-p.getHeight());
+			trigger = true;
+		}	
+			
+			p.setHasVerticalCollition(true);
+			
 			
 		}
 	else {
 		trigger = false;
 		p.setHasVerticalCollition(false);
-		System.out.println("Not standd");
+		
 	}
 		
 	}
