@@ -12,6 +12,8 @@ public class Bullet {
 	private double veloX;
 	private double veloY;
 	public boolean isHit;
+	private double width;
+	private double height;
 	Image bullet;
 	public Bullet(Hero hero) {
 		posX = hero.getPosX();
@@ -19,6 +21,8 @@ public class Bullet {
 		veloX = 10;
 		veloY = 0;
 		isHit = false;
+		
+		
 		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",50, 70, false, false);
 		
 		System.out.println("shoot");

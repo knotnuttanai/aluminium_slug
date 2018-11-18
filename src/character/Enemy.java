@@ -10,6 +10,8 @@ public class Enemy extends Person {
 	public Enemy(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
+		
+				
 		marco = new Image("file:res/images/marco2.png");
 		veloX = -1;
 	}

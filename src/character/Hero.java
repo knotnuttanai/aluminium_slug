@@ -15,11 +15,11 @@ public class Hero extends Person implements Shootable{
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
-		height = 78;
-		width = 68;
+		
 				
-		marco = new Image("file:res/images/marco2.png", width, height, false, false);
+		marco = new Image("file:res/images/marco2.png");
 		shoot = new Image[10];
+		
 		
 		for(int i = 1; i <= 10; i++) {
 			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
