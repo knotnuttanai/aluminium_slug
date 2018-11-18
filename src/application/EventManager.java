@@ -132,7 +132,7 @@ public class EventManager {
 				hero.Walk(2);
 			}
 			else {
-				fg.moveScreen(-2);
+				fg.moveScreen(-3);
 			}
 		}
 		//end key D

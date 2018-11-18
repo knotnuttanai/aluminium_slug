@@ -18,7 +18,9 @@ public abstract class Person implements Movable{
 	protected double height;
 	protected double width;
 	protected  double baseX;
-	protected boolean isShoot;
+	protected boolean isShoot, hasVerticalCollition;
+	
+	
 	
 	
 	public Person(double posX, double posY , int health) {
@@ -33,6 +35,7 @@ public abstract class Person implements Movable{
 		isJump = false;
 		isAlive = true;
 		isShoot = false;
+		hasVerticalCollition = false;
 		
 	}
 
@@ -70,7 +73,7 @@ public abstract class Person implements Movable{
 	public void update() {
 		// TODO Auto-generated method stub
 		
-		if(isJumpUp) {
+		/*if(isJumpUp) {
 			veloY += GRAVITY;
 			if(veloY > 0) {
 				this.isJumpUp = false;
@@ -81,18 +84,19 @@ public abstract class Person implements Movable{
 			if(veloY > 0 && veloY < 10) {
 				veloY += GRAVITY;
 			}
-			else if(veloY == 10) {
+			else if(posY <= base) {
 				veloY = 0;
 				posY = base;
 				isJump = false;
 				return;
 			}
-		}
+		}*/
 		
 		
-		
+		veloY += GRAVITY;
 		posX += veloX;
-		posY += veloY;
+		
+		if(!hasVerticalCollition)posY += veloY;
 	}/*
 	public boolean isHitByBullet(Bullet b) {
 		if(this.posX <= b.getPosX()+10 && this.posX >= b.getPosX()-10 && (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())) {
@@ -160,6 +164,22 @@ public abstract class Person implements Movable{
 
 	public void setWidth(double width) {
 		this.width = width;
+	}
+
+	public double getBase() {
+		return base;
+	}
+
+	public void setBase(double base) {
+		this.base = base;
+	}
+
+	public boolean isHasVerticalCollition() {
+		return hasVerticalCollition;
+	}
+
+	public void setHasVerticalCollition(boolean hasVerticalCollition) {
+		this.hasVerticalCollition = hasVerticalCollition;
 	}
 	
 	
