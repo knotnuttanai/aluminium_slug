@@ -15,8 +15,7 @@ public class Main extends Application {
 			
 			
 		loop = new GameLoop();
-		EventManager ev = new EventManager(loop.getGameScene().getScene(), hero, loop.getFg());
-		ev.setPlayerControl();
+		
 		
 		primaryStage = loop.getGameScene().getStage();
  		primaryStage.show();

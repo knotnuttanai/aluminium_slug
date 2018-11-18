@@ -1,9 +1,12 @@
 package application;
 
+
+
 import character.Enemy;
 import character.Hero;
 import environment.Foreground;
 import javafx.event.EventHandler;
+import javafx.geometry.BoundingBox;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -14,11 +17,24 @@ public class EventManager {
 	private boolean doneMovingLeft;
 	private Hero hero;
 	private Foreground fg;
+	private boolean heroWalkOverBase;
+	private boolean canWalk;
+	public boolean dIsPressed , aIsPressed;
 	public EventManager(Scene scene, Hero hero, Foreground fg) {
 		this.scene = scene;
 		this.hero = hero;
 		this.fg =fg;
 		doneMovingLeft = true;
+		heroWalkOverBase = true;
+		canWalk = false;
+		dIsPressed = false;
+		aIsPressed = false;
+	}
+	public boolean isCanWalk() {
+		return canWalk;
+	}
+	public void setCanWalk(boolean canWalk) {
+		this.canWalk = canWalk;
 	}
 	public void setPlayerControl() {
 		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -34,50 +50,29 @@ public class EventManager {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				if(event.getCode() == KeyCode.W) {
+				/*if(event.getCode() == KeyCode.W) {
 					
 						//เล็งบนดิสัส
 					
 					
-				}
+				}*/
 				if(event.getCode() == KeyCode.D ) {
-					if(doneMovingLeft) {
-						fg.moveScreen(-1);
-						hero.Walk(0);
-						for(Enemy x: GameEntity.enemies) {
-						x.walk(fg.getVeloX());	
-						}
-					}
-					else {
-						hero.Walk(1);
-						if(heroWalkOverBase()) {
-							doneMovingLeft = true;
-							fg.moveScreen(-1);
-							hero.Walk(0);
-						}
-					}
+					dIsPressed = true;
+					System.out.println("d");
+					
 				}
 				
-				if(event.getCode() == KeyCode.A) {
-					if(!isAtTheEndOfScreen()) {
-						fg.moveScreen(0);
-						hero.Walk(-1);
-						for(Enemy x: GameEntity.enemies) {
-							x.walk(fg.getVeloX());
-						}
-					}
-					else {
-						hero.Walk(0);
-						
-					}
-					doneMovingLeft = false;
+				else if(event.getCode() == KeyCode.A) {
+					aIsPressed = true;
+					
 				}
 				
-				if(event.getCode() == KeyCode.SPACE) {
+				else if(event.getCode() == KeyCode.SPACE) {
 					hero.Jump();
-					if(!doneMovingLeft) {
+					if(heroWalkOverBase) {
 						continueToWalk();
 					}
+					
 				}
 			
 			}
@@ -89,38 +84,20 @@ public class EventManager {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.D) {
-					if(doneMovingLeft) {
-						
-						fg.stop();
-						for(Enemy x: GameEntity.enemies) {
-							x.stop();
-						}
-					}
-					else {
-						if(hero.getPosX() < hero.getBaseX()) {
-						hero.Walk(0);
-						}
-						
-						
-					}
+					dIsPressed = false;
+					System.out.println("release d");
+					
 					
 				}
-				if(event.getCode() == KeyCode.A) {
-					hero.Walk(0);
-					fg.stop();
-					for(Enemy x: GameEntity.enemies) {
-						x.stop();
-					}
+				else if(event.getCode() == KeyCode.A) {
+					aIsPressed = false;
 					
 				}
 			}
 		});
 		
 	}
-	public boolean heroWalkOverBase() {
-		return hero.getPosX() >= hero.getBaseX();
-		
-	}
+	
 	public void continueToWalk() {
 		if(!doneMovingLeft) {
 		hero.Walk(0);
@@ -136,4 +113,54 @@ public class EventManager {
 			return true;
 		}
 	}
+	public Hero getHero() {
+		return hero;
+	}
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
+	public boolean isHeroWalkOverBase() {
+		return heroWalkOverBase;
+	}
+	public void setHeroWalkOverBase(boolean heroWalkOverBase) {
+		this.heroWalkOverBase = heroWalkOverBase;
+	}
+	public void keyHandle() {
+		//start key D
+		if(dIsPressed) {
+			if(canWalk) {
+				hero.Walk(2);
+			}
+			else {
+				fg.moveScreen(-2);
+			}
+		}
+		//end key D
+		//start key A
+		if(aIsPressed) {
+			if(!isAtTheEndOfScreen()) {
+				fg.moveScreen(0);
+				hero.Walk(-2);
+				for(Enemy x: GameEntity.enemies) {
+					x.walk(fg.getVeloX());
+				}
+			}
+			else {
+				hero.Walk(0);
+				
+			}
+			doneMovingLeft = false;
+		}
+		else {
+			hero.Walk(0);
+			fg.stop();
+			for(Enemy x: GameEntity.enemies) {
+				x.stop();
+			}
+			
+		}
+		//end key A
+	}
+	
+	
 }

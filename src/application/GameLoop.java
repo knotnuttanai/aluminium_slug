@@ -4,6 +4,7 @@ import character.Enemy;
 import character.Hero;
 import environment.Foreground;
 import javafx.animation.AnimationTimer;
+import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.Canvas;
 import weapon.Bullet;
 
@@ -14,16 +15,18 @@ public class GameLoop implements Runnable{
 	private long previousTime;
 	private double multiplyer;
 	private Thread thread;
-	
+	private EventManager ev;
 	private double timePass;
+	
 	public GameLoop() {
 		canvas = new Canvas(640 ,480);
 		
 		gameScene = new GameScene(canvas);
-		
-		previousTime = System.nanoTime();
-		multiplyer = 1000000000/60;
-		timePass = 0;
+		for(Hero x : GameEntity.hero) {
+			ev = new EventManager(gameScene.getScene(), x, gameScene.getFg());
+		}
+		ev.setPlayerControl();
+	
 	}
 	public void start() {
 		running = true;
@@ -41,8 +44,11 @@ public class GameLoop implements Runnable{
 					// TODO Auto-generated method stub
 					
 					gameScene.blink();
+					
 					updateContent();
 					renderContent();
+					
+					
 					
 					
 				}
@@ -66,6 +72,15 @@ public class GameLoop implements Runnable{
 	}
 	private void updateContent() {
 		// TODO Auto-generated method stub
+		ev.keyHandle();
+		if(heroWalkOverBase()) {
+			ev.setHeroWalkOverBase(true);
+			setWalk(false);
+		}
+		else {
+			ev.setHeroWalkOverBase(false);
+			setWalk(true);
+		}
 		GameEntity.calculateHit();
 		GameEntity.clearDead();
 		gameScene.getFg().update();
@@ -110,6 +125,19 @@ public class GameLoop implements Runnable{
 	}
 	public Foreground getFg() {
 		return gameScene.getFg();
+	}
+	public EventManager getEv() {
+		return ev;
+	}
+	public void setEv(EventManager ev) {
+		this.ev = ev;
+	}
+	public boolean heroWalkOverBase() {
+		BoundingBox b1 = new BoundingBox(ev.getHero().getPosX()	, ev.getHero().getPosY(), ev.getHero().getWidth(), ev.getHero().getHeight());
+		return b1.intersects(ev.getHero().getBaseX()+ev.getHero().getWidth(),0 , 640 - ev.getHero().getBaseX(), 480);
+	}
+	public void setWalk(boolean canWalk) {
+		ev.setCanWalk(canWalk);
 	}
 	
 	

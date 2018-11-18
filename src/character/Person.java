@@ -1,6 +1,7 @@
 package character;
 
 import environment.Foreground;
+import javafx.geometry.BoundingBox;
 import weapon.Bullet;
 
 public abstract class Person implements Movable{
@@ -92,7 +93,7 @@ public abstract class Person implements Movable{
 		
 		posX += veloX;
 		posY += veloY;
-	}
+	}/*
 	public boolean isHitByBullet(Bullet b) {
 		if(this.posX <= b.getPosX()+10 && this.posX >= b.getPosX()-10 && (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())) {
 			System.out.println("HIT!!");
@@ -100,6 +101,11 @@ public abstract class Person implements Movable{
 		}else {
 			return false;
 		}
+	}*/
+	public boolean isHitByBullet(Bullet b) {
+		BoundingBox b1 = new BoundingBox(posX, posY, width, height);
+		BoundingBox b2 = new BoundingBox(b.getPosX(), b.getPosY(), b.getWidth(), b.getHeight());
+		return b1.intersects(b2);
 	}
 	public void setDead() {
 		isAlive = false ;
@@ -138,6 +144,22 @@ public abstract class Person implements Movable{
 
 	public void setPosY(double posY) {
 		this.posY = posY;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
 	}
 	
 	

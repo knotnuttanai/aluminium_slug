@@ -11,7 +11,8 @@ public class Enemy extends Person {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
 		
-				
+		height = 75;
+		width = 56;
 		marco = new Image("file:res/images/marco2.png");
 		veloX = -1;
 	}
@@ -20,6 +21,7 @@ public class Enemy extends Person {
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(marco, posX, posY);
+		//gc.fillRect(posX, posY, width, height);
 	}
 	public void addEnemy() {
 		GameEntity.createEnemy(this);

@@ -23,7 +23,7 @@ public class Foreground {
 	}
 	
 	public void update() {
-		posX += veloX;
+		//posX += veloX;
 				
 	}
 	
@@ -31,7 +31,7 @@ public class Foreground {
 		update();
 	}
 	public void moveScreen(int direction) {
-		veloX = direction*2;
+		posX += direction;
 	}
 
 	public void stop() {
