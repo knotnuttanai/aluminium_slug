@@ -16,7 +16,7 @@ public class Hero extends Person implements Shootable{
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
 		height = 78;
-		width = 56;
+		width = 68;
 				
 		marco = new Image("file:res/images/marco2.png", width, height, false, false);
 		shoot = new Image[10];

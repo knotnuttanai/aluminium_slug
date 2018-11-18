@@ -57,6 +57,7 @@ public class EventManager {
 						hero.Walk(1);
 					}
 					else if(heroWalkOverBase()) {
+						hero.Walk(0);
 						continueToWalk();
 						for(Enemy x: GameEntity.enemies) {
 						x.walk(fg.getVeloX());	
@@ -81,9 +82,11 @@ public class EventManager {
 				
 				else if(event.getCode() == KeyCode.SPACE) {
 					hero.shoot();
+					if(!doneMovingLeft) {
 					if(heroWalkOverBase()) {
 						continueToWalk();
 						}
+					}
 					if(isAtTheEndOfScreen()) {
 						hero.Walk(0);
 					}
