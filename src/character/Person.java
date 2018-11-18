@@ -55,11 +55,10 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Jump() {
-		if(!isJump) {
+		
 		isJumpUp = true;
 		veloY += -15;
 		isJump = true;
-		}
 		
 	}
 
@@ -99,12 +98,11 @@ public abstract class Person implements Movable{
 		if(!hasVerticalCollition) {
 			veloY += GRAVITY;
 			posY += veloY;
+			
 		
 		}
-		else if(!isJump){
-			veloY = 0;
-			System.out.println("stand bon nee");
-		}
+		
+		
 	}/*
 	public boolean isHitByBullet(Bullet b) {
 		if(this.posX <= b.getPosX()+10 && this.posX >= b.getPosX()-10 && (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())) {

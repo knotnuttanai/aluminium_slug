@@ -28,18 +28,14 @@ public class Terrain {
 	public void whenSomeOneStandHere(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 	if(b.intersects(personBound)) {
-		if(!trigger) {
-			
-			p.setPosY(this.posY-p.getHeight());
-			trigger = true;
-		}	
-			
+	
+		    
 			p.setHasVerticalCollition(true);
 			
 			
 		}
 	else {
-		trigger = false;
+		
 		p.setHasVerticalCollition(false);
 		
 	}
