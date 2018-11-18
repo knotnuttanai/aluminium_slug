@@ -16,8 +16,8 @@ public class Bullet {
 	private double height;
 	Image bullet;
 	public Bullet(Hero hero) {
-		posX = hero.getPosX();
-		posY = hero.getPosY()+30;
+		posX = hero.getPosX() + 40;
+		posY = hero.getPosY() + 10;
 		veloX = 10;
 		veloY = 0;
 		isHit = false;
@@ -42,7 +42,7 @@ public class Bullet {
 		
 		gc.fillRect(posX+30, posY+30, 8, 8);
 		*/
-		gc.drawImage(bullet, posX+40, posY-10);
+		gc.drawImage(bullet, posX, posY);
 		//gc.fillRect(posX, posY, width, height);
 		
 	}

@@ -11,7 +11,7 @@ public class Foreground {
 	
 
 	public Foreground() {
-		fg = new Image("file:res/images/foreground.png");
+		fg = new Image("file:res/images/foreground2.png");
 		veloX = 0;
 		posX = 0;
 	}
