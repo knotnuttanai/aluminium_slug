@@ -45,6 +45,9 @@ public class EventManager {
 				else if(event.getCode() == KeyCode.A) {
 					fg.moveScreen(1);
 				}
+				else if(event.getCode() == KeyCode.SPACE) {
+					hero.shoot();
+				}
 			
 			}
 			

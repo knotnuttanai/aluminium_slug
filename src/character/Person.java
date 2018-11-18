@@ -14,6 +14,8 @@ public abstract class Person implements Movable{
 	protected boolean isJumpUp;
 	protected double base;
 	protected boolean isJump;
+	protected double height;
+	protected double width;
 	
 	
 	public Person(double posX, double posY , int health) {

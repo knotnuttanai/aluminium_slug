@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import weapon.Bullet;
 
-public class Hero extends Person {
+public class Hero extends Person implements Shootable{
 	Image marco;
 
 	public Hero(double posX, double posY, int health) {
