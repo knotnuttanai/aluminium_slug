@@ -1,6 +1,7 @@
 package character;
 
 import application.GameEntity;
+import environment.Foreground;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -21,10 +22,10 @@ public class Enemy extends Person {
 	public void addEnemy() {
 		GameEntity.createEnemy(this);
 	}
-	public void walk() {
-		veloX = -1;
+	public void walk(double fgVeloX) {
+		veloX = -1 + fgVeloX ;
 	}
 	public void stop() {
-		veloX = 0;
+		veloX = -1;
 	}
 }

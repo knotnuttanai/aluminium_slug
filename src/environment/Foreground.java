@@ -39,4 +39,8 @@ public class Foreground {
 		veloX = 0;
 	}
 
+	public double getVeloX() {
+		return veloX;
+	}
+
 }

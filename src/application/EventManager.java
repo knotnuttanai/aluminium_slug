@@ -1,5 +1,6 @@
 package application;
 
+import character.Enemy;
 import character.Hero;
 import environment.Foreground;
 import javafx.event.EventHandler;
@@ -32,7 +33,7 @@ public class EventManager {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				if(event.getCode() == KeyCode.W) {
+				if(event.getCode() == KeyCode.SPACE) {
 					
 						hero.Jump();
 						done = true;
@@ -41,9 +42,15 @@ public class EventManager {
 				}
 				else if(event.getCode() == KeyCode.D) {
 					fg.moveScreen(-1);
+					for(Enemy x: GameEntity.enemies) {
+						x.walk(fg.getVeloX());
+					}
 				}
 				else if(event.getCode() == KeyCode.A) {
 					fg.moveScreen(1);
+					for(Enemy x: GameEntity.enemies) {
+						x.walk(fg.getVeloX());
+					}
 				}
 				else if(event.getCode() == KeyCode.SPACE) {
 					hero.shoot();
@@ -59,9 +66,15 @@ public class EventManager {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.D) {
 					fg.stop();
+					for(Enemy x: GameEntity.enemies) {
+						x.stop();
+					}
 				}
 				else if(event.getCode() == KeyCode.A) {
 					fg.stop();
+					for(Enemy x: GameEntity.enemies) {
+						x.stop();
+					}
 					
 				}
 			}
