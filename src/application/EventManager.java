@@ -11,14 +11,14 @@ import javafx.scene.input.MouseEvent;
 
 public class EventManager {
 	private Scene scene;
-	private boolean done;
+	private boolean doneMovingLeft;
 	private Hero hero;
 	private Foreground fg;
 	public EventManager(Scene scene, Hero hero, Foreground fg) {
 		this.scene = scene;
 		this.hero = hero;
 		this.fg =fg;
-		done = false;
+		doneMovingLeft = false;
 	}
 	public void setPlayerControl() {
 		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -28,6 +28,7 @@ public class EventManager {
 			}
 				
 		});
+		
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
@@ -36,27 +37,28 @@ public class EventManager {
 				if(event.getCode() == KeyCode.W) {
 					
 						hero.Jump();
-					
+						if(heroWalkOverBase()) {
+							continueToWalk();
+							}
 					
 					
 				}
-				if(event.getCode() == KeyCode.D) {
-					if(!done) {
+				else if(event.getCode() == KeyCode.D || event.getCode() == KeyCode.W) {
+					if(!doneMovingLeft) {
 						fg.moveScreen(-1);
 						for(Enemy x: GameEntity.enemies) {
 						x.walk(fg.getVeloX());	
 						}
 					}
-					else if(done && hero.getPosX() < hero.getBaseX()) {
+					else if(doneMovingLeft && hero.getPosX() < hero.getBaseX()) {
 						hero.Walk(1);
 					}
-					else if(hero.getPosX() >= hero.getBaseX()) {
-						hero.Walk(0);
-						fg.moveScreen(-1);
+					else if(heroWalkOverBase()) {
+						continueToWalk();
 						for(Enemy x: GameEntity.enemies) {
 						x.walk(fg.getVeloX());	
 						}
-						done = false;
+						
 					}
 				}
 				else if(event.getCode() == KeyCode.A) {
@@ -70,11 +72,14 @@ public class EventManager {
 					else {
 						hero.Walk(0);
 					}
-					done = true;
+					doneMovingLeft = true;
 				}
 				
 				else if(event.getCode() == KeyCode.SPACE) {
 					hero.shoot();
+					if(heroWalkOverBase()) {
+						continueToWalk();
+						}
 				}
 			
 			}
@@ -86,7 +91,7 @@ public class EventManager {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.D) {
-					if(!done) {
+					if(!doneMovingLeft) {
 						
 						fg.stop();
 						for(Enemy x: GameEntity.enemies) {
@@ -97,6 +102,7 @@ public class EventManager {
 						if(hero.getPosX() < hero.getBaseX()) {
 						hero.Walk(0);
 						}
+						
 						
 					}
 					
@@ -112,5 +118,14 @@ public class EventManager {
 			}
 		});
 		
+	}
+	public boolean heroWalkOverBase() {
+		return hero.getPosX() >= hero.getBaseX();
+		
+	}
+	public void continueToWalk() {
+		hero.Walk(0);
+		fg.moveScreen(-1);
+		doneMovingLeft = false;
 	}
 }
