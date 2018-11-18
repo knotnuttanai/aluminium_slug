@@ -33,25 +33,46 @@ public class EventManager {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				if(event.getCode() == KeyCode.SPACE) {
+				if(event.getCode() == KeyCode.W) {
 					
 						hero.Jump();
-						done = true;
+					
 					
 					
 				}
-				else if(event.getCode() == KeyCode.D) {
-					fg.moveScreen(-1);
-					for(Enemy x: GameEntity.enemies) {
-						x.walk(fg.getVeloX());
+				if(event.getCode() == KeyCode.D) {
+					if(!done) {
+						fg.moveScreen(-1);
+						for(Enemy x: GameEntity.enemies) {
+						x.walk(fg.getVeloX());	
+						}
+					}
+					else if(done && hero.getPosX() < hero.getBaseX()) {
+						hero.Walk(1);
+					}
+					else if(hero.getPosX() >= hero.getBaseX()) {
+						hero.Walk(0);
+						fg.moveScreen(-1);
+						for(Enemy x: GameEntity.enemies) {
+						x.walk(fg.getVeloX());	
+						}
+						done = false;
 					}
 				}
 				else if(event.getCode() == KeyCode.A) {
-					fg.moveScreen(1);
-					for(Enemy x: GameEntity.enemies) {
-						x.walk(fg.getVeloX());
+					if(hero.getPosX() > 0) {
+						fg.moveScreen(0);
+						hero.Walk(-1);
+						for(Enemy x: GameEntity.enemies) {
+							x.walk(fg.getVeloX());
+						}
 					}
+					else {
+						hero.Walk(0);
+					}
+					done = true;
 				}
+				
 				else if(event.getCode() == KeyCode.SPACE) {
 					hero.shoot();
 				}
@@ -65,12 +86,23 @@ public class EventManager {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.D) {
-					fg.stop();
-					for(Enemy x: GameEntity.enemies) {
-						x.stop();
+					if(!done) {
+						
+						fg.stop();
+						for(Enemy x: GameEntity.enemies) {
+							x.stop();
+						}
 					}
+					else {
+						if(hero.getPosX() < hero.getBaseX()) {
+						hero.Walk(0);
+						}
+						
+					}
+					
 				}
 				else if(event.getCode() == KeyCode.A) {
+					hero.Walk(0);
 					fg.stop();
 					for(Enemy x: GameEntity.enemies) {
 						x.stop();

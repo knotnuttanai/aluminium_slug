@@ -16,6 +16,7 @@ public abstract class Person implements Movable{
 	protected boolean isJump;
 	protected double height;
 	protected double width;
+	protected  double baseX;
 	
 	
 	public Person(double posX, double posY , int health) {
@@ -26,9 +27,18 @@ public abstract class Person implements Movable{
 		veloY = 0;
 		isJumpUp = false;
 		base = posY;
+		baseX = posX;
 		isJump = false;
 		isAlive = true;
 		
+	}
+
+	public double getBaseX() {
+		return baseX;
+	}
+
+	public void setBaseX(double baseX) {
+		this.baseX = baseX;
 	}
 
 	@Override
