@@ -18,7 +18,7 @@ public class EventManager {
 		this.scene = scene;
 		this.hero = hero;
 		this.fg =fg;
-		doneMovingLeft = false;
+		doneMovingLeft = true;
 	}
 	public void setPlayerControl() {
 		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -40,17 +40,20 @@ public class EventManager {
 						if(heroWalkOverBase()) {
 							continueToWalk();
 							}
+						if(isAtTheEndOfScreen()) {
+							hero.Walk(0);
+						}
 					
 					
 				}
-				else if(event.getCode() == KeyCode.D || event.getCode() == KeyCode.W) {
-					if(!doneMovingLeft) {
+				else if(event.getCode() == KeyCode.D ) {
+					if(doneMovingLeft) {
 						fg.moveScreen(-1);
 						for(Enemy x: GameEntity.enemies) {
 						x.walk(fg.getVeloX());	
 						}
 					}
-					else if(doneMovingLeft && hero.getPosX() < hero.getBaseX()) {
+					else if(!doneMovingLeft && hero.getPosX() < hero.getBaseX()) {
 						hero.Walk(1);
 					}
 					else if(heroWalkOverBase()) {
@@ -62,7 +65,7 @@ public class EventManager {
 					}
 				}
 				else if(event.getCode() == KeyCode.A) {
-					if(hero.getPosX() > 0) {
+					if(!isAtTheEndOfScreen()) {
 						fg.moveScreen(0);
 						hero.Walk(-1);
 						for(Enemy x: GameEntity.enemies) {
@@ -71,8 +74,9 @@ public class EventManager {
 					}
 					else {
 						hero.Walk(0);
+						hero.setPosX(0);
 					}
-					doneMovingLeft = true;
+					doneMovingLeft = false;
 				}
 				
 				else if(event.getCode() == KeyCode.SPACE) {
@@ -80,6 +84,9 @@ public class EventManager {
 					if(heroWalkOverBase()) {
 						continueToWalk();
 						}
+					if(isAtTheEndOfScreen()) {
+						hero.Walk(0);
+					}
 				}
 			
 			}
@@ -91,7 +98,7 @@ public class EventManager {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.D) {
-					if(!doneMovingLeft) {
+					if(doneMovingLeft) {
 						
 						fg.stop();
 						for(Enemy x: GameEntity.enemies) {
@@ -126,6 +133,14 @@ public class EventManager {
 	public void continueToWalk() {
 		hero.Walk(0);
 		fg.moveScreen(-1);
-		doneMovingLeft = false;
+		doneMovingLeft = true;
+	}
+	public boolean isAtTheEndOfScreen() {
+		if(hero.getPosX() > 0 && hero.getPosX() < 680) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }
