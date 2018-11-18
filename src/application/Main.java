@@ -12,8 +12,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Hero hero = new Hero(200, 250, 50);
-		Terrain terrain = new Terrain(200, 400, 50, 50);
-			
+		Terrain terrain1 = new Terrain(200, 400, 50, 50);
+		GameEntity.createTerrain(terrain1);
+		Terrain terrain2 = new Terrain(50, 350, 50, 50);
+		GameEntity.createTerrain(terrain2);
 			
 		loop = new GameLoop();
 		

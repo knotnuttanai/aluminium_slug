@@ -67,6 +67,7 @@ public class Hero extends Person implements Shootable{
 			isJump = false;
 		}else if(hasVerticalCollition &&!isJump) {
 			veloY = 0;
+			
 		}
 		
 		

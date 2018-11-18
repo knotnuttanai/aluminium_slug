@@ -19,7 +19,7 @@ public abstract class Person implements Movable{
 	protected double width;
 	protected  double baseX;
 	protected boolean isShoot, hasVerticalCollition;
-	
+	protected int numberOfTerrain;
 	
 	
 	
@@ -36,7 +36,7 @@ public abstract class Person implements Movable{
 		isAlive = true;
 		isShoot = false;
 		hasVerticalCollition = false;
-		
+		numberOfTerrain = -1;
 	}
 
 	public double getBaseX() {
@@ -55,11 +55,11 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Jump() {
-		
+		if(hasVerticalCollition) {
 		isJumpUp = true;
 		veloY += -15;
 		isJump = true;
-		
+		}
 	}
 
 	public double getPosX() {
@@ -186,6 +186,14 @@ public abstract class Person implements Movable{
 
 	public void setHasVerticalCollition(boolean hasVerticalCollition) {
 		this.hasVerticalCollition = hasVerticalCollition;
+	}
+
+	public int getNumberOfTerrain() {
+		return numberOfTerrain;
+	}
+
+	public void setNumberOfTerrain(int numberOfTerrain) {
+		this.numberOfTerrain = numberOfTerrain;
 	}
 	
 	

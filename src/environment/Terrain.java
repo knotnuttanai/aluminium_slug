@@ -7,7 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Terrain {
-	private double posX ,posY ,width ,height;
+	public double posX ,posY ,width ,height;
 	Image terrain;
 	BoundingBox b;
 	private boolean trigger;
@@ -19,26 +19,24 @@ public class Terrain {
 		this.height = height;
 		trigger = false;
 		b = new BoundingBox(posX, posY, width, height);
-		GameEntity.createTerrain(this);
+		
+		
 	}
 	public void render(GraphicsContext gc) {
 		gc.fillRect(posX, posY, width, height);
 		
 	}
-	public void whenSomeOneStandHere(Person p) {
-		BoundingBox personBound = new BoundingBox(p.getPosX()-5, p.getPosY(), p.getWidth(), p.getHeight());
-	if(b.intersects(personBound)) {
+
+	public boolean whenSomeOneStandHere(Person p) {
+		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
+		
+	if(b.intersects(personBound)&&(p.getPosX()>= posX - p.getWidth() && p.getPosX() <= posX + width + p.getWidth())) {
 	
 		    
-			p.setHasVerticalCollition(true);
-			
+			return true;
 			
 		}
-	else {
-		
-		p.setHasVerticalCollition(false);
-		
-	}
+	return false;
 		
 	}
 	

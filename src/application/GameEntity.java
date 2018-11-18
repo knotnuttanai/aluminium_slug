@@ -25,11 +25,26 @@ public class GameEntity {
 		enemies.add(e);
 	}
 	public static void checkStand() {
-		for(Hero x : hero) {
-			for(Terrain y : terrains) {
-				y.whenSomeOneStandHere(x);
+		Terrain t;
+		for(int i = 0; i < terrains.size(); i++) {
+			t = terrains.get(i);
+			for(Hero h : hero) {
+				if(t.whenSomeOneStandHere(h)) {
+					h.setNumberOfTerrain(i);
+				}	
 			}
 		}
+		for(Hero h : hero) {
+		if(h.getNumberOfTerrain() == -1) {
+			h.setHasVerticalCollition(false);
+			System.out.println("h");
+		}
+		else {
+			h.setHasVerticalCollition(true);
+			h.setNumberOfTerrain(-1);
+		}
+		
+	}
 	}
 	public static void calculateHit() {
 		for(Bullet b : bullets) {
