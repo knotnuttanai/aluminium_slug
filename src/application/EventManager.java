@@ -131,9 +131,11 @@ public class EventManager {
 		
 	}
 	public void continueToWalk() {
+		if(!doneMovingLeft) {
 		hero.Walk(0);
 		fg.moveScreen(-1);
 		doneMovingLeft = true;
+		}
 	}
 	public boolean isAtTheEndOfScreen() {
 		if(hero.getPosX() > 10 && hero.getPosX() < 680) {
