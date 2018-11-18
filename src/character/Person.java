@@ -17,6 +17,7 @@ public abstract class Person implements Movable{
 	protected double height;
 	protected double width;
 	protected  double baseX;
+	protected boolean isShoot;
 	
 	
 	public Person(double posX, double posY , int health) {
@@ -30,6 +31,7 @@ public abstract class Person implements Movable{
 		baseX = posX;
 		isJump = false;
 		isAlive = true;
+		isShoot = false;
 		
 	}
 

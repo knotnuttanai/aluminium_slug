@@ -9,11 +9,17 @@ import weapon.Bullet;
 
 public class Hero extends Person implements Shootable{
 	Image marco;
+	Image[] shoot;
+	int i = 0;
 
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
 		marco = new Image("file:res/images/marco2.png");
+		shoot = new Image[10];
+		for(int i = 1; i <= 10; i++) {
+			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
+		}
 		
 		GameEntity.createHero(this);
 	}
@@ -21,13 +27,22 @@ public class Hero extends Person implements Shootable{
 	
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(marco, posX, posY);
+		if(isShoot) {
+			gc.drawImage(shoot[i], posX, posY);
+			i++;
+			if(i==10) {
+				i = 0;
+				isShoot = false;
+			}
+		}
+		else gc.drawImage(marco, posX, posY);
 		//gc.setFill(Color.BISQUE);
 		//gc.fillRect(posX, posY, 30, 60);
 		
 	}
 	
 	public void shoot() {
+		isShoot = true;
 		Bullet bullet = new Bullet(this);
 		bullet.addBullet();
 	}
