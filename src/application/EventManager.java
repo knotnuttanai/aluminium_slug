@@ -36,35 +36,28 @@ public class EventManager {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.W) {
 					
-						hero.Jump();
-						if(heroWalkOverBase()) {
-							continueToWalk();
-							}
-						if(isAtTheEndOfScreen()) {
-							hero.Walk(0);
-						}
+						//เล็งบนดิสัส
 					
 					
 				}
 				if(event.getCode() == KeyCode.D ) {
 					if(doneMovingLeft) {
 						fg.moveScreen(-1);
-						for(Enemy x: GameEntity.enemies) {
-						x.walk(fg.getVeloX());	
-						}
-					}
-					else if(!doneMovingLeft && hero.getPosX() < hero.getBaseX()) {
-						hero.Walk(1);
-					}
-					else if(heroWalkOverBase()) {
 						hero.Walk(0);
-						continueToWalk();
 						for(Enemy x: GameEntity.enemies) {
 						x.walk(fg.getVeloX());	
 						}
-						
+					}
+					else {
+						hero.Walk(1);
+						if(heroWalkOverBase()) {
+							doneMovingLeft = true;
+							fg.moveScreen(-1);
+							hero.Walk(0);
+						}
 					}
 				}
+				
 				if(event.getCode() == KeyCode.A) {
 					if(!isAtTheEndOfScreen()) {
 						fg.moveScreen(0);
@@ -81,15 +74,7 @@ public class EventManager {
 				}
 				
 				if(event.getCode() == KeyCode.SPACE) {
-					hero.shoot();
-					if(!doneMovingLeft) {
-					if(heroWalkOverBase()) {
-						continueToWalk();
-						}
-					}
-					if(isAtTheEndOfScreen()) {
-						hero.Walk(0);
-					}
+					hero.Jump();
 				}
 			
 			}
@@ -117,7 +102,7 @@ public class EventManager {
 					}
 					
 				}
-				else if(event.getCode() == KeyCode.A) {
+				if(event.getCode() == KeyCode.A) {
 					hero.Walk(0);
 					fg.stop();
 					for(Enemy x: GameEntity.enemies) {
