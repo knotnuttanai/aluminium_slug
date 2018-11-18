@@ -74,7 +74,7 @@ public class EventManager {
 					}
 					else {
 						hero.Walk(0);
-						hero.setPosX(0);
+						
 					}
 					doneMovingLeft = false;
 				}
@@ -136,7 +136,7 @@ public class EventManager {
 		doneMovingLeft = true;
 	}
 	public boolean isAtTheEndOfScreen() {
-		if(hero.getPosX() > 0 && hero.getPosX() < 680) {
+		if(hero.getPosX() > 10 && hero.getPosX() < 680) {
 			return false;
 		}
 		else {
