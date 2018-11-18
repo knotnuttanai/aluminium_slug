@@ -75,6 +75,9 @@ public class EventManager {
 				
 				if(event.getCode() == KeyCode.SPACE) {
 					hero.Jump();
+					if(!doneMovingLeft) {
+						continueToWalk();
+					}
 				}
 			
 			}
