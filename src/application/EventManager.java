@@ -5,6 +5,7 @@ package application;
 import character.Enemy;
 import character.Hero;
 import environment.Foreground;
+import environment.Terrain;
 import javafx.event.EventHandler;
 import javafx.geometry.BoundingBox;
 import javafx.scene.Scene;
@@ -133,6 +134,9 @@ public class EventManager {
 			}
 			else {
 				fg.moveScreen(-3);
+				for(Terrain x : GameEntity.terrains) {
+					x.walk(-1);
+				}
 			}
 		}
 		//end key D

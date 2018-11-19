@@ -18,7 +18,7 @@ public class Hero extends Person implements Shootable{
 		veloX = 0;
 		veloY = 0;
 		height = 75;
-		width = 56;
+		width = 45;
 		marco = new Image("file:res/images/marco2.png");
 		shoot = new Image[10];
 		
