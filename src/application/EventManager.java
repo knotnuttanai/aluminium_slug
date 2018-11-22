@@ -129,6 +129,10 @@ public class EventManager {
 	public void keyHandle() {
 		//start key D
 		if(dIsPressed) {
+			if(hero.isHasHorizontalCollision()) {
+				System.out.println("help");
+				return;
+			}
 			if(canWalk) {
 				hero.Walk(2);
 			}
@@ -142,6 +146,10 @@ public class EventManager {
 		//end key D
 		//start key A
 		if(aIsPressed) {
+			if(hero.isHasHorizontalCollision()) {
+				System.out.println("help");
+				return;
+			}
 			if(!isAtTheEndOfScreen()) {
 				fg.moveScreen(0);
 				hero.Walk(-2);

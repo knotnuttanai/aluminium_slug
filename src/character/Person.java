@@ -1,6 +1,7 @@
 package character;
 
 import environment.Foreground;
+import environment.Terrain;
 import javafx.geometry.BoundingBox;
 import weapon.Bullet;
 
@@ -9,17 +10,17 @@ public abstract class Person implements Movable{
 	protected double posX;
 	protected double posY;
 	protected boolean isAlive;
-	protected double veloY;
+	protected double veloY, maxVeloY;
 	protected double veloX;
-	protected static final double GRAVITY = 1;
+	protected static final double GRAVITY = 0.5;
 	protected boolean isJumpUp;
 	protected double base;
 	protected boolean isJump;
 	protected double height;
 	protected double width;
 	protected  double baseX;
-	protected boolean isShoot, hasVerticalCollition;
-	protected int numberOfTerrain;
+	protected boolean isShoot, hasVerticalCollition, hasHorizontalCollision;
+	private Terrain terrian;
 	
 	
 	
@@ -29,6 +30,7 @@ public abstract class Person implements Movable{
 		this.health = health;
 		veloX = 0;
 		veloY = 0;
+		maxVeloY = 20;
 		isJumpUp = false;
 		base = posY;
 		baseX = posX;
@@ -36,7 +38,8 @@ public abstract class Person implements Movable{
 		isAlive = true;
 		isShoot = false;
 		hasVerticalCollition = false;
-		numberOfTerrain = -1;
+		hasHorizontalCollision = false;
+		
 	}
 
 	public double getBaseX() {
@@ -49,7 +52,12 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Walk(int direction) {
+		if(!hasHorizontalCollision) {
 		veloX = direction*2;
+		}
+		else {
+			veloX = 0;
+		}
 		
 	}
 
@@ -59,6 +67,7 @@ public abstract class Person implements Movable{
 		isJumpUp = true;
 		veloY += -15;
 		isJump = true;
+		
 		}
 	}
 
@@ -72,36 +81,39 @@ public abstract class Person implements Movable{
 	public void update() {
 		// TODO Auto-generated method stub
 		
-		/*if(isJumpUp) {
-			veloY += GRAVITY;
-			if(veloY > 0) {
-				this.isJumpUp = false;
-				
-			}
+
+		
+		if(isJump) {
+			System.out.println("p");
 		}
-		else if(!isJumpUp) {
-			if(veloY > 0 && veloY < 10) {
-				veloY += GRAVITY;
-			}
-			else if(posY <= base) {
-				veloY = 0;
-				posY = base;
-				isJump = false;
-				return;
-			}
-		}*/
+		if(posY >=800) {
+			setPosX(baseX);
+			setPosY(base);
+			veloY = 0;
+		}
 		
-		
-		
-		posX += veloX;
-		
-		if(!hasVerticalCollition) {
+		if(veloY > maxVeloY) {
+			veloY = maxVeloY;
+		}
+		else if(!hasVerticalCollition ) {
 			veloY += GRAVITY;
-			posY += veloY;
 			
 		
+		
 		}
 		
+		else if(hasVerticalCollition && isJump) {
+			veloY += GRAVITY;
+			
+			isJump = false;
+		}else if(hasVerticalCollition &&!isJump&& veloY > 0) {
+			veloY = 0;
+		
+			
+		}
+		posY += veloY;
+		
+		posX += veloX;
 		
 	}/*
 	public boolean isHitByBullet(Bullet b) {
@@ -116,6 +128,17 @@ public abstract class Person implements Movable{
 		BoundingBox b1 = new BoundingBox(posX, posY, width, height);
 		BoundingBox b2 = new BoundingBox(b.getPosX(), b.getPosY(), b.getWidth(), b.getHeight());
 		return b1.intersects(b2);
+	}
+	public boolean checkInteract(Terrain terrain) {
+		BoundingBox p = new BoundingBox(posX, posY, width, height);
+		if(p.intersects(terrain.b)) { 
+			terrain.setInteract(true);
+			return true;}
+		else {
+			terrain.setInteract(false);
+			return false;
+		}
+		
 	}
 	public void setDead() {
 		isAlive = false ;
@@ -188,13 +211,25 @@ public abstract class Person implements Movable{
 		this.hasVerticalCollition = hasVerticalCollition;
 	}
 
-	public int getNumberOfTerrain() {
-		return numberOfTerrain;
+	
+
+	public boolean isJump() {
+		return isJump;
 	}
 
-	public void setNumberOfTerrain(int numberOfTerrain) {
-		this.numberOfTerrain = numberOfTerrain;
+	public void setJump(boolean isJump) {
+		this.isJump = isJump;
 	}
+
+	public boolean isHasHorizontalCollision() {
+		return hasHorizontalCollision;
+	}
+
+	public void setHasHorizontalCollision(boolean hasHorizontalCollision) {
+		this.hasHorizontalCollision = hasHorizontalCollision;
+	}
+
+	
 	
 	
 }

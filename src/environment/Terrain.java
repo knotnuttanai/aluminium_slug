@@ -10,8 +10,9 @@ import javafx.scene.paint.Color;
 public class Terrain {
 	public double posX ,posY ,width ,height, veloX;
 	Image terrain;
-	BoundingBox b;
+	public BoundingBox b;
 	private boolean trigger;
+	private boolean isInteract;
 	public Terrain(double posX, double posY, double width, double height) {
 		super();
 		this.posX = posX;
@@ -20,6 +21,7 @@ public class Terrain {
 		this.height = height;
 		veloX = 0;
 		trigger = false;
+		isInteract = false;
 		b = new BoundingBox(posX, posY, width, height);
 		
 		
@@ -36,26 +38,46 @@ public class Terrain {
 		posX += veloX;
 		b = new BoundingBox(posX, posY, width, height);
 	}
-
-	public boolean whenSomeOneStandHere(Person p) {
+	public void isSomeOneHitHere(Person p) {
+		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
+		if((p.getPosX() + p.getWidth()  >= posX  && p.getPosX() < posX )||(p.getPosX() <= posX+width&&p.getPosX()+p.getWidth()>posX + width)&& b.intersects(personBound)&&!(p.getPosY() + p.getHeight() <= posY)) {
+			
+			p.setHasHorizontalCollision(true);
+			
+		}else {
+		p.setHasHorizontalCollision(false);
+		}
+	}
+	public void whenSomeOneStandHere(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		
-	if(b.intersects(personBound) && p.getPosY()+p.getHeight()<= posY+20) {
-		if(p.getPosY() > posY) { 
+	if(b.intersects(personBound)&&p.getPosX()+p.getWidth() >= this.posX && p.getPosX() <= this.posX + this.width) {
+		/*if(p.getPosY() > posY) { 
 			System.out.println("hi");
-			return false;
-			}
-		    if(!trigger) {
-		    	p.setPosY(posY - p.getHeight());
-		    	trigger = false;
-		    	
-		    }
-			return true;
+			p.setHasVerticalCollition(false);
+			
+			}*/
+		   
+		   if( !p.isHasHorizontalCollision()&&!p.isJump()&&p.getVeloY() > 0) {
+		    p.setPosY(posY - p.getHeight());
+			  
+		   
+		   }
+		   System.out.println("NO");
+			p.setHasVerticalCollition(true);
 			
 		}
-	trigger = false;
-	return false;
+	else {
+	p.setHasVerticalCollition(false);
+	}
 		
 	}
+	public boolean isInteract() {
+		return isInteract;
+	}
+	public void setInteract(boolean isInteract) {
+		this.isInteract = isInteract;
+	}
+	
 	
 }

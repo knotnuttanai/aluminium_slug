@@ -25,27 +25,45 @@ public class GameEntity {
 		enemies.add(e);
 	}
 	public static void checkStand() {
-		Terrain t;
-		for(int i = 0; i < terrains.size(); i++) {
-			t = terrains.get(i);
-			for(Hero h : hero) {
-				if(t.whenSomeOneStandHere(h)) {
-					h.setNumberOfTerrain(i);
-				}	
+		for(Hero h : hero) {
+			for(Terrain t : terrains) {
+				/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
+				if(h.checkInteract(t)) {
+					t.isSomeOneHitHere(h);
+					t.whenSomeOneStandHere(h);
+				}
 			}
 		}
-		for(Hero h : hero) {
-		if(h.getNumberOfTerrain() == -1) {
-			h.setHasVerticalCollition(false);
-			System.out.println("h");
-		}
-		else {
-			h.setHasVerticalCollition(true);
-			h.setNumberOfTerrain(-1);
-		}
+			boolean check = false;
+			for(Terrain t : terrains) {
+				if(t.isInteract()) {
+					check = true;
+				}
+			}
+			if(!check) {
+				for(Hero h : hero) {
+					h.setHasHorizontalCollision(false);
+					h.setHasVerticalCollition(false);
+				}
+				
+			}
+			for(Enemy e : enemies) {
+				for(Terrain t : terrains) {
+					/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
+					if(e.checkInteract(t)) {
+						t.isSomeOneHitHere(e);
+						t.whenSomeOneStandHere(e);
+					}
+				
+			}
+			}
+			
 		
 	}
-	}
+		
+		
+	
+	
 	public static void calculateHit() {
 		for(Bullet b : bullets) {
 			for(Enemy e : enemies) {

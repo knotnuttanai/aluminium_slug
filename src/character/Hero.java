@@ -18,7 +18,7 @@ public class Hero extends Person implements Shootable{
 		veloX = 0;
 		veloY = 0;
 		height = 75;
-		width = 45;
+		width = 50;
 		marco = new Image("file:res/images/marco2.png");
 		shoot = new Image[10];
 		
@@ -29,49 +29,7 @@ public class Hero extends Person implements Shootable{
 		
 		GameEntity.createHero(this);
 	}
-	public void update() {
-		// TODO Auto-generated method stub
-		
-		/*if(isJumpUp) {
-			veloY += GRAVITY;
-			if(veloY > 0) {
-				this.isJumpUp = false;
-				
-			}
-		}
-		else if(!isJumpUp) {
-			if(veloY > 0 && veloY < 10) {
-				veloY += GRAVITY;
-			}
-			else if(posY <= base) {
-				veloY = 0;
-				posY = base;
-				isJump = false;
-				return;
-			}
-		}*/
-		
-		
-		
-		posX += veloX;
-		
-		if(!hasVerticalCollition ) {
-			veloY += GRAVITY;
-			posY += veloY;
-		
-		
-		}
-		else if(hasVerticalCollition && isJump) {
-			veloY += GRAVITY;
-			posY += veloY;
-			isJump = false;
-		}else if(hasVerticalCollition &&!isJump) {
-			veloY = 0;
-			
-		}
-		
-		
-	}
+	
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		if(isShoot) {
