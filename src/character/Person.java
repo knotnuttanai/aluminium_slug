@@ -6,6 +6,7 @@ import javafx.geometry.BoundingBox;
 import weapon.Bullet;
 
 public abstract class Person implements Movable{
+	protected int walkDirection;
 	protected int health;
 	protected double posX;
 	protected double posY;
@@ -13,7 +14,7 @@ public abstract class Person implements Movable{
 	protected double veloY, maxVeloY;
 	protected double veloX;
 	protected static final double GRAVITY = 0.5;
-	protected boolean isJumpUp;
+	
 	protected double base;
 	protected boolean isJump;
 	protected double height;
@@ -31,7 +32,6 @@ public abstract class Person implements Movable{
 		veloX = 0;
 		veloY = 0;
 		maxVeloY = 20;
-		isJumpUp = false;
 		base = posY;
 		baseX = posX;
 		isJump = false;
@@ -39,6 +39,7 @@ public abstract class Person implements Movable{
 		isShoot = false;
 		hasVerticalCollition = false;
 		hasHorizontalCollision = false;
+		walkDirection = 0;
 		
 	}
 
@@ -64,7 +65,6 @@ public abstract class Person implements Movable{
 	@Override
 	public void Jump() {
 		if(hasVerticalCollition) {
-		isJumpUp = true;
 		veloY += -15;
 		isJump = true;
 		
@@ -78,44 +78,7 @@ public abstract class Person implements Movable{
 	public double getPosY() {
 		return posY;
 	}
-	public void update() {
-		// TODO Auto-generated method stub
-		
-
-		
-		if(isJump) {
-			System.out.println("p");
-		}
-		if(posY >=800) {
-			setPosX(baseX);
-			setPosY(base);
-			veloY = 0;
-		}
-		
-		if(veloY > maxVeloY) {
-			veloY = maxVeloY;
-		}
-		else if(!hasVerticalCollition ) {
-			veloY += GRAVITY;
-			
-		
-		
-		}
-		
-		else if(hasVerticalCollition && isJump) {
-			veloY += GRAVITY;
-			
-			isJump = false;
-		}else if(hasVerticalCollition &&!isJump&& veloY > 0) {
-			veloY = 0;
-		
-			
-		}
-		posY += veloY;
-		
-		posX += veloX;
-		
-	}/*
+	/*
 	public boolean isHitByBullet(Bullet b) {
 		if(this.posX <= b.getPosX()+10 && this.posX >= b.getPosX()-10 && (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())) {
 			System.out.println("HIT!!");
@@ -230,7 +193,13 @@ public abstract class Person implements Movable{
 	}
 
 	
-	
+	public int getWalkDirection() {
+		return walkDirection;
+	}
+
+	public void setWalkDirection(int walkDirection) {
+		this.walkDirection = walkDirection;
+	}
 	
 }
 

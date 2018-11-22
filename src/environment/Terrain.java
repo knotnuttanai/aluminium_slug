@@ -11,7 +11,7 @@ public class Terrain {
 	public double posX ,posY ,width ,height, veloX;
 	Image terrain;
 	public BoundingBox b;
-	private boolean trigger;
+	
 	private boolean isInteract;
 	public Terrain(double posX, double posY, double width, double height) {
 		super();
@@ -20,7 +20,7 @@ public class Terrain {
 		this.width = width;
 		this.height = height;
 		veloX = 0;
-		trigger = false;
+		
 		isInteract = false;
 		b = new BoundingBox(posX, posY, width, height);
 		
@@ -40,12 +40,23 @@ public class Terrain {
 	}
 	public void isSomeOneHitHere(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
-		if((p.getPosX() + p.getWidth()  >= posX  && p.getPosX() < posX )||(p.getPosX() <= posX+width&&p.getPosX()+p.getWidth()>posX + width)&& b.intersects(personBound)&&!(p.getPosY() + p.getHeight() <= posY)) {
+		if(p.getWalkDirection() == 1) {
+			if(p.getPosX()+p.getWidth() >= posX&&p.getPosX() < posX) {
+				
+				
+				p.setHasHorizontalCollision(true);
 			
-			p.setHasHorizontalCollision(true);
-			
-		}else {
-		p.setHasHorizontalCollision(false);
+			}else {
+				p.setHasHorizontalCollision(false);
+			}
+		}
+		if(p.getWalkDirection() == -1) {
+			if(p.getPosX() <= posX +width && p.getPosX()+p.getWidth() > posX+width) {
+				p.setHasHorizontalCollision(true);
+				
+			}else {
+			p.setHasHorizontalCollision(false);
+			}
 		}
 	}
 	public void whenSomeOneStandHere(Person p) {
@@ -58,16 +69,17 @@ public class Terrain {
 			
 			}*/
 		   
-		   if( !p.isHasHorizontalCollision()&&!p.isJump()&&p.getVeloY() > 0) {
+		   if(!p.isJump()&&p.getVeloY() > 0) {
 		    p.setPosY(posY - p.getHeight());
 			  
 		   
 		   }
-		   System.out.println("NO");
+		   
 			p.setHasVerticalCollition(true);
 			
 		}
 	else {
+		System.out.println("h");
 	p.setHasVerticalCollition(false);
 	}
 		

@@ -16,7 +16,9 @@ public class Main extends Application {
 		GameEntity.createTerrain(terrain1);
 		Terrain terrain2 = new Terrain(350, 250, 1050, 100);
 		GameEntity.createTerrain(terrain2);
-			
+		Enemy enemy = new Enemy(800, 50, 50);
+		
+		enemy.addEnemy();
 		loop = new GameLoop();
 		
 		

@@ -15,6 +15,7 @@ public class Enemy extends Person {
 		width = 56;
 		marco = new Image("file:res/images/marco2.png");
 		veloX = -1;
+		walkDirection = -1;
 	}
 
 	@Override
@@ -22,6 +23,23 @@ public class Enemy extends Person {
 		// TODO Auto-generated method stub
 		gc.drawImage(marco, posX, posY);
 		//gc.fillRect(posX, posY, width, height);
+	}
+	public void update() {
+		// TODO Auto-generated method stub
+		
+		if(!this.hasVerticalCollition ) {
+			veloY += GRAVITY;
+			System.out.println("555");
+			
+		}else {
+			veloY = 0;
+		}
+		
+		posY += veloY;
+		
+		posX += veloX;
+		
+		
 	}
 	public void addEnemy() {
 		GameEntity.createEnemy(this);

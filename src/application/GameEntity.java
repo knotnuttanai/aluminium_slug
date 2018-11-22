@@ -26,6 +26,24 @@ public class GameEntity {
 	}
 	public static void checkStand() {
 		for(Hero h : hero) {
+			h.setHasHorizontalCollision(false);
+			h.setHasVerticalCollition(false);
+		}
+		for(Enemy e : enemies) {
+			e.setHasHorizontalCollision(false);
+			e.setHasVerticalCollition(false);
+		}
+		for(Enemy e : enemies) {
+			for(Terrain t : terrains) {
+				/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
+				if(e.checkInteract(t)) {
+					t.isSomeOneHitHere(e);
+					t.whenSomeOneStandHere(e);
+				}
+			
+		}
+		}
+		for(Hero h : hero) {
 			for(Terrain t : terrains) {
 				/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
 				if(h.checkInteract(t)) {
@@ -34,7 +52,7 @@ public class GameEntity {
 				}
 			}
 		}
-			boolean check = false;
+			/*boolean check = false;
 			for(Terrain t : terrains) {
 				if(t.isInteract()) {
 					check = true;
@@ -45,18 +63,13 @@ public class GameEntity {
 					h.setHasHorizontalCollision(false);
 					h.setHasVerticalCollition(false);
 				}
+				for(Enemy e : enemies) {
+					e.setHasHorizontalCollision(false);
+					e.setHasVerticalCollition(false);
+				}
 				
-			}
-			for(Enemy e : enemies) {
-				for(Terrain t : terrains) {
-					/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
-					if(e.checkInteract(t)) {
-						t.isSomeOneHitHere(e);
-						t.whenSomeOneStandHere(e);
-					}
-				
-			}
-			}
+			}*/
+			
 			
 		
 	}

@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import weapon.Bullet;
 
 public class Hero extends Person implements Shootable{
+	protected boolean isJump;
 	Image marco;
 	Image[] shoot;
 	int i = 0;
@@ -50,12 +51,51 @@ public class Hero extends Person implements Shootable{
 		posX += direction*2;
 		
 	}
-	
+	public void update() {
+		// TODO Auto-generated method stub
+		
+
+		
+		if(isJump) {
+			System.out.println("p");
+		}
+		if(posY >=800) {
+			setPosX(baseX);
+			setPosY(base);
+			veloY = 0;
+		}
+		
+		if(veloY > maxVeloY) {
+			veloY = maxVeloY;
+		}
+		else if(!hasVerticalCollition ) {
+			veloY += GRAVITY;
+			
+		
+		
+		}
+		
+		else if(hasVerticalCollition && isJump) {
+			veloY += GRAVITY;
+			
+			isJump = false;
+		}else if(hasVerticalCollition &&!isJump&& veloY > 0) {
+			veloY = 0;
+		
+			
+		}
+		posY += veloY;
+		
+		posX += veloX;
+		
+	}
 	public void shoot() {
 		isShoot = true;
 		Bullet bullet = new Bullet(this);
 		bullet.addBullet();
 	}
+
+	
 	
 	
 

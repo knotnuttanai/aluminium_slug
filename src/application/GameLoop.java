@@ -100,9 +100,7 @@ public class GameLoop implements Runnable{
 			x.update();
 		}
 		if(Math.random()<0.01) {
-		Enemy enemy = new Enemy(Math.random()*400+400, 250, 50);
 		
-		enemy.addEnemy();
 		}
 		
 	}

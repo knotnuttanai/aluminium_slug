@@ -68,7 +68,7 @@ public class EventManager {
 					
 				}
 				
-				else if(event.getCode() == KeyCode.SPACE) {
+			  else if(event.getCode() == KeyCode.SPACE) {
 					hero.Jump();
 					if(heroWalkOverBase) {
 						continueToWalk();
@@ -129,6 +129,7 @@ public class EventManager {
 	public void keyHandle() {
 		//start key D
 		if(dIsPressed) {
+			hero.setWalkDirection(1);
 			if(hero.isHasHorizontalCollision()) {
 				System.out.println("help");
 				return;
@@ -146,8 +147,8 @@ public class EventManager {
 		//end key D
 		//start key A
 		if(aIsPressed) {
+			hero.setWalkDirection(-1);
 			if(hero.isHasHorizontalCollision()) {
-				System.out.println("help");
 				return;
 			}
 			if(!isAtTheEndOfScreen()) {
