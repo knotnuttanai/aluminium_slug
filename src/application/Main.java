@@ -14,7 +14,7 @@ public class Main extends Application {
 		Hero hero = new Hero(200, 250, 50);
 		Terrain terrain1 = new Terrain(200, 350, 10000, 100);
 		GameEntity.createTerrain(terrain1);
-		Terrain terrain2 = new Terrain(350, 250, 1050, 100);
+		Terrain terrain2 = new Terrain(850, 260, 1050, 10);
 		GameEntity.createTerrain(terrain2);
 		Enemy enemy = new Enemy(800, 50, 50);
 		

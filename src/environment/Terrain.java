@@ -30,7 +30,7 @@ public class Terrain {
 		posX += direction*2;
 	}
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.TRANSPARENT);
 		gc.fillRect(posX, posY, width, height);
 		
 	}
@@ -41,7 +41,7 @@ public class Terrain {
 	public void isSomeOneHitHere(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		if(p.getWalkDirection() == 1) {
-			if(p.getPosX()+p.getWidth() >= posX&&p.getPosX() < posX) {
+			if(p.getPosX()+p.getWidth() >= posX&&p.getPosX() < posX&&p.getPosY()+p.getHeight() > posY) {
 				
 				
 				p.setHasHorizontalCollision(true);
@@ -51,7 +51,8 @@ public class Terrain {
 			}
 		}
 		if(p.getWalkDirection() == -1) {
-			if(p.getPosX() <= posX +width && p.getPosX()+p.getWidth() > posX+width) {
+			if(p.getPosX() <= posX +width && p.getPosX()+p.getWidth() > posX+width&&p.getPosY() > posY) {
+				
 				p.setHasHorizontalCollision(true);
 				
 			}else {
@@ -62,24 +63,15 @@ public class Terrain {
 	public void whenSomeOneStandHere(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		
-	if(b.intersects(personBound)&&p.getPosX()+p.getWidth() >= this.posX && p.getPosX() <= this.posX + this.width) {
-		/*if(p.getPosY() > posY) { 
-			System.out.println("hi");
-			p.setHasVerticalCollition(false);
-			
-			}*/
-		   
-		   if(!p.isJump()&&p.getVeloY() > 0) {
+	if(b.intersects(personBound)&&!p.isHasHorizontalCollision()) {
+		   if(!p.isHasHorizontalCollision()&&p.getVeloY() > 0) {
 		    p.setPosY(posY - p.getHeight());
-			  
-		   
+		    
 		   }
-		   
 			p.setHasVerticalCollition(true);
-			
 		}
 	else {
-		System.out.println("h");
+		
 	p.setHasVerticalCollition(false);
 	}
 		

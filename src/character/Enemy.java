@@ -29,7 +29,6 @@ public class Enemy extends Person {
 		
 		if(!this.hasVerticalCollition ) {
 			veloY += GRAVITY;
-			System.out.println("555");
 			
 		}else {
 			veloY = 0;

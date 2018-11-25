@@ -13,7 +13,7 @@ public abstract class Person implements Movable{
 	protected boolean isAlive;
 	protected double veloY, maxVeloY;
 	protected double veloX;
-	protected static final double GRAVITY = 0.5;
+	protected static final double GRAVITY = 1;
 	
 	protected double base;
 	protected boolean isJump;
