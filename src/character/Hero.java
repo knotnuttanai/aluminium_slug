@@ -9,9 +9,12 @@ import weapon.Bullet;
 
 public class Hero extends Person implements Shootable{
 	protected boolean isJump;
-	Image marco;
+	Image marcoTop;
+	Image marcoBottom;
 	Image[] shoot;
+	Image[] walk;
 	int i = 0;
+	int j = 0;
 
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
@@ -20,12 +23,18 @@ public class Hero extends Person implements Shootable{
 		veloY = 0;
 		height = 75;
 		width = 50;
-		marco = new Image("file:res/images/marco2.png");
+		marcoTop = new Image("file:res/images/top_marco1.png");
+		marcoBottom = new Image("file:res/images/bottom_marco.png");
 		shoot = new Image[10];
+		walk = new Image[5];
 		
 		
 		for(int i = 1; i <= 10; i++) {
 			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
+		}
+		
+		for(int i = 1; i <= 5; i++) {
+			walk[i-1] = new Image("file:res/images/walk" + i + ".png");
 		}
 		
 		GameEntity.createHero(this);
@@ -33,6 +42,15 @@ public class Hero extends Person implements Shootable{
 	
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
+		if(isWalk) {
+			gc.drawImage(walk[j], posX, posY + 43);
+			j++;
+			if(j==5) {
+				j = 0;
+			}
+		}
+		else gc.drawImage(marcoBottom, posX, posY + 43);
+		
 		if(isShoot) {
 			gc.drawImage(shoot[i], posX, posY);
 			i++;
@@ -41,7 +59,8 @@ public class Hero extends Person implements Shootable{
 				isShoot = false;
 			}
 		}
-		else gc.drawImage(marco, posX, posY);
+		else gc.drawImage(marcoTop, posX, posY);
+		
 		//gc.setFill(Color.BISQUE);
 		//gc.fillRect(posX, posY, 30, 60);
 		//gc.fillRect(getBaseX()+width,0 , 640 - getBaseX(), 480);

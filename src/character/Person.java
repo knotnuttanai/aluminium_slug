@@ -17,6 +17,7 @@ public abstract class Person implements Movable{
 	
 	protected double base;
 	protected boolean isJump;
+	protected boolean isWalk;
 	protected double height;
 	protected double width;
 	protected  double baseX;
@@ -60,6 +61,10 @@ public abstract class Person implements Movable{
 			veloX = 0;
 		}
 		
+	}
+	
+	public void setIsWalk(boolean isWalk) {
+		this.isWalk = isWalk;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package application;
 
 
-
+import character.Person;
 import character.Enemy;
 import character.Hero;
 import environment.Foreground;
@@ -129,6 +129,7 @@ public class EventManager {
 	public void keyHandle() {
 		//start key D
 		if(dIsPressed) {
+			hero.setIsWalk(true);
 			hero.setWalkDirection(1);
 			if(hero.isHasHorizontalCollision()) {
 				System.out.println("help");
@@ -144,9 +145,11 @@ public class EventManager {
 				}
 			}
 		}
+		else hero.setIsWalk(false);
 		//end key D
 		//start key A
 		if(aIsPressed) {
+			hero.setIsWalk(true);
 			hero.setWalkDirection(-1);
 			if(hero.isHasHorizontalCollision()) {
 				return;
@@ -165,6 +168,7 @@ public class EventManager {
 			doneMovingLeft = false;
 		}
 		else {
+			hero.setIsWalk(false);
 			hero.Walk(0);
 			fg.stop();
 			for(Enemy x: GameEntity.enemies) {
