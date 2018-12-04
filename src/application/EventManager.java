@@ -30,6 +30,7 @@ public class EventManager {
 		canWalk = false;
 		dIsPressed = false;
 		aIsPressed = false;
+		
 	}
 	public boolean isCanWalk() {
 		return canWalk;
@@ -69,12 +70,14 @@ public class EventManager {
 				}
 				
 			  else if(event.getCode() == KeyCode.SPACE) {
-					hero.Jump();
-					if(heroWalkOverBase) {
-						continueToWalk();
-					}
-					
-				}
+				
+						hero.Jump();
+						if(heroWalkOverBase) {
+							continueToWalk();
+						}
+						
+				  
+			  }
 			
 			}
 			
@@ -94,6 +97,7 @@ public class EventManager {
 					aIsPressed = false;
 					
 				}
+				
 			}
 		});
 		
@@ -181,6 +185,8 @@ public class EventManager {
 			
 		}
 		//end key A
+		
+		
 	}
 	
 	

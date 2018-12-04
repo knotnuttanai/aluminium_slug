@@ -43,6 +43,41 @@ public abstract class Person implements Movable{
 		walkDirection = 0;
 		
 	}
+	public void update() {
+		// TODO Auto-generated method stub
+		
+
+		
+		
+			
+		
+		if(posY >=800) {
+			setPosX(baseX);
+			setPosY(base);
+			veloY = 0;
+		}
+		
+		/*if(veloY > maxVeloY) {
+			veloY = maxVeloY;
+		}*/
+		if(isJump || !isHasVerticalCollition()) {
+			veloY += GRAVITY;
+	
+		}
+		/*else if(hasVerticalCollition && isJump) {
+			veloY += GRAVITY;
+			
+		
+		}*/else if(hasVerticalCollition && veloY > 0) {
+			veloY = 0;
+		
+			
+		}
+		posY += veloY;
+		
+		posX += veloX;
+		
+	}
 
 	public double getBaseX() {
 		return baseX;
@@ -69,10 +104,10 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Jump() {
-		if(hasVerticalCollition) {
-		veloY += -20;
-		isJump = true;
-		
+		if(hasVerticalCollition&&!isJump) {
+			veloY = -20;
+			isJump = true;
+			
 		}
 		
 	}

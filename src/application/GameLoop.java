@@ -96,12 +96,18 @@ public class GameLoop implements Runnable{
 		}
 		for(Enemy x : GameEntity.enemies) {
 			x.update();
+			
+			if(Math.random() < 0.01) {
+				x.Jump();
+			}
 		}
 		for(Terrain x : GameEntity.terrains) {
 			x.update();
 		}
-		if(Math.random()<0.01) {
-		
+		if(Math.random() < 0.01) {
+			Enemy enemy = new Enemy(800*Math.random(), 50, 50);
+			enemy.addEnemy();
+			System.out.println("added");
 		}
 		
 	}

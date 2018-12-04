@@ -71,10 +71,12 @@ public class Terrain {
 		   if(p.getVeloY() > 0) {
 			   p.setPosY(posY - p.getHeight());
 			   p.setJump(false);
-		    
+			  
+			  
 		   }
-			p.setHasVerticalCollition(true);
-			System.out.println("hi");
+		   
+		   p.setHasVerticalCollition(true);
+			
 			
 		}
 	else {
