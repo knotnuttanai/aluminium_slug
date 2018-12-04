@@ -24,6 +24,7 @@ public class GameEntity {
 	public static void createEnemy(Enemy e) {
 		enemies.add(e);
 	}
+	
 	public static void checkStand() {
 		for(Hero h : hero) {
 			h.setHasHorizontalCollision(false);
@@ -38,18 +39,21 @@ public class GameEntity {
 				/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
 				if(e.checkInteract(t)) {
 					t.isSomeOneHitHere(e);
-					t.whenSomeOneStandHere(e);
+					t.standVertical(e);
+					
 				}
+				
 			
 		}
 		}
 		for(Hero h : hero) {
 			for(Terrain t : terrains) {
-				/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
 				if(h.checkInteract(t)) {
 					t.isSomeOneHitHere(h);
-					t.whenSomeOneStandHere(h);
+					t.standVertical(h);
+					 
 				}
+				
 			}
 		}
 			/*boolean check = false;

@@ -132,7 +132,7 @@ public class EventManager {
 			hero.setIsWalk(true);
 			hero.setWalkDirection(1);
 			if(hero.isHasHorizontalCollision()) {
-				System.out.println("help");
+				
 				return;
 			}
 			if(canWalk) {
@@ -145,7 +145,10 @@ public class EventManager {
 				}
 			}
 		}
-		else hero.setIsWalk(false);
+		else {
+			hero.setIsWalk(false);
+			
+		}
 		//end key D
 		//start key A
 		if(aIsPressed) {
@@ -168,6 +171,7 @@ public class EventManager {
 			doneMovingLeft = false;
 		}
 		else {
+			
 			hero.setIsWalk(false);
 			hero.Walk(0);
 			fg.stop();

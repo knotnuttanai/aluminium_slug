@@ -70,10 +70,11 @@ public abstract class Person implements Movable{
 	@Override
 	public void Jump() {
 		if(hasVerticalCollition) {
-		veloY += -15;
+		veloY += -20;
 		isJump = true;
 		
 		}
+		
 	}
 
 	public double getPosX() {

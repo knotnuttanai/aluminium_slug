@@ -22,7 +22,7 @@ public class Hero extends Person implements Shootable{
 		veloX = 0;
 		veloY = 0;
 		height = 75;
-		width = 50;
+		width = 45;
 		marcoTop = new Image("file:res/images/top_marco1.png");
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
 		shoot = new Image[10];
@@ -97,7 +97,7 @@ public class Hero extends Person implements Shootable{
 		else if(hasVerticalCollition && isJump) {
 			veloY += GRAVITY;
 			
-			isJump = false;
+		
 		}else if(hasVerticalCollition &&!isJump&& veloY > 0) {
 			veloY = 0;
 		

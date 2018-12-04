@@ -75,6 +75,7 @@ public class GameLoop implements Runnable{
 		// TODO Auto-generated method stub
 		
 		ev.keyHandle();
+		GameEntity.checkStand();
 		if(heroWalkOverBase()) {
 			ev.setHeroWalkOverBase(true);
 			setWalk(false);
@@ -83,7 +84,7 @@ public class GameLoop implements Runnable{
 			ev.setHeroWalkOverBase(false);
 			setWalk(true);
 		}
-		GameEntity.checkStand();
+		
 		GameEntity.calculateHit();
 		GameEntity.clearDead();
 		gameScene.getFg().update();
