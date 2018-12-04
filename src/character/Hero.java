@@ -18,6 +18,8 @@ public class Hero extends Person implements Shootable{
 	//gun1 is machine gun
 	Image marcoTop;
 	Image marcoBottom;
+	Image marcoMachine;
+	Image[] machShoot;
 	Image[] shoot;
 	Image[] walk;
 	int i = 0;
@@ -34,9 +36,11 @@ public class Hero extends Person implements Shootable{
 		height = 75;
 		width = 45;
 		marcoTop = new Image("file:res/images/top_marco1.png");
+		marcoMachine = new Image("file:res/images/machgun.png");
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
 		shoot = new Image[10];
 		walk = new Image[10];
+		machShoot = new Image[4];
 		
 		
 		for(int i = 1; i <= 10; i++) {
@@ -45,6 +49,10 @@ public class Hero extends Person implements Shootable{
 		
 		for(int i = 1; i <= 10; i++) {
 			walk[i-1] = new Image("file:res/images/walk" + i + ".png");
+		}
+		
+		for(int i = 1; i <= 4; i++) {
+			machShoot[i-1] = new Image("file:res/images/mach" + i + ".png");
 		}
 		
 		GameEntity.createHero(this);
@@ -83,15 +91,29 @@ public class Hero extends Person implements Shootable{
 		  else gc.drawImage(marcoBottom, posX, posY + 38);
 		  
 		  if(isShoot) {
-		   gc.drawImage(shoot[i], posX + k , posY);
-		   i++;
-		   if(i==10) {
-		    i = 0;
-		    isShoot = false;
-		   }
+			  if(gun == 0) {
+				  gc.drawImage(shoot[i], posX + k , posY);
+				  i++;
+				  if(i==10) {
+					  i = 0;
+					  isShoot = false;
+				  }
+			  }
+			  else {
+				  gc.drawImage(machShoot[i], posX + k , posY);
+				  i++;
+				  if(i==4) {
+					  i = 0;
+					  isShoot = false;
+				   }
+			  }
+			  
 		  }
-		  else gc.drawImage(marcoTop, posX + k, posY);
-		  
+		  else {
+			  if(gun == 0) gc.drawImage(marcoTop, posX + k, posY);
+			  else gc.drawImage(marcoMachine, posX + k, posY);
+		  }
+		  	
 		  //gc.setFill(Color.BISQUE);
 		  //gc.fillRect(posX, posY, 30, 60);
 		  //gc.fillRect(getBaseX()+width,0 , 640 - getBaseX(), 480);
