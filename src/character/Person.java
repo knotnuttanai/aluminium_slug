@@ -15,13 +15,14 @@ public abstract class Person implements Movable{
 	protected double veloX;
 	protected static final double GRAVITY = 1;
 	
+	
 	protected double base;
 	protected boolean isJump;
 	protected boolean isWalk;
 	protected double height;
 	protected double width;
 	protected  double baseX;
-	protected boolean isShoot, hasVerticalCollition, hasHorizontalCollision;
+	protected boolean isShoot, hasVerticalCollition, hasHorizontalCollision, isStandOnMainTerrain;
 	private Terrain terrian;
 	
 	
@@ -42,10 +43,13 @@ public abstract class Person implements Movable{
 		hasVerticalCollition = false;
 		hasHorizontalCollision = false;
 		walkDirection = 0;
+		isStandOnMainTerrain = false;
 		
 	}
 	public void update() {
-		
+		if(isStandOnMainTerrain) {
+			System.out.println(veloY);
+		}
 		if(posY >=800) {
 			setPosX(baseX);
 			setPosY(base);
@@ -96,6 +100,7 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Jump() {
+		isStandOnMainTerrain = false;
 		if(hasVerticalCollition&&!isJump) {
 			veloY = -20;
 			isJump = true;
@@ -235,6 +240,11 @@ public abstract class Person implements Movable{
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
-	
+	public boolean isStandOnMainTerrain() {
+		return isStandOnMainTerrain;
+	}
+	public void setStandOnMainTerrain(boolean isStandOnMainTerrain) {
+		this.isStandOnMainTerrain = isStandOnMainTerrain;
+	}
 }
 

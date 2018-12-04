@@ -6,6 +6,7 @@ import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import weapon.Gun;
 
 public class Terrain {
 	public double posX ,posY ,width ,height, veloX;
@@ -29,7 +30,7 @@ public class Terrain {
 		posX += direction*2;
 	}
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.TRANSPARENT);
+		gc.setFill(Color.ANTIQUEWHITE);
 		gc.fillRect(posX, posY, width, height);
 		
 	}
@@ -74,16 +75,26 @@ public class Terrain {
 			  
 			  
 		   }
-		   
+		   p.setStandOnMainTerrain(true);
 		   p.setHasVerticalCollition(true);
 			
 			
 		}
-	else {
 		
-	//p.setHasVerticalCollition(false);
-	
 	}
+	public void gunStandVertical(Gun g) {
+		BoundingBox personBound = new BoundingBox(g.getPosX(), g.getPosY(), g.getWidth(), g.getHeight());
+		
+	if(b.intersects(personBound)&&(g.getPosY() + g.getHeight()-2 <= posY || !g.isHasHorizontalCollision())) {
+		   if(g.getVeloY() > 0) {
+			   g.setPosY(posY - g.getHeight());
+			   
+		   }
+		   
+		   g.setHasVerticalCollition(true);
+			
+			
+		}
 		
 	}
 	public boolean isInteract() {

@@ -36,9 +36,10 @@ public class SpawnManager {
 		}
 		
 	}
-	public void createStair() {
-		for(int i = 0; i < 45; i++) {
-			StairTerrain terrain2 = new StairTerrain(1600 + (i*8), 346 - (i*2), 1050- (i*4), 10);
+	public void createStair(double posX, double posY, double width, double height,int count, int x, int xPrime , int y,int priority) {
+		for(int i = 0; i < count; i++) {
+			StairTerrain terrain2 = new StairTerrain(posX + (i*x), posY + (i*y), width - xPrime, height);
+			terrain2.setPriority(priority);
 			GameEntity.createTerrain(terrain2);
 		}
 	}

@@ -12,7 +12,7 @@ public class Gun {
 	protected double posY, veloY, baseVeloY;
 	protected boolean hasVerticalCollition, hasHorizontalCollision;
 	private static final double GRAVITY = 1;
-	public Gun(double width, double height, double posX, double posY) {
+	public Gun(double posX, double posY,double width, double height ) {
 		super();
 		this.width = width;
 		this.height = height;
@@ -27,13 +27,21 @@ public class Gun {
 		
 	}
 	public void update() {
+		if(!hasVerticalCollition) {
+			this.veloY += GRAVITY;
+	
+		}
+		else if(hasVerticalCollition && veloY > 0) {
+			this.veloY = 0;
+		}
 		veloX = baseVeloX + GameScene.getFgSpeed();
 		posX += veloX;
 		posY += veloY;
 	}
 	public void render(GraphicsContext gc) {
-		gc.fillRect(200, 200, 10, 10);
 		gc.setFill(Color.AQUA);
+		gc.fillRect(posX, posY, width, height);
+		
 		
 		
 	}
@@ -63,6 +71,30 @@ public class Gun {
 	}
 	public void addGun() {
 		GameEntity.createGun(this);
+	}
+	public double getVeloX() {
+		return veloX;
+	}
+	public void setVeloX(double veloX) {
+		this.veloX = veloX;
+	}
+	public double getVeloY() {
+		return veloY;
+	}
+	public void setVeloY(double veloY) {
+		this.veloY = veloY;
+	}
+	public boolean isHasVerticalCollition() {
+		return hasVerticalCollition;
+	}
+	public void setHasVerticalCollition(boolean hasVerticalCollition) {
+		this.hasVerticalCollition = hasVerticalCollition;
+	}
+	public boolean isHasHorizontalCollision() {
+		return hasHorizontalCollision;
+	}
+	public void setHasHorizontalCollision(boolean hasHorizontalCollision) {
+		this.hasHorizontalCollision = hasHorizontalCollision;
 	}
 	
 }

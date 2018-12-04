@@ -8,6 +8,7 @@ import javafx.animation.AnimationTimer;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.Canvas;
 import weapon.Bullet;
+import weapon.Gun;
 
 public class GameLoop implements Runnable{
 	private boolean running;
@@ -112,6 +113,9 @@ public class GameLoop implements Runnable{
 		for(Terrain x : GameEntity.terrains) {
 			x.update();
 		}
+		for(Gun g : GameEntity.guns) {
+			g.update();
+		}
 		
 		
 	}
@@ -130,6 +134,9 @@ public class GameLoop implements Runnable{
 		}
 		for(Terrain x : GameEntity.terrains) {
 			x.render(gameScene.getView());
+		}
+		for(Gun g : GameEntity.guns) {
+			g.render(gameScene.getView());
 		}
 		
 		

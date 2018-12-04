@@ -36,13 +36,15 @@ public class GameEntity {
 		for(Hero h : hero) {
 			h.setHasHorizontalCollision(false);
 			h.setHasVerticalCollition(false);
+			h.setStandOnMainTerrain(false);
 		}
 		for(Enemy e : enemies) {
 			e.setHasHorizontalCollision(false);
 			e.setHasVerticalCollition(false);
+			e.setStandOnMainTerrain(false);
 		}
 		for(Gun g : guns) {
-			
+			g.setHasVerticalCollition(false);
 		}
 		for(Enemy e : enemies) {
 			for(Terrain t : terrains) {
@@ -61,6 +63,11 @@ public class GameEntity {
 					 
 				}
 				
+			}
+		}
+		for(Gun g : guns) {
+			for(Terrain t : terrains) {
+				t.gunStandVertical(g);
 			}
 		}
 	}
