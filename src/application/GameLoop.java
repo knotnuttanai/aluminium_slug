@@ -13,16 +13,14 @@ public class GameLoop implements Runnable{
 	private boolean running;
 	private GameScene gameScene;
 	private Canvas canvas;
-	private long previousTime;
-	private double multiplyer;
 	private Thread thread;
 	private EventManager ev;
-	private double timePass;
 	private AnimationTimer an;
+	private SpawnManager spawnManager;
 	
 	public GameLoop() {
 		canvas = new Canvas(640 ,480);
-		
+		spawnManager = new SpawnManager();
 		gameScene = new GameScene(canvas);
 		for(Hero x : GameEntity.hero) {
 			ev = new EventManager(gameScene.getScene(), x, gameScene.getFg());
@@ -79,6 +77,7 @@ public class GameLoop implements Runnable{
 			
 		}
 		ev.keyHandle();
+		spawnManager.spawnEnemy();
 		GameEntity.checkStand();
 		if(heroWalkOverBase()) {
 			ev.setHeroWalkOverBase(true);
@@ -113,11 +112,7 @@ public class GameLoop implements Runnable{
 		for(Terrain x : GameEntity.terrains) {
 			x.update();
 		}
-		if(Math.random() < 0.01) {
-			Enemy enemy = new Enemy(640+100*Math.random(), 200, 50);
-			enemy.addEnemy();
-			System.out.println("added");
-		}
+		
 		
 	}
 	private void renderContent() {
