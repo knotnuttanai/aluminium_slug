@@ -36,14 +36,14 @@ public class Hero extends Person implements Shootable{
 		marcoTop = new Image("file:res/images/top_marco1.png");
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
 		shoot = new Image[10];
-		walk = new Image[5];
+		walk = new Image[10];
 		
 		
 		for(int i = 1; i <= 10; i++) {
 			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
 		}
 		
-		for(int i = 1; i <= 5; i++) {
+		for(int i = 1; i <= 10; i++) {
 			walk[i-1] = new Image("file:res/images/walk" + i + ".png");
 		}
 		
@@ -60,29 +60,43 @@ public class Hero extends Person implements Shootable{
 
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if(isWalk) {
-			gc.drawImage(walk[j], posX, posY + 43);
-			j++;
-			if(j==5) {
-				j = 0;
-			}
+		int k = 0;
+		  if(isWalk) {
+		   gc.drawImage(walk[j/5], posX, posY + 38);
+		   if(j/5==0) k = 2;
+		   else if(j/5==1) k = 6;
+		   else if(j/5==2) k = 7;
+		   else if(j/5==3) k = 0;
+		   else if(j/5==4) k = -4;
+		   else if(j/5==5) k = -3;
+		   else if(j/5==6) k = -1;
+		   else if(j/5==7) k = 4;
+		   else if(j/5==8) k = 5;
+		   else if(j/5==9) k = 0;
+		   else k = 0;
+		   j++;
+		   
+		   if(j==50) {
+		    j = 0;
+		   }
+		  }
+		  else gc.drawImage(marcoBottom, posX, posY + 38);
+		  
+		  if(isShoot) {
+		   gc.drawImage(shoot[i], posX + k , posY);
+		   i++;
+		   if(i==10) {
+		    i = 0;
+		    isShoot = false;
+		   }
+		  }
+		  else gc.drawImage(marcoTop, posX + k, posY);
+		  
+		  //gc.setFill(Color.BISQUE);
+		  //gc.fillRect(posX, posY, 30, 60);
+		  //gc.fillRect(getBaseX()+width,0 , 640 - getBaseX(), 480);
 		}
-		else gc.drawImage(marcoBottom, posX, posY + 43);
-		
-		if(isShoot) {
-			gc.drawImage(shoot[i], posX, posY);
-			i++;
-			if(i==10) {
-				i = 0;
-				isShoot = false;
-			}
-		}
-		else gc.drawImage(marcoTop, posX, posY);
-		
-		//gc.setFill(Color.BISQUE);
-		//gc.fillRect(posX, posY, 30, 60);
-		//gc.fillRect(getBaseX()+width,0 , 640 - getBaseX(), 480);
-		}
+	
 	@Override	
 	public void Walk(int direction) {
 		posX += direction*2;
