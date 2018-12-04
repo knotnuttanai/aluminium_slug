@@ -42,7 +42,6 @@ public class Bullet {
 			setHit();
 		}
 		veloX = baseVeloX + GameScene.getFgSpeed();
-		System.out.println(veloX);
 		posX += veloX;
 		posY += veloY;
 	}

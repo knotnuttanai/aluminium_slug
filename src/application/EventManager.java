@@ -72,9 +72,9 @@ public class EventManager {
 			  else if(event.getCode() == KeyCode.SPACE) {
 				
 						hero.Jump();
-						if(heroWalkOverBase) {
+						/*if(heroWalkOverBase) {
 							continueToWalk();
-						}
+						}*/
 						
 				  
 			  }
@@ -151,9 +151,7 @@ public class EventManager {
 				for(Terrain x : GameEntity.terrains) {
 					x.walk(-1);
 				}
-				for(Enemy e: GameEntity.enemies) {
-					e.setVeloX(-4);
-				}
+				
 			}
 		}
 		else {

@@ -1,5 +1,7 @@
 package application;
 
+import character.Hero;
+import character.HpBar;
 import environment.Foreground;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,17 +14,21 @@ public class GameScene {
 	private Stage stage;
 	private Group root;
 	private Canvas canvas;
+	private HpBar hpBar;
 	private GraphicsContext view;
 	private static Foreground fg;
 	public GameScene(Canvas canvas) {
 		fg = new Foreground();
+	    hpBar = new HpBar();
 		root = new Group();
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
+		root.getChildren().add(hpBar);
 		scene = new Scene(root, 640, 480);
 		stage = new Stage();
 		stage.setScene(scene);
+		
 	}
 	public void addEntity(GraphicsContext gc) {
 		gc = canvas.getGraphicsContext2D();
@@ -70,6 +76,12 @@ public class GameScene {
 	}
 	public static double getFgSpeed() {
 		return fg.getVeloX();
+	}
+	public HpBar getHpBar() {
+		return hpBar;
+	}
+	public void setHpBar(HpBar hpBar) {
+		this.hpBar = hpBar;
 	}
 	
 

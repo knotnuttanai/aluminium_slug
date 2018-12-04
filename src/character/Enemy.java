@@ -1,6 +1,7 @@
 package character;
 
 import application.GameEntity;
+import application.GameScene;
 import environment.Foreground;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,6 +12,7 @@ import weapon.HeroBullet;
 
 public class Enemy extends Person {
 	Image marco;
+	private double baseVeloX;
 	public Enemy(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
@@ -20,6 +22,7 @@ public class Enemy extends Person {
 		marco = new Image("file:res/images/marco2.png");
 		veloX = -2;
 		walkDirection = -1;
+		baseVeloX = veloX;
 		
 	}
 
@@ -60,6 +63,7 @@ public class Enemy extends Person {
 		else if(hasVerticalCollition && veloY > 0) {
 			this.veloY = 0;
 		}
+		veloX = baseVeloX+GameScene.getFgSpeed();
 		this.posY += this.veloY;
 		
 		this.posX += this.veloX;

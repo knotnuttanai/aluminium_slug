@@ -7,7 +7,7 @@ import weapon.Bullet;
 
 public abstract class Person implements Movable{
 	protected int walkDirection;
-	protected int health;
+	protected int health, maxHealth;
 	protected double posX;
 	protected double posY;
 	protected boolean isAlive;
@@ -30,6 +30,7 @@ public abstract class Person implements Movable{
 		this.posX = posX;
 		this.posY = posY;
 		this.health = health;
+		maxHealth = this.health;
 		veloX = 0;
 		veloY = 0;
 		maxVeloY = 20;
@@ -227,6 +228,12 @@ public abstract class Person implements Movable{
 
 	public void setWalkDirection(int walkDirection) {
 		this.walkDirection = walkDirection;
+	}
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 	
 }

@@ -73,6 +73,7 @@ public class GameEntity {
 				if(b instanceof EnemyBullet) {
 					EnemyBullet b1 = (EnemyBullet) b;
 					if(h.isHitByBullet(b1)) {
+						h.takeDamage(b1.getDamage());
 						b.setHit();
 						
 					}

@@ -18,6 +18,7 @@ public class GameLoop implements Runnable{
 	private Thread thread;
 	private EventManager ev;
 	private double timePass;
+	private AnimationTimer an;
 	
 	public GameLoop() {
 		canvas = new Canvas(640 ,480);
@@ -38,7 +39,7 @@ public class GameLoop implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		if(running) {
-			AnimationTimer an = new AnimationTimer() {
+			an = new AnimationTimer() {
 				
 				@Override
 				public void handle(long now) {
@@ -49,14 +50,13 @@ public class GameLoop implements Runnable{
 					updateContent();
 					renderContent();
 					
-					
-					
-					
+				
 				}
 
 				
 			};
 			an.start();
+			
 		}
 		
 	}
@@ -73,7 +73,11 @@ public class GameLoop implements Runnable{
 	}
 	private void updateContent() {
 		// TODO Auto-generated method stub
-		
+		if(!ev.getHero().isAlive()) {
+			gameScene.getRoot().getChildren().clear();
+			an.stop();
+			
+		}
 		ev.keyHandle();
 		GameEntity.checkStand();
 		if(heroWalkOverBase()) {
@@ -92,6 +96,7 @@ public class GameLoop implements Runnable{
 		for(Hero x: GameEntity.hero) {
 			x.update();
 		}
+		gameScene.getHpBar().update();
 		for(Bullet x: GameEntity.bullets) {
 			x.update();
 		}
@@ -108,7 +113,7 @@ public class GameLoop implements Runnable{
 		for(Terrain x : GameEntity.terrains) {
 			x.update();
 		}
-		if(Math.random() < 0.005) {
+		if(Math.random() < 0.01) {
 			Enemy enemy = new Enemy(640+100*Math.random(), 200, 50);
 			enemy.addEnemy();
 			System.out.println("added");
@@ -120,6 +125,7 @@ public class GameLoop implements Runnable{
 		gameScene.getFg().render(gameScene.getView());
 		for(Hero x: GameEntity.hero) {
 			x.render(gameScene.getView());
+			
 		}
 		for(Bullet x: GameEntity.bullets) {
 			x.render(gameScene.getView());
