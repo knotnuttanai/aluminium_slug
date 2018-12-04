@@ -60,7 +60,7 @@ public class EventManager {
 				}*/
 				if(event.getCode() == KeyCode.D ) {
 					dIsPressed = true;
-					System.out.println("d");
+					
 					
 				}
 				
@@ -89,13 +89,17 @@ public class EventManager {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.D) {
 					dIsPressed = false;
-					System.out.println("release d");
-					
+					for(Enemy e: GameEntity.enemies) {
+						e.stop();
+					}
+					fg.moveScreen(0);
 					
 				}
 				else if(event.getCode() == KeyCode.A) {
 					aIsPressed = false;
-					
+					for(Enemy x: GameEntity.enemies) {
+						x.stop();
+					}
 				}
 				
 			}
@@ -143,14 +147,18 @@ public class EventManager {
 				hero.Walk(2);
 			}
 			else {
-				fg.moveScreen(-3);
+				fg.moveScreen(-2);
 				for(Terrain x : GameEntity.terrains) {
 					x.walk(-1);
+				}
+				for(Enemy e: GameEntity.enemies) {
+					e.setVeloX(-4);
 				}
 			}
 		}
 		else {
 			hero.setIsWalk(false);
+			
 			
 		}
 		//end key D
@@ -164,9 +172,9 @@ public class EventManager {
 			if(!isAtTheEndOfScreen()) {
 				fg.moveScreen(0);
 				hero.Walk(-2);
-				for(Enemy x: GameEntity.enemies) {
+				/*for(Enemy x: GameEntity.enemies) {
 					x.walk(fg.getVeloX());
-				}
+				}*/
 			}
 			else {
 				hero.Walk(0);
@@ -176,12 +184,10 @@ public class EventManager {
 		}
 		else {
 			
-			hero.setIsWalk(false);
+			//hero.setIsWalk(false);
 			hero.Walk(0);
-			fg.stop();
-			for(Enemy x: GameEntity.enemies) {
-				x.stop();
-			}
+			//fg.stop();
+			
 			
 		}
 		//end key A

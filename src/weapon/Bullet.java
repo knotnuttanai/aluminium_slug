@@ -1,37 +1,48 @@
 package weapon;
 
 import application.GameEntity;
+import application.GameScene;
 import character.Hero;
+import character.Person;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Bullet {
-	private double posX;
-	private double posY;
-	private double veloX;
-	private double veloY;
+	protected double posX;
+	protected double posY;
+	protected double veloX, baseVeloX;
+	protected double veloY, baseVeloY;
 	public boolean isHit;
-	private double width;
-	private double height;
+	protected double width;
+	protected double height;
+	protected int damage;
 	Image bullet;
-	public Bullet(Hero hero) {
-		posX = hero.getPosX() + 40;
-		posY = hero.getPosY() + 10;
+	public Bullet(Person p) {
+		posX = p.getPosX() + 40;
+		posY = p.getPosY() + 10;
 		veloX = 10;
 		veloY = 0;
+		baseVeloX = veloX;
+		baseVeloY = veloY;
 		isHit = false;
 		width = 50;
 		height = 10;
-		
+		damage = 10;
 		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",50, 32.5, false, false);
 		
-		System.out.println("shoot");
+		
 		
 				
 		
 	}
-	public void update() {
+	public void update() 
+	{
+		if(this.posY >=800||this.posX +this.width < -10) {
+			setHit();
+		}
+		veloX = baseVeloX + GameScene.getFgSpeed();
+		System.out.println(veloX);
 		posX += veloX;
 		posY += veloY;
 	}
@@ -91,5 +102,11 @@ public class Bullet {
 	public void setHeight(double height) {
 		this.height = height;
 	}
-
+	public int getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
 }

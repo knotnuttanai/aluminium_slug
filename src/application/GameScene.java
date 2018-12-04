@@ -13,7 +13,7 @@ public class GameScene {
 	private Group root;
 	private Canvas canvas;
 	private GraphicsContext view;
-	private Foreground fg;
+	private static Foreground fg;
 	public GameScene(Canvas canvas) {
 		fg = new Foreground();
 		root = new Group();
@@ -68,7 +68,9 @@ public class GameScene {
 	public void setFg(Foreground fg) {
 		this.fg = fg;
 	}
-	
+	public static double getFgSpeed() {
+		return fg.getVeloX();
+	}
 	
 
 }

@@ -6,6 +6,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import weapon.Bullet;
+import weapon.EnemyBullet;
+import weapon.HeroBullet;
 
 public class Hero extends Person implements Shootable{
 	protected boolean isJump;
@@ -73,10 +75,14 @@ public class Hero extends Person implements Shootable{
 	
 	public void shoot() {
 		isShoot = true;
-		Bullet bullet = new Bullet(this);
+		HeroBullet bullet = new HeroBullet(this);
 		bullet.addBullet();
 	}
-
+	public boolean isHitByBullet(EnemyBullet b) {
+		BoundingBox b1 = new BoundingBox(posX, posY, width, height);
+		BoundingBox b2 = new BoundingBox(b.getPosX(), b.getPosY(), b.getWidth(), b.getHeight());
+		return b1.intersects(b2);
+	}
 	
 	
 	

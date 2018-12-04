@@ -88,6 +88,7 @@ public class GameLoop implements Runnable{
 		GameEntity.calculateHit();
 		GameEntity.clearDead();
 		gameScene.getFg().update();
+		gameScene.getFg().update();
 		for(Hero x: GameEntity.hero) {
 			x.update();
 		}
@@ -100,12 +101,15 @@ public class GameLoop implements Runnable{
 			if(Math.random() < 0.01) {
 				x.Jump();
 			}
+			if(Math.random() < 0.01) {
+				x.shoot();
+			}
 		}
 		for(Terrain x : GameEntity.terrains) {
 			x.update();
 		}
-		if(Math.random() < 0.01) {
-			Enemy enemy = new Enemy(800*Math.random(), 50, 50);
+		if(Math.random() < 0.005) {
+			Enemy enemy = new Enemy(640+100*Math.random(), 200, 50);
 			enemy.addEnemy();
 			System.out.println("added");
 		}

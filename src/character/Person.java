@@ -44,41 +44,32 @@ public abstract class Person implements Movable{
 		
 	}
 	public void update() {
-		// TODO Auto-generated method stub
-		
-
-		
-		
-			
 		
 		if(posY >=800) {
 			setPosX(baseX);
 			setPosY(base);
 			veloY = 0;
 		}
-		
-		/*if(veloY > maxVeloY) {
-			veloY = maxVeloY;
-		}*/
 		if(isJump || !isHasVerticalCollition()) {
 			veloY += GRAVITY;
 	
 		}
-		/*else if(hasVerticalCollition && isJump) {
-			veloY += GRAVITY;
-			
-		
-		}*/else if(hasVerticalCollition && veloY > 0) {
+		else if(hasVerticalCollition && veloY > 0) {
 			veloY = 0;
-		
-			
 		}
 		posY += veloY;
 		
 		posX += veloX;
 		
 	}
-
+	public void takeDamage(int dmg) {
+		if(health > 0) {
+			health = health - dmg;
+			if(health <= 0) {
+				setDead();
+			}
+		}
+	}
 	public double getBaseX() {
 		return baseX;
 	}
@@ -128,11 +119,7 @@ public abstract class Person implements Movable{
 			return false;
 		}
 	}*/
-	public boolean isHitByBullet(Bullet b) {
-		BoundingBox b1 = new BoundingBox(posX, posY, width, height);
-		BoundingBox b2 = new BoundingBox(b.getPosX(), b.getPosY(), b.getWidth(), b.getHeight());
-		return b1.intersects(b2);
-	}
+	
 	public boolean checkInteract(Terrain terrain) {
 		BoundingBox p = new BoundingBox(posX, posY, width, height);
 		if(p.intersects(terrain.b)) { 
