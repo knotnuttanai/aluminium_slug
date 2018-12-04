@@ -149,7 +149,7 @@ public class EventManager {
 			else {
 				fg.moveScreen(-2);
 				for(Terrain x : GameEntity.terrains) {
-					x.walk(-1);
+					x.walk(-2);
 				}
 				
 			}

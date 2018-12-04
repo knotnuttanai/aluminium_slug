@@ -68,7 +68,7 @@ public class Terrain {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		
 	if(b.intersects(personBound)&&(p.getPosY() + p.getHeight()-2 <= posY || !p.isHasHorizontalCollision())) {
-		   if(p.getVeloY() > 0 || p.getPosY() + p.getHeight() - posY < 5 ) {
+		   if(p.getVeloY() > 0) {
 			   p.setPosY(posY - p.getHeight());
 			   p.setJump(false);
 			  

@@ -29,7 +29,7 @@ public class SpawnManager {
 			return;
 		}
 		if(Math.random() < spawnRate) {
-			Enemy enemy = new Enemy(640+100*Math.random(), 200, 50);
+			Enemy enemy = new Enemy(640+100*Math.random(), 100, 50);
 			enemy.addEnemy();
 			System.out.println("added");
 		}
