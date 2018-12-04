@@ -8,19 +8,27 @@ import javafx.scene.paint.Color;
 import weapon.Bullet;
 import weapon.EnemyBullet;
 import weapon.HeroBullet;
+import weapon.MachineGunBullet;
+import weapon.PistolBullet;
 
 public class Hero extends Person implements Shootable{
 	protected boolean isJump;
+	public int gun;
+	//gun0 is pistol
+	//gun1 is machine gun
 	Image marcoTop;
 	Image marcoBottom;
 	Image[] shoot;
 	Image[] walk;
 	int i = 0;
 	int j = 0;
+	private int firerate;
 
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
+		gun = 0;
+		this.firerate = 200;
 		veloX = 0;
 		veloY = 0;
 		height = 75;
@@ -42,6 +50,14 @@ public class Hero extends Person implements Shootable{
 		GameEntity.createHero(this);
 	}
 	
+	public int getFirerate() {
+		return firerate;
+	}
+
+	public void setFirerate(int firerate) {
+		this.firerate = firerate;
+	}
+
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		if(isWalk) {
@@ -75,8 +91,17 @@ public class Hero extends Person implements Shootable{
 	
 	public void shoot() {
 		isShoot = true;
-		HeroBullet bullet = new HeroBullet(this);
-		bullet.addBullet();
+		if(gun == 0) {
+			firerate = 200;
+			PistolBullet bullet = new PistolBullet(this);
+			bullet.addBullet();
+		}
+		if(gun == 1) {
+			firerate = 100;
+			MachineGunBullet bullet = new MachineGunBullet(this);
+			bullet.addBullet();
+		}
+		
 	}
 	public boolean isHitByBullet(EnemyBullet b) {
 		BoundingBox b1 = new BoundingBox(posX, posY, width, height);

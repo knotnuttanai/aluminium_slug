@@ -7,6 +7,7 @@ import character.Hero;
 import environment.Terrain;
 import weapon.Bullet;
 import weapon.EnemyBullet;
+import weapon.Gun;
 import weapon.HeroBullet;
 
 public class GameEntity {
@@ -14,6 +15,7 @@ public class GameEntity {
 	public static ArrayList<Bullet> bullets = new ArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
+	public static ArrayList<Gun> guns = new ArrayList<>();
 	public static void createHero(Hero h) {
 		hero.add(h);
 	}
@@ -26,6 +28,9 @@ public class GameEntity {
 	public static void createEnemy(Enemy e) {
 		enemies.add(e);
 	}
+	public static void createGun(Gun g) {
+		guns.add(g);
+	}
 	
 	public static void checkStand() {
 		for(Hero h : hero) {
@@ -35,6 +40,9 @@ public class GameEntity {
 		for(Enemy e : enemies) {
 			e.setHasHorizontalCollision(false);
 			e.setHasVerticalCollition(false);
+		}
+		for(Gun g : guns) {
+			
 		}
 		for(Enemy e : enemies) {
 			for(Terrain t : terrains) {

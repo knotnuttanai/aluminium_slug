@@ -2,6 +2,7 @@ package application;
 
 import character.Enemy;
 import character.Hero;
+import environment.StairTerrain;
 
 public class SpawnManager {
 	private int numberOfEnemy;
@@ -34,5 +35,11 @@ public class SpawnManager {
 			System.out.println("added");
 		}
 		
+	}
+	public void createStair() {
+		for(int i = 0; i < 45; i++) {
+			StairTerrain terrain2 = new StairTerrain(1600 + (i*8), 346 - (i*2), 1050- (i*4), 10);
+			GameEntity.createTerrain(terrain2);
+		}
 	}
 }

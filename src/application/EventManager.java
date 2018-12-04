@@ -21,6 +21,7 @@ public class EventManager {
 	private boolean heroWalkOverBase;
 	private boolean canWalk;
 	public boolean dIsPressed , aIsPressed;
+	Thread thread;
 	public EventManager(Scene scene, Hero hero, Foreground fg) {
 		this.scene = scene;
 		this.hero = hero;
@@ -39,10 +40,42 @@ public class EventManager {
 		this.canWalk = canWalk;
 	}
 	public void setPlayerControl() {
-		scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		/*scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				hero.shoot();
+			}
+				
+		});*/
+		scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				 thread = new Thread(() -> {
+				
+				try {
+					while(true) {
+					hero.shoot();
+					Thread.sleep(hero.getFirerate());
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				});thread.start();
+				System.out.println("shoot");
+			}
+				
+		});
+		scene.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				try {
+					thread.interrupt();
+					thread.join();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 				
 		});
