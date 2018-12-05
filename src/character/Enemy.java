@@ -63,7 +63,7 @@ public class Enemy extends Person {
 		else if(hasVerticalCollition && veloY > 0) {
 			this.veloY = 0;
 		}
-		veloX = baseVeloX+GameScene.getFgSpeed();
+		veloX = baseVeloX+GameEntity.getCurrentFg().getVeloX();
 		this.posY += this.veloY;
 		
 		this.posX += this.veloX;

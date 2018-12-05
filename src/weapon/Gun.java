@@ -34,7 +34,7 @@ public class Gun {
 		else if(hasVerticalCollition && veloY > 0) {
 			this.veloY = 0;
 		}
-		veloX = baseVeloX + GameScene.getFgSpeed();
+		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
 		posX += veloX;
 		posY += veloY;
 	}

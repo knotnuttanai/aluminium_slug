@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import character.Enemy;
 import character.Hero;
+import environment.Foreground;
 import environment.Terrain;
 import weapon.Bullet;
 import weapon.EnemyBullet;
@@ -18,6 +19,7 @@ public class GameEntity {
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static ArrayList<Gun> guns = new ArrayList<>();
+	public static List<Foreground> fgs = new ArrayList<>();
 	public static void createHero(Hero h) {
 		hero.add(h);
 	}
@@ -33,7 +35,17 @@ public class GameEntity {
 	public static void createGun(Gun g) {
 		guns.add(g);
 	}
-	
+	public static void createFg(Foreground fg) {
+		fgs.add(fg);
+	}
+	public static Foreground getCurrentFg() {
+		try {
+			return fgs.get(fgs.size() - 1);
+		}catch(ArrayIndexOutOfBoundsException e) {
+			return null;
+		}
+		
+	}
 	public static void checkStand() {
 		for(Hero h : hero) {
 			h.setHasHorizontalCollision(false);
@@ -110,4 +122,5 @@ public class GameEntity {
 			}
 		}
 	}
+	
 }

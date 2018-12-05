@@ -51,7 +51,6 @@ public abstract class Person implements Movable{
 		
 	}
 	public void update() {
-		
 		if(posY >=800) {
 			setPosX(baseX);
 			setPosY(base);

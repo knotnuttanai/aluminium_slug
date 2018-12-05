@@ -41,7 +41,7 @@ public class Bullet {
 		if(this.posY >=800||this.posX +this.width < -10) {
 			setHit();
 		}
-		veloX = baseVeloX + GameScene.getFgSpeed();
+		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
 		posX += veloX;
 		posY += veloY;
 	}

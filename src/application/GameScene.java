@@ -16,9 +16,9 @@ public class GameScene {
 	private Canvas canvas;
 	private HpBar hpBar;
 	private GraphicsContext view;
-	private static Foreground fg;
+	
 	public GameScene(Canvas canvas) {
-		fg = new Foreground();
+		
 	    hpBar = new HpBar();
 		root = new Group();
 		this.canvas = canvas;
@@ -67,15 +67,6 @@ public class GameScene {
 	}
 	public void setCanvas(Canvas canvas) {
 		this.canvas = canvas;
-	}
-	public Foreground getFg() {
-		return fg;
-	}
-	public void setFg(Foreground fg) {
-		this.fg = fg;
-	}
-	public static double getFgSpeed() {
-		return fg.getVeloX();
 	}
 	public HpBar getHpBar() {
 		return hpBar;

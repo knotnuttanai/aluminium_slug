@@ -18,13 +18,15 @@ public class GameLoop implements Runnable{
 	private EventManager ev;
 	private AnimationTimer an;
 	private SpawnManager spawnManager;
+	private Foreground curFg;
+	private boolean toggle = false;
 	
 	public GameLoop() {
 		canvas = new Canvas(640 ,480);
 		spawnManager = new SpawnManager();
 		gameScene = new GameScene(canvas);
 		for(Hero x : GameEntity.hero) {
-			ev = new EventManager(gameScene.getScene(), x, gameScene.getFg());
+			ev = new EventManager(gameScene.getScene(), x);
 		}
 		ev.setPlayerControl();
 	
@@ -72,6 +74,9 @@ public class GameLoop implements Runnable{
 	}
 	private void updateContent() {
 		// TODO Auto-generated method stub
+		if(GameEntity.getCurrentFg().getPosX() <= -8550+640) {
+			spawnManager.initWorld(640);
+		}
 		if(!ev.getHero().isAlive()) {
 			gameScene.getRoot().getChildren().clear();
 			an.stop();
@@ -91,8 +96,9 @@ public class GameLoop implements Runnable{
 		
 		GameEntity.calculateHit();
 		GameEntity.clearDead();
-		gameScene.getFg().update();
-		gameScene.getFg().update();
+		for(Foreground fg : GameEntity.fgs) {
+			fg.update();
+		}
 		for(Hero x: GameEntity.hero) {
 			x.update();
 		}
@@ -117,15 +123,18 @@ public class GameLoop implements Runnable{
 			g.update();
 		}
 		
-		
 	}
 	private void renderContent() {
 		gameScene.blink();
-		gameScene.getFg().render(gameScene.getView());
+		
+		for(Foreground fg : GameEntity.fgs) {
+			fg.render(gameScene.getView());
+		}
 		for(Hero x: GameEntity.hero) {
 			x.render(gameScene.getView());
 			
 		}
+		
 		for(Bullet x: GameEntity.bullets) {
 			x.render(gameScene.getView());
 		}
@@ -148,9 +157,6 @@ public class GameLoop implements Runnable{
 	}
 	public void setGameScene(GameScene gameScene) {
 		this.gameScene = gameScene;
-	}
-	public Foreground getFg() {
-		return gameScene.getFg();
 	}
 	public EventManager getEv() {
 		return ev;

@@ -31,12 +31,12 @@ public class Terrain {
 		posX += direction*2;
 	}
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.TRANSPARENT);
 		gc.fillRect(posX, posY, width, height);
 		
 	}
 	public void update() {
-		veloX = GameScene.getFgSpeed()*2;
+		veloX = GameEntity.getCurrentFg().getVeloX();
 		posX += veloX;
 		b = new BoundingBox(posX, posY, width, height);
 	}
@@ -70,7 +70,7 @@ public class Terrain {
 	public void standVertical(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		
-	if(b.intersects(personBound)&&(p.getPosY() + p.getHeight()-10 <= posY )) {
+	if(b.intersects(personBound)&&(p.getPosY() + p.getHeight()-50 <= posY )) {
 		   if(p.getVeloY() > 0) {
 			   p.setPosY(posY - p.getHeight());
 			   p.setJump(false);

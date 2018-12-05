@@ -17,15 +17,13 @@ public class EventManager {
 	private Scene scene;
 	private boolean doneMovingLeft;
 	private Hero hero;
-	private Foreground fg;
 	private boolean heroWalkOverBase;
 	private boolean canWalk;
 	public boolean dIsPressed , aIsPressed;
 	Thread thread;
-	public EventManager(Scene scene, Hero hero, Foreground fg) {
+	public EventManager(Scene scene, Hero hero) {
 		this.scene = scene;
 		this.hero = hero;
-		this.fg =fg;
 		doneMovingLeft = true;
 		heroWalkOverBase = true;
 		canWalk = false;
@@ -136,7 +134,10 @@ public class EventManager {
 					for(Enemy e: GameEntity.enemies) {
 						e.stop();
 					}
-					fg.moveScreen(0);
+					//GameEntity.getCurrentFg().moveScreen(0);
+					for(Foreground fg : GameEntity.fgs) {
+						fg.moveScreen(0);
+					}
 					
 				}
 				else if(event.getCode() == KeyCode.A) {
@@ -159,7 +160,9 @@ public class EventManager {
 	public void continueToWalk() {
 		if(!doneMovingLeft) {
 		hero.Walk(0);
-		fg.moveScreen(-1);
+		for(Foreground fg : GameEntity.fgs) {
+			fg.moveScreen(-1);
+		}
 		doneMovingLeft = true;
 		}
 	}
@@ -196,7 +199,11 @@ public class EventManager {
 				hero.Walk(2);
 			}
 			else {
-				fg.moveScreen(-6);
+				//GameEntity.getCurrentFg().moveScreen(-6);
+				for(Foreground fg : GameEntity.fgs) {
+					fg.moveScreen(-12);
+					System.out.println("ha");
+				}
 				
 				
 			}
@@ -215,7 +222,7 @@ public class EventManager {
 				//return;
 			}
 			if(!isAtTheEndOfScreen()) {
-				fg.moveScreen(0);
+				GameEntity.getCurrentFg().moveScreen(0);
 				hero.Walk(-2);
 				/*for(Enemy x: GameEntity.enemies) {
 					x.walk(fg.getVeloX());
