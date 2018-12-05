@@ -12,6 +12,7 @@ public class HpBar extends ProgressBar  {
 			hero = x;
 		}
 		setProgress(100);
+		
 	}
 
 	public void update() {

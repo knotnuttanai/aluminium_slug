@@ -16,7 +16,7 @@ public class SpawnManager {
 	public SpawnManager() {
 		limitNumber = 3;
 		numberOfEnemy = 0;
-		spawnRate = 0.03;
+		spawnRate = 0.01;
 		dmg = 0;
 		hp = 0;
 		/*for(Hero x : GameEntity.hero) {
@@ -47,7 +47,7 @@ public class SpawnManager {
 	public void increaseEnemyPower() {
 		dmg += 5;
 		hp += 10;
-				
+		spawnRate += 0.002;	
 	}
 	public void initWorld(double start) {
 		Foreground fg = new Foreground(start);

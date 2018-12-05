@@ -2,6 +2,7 @@ package weapon;
 
 import application.GameEntity;
 import application.GameScene;
+import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -11,7 +12,8 @@ public class GameObject {
 	protected double posX, veloX, baseVeloX;
 	protected double posY, veloY, baseVeloY;
 	protected boolean hasVerticalCollition, hasHorizontalCollision, isHit;
-	private static final double GRAVITY = 1;
+	protected static final double GRAVITY = 1;
+	protected BoundingBox b;
 	public GameObject(double posX, double posY,double width, double height ) {
 		super();
 		this.width = width;
@@ -25,6 +27,7 @@ public class GameObject {
 		hasVerticalCollition = false;
 		hasHorizontalCollision = false;
 		isHit = false;
+		b = new BoundingBox(posX, posY, width, height);
 		
 	}
 	public void update() {
@@ -38,6 +41,7 @@ public class GameObject {
 		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
 		posX += veloX;
 		posY += veloY;
+		b = new BoundingBox(posX, posY, width, height);
 	}
 	public void render(GraphicsContext gc) {
 		gc.setFill(Color.AQUA);
@@ -102,6 +106,12 @@ public class GameObject {
 	}
 	public void setHit(boolean isHit) {
 		this.isHit = isHit;
+	}
+	public BoundingBox getB() {
+		return b;
+	}
+	public void setB(BoundingBox b) {
+		this.b = b;
 	}
 	
 }

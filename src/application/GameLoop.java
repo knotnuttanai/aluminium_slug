@@ -119,7 +119,7 @@ public class GameLoop implements Runnable{
 			if(Math.random() < 0.01) {
 				x.Jump();
 			}
-			if(Math.random() < 0.005) {
+			if(Math.random() < 0.008) {
 				x.shoot();
 			}
 		}

@@ -25,7 +25,7 @@ public class BulletPane extends NumberPane{
 			gc.setStroke(Color.BLACK);
 			Font font =  Font.font("Tahoma",FontWeight.BOLD, 30);
 			gc.setFont(font);
-			gc.fillText(showText, 0, 300);
+			gc.fillText(showText, 0, 50);
 		}
 	}
 

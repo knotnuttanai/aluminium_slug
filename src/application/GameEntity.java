@@ -19,7 +19,7 @@ public class GameEntity {
 	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
-	public static ArrayList<GameObject> gameObjects = new ArrayList<>();
+	public static List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
 	public static void createHero(Hero h) {
 		hero.add(h);
@@ -110,6 +110,12 @@ public class GameEntity {
 					}
 				}
 			}
+			for(GameObject g : GameEntity.gameObjects) {
+				if(e.checkInteract(g)) {
+					e.takeDamage(20);
+					g.setHit(true);
+				}
+			}
 		}
 		for(Hero h: hero) {
 			for(Bullet b : bullets) {
@@ -146,6 +152,7 @@ public class GameEntity {
 			if(gameObjects.get(i).isHit()) {
 				gameObjects.remove(i);
 			}
+			
 		}
 	}
 	

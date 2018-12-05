@@ -3,6 +3,7 @@ package character;
 import environment.Foreground;
 import environment.Terrain;
 import javafx.geometry.BoundingBox;
+import weapon.Bomb;
 import weapon.Bullet;
 import weapon.GameObject;
 import weapon.Gun;
@@ -142,13 +143,22 @@ public abstract class Person implements Movable{
 		}
 		if(o instanceof Gun) {
 			Gun gun = (Gun) o;
-			BoundingBox b = new BoundingBox(gun.getPosX(), gun.getPosY(), gun.getWidth(), gun.getHeight());
-			if(p.intersects(b)) {
+			
+			if(p.intersects(gun.getB())) {
 				return true;
 			}
 			else {
 				return false;
 			}
+		}
+		if(this instanceof Enemy && o instanceof Bomb) {
+			Bomb bomb = (Bomb) o;
+			if(p.intersects(bomb.getB())) {
+				return true;
+			}else {
+				return false;
+			}
+			
 		}
 		return false;
 	}
