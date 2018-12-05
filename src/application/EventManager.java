@@ -85,12 +85,12 @@ public class EventManager {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				/*if(event.getCode() == KeyCode.W) {
+				if(event.getCode() == KeyCode.W) {
 					
-						//เล็งบนดิสัส
+						hero.setIsLookUp(true);
 					
 					
-				}*/
+				}
 				if(event.getCode() == KeyCode.D ) {
 					dIsPressed = true;
 					
@@ -99,6 +99,11 @@ public class EventManager {
 				
 				else if(event.getCode() == KeyCode.A) {
 					aIsPressed = true;
+					
+				}
+				
+				else if(event.getCode() == KeyCode.S) {
+					hero.setIsLookDown(true);
 					
 				}
 				
@@ -120,6 +125,12 @@ public class EventManager {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
+				if(event.getCode() == KeyCode.W) {
+					
+					hero.setIsLookUp(false);
+				
+				
+			}
 				if(event.getCode() == KeyCode.D) {
 					dIsPressed = false;
 					for(Enemy e: GameEntity.enemies) {
@@ -133,6 +144,11 @@ public class EventManager {
 					for(Enemy x: GameEntity.enemies) {
 						x.stop();
 					}
+				}
+				
+				else if(event.getCode() == KeyCode.S) {
+					hero.setIsLookDown(false);
+					
 				}
 				
 			}

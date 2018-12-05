@@ -19,8 +19,12 @@ public class Hero extends Person implements Shootable{
 	Image marcoTop;
 	Image marcoBottom;
 	Image marcoMachine;
+	Image marcoLookUp;
+	Image marcoLookDown;
 	Image[] machShoot;
 	Image[] shoot;
+	Image[] shootUp;
+	Image[] shootDown;
 	Image[] walk;
 	int i = 0;
 	int j = 0;
@@ -38,7 +42,11 @@ public class Hero extends Person implements Shootable{
 		marcoTop = new Image("file:res/images/top_marco1.png");
 		marcoMachine = new Image("file:res/images/machgun.png");
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
+		marcoLookUp = new Image("file:res/images/marcoUp.png");
+		marcoLookDown = new Image("file:res/images/marcodown.png");
 		shoot = new Image[10];
+		shootUp = new Image[10];
+		shootDown = new Image[6];
 		walk = new Image[10];
 		machShoot = new Image[4];
 		
@@ -48,12 +56,21 @@ public class Hero extends Person implements Shootable{
 		}
 		
 		for(int i = 1; i <= 10; i++) {
+			shootUp[i-1] = new Image("file:res/images/shootup" + i + ".png");
+		}
+		
+		for(int i = 1; i <= 6; i++) {
+			shootDown[i-1] = new Image("file:res/images/shootdown" + i + ".png");
+		}
+		
+		for(int i = 1; i <= 10; i++) {
 			walk[i-1] = new Image("file:res/images/walk" + i + ".png");
 		}
 		
 		for(int i = 1; i <= 4; i++) {
 			machShoot[i-1] = new Image("file:res/images/mach" + i + ".png");
 		}
+		
 		
 		GameEntity.createHero(this);
 	}
@@ -69,6 +86,7 @@ public class Hero extends Person implements Shootable{
 	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		int k = 0;
+		int d = 0;
 		  if(isWalk) {
 		   gc.drawImage(walk[j/5], posX, posY + 38);
 		   if(j/5==0) k = 2;
@@ -92,12 +110,41 @@ public class Hero extends Person implements Shootable{
 		  
 		  if(isShoot) {
 			  if(gun == 0) {
-				  gc.drawImage(shoot[i], posX + k , posY);
-				  i++;
-				  if(i==10) {
-					  i = 0;
-					  isShoot = false;
+				  if(isLookUp) {
+					  if(i==0||i==1) d = 82;
+					  else if(i==2) d = 86;
+					  else if(i==3) d = 32;
+					  else if(i==4||i==5||i==7) d = 34;
+					  else if(i==6) d = 36;
+					  else if(i==8) d = 28;
+					  else if(i==9) d = 8;
+					  gc.drawImage(shootUp[i], posX + k , posY - d);
+					  i++;
+					  if(i==10) {
+						  i = 0;
+						  isShoot = false;
+					  }
+					  
 				  }
+				  else if(isLookDown) {
+					  gc.drawImage(shootDown[i], posX + k , posY);
+					  i++;
+					  if(i==6) {
+						  i = 0;
+						  isShoot = false;
+					  }
+				  }
+				  
+				  else {
+					  gc.drawImage(shoot[i], posX + k , posY);
+					  i++;
+					  if(i==10) {
+						  i = 0;
+						  isShoot = false;
+					  }
+					  
+				  }
+				  
 			  }
 			  else {
 				  gc.drawImage(machShoot[i], posX + k , posY);
@@ -110,7 +157,11 @@ public class Hero extends Person implements Shootable{
 			  
 		  }
 		  else {
-			  if(gun == 0) gc.drawImage(marcoTop, posX + k, posY);
+			  if(gun == 0) {
+				  if(isLookUp) gc.drawImage(marcoLookUp, posX + k, posY - 6);
+				  else if(isLookDown) gc.drawImage(marcoLookDown, posX + k, posY);
+				  else gc.drawImage(marcoTop, posX + k, posY);
+			  }
 			  else gc.drawImage(marcoMachine, posX + k, posY);
 		  }
 		  	
