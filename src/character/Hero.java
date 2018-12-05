@@ -37,7 +37,7 @@ public class Hero extends Person implements Shootable{
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
-		gun = 1;
+		gun = 0;
 		this.firerate = 200;
 		veloX = 0;
 		veloY = 0;
@@ -125,74 +125,81 @@ public class Hero extends Person implements Shootable{
 		  else gc.drawImage(marcoBottom, posX, posY + 38);
 		  
 		  if(isShoot) {
+			  
 			  if(gun == 0) {
-				  if(isLookUp) {
-					  if(i/2==0||i/2==1) d = 82;
-					  else if(i/2==2) d = 86;
-					  else if(i/2==3) d = 32;
-					  else if(i/2==4||i/2==5||i/2==7) d = 34;
-					  else if(i/2==6) d = 36;
-					  else if(i/2==8) d = 28;
-					  else if(i/2==9) d = 8;
-					  gc.drawImage(shootUp[i/2], posX + k , posY - d);
-					  i++;
-					  if(i==20) {
-						  i = 0;
-						  isShoot = false;
+				  try {
+					  if(isLookUp) {
+						  if(i/2==0||i/2==1) d = 82;
+						  else if(i/2==2) d = 86;
+						  else if(i/2==3) d = 32;
+						  else if(i/2==4||i/2==5||i/2==7) d = 34;
+						  else if(i/2==6) d = 36;
+						  else if(i/2==8) d = 28;
+						  else if(i/2==9) d = 8;
+						  gc.drawImage(shootUp[i/2], posX + k , posY - d);
+						  i++;
+						  if(i==20) {
+							  i = 0;
+							  isShoot = false;
+						  }
+						  
+					  }
+					  else if(isLookDown) {
+						  gc.drawImage(shootDown[i/2], posX + k , posY);
+						  i++;
+						  if(i==12) {
+							  i = 0;
+							  isShoot = false;
+						  }
 					  }
 					  
-				  }
-				  else if(isLookDown) {
-					  gc.drawImage(shootDown[i/2], posX + k , posY);
-					  i++;
-					  if(i==12) {
-						  i = 0;
-						  isShoot = false;
+					  else {
+						  gc.drawImage(shoot[i/2], posX + k , posY);
+						  i++;
+						  if(i==20) {
+							  i = 0;
+							  isShoot = false;
+						  }
+						  
 					  }
-				  }
-				  
-				  else {
-					  gc.drawImage(shoot[i/2], posX + k , posY);
-					  i++;
-					  if(i==20) {
-						  i = 0;
-						  isShoot = false;
-					  }
-					  
-				  }
-				  
-			  }
-			  else {
-				  if(isLookUp) {
-					  if(i/2==0) d = 92;
-					  else if(i/2==1) d = 96;
-					  else if(i/2==2) d = 94;
-					  else if(i/2==3) d = 98;
-					  gc.drawImage(machShootUp[i/2], posX + k , posY - d);
-					  i++;
-					  if(i==8) {
-						  i = 0;
-						  isShoot = false;
-					   }
-				  }
-				  
-				  else if(isLookDown) {
-					  gc.drawImage(machShootDown[i/2], posX - 8 + k , posY);
-					  i++;
-					  if(i==8) {
-						  i = 0;
-						  isShoot = false;
+					 } catch(ArrayIndexOutOfBoundsException e){
+						  
 					   }
 				  }
 				  else {
-					  gc.drawImage(machShoot[i/2], posX + k , posY);
-					  i++;
-					  if(i==8) {
-						  i = 0;
-						  isShoot = false;
-					   }
+					  try {
+					  if(isLookUp) {
+						  if(i/2==0) d = 92;
+						  else if(i/2==1) d = 96;
+						  else if(i/2==2) d = 94;
+						  else if(i/2==3) d = 98;
+						  gc.drawImage(machShootUp[i/2], posX + k , posY - d);
+						  i++;
+						  if(i==8) {
+							  i = 0;
+							  isShoot = false;
+						   }
+					  }
+					  
+					  else if(isLookDown) {
+						  gc.drawImage(machShootDown[i/2], posX - 8 + k , posY);
+						  i++;
+						  if(i==8) {
+							  i = 0;
+							  isShoot = false;
+						   }
+					  }
+					  else {
+						  gc.drawImage(machShoot[i/2], posX + k , posY);
+						  i++;
+						  if(i==8) {
+							  i = 0;
+							  isShoot = false;
+						   }
+					  }
+				  }catch(ArrayIndexOutOfBoundsException e) {
+					  
 				  }
-				  
 			  }
 			  
 		  }
@@ -238,6 +245,14 @@ public class Hero extends Person implements Shootable{
 		BoundingBox b1 = new BoundingBox(posX, posY, width, height);
 		BoundingBox b2 = new BoundingBox(b.getPosX(), b.getPosY(), b.getWidth(), b.getHeight());
 		return b1.intersects(b2);
+	}
+
+	public int getGun() {
+		return gun;
+	}
+
+	public void setGun(int gun) {
+		this.gun = gun;
 	}
 	
 	

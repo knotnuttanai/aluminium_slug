@@ -4,6 +4,7 @@ import environment.Foreground;
 import environment.Terrain;
 import javafx.geometry.BoundingBox;
 import weapon.Bullet;
+import weapon.GameObject;
 import weapon.Gun;
 
 public abstract class Person implements Movable{
@@ -141,9 +142,15 @@ public abstract class Person implements Movable{
 		}
 		if(o instanceof Gun) {
 			Gun gun = (Gun) o;
-			BoundingBox b = new BoundingBox(gun.getPosX(), gun.getPosY(), gun.getWidth(), gun.getHeight());	
+			BoundingBox b = new BoundingBox(gun.getPosX(), gun.getPosY(), gun.getWidth(), gun.getHeight());
+			if(p.intersects(b)) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
-		return hasHorizontalCollision;
+		return false;
 	}
 	public void setDead() {
 		isAlive = false ;

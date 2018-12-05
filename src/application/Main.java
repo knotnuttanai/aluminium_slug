@@ -6,6 +6,7 @@ import environment.Terrain;
 import environment.StairTerrain;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import weapon.GameObject;
 import weapon.Gun;
 
 public class Main extends Application {
@@ -14,9 +15,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		spawnManager = new SpawnManager();
-		Hero hero = new Hero(200, 200, 10000);
+		Hero hero = new Hero(200, 200, 100);
 		spawnManager.initWorld(0);
-		Gun gun = new Gun(400, 200, 10, 10);
+		Gun gun = new Gun(400, 200, 50, 50);
 		gun.addGun();
 		
 		

@@ -7,7 +7,7 @@ import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import weapon.Gun;
+import weapon.GameObject;
 
 public class Terrain {
 	public double posX ,posY ,width ,height, veloX;
@@ -83,7 +83,7 @@ public class Terrain {
 		}
 		
 	}
-	public void gunStandVertical(Gun g) {
+	public void gunStandVertical(GameObject g) {
 		BoundingBox personBound = new BoundingBox(g.getPosX(), g.getPosY(), g.getWidth(), g.getHeight());
 		
 	if(b.intersects(personBound)&&(g.getPosY() + g.getHeight()-2 <= posY || !g.isHasHorizontalCollision())) {

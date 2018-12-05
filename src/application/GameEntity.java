@@ -10,7 +10,7 @@ import environment.Foreground;
 import environment.Terrain;
 import weapon.Bullet;
 import weapon.EnemyBullet;
-import weapon.Gun;
+import weapon.GameObject;
 import weapon.HeroBullet;
 
 public class GameEntity {
@@ -18,7 +18,7 @@ public class GameEntity {
 	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
-	public static ArrayList<Gun> guns = new ArrayList<>();
+	public static ArrayList<GameObject> gameObjects = new ArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
 	public static void createHero(Hero h) {
 		hero.add(h);
@@ -32,8 +32,8 @@ public class GameEntity {
 	public static void createEnemy(Enemy e) {
 		enemies.add(e);
 	}
-	public static void createGun(Gun g) {
-		guns.add(g);
+	public static void createGameObject(GameObject g) {
+		gameObjects.add(g);
 	}
 	public static void createFg(Foreground fg) {
 		fgs.add(fg);
@@ -57,7 +57,7 @@ public class GameEntity {
 			e.setHasVerticalCollition(false);
 			e.setStandOnMainTerrain(false);
 		}
-		for(Gun g : guns) {
+		for(GameObject g : gameObjects) {
 			g.setHasVerticalCollition(false);
 		}
 		for(Enemy e : enemies) {
@@ -79,15 +79,15 @@ public class GameEntity {
 				
 			}
 		}
-		for(Gun g : guns) {
+		for(GameObject g : gameObjects) {
 			for(Terrain t : terrains) {
 				t.gunStandVertical(g);
 			}
 		}
 	}
 	public static void calculateHit() {
-		for(Bullet b : bullets) {
-			for(Enemy e : enemies) {
+		for(Enemy e : enemies) {
+			for(Bullet b : bullets) {
 				if(b instanceof HeroBullet) {
 					HeroBullet b1 = (HeroBullet) b;
 					if(e.isHitByBullet(b1)) {
@@ -97,8 +97,8 @@ public class GameEntity {
 				}
 			}
 		}
-		for(Bullet b : bullets) {
-			for(Hero h: hero) {
+		for(Hero h: hero) {
+			for(Bullet b : bullets) {
 				if(b instanceof EnemyBullet) {
 					EnemyBullet b1 = (EnemyBullet) b;
 					if(h.isHitByBullet(b1)) {
@@ -106,6 +106,12 @@ public class GameEntity {
 						b.setHit();
 						
 					}
+				}
+			}
+			for(GameObject g : GameEntity.gameObjects) {
+				if(h.checkInteract(g)) {
+					h.setGun(1);
+					g.setHit(true);
 				}
 			}
 		}
@@ -119,6 +125,11 @@ public class GameEntity {
 		for(int i = 0; i < bullets.size(); i++) {
 			if(bullets.get(i).isHit) {
 				bullets.remove(i);
+			}
+		}
+		for(int i = 0; i < gameObjects.size(); i++) {
+			if(gameObjects.get(i).isHit()) {
+				gameObjects.remove(i);
 			}
 		}
 	}

@@ -8,7 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-public class Bullet {
+public class Bullet extends GameObject{
 	protected double posX;
 	protected double posY;
 	protected double veloX, baseVeloX;
@@ -20,9 +20,11 @@ public class Bullet {
 	protected int damage;
 	Image bullet;
 	public Bullet(Person p) {
-		posX = p.getPosX() + 40;
-		posY = p.getPosY() + 10;
-		
+		super(p.getPosX() + 40,p.getPosY(),50,10);
+		//posX = p.getPosX() + 40;
+		//posY = p.getPosY() + 10;
+		posX = p.getPosX()+40;
+		posY = p.getPosY()+10;
 		bulletUp = p.isLookUp();
 		bulletDown = p.isLookDown();
 		if(bulletUp) {
@@ -44,18 +46,17 @@ public class Bullet {
 		baseVeloX = veloX;
 		baseVeloY = veloY;
 		isHit = false;
-		width = 50;
-		height = 10;
 		damage = 10;
 		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",50, 32.5, false, false);
-		
+		System.out.println(posY);
 		
 		
 				
 		
 	}
 	public void update() 
-	{
+	{	
+		
 		if(this.posY >=800||this.posX +this.width < -10) {
 			setHit();
 		}
