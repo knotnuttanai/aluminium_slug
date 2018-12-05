@@ -8,9 +8,11 @@ import character.Enemy;
 import character.Hero;
 import environment.Foreground;
 import environment.Terrain;
+import weapon.Bomb;
 import weapon.Bullet;
 import weapon.EnemyBullet;
 import weapon.GameObject;
+import weapon.Gun;
 import weapon.HeroBullet;
 
 public class GameEntity {
@@ -112,8 +114,10 @@ public class GameEntity {
 			}
 			for(GameObject g : GameEntity.gameObjects) {
 				if(e.checkInteract(g)) {
-					e.takeDamage(20);
-					g.setHit(true);
+					if(g instanceof Bomb) {
+						e.takeDamage(20);
+						g.setHit(true);
+					}
 				}
 			}
 		}
@@ -130,8 +134,10 @@ public class GameEntity {
 			}
 			for(GameObject g : GameEntity.gameObjects) {
 				if(h.checkInteract(g)) {
-					h.setGun(1);
-					g.setHit(true);
+					if(g instanceof Gun) {
+						h.setGun(1);
+						g.setHit(true);
+					}
 				}
 			}
 		}

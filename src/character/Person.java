@@ -151,9 +151,10 @@ public abstract class Person implements Movable{
 				return false;
 			}
 		}
-		if(this instanceof Enemy && o instanceof Bomb) {
+		if(this instanceof Enemy&&o instanceof Bomb) {
 			Bomb bomb = (Bomb) o;
 			if(p.intersects(bomb.getB())) {
+				
 				return true;
 			}else {
 				return false;

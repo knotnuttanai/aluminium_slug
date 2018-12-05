@@ -11,16 +11,27 @@ import weapon.EnemyBullet;
 import weapon.HeroBullet;
 
 public class Enemy extends Person {
-	Image marco;
+	
+	Image soldierStand;
+	Image soldierAim;
+	Image[] soldierShoot;
+	int shootFrame;
 	private double baseVeloX;
 	private double fireRate;
+	
 	public Enemy(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
 		
 		height = 75;
 		width = 56;
-		marco = new Image("file:res/images/marco2.png");
+		soldierStand = new Image("file:res/images/soldierstand.png");
+		soldierAim = new Image("file:res/images/soldieraim.png");
+		soldierShoot = new Image[4];
+		for(int i = 1; i <= 4; i++) {
+			soldierShoot[i-1] = new Image("file:res/images/soldiershoot" + i + ".png");
+		}
+		shootFrame = 0;
 		veloX = -2;
 		walkDirection = -1;
 		baseVeloX = veloX;
@@ -31,10 +42,18 @@ public class Enemy extends Person {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		gc.drawImage(marco, posX, posY);
-		//gc.fillRect(posX, posY, width, height);
+		if(isShoot) {
+
+			gc.drawImage(soldierShoot[shootFrame/2], posX, posY);
+			shootFrame++;
+			if(shootFrame == 8) {
+				shootFrame = 0;
+				isShoot = false;
+			}
+		}
+		else gc.drawImage(soldierAim, posX, posY);
 	}
+	
 	public void addEnemy() {
 		GameEntity.createEnemy(this);
 	}

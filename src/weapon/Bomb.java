@@ -2,6 +2,7 @@ package weapon;
 
 import application.GameEntity;
 import character.Hero;
+import javafx.geometry.BoundingBox;
 
 public class Bomb extends GameObject {
 	Hero hero;
@@ -35,6 +36,7 @@ public class Bomb extends GameObject {
 		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
 		posX += veloX;
 		posY += veloY;
+		b = new BoundingBox(posX, posY, width, height);
 	}
 	
 }
