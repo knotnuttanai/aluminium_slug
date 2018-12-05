@@ -68,7 +68,7 @@ public class SpawnManager {
 		Terrain terrain12 = new Terrain(start+5940, 256, 684 , 10);
 		GameEntity.createTerrain(terrain12);
 		createStair(start+6612, 256, 2,60 ,40,8,0,2,0);
-		createStair(start+6252, 475, 20,60 ,62,8,8,-2,1);
+		createStair(start+6252, 475, 20,60 ,62,8,8,-2,0);
 		Terrain terrain13 = new Terrain(start+6740, 350, 1800, 10);
 		GameEntity.createTerrain(terrain13);
 	}
