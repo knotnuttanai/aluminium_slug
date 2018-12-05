@@ -13,9 +13,11 @@ import weapon.PistolBullet;
 
 public class Hero extends Person implements Shootable{
 	protected boolean isJump;
-	public int gun;
+	private int gun;
 	//gun0 is pistol
 	//gun1 is machine gun
+	private int maxGun1Bullet;
+	private int useGun1Bullet;
 	Image marcoTop;
 	Image marcoBottom;
 	Image marcoMachine;
@@ -39,6 +41,8 @@ public class Hero extends Person implements Shootable{
 		// TODO Auto-generated constructor stub
 		gun = 0;
 		this.firerate = 200;
+		maxGun1Bullet = 256;
+		useGun1Bullet = 256;
 		veloX = 0;
 		veloY = 0;
 		height = 75;
@@ -229,16 +233,25 @@ public class Hero extends Person implements Shootable{
 	
 	public void shoot() {
 		isShoot = true;
+		if(gun == 1) {
+			if(useGun1Bullet == 0) {
+				gun = 0;
+				firerate = 200;
+				PistolBullet bullet = new PistolBullet(this);
+				bullet.addBullet();
+				return;
+			}
+			firerate = 80;
+			MachineGunBullet bullet = new MachineGunBullet(this);
+			bullet.addBullet();
+			useGun1Bullet--;
+		}
 		if(gun == 0) {
 			firerate = 200;
 			PistolBullet bullet = new PistolBullet(this);
 			bullet.addBullet();
 		}
-		if(gun == 1) {
-			firerate = 150;
-			MachineGunBullet bullet = new MachineGunBullet(this);
-			bullet.addBullet();
-		}
+		
 		
 	}
 	public boolean isHitByBullet(EnemyBullet b) {
@@ -253,6 +266,22 @@ public class Hero extends Person implements Shootable{
 
 	public void setGun(int gun) {
 		this.gun = gun;
+	}
+
+	public int getMaxGun1Bullet() {
+		return maxGun1Bullet;
+	}
+
+	public void setMaxGun1Bullet(int maxGun1Bullet) {
+		this.maxGun1Bullet = maxGun1Bullet;
+	}
+
+	public int getUsedGun1Bullet() {
+		return useGun1Bullet;
+	}
+
+	public void setUsedGun1Bullet(int usedGun1Bullet) {
+		this.useGun1Bullet = usedGun1Bullet;
 	}
 	
 	
