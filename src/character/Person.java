@@ -19,6 +19,8 @@ public abstract class Person implements Movable{
 	protected double base;
 	protected boolean isJump;
 	protected boolean isWalk;
+	protected boolean isLookUp;
+	protected boolean isLookDown;
 	protected double height;
 	protected double width;
 	protected  double baseX;
@@ -40,6 +42,8 @@ public abstract class Person implements Movable{
 		isJump = false;
 		isAlive = true;
 		isShoot = false;
+		isLookUp = false;
+		isLookDown = false; 
 		hasVerticalCollition = false;
 		hasHorizontalCollision = false;
 		walkDirection = 0;
@@ -208,7 +212,13 @@ public abstract class Person implements Movable{
 		this.hasVerticalCollition = hasVerticalCollition;
 	}
 
+	public boolean setIsLookUp(boolean isLookUp) {
+		return this.isLookUp = isLookUp;
+	}
 	
+	public boolean setIsLookDown(boolean isLookDown) {
+		return this.isLookDown = isLookDown;
+	}
 
 	public boolean isJump() {
 		return isJump;
