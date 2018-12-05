@@ -18,26 +18,29 @@ public class Bullet extends GameObject{
 	protected double width;
 	protected double height;
 	protected int damage;
-	Image bullet;
+	protected Image bullet;
+	protected Image bulletShootUp;
+	protected Image bulletShootDown;
+	
 	public Bullet(Person p) {
 		super(p.getPosX() + 40,p.getPosY(),50,10);
 		//posX = p.getPosX() + 40;
 		//posY = p.getPosY() + 10;
-		posX = p.getPosX()+40;
-		posY = p.getPosY()+10;
+		posX = p.getPosX() + 54;
+		posY = p.getPosY() - 2;
 		bulletUp = p.isLookUp();
 		bulletDown = p.isLookDown();
 		if(bulletUp) {
 			veloX = 0;
 			veloY = -10;
-			posX = p.getPosX() + 20;
-			posY = p.getPosY() ;
+			posX = p.getPosX() + 6;
+			posY = p.getPosY() - 80 ;
 		}
 		else if(bulletDown) {
 			veloX = 0;
 			veloY = 10;
-			posX = p.getPosX() + 20;
-			posY = p.getPosY() +30 ;
+			posX = p.getPosX() + 8;
+			posY = p.getPosY() + 80 ;
 		}
 		else {
 			veloX = 10;
@@ -47,8 +50,9 @@ public class Bullet extends GameObject{
 		baseVeloY = veloY;
 		isHit = false;
 		damage = 10;
-		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",50, 32.5, false, false);
-		
+		bullet = new Image("file:res/images/Glenos-G_160_bullet.png", 50, 32.5, false, false);
+		bulletShootUp = new Image("file:res/images/bulletup.png", 32.5, 50, false, false);
+		bulletShootDown = new Image("file:res/images/bulletdown.png", 32.5, 50, false, false);
 		
 				
 		
@@ -69,14 +73,9 @@ public class Bullet extends GameObject{
 		}
 	}
 	public void render(GraphicsContext gc) {
-		//gc.clearRect(posX-5, posY, 5, 5);
-		/*gc.setFill(Color.RED);
-		gc.setStroke(Color.BLACK);
-		
-		gc.fillRect(posX+30, posY+30, 8, 8);
-		*/
-		gc.drawImage(bullet, posX, posY);
-		//gc.fillRect(posX, posY, width, height);
+		if(bulletUp) gc.drawImage(bulletShootUp, posX, posY);
+		else if(bulletDown) gc.drawImage(bulletShootDown, posX, posY);
+		else gc.drawImage(bullet, posX, posY);
 		
 	}
 	public void addBullet() {

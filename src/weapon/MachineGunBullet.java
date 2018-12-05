@@ -1,13 +1,29 @@
 package weapon;
 
 import character.Person;
+import javafx.scene.canvas.GraphicsContext;
 
 public class MachineGunBullet extends HeroBullet {
 
 	public MachineGunBullet(Person p) {
 		super(p);
 		damage = 10;
-		// TODO Auto-generated constructor stub
+		if(bulletDown) {
+			posX -= 10;
+			posY += 10;
+		}
+		else if(!bulletUp) {
+			posX += 4;
+			posY += 18;
+		}
+	}
+	
+	@Override
+	public void render(GraphicsContext gc) {
+		if(bulletUp) gc.drawImage(bulletShootUp, posX, posY);
+		else if(bulletDown) gc.drawImage(bulletShootDown, posX, posY);
+		else gc.drawImage(bullet, posX, posY);
+		
 	}
 
 }

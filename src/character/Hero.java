@@ -16,22 +16,22 @@ public class Hero extends Person implements Shootable{
 	public int gun;
 	//gun0 is pistol
 	//gun1 is machine gun
-	Image marcoTop;
-	Image marcoBottom;
-	Image marcoMachine;
-	Image marcoLookUp;
-	Image marcoLookDown;
-	Image marcoMachUp;
-	Image marcoMachDown;
-	Image[] machShoot;
-	Image[] machShootUp;
-	Image[] machShootDown;
-	Image[] shoot;
-	Image[] shootUp;
-	Image[] shootDown;
-	Image[] walk;
-	int i = 0;
-	int j = 0;
+	private Image marcoTop;
+	private Image marcoBottom;
+	private Image marcoMachine;
+	private Image marcoLookUp;
+	private Image marcoLookDown;
+	private Image marcoMachUp;
+	private Image marcoMachDown;
+	private Image[] machShoot;
+	private Image[] machShootUp;
+	private Image[] machShootDown;
+	private Image[] shoot;
+	private Image[] shootUp;
+	private Image[] shootDown;
+	private Image[] walk;
+	private int i = 0;
+	private int walkFrame,shootFrame,shootUpFrame,shootDownFrame,machFrame,machUpFrame,machDownFrame;
 	private int firerate;
 
 	public Hero(double posX, double posY, int health) {
@@ -57,7 +57,13 @@ public class Hero extends Person implements Shootable{
 		machShootDown = new Image[4];
 		walk = new Image[10];
 		machShoot = new Image[4];
-		
+		walkFrame = 0;
+		shootFrame = 0;
+		shootUpFrame = 0;
+		shootDownFrame = 0;
+		machFrame = 0;
+		machUpFrame = 0;
+		machDownFrame = 0;
 		
 		for(int i = 1; i <= 10; i++) {
 			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
@@ -98,111 +104,109 @@ public class Hero extends Person implements Shootable{
 	public void setFirerate(int firerate) {
 		this.firerate = firerate;
 	}
+	
+	private int WalkAdjustPos() {
+		if(walkFrame/5==0) return 2;
+		else if(walkFrame/5==1) return 6;
+		else if(walkFrame/5==2) return 7;
+		else if(walkFrame/5==3) return 0;
+		else if(walkFrame/5==4) return -4;
+		else if(walkFrame/5==5) return -3;
+		else if(walkFrame/5==6) return -1;
+	    else if(walkFrame/5==7) return 4;
+	    else if(walkFrame/5==8) return 5;
+	    else if(walkFrame/5==9) return 0;
+		return 0;
+	}
+	
+	private int ShootAdjustPos() {
+		if(shootUpFrame/2==0||shootUpFrame/2==1) return 82;
+		else if(shootUpFrame/2==2) return 86;
+		else if(shootUpFrame/2==3) return 32;
+		else if(shootUpFrame/2==4||shootUpFrame/2==5||shootUpFrame/2==7) return 34;
+		else if(shootUpFrame/2==6) return 36;
+		else if(shootUpFrame/2==8) return 28;
+		else if(shootUpFrame/2==9) return 8;
+		else return 0;
+	}
+	
+	private int MachAdjustPos() {
+		if(machUpFrame/2==0) return 92;
+		else if(machUpFrame/2==1) return 96;
+		else if(machUpFrame/2==2) return 94;
+		else if(machUpFrame/2==3) return 98;
+		else return 0;
+	}
+	
+	private void finishShoot(String frame) {
+		isShoot = false;
+		if(frame.equals("shootUpFrame")) shootUpFrame = 0;
+		else if(frame.equals("shootDownFrame")) shootDownFrame = 0;
+		else if(frame.equals("shootFrame")) shootFrame = 0;
+		else if(frame.equals("machUpFrame")) machUpFrame = 0;
+		else if(frame.equals("machDownFrame")) machDownFrame = 0;
+		else if(frame.equals("machFrame")) machFrame = 0;
+	}
 
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
+
 		int k = 0;
 		int d = 0;
+		
 		  if(isWalk) {
-		   gc.drawImage(walk[j/5], posX, posY + 38);
-		   if(j/5==0) k = 2;
-		   else if(j/5==1) k = 6;
-		   else if(j/5==2) k = 7;
-		   else if(j/5==3) k = 0;
-		   else if(j/5==4) k = -4;
-		   else if(j/5==5) k = -3;
-		   else if(j/5==6) k = -1;
-		   else if(j/5==7) k = 4;
-		   else if(j/5==8) k = 5;
-		   else if(j/5==9) k = 0;
-		   else k = 0;
-		   j++;
+		   gc.drawImage(walk[walkFrame/5], posX, posY + 38);
+		   k = WalkAdjustPos();
+		   walkFrame++;
 		   
-		   if(j==50) {
-		    j = 0;
-		   }
+		   if(walkFrame==50) walkFrame = 0;
 		  }
 		  else gc.drawImage(marcoBottom, posX, posY + 38);
 		  
 		  if(isShoot) {
-			  
+	
 			  if(gun == 0) {
-				  try {
 					  if(isLookUp) {
-						  if(i/2==0||i/2==1) d = 82;
-						  else if(i/2==2) d = 86;
-						  else if(i/2==3) d = 32;
-						  else if(i/2==4||i/2==5||i/2==7) d = 34;
-						  else if(i/2==6) d = 36;
-						  else if(i/2==8) d = 28;
-						  else if(i/2==9) d = 8;
-						  gc.drawImage(shootUp[i/2], posX + k , posY - d);
-						  i++;
-						  if(i==20) {
-							  i = 0;
-							  isShoot = false;
-						  }
+						  d = ShootAdjustPos();
+						  gc.drawImage(shootUp[shootUpFrame/2], posX + k , posY - d);
+						  shootUpFrame++;
+						  if(shootUpFrame==20) finishShoot("shootUpFrame");
 						  
 					  }
 					  else if(isLookDown) {
-						  gc.drawImage(shootDown[i/2], posX + k , posY);
-						  i++;
-						  if(i==12) {
-							  i = 0;
-							  isShoot = false;
-						  }
+						  gc.drawImage(shootDown[shootDownFrame/2], posX + k , posY);
+						  shootDownFrame++;
+						  if(shootDownFrame==12) finishShoot("shootDownFrame");
 					  }
 					  
 					  else {
-						  gc.drawImage(shoot[i/2], posX + k , posY);
-						  i++;
-						  if(i==20) {
-							  i = 0;
-							  isShoot = false;
-						  }
+						  gc.drawImage(shoot[shootFrame/2], posX + k , posY);
+						  shootFrame++;
+						  if(shootFrame==20) finishShoot("shootFrame");
+						}
 						  
 					  }
-					 } catch(ArrayIndexOutOfBoundsException e){
-						  
-					   }
-				  }
 				  else {
-					  try {
+	
 					  if(isLookUp) {
-						  if(i/2==0) d = 92;
-						  else if(i/2==1) d = 96;
-						  else if(i/2==2) d = 94;
-						  else if(i/2==3) d = 98;
-						  gc.drawImage(machShootUp[i/2], posX + k , posY - d);
-						  i++;
-						  if(i==8) {
-							  i = 0;
-							  isShoot = false;
-						   }
+						  d = MachAdjustPos();
+						  gc.drawImage(machShootUp[machUpFrame/2], posX + k , posY - d);
+						  machUpFrame++;
+						  if(machUpFrame==8) finishShoot("machUpFrame");
 					  }
 					  
 					  else if(isLookDown) {
-						  gc.drawImage(machShootDown[i/2], posX - 8 + k , posY);
-						  i++;
-						  if(i==8) {
-							  i = 0;
-							  isShoot = false;
-						   }
+						  gc.drawImage(machShootDown[machDownFrame/2], posX - 8 + k , posY);
+						  machDownFrame++;
+						  if(machDownFrame==8) finishShoot("machDownFrame");
 					  }
 					  else {
-						  gc.drawImage(machShoot[i/2], posX + k , posY);
-						  i++;
-						  if(i==8) {
-							  i = 0;
-							  isShoot = false;
-						   }
+						  gc.drawImage(machShoot[machFrame/2], posX + k , posY);
+						  machFrame++;
+						  if(machFrame==8) finishShoot("machFrame");
 					  }
-				  }catch(ArrayIndexOutOfBoundsException e) {
-					  
-				  }
 			  }
-			  
 		  }
+			  
 		  else {
 			  if(gun == 0) {
 				  if(isLookUp) gc.drawImage(marcoLookUp, posX + k, posY - 6);
@@ -216,9 +220,6 @@ public class Hero extends Person implements Shootable{
 			  }
 		  }
 		  	
-		  //gc.setFill(Color.BISQUE);
-		  //gc.fillRect(posX, posY, 30, 60);
-		  //gc.fillRect(getBaseX()+width,0 , 640 - getBaseX(), 480);
 		}
 	
 	@Override	
