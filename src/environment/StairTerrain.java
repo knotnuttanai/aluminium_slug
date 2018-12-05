@@ -16,7 +16,7 @@ public class StairTerrain extends Terrain {
 	public void standVertical(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		
-	if(b.intersects(personBound)&&(p.getPosY() + p.getHeight()-2 <= posY || !p.isHasHorizontalCollision())) {
+	if(p.getPosY() + p.getHeight()-10 <= posY&&b.intersects(personBound)&& !p.isHasHorizontalCollision()) {
 		   if((p.getVeloY() > 0 || !p.isStandOnMainTerrain()) ){
 			   p.setPosY(posY - p.getHeight());
 			   p.setJump(false);

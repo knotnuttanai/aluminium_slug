@@ -17,8 +17,8 @@ public class Main extends Application {
 		Hero hero = new Hero(200, 200, 100);
 		Terrain terrain1 = new Terrain(200, 350, 1600, 10);
 		GameEntity.createTerrain(terrain1);
-		SpawnManager.createStair(1600, 346, 20,10 ,45,8,8,-2,0);
-		SpawnManager.createStair(1800, 350, 15,10 ,60,8,0,2,1);
+		SpawnManager.createStair(1600, 346, 20,60 ,45,8,8,-2,0);
+		SpawnManager.createStair(1800, 350, 15,60 ,60,8,0,2,1);
 		Gun gun = new Gun(400, 200, 10, 10);
 		gun.addGun();
 		
