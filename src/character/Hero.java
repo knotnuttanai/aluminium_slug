@@ -21,7 +21,11 @@ public class Hero extends Person implements Shootable{
 	Image marcoMachine;
 	Image marcoLookUp;
 	Image marcoLookDown;
+	Image marcoMachUp;
+	Image marcoMachDown;
 	Image[] machShoot;
+	Image[] machShootUp;
+	Image[] machShootDown;
 	Image[] shoot;
 	Image[] shootUp;
 	Image[] shootDown;
@@ -44,9 +48,13 @@ public class Hero extends Person implements Shootable{
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
 		marcoLookUp = new Image("file:res/images/marcoUp.png");
 		marcoLookDown = new Image("file:res/images/marcodown.png");
+		marcoMachUp = new Image("file:res/images/machup.png");
+		marcoMachDown = new Image("file:res/images/machdown.png");
 		shoot = new Image[10];
 		shootUp = new Image[10];
 		shootDown = new Image[6];
+		machShootUp = new Image[4];
+		machShootDown = new Image[4];
 		walk = new Image[10];
 		machShoot = new Image[4];
 		
@@ -69,6 +77,14 @@ public class Hero extends Person implements Shootable{
 		
 		for(int i = 1; i <= 4; i++) {
 			machShoot[i-1] = new Image("file:res/images/mach" + i + ".png");
+		}
+		
+		for(int i = 1; i <= 4; i++) {
+			machShootUp[i-1] = new Image("file:res/images/machshootup" + i + ".png");
+		}
+		
+		for(int i = 1; i <= 4; i++) {
+			machShootDown[i-1] = new Image("file:res/images/machshootdown" + i + ".png");
 		}
 		
 		
@@ -111,34 +127,34 @@ public class Hero extends Person implements Shootable{
 		  if(isShoot) {
 			  if(gun == 0) {
 				  if(isLookUp) {
-					  if(i==0||i==1) d = 82;
-					  else if(i==2) d = 86;
-					  else if(i==3) d = 32;
-					  else if(i==4||i==5||i==7) d = 34;
-					  else if(i==6) d = 36;
-					  else if(i==8) d = 28;
-					  else if(i==9) d = 8;
-					  gc.drawImage(shootUp[i], posX + k , posY - d);
+					  if(i/2==0||i/2==1) d = 82;
+					  else if(i/2==2) d = 86;
+					  else if(i/2==3) d = 32;
+					  else if(i/2==4||i/2==5||i/2==7) d = 34;
+					  else if(i/2==6) d = 36;
+					  else if(i/2==8) d = 28;
+					  else if(i/2==9) d = 8;
+					  gc.drawImage(shootUp[i/2], posX + k , posY - d);
 					  i++;
-					  if(i==10) {
+					  if(i==20) {
 						  i = 0;
 						  isShoot = false;
 					  }
 					  
 				  }
 				  else if(isLookDown) {
-					  gc.drawImage(shootDown[i], posX + k , posY);
+					  gc.drawImage(shootDown[i/2], posX + k , posY);
 					  i++;
-					  if(i==6) {
+					  if(i==12) {
 						  i = 0;
 						  isShoot = false;
 					  }
 				  }
 				  
 				  else {
-					  gc.drawImage(shoot[i], posX + k , posY);
+					  gc.drawImage(shoot[i/2], posX + k , posY);
 					  i++;
-					  if(i==10) {
+					  if(i==20) {
 						  i = 0;
 						  isShoot = false;
 					  }
@@ -147,12 +163,36 @@ public class Hero extends Person implements Shootable{
 				  
 			  }
 			  else {
-				  gc.drawImage(machShoot[i], posX + k , posY);
-				  i++;
-				  if(i==4) {
-					  i = 0;
-					  isShoot = false;
-				   }
+				  if(isLookUp) {
+					  if(i/2==0) d = 92;
+					  else if(i/2==1) d = 96;
+					  else if(i/2==2) d = 94;
+					  else if(i/2==3) d = 98;
+					  gc.drawImage(machShootUp[i/2], posX + k , posY - d);
+					  i++;
+					  if(i==8) {
+						  i = 0;
+						  isShoot = false;
+					   }
+				  }
+				  
+				  else if(isLookDown) {
+					  gc.drawImage(machShootDown[i/2], posX - 8 + k , posY);
+					  i++;
+					  if(i==8) {
+						  i = 0;
+						  isShoot = false;
+					   }
+				  }
+				  else {
+					  gc.drawImage(machShoot[i/2], posX + k , posY);
+					  i++;
+					  if(i==8) {
+						  i = 0;
+						  isShoot = false;
+					   }
+				  }
+				  
 			  }
 			  
 		  }
@@ -162,7 +202,11 @@ public class Hero extends Person implements Shootable{
 				  else if(isLookDown) gc.drawImage(marcoLookDown, posX + k, posY);
 				  else gc.drawImage(marcoTop, posX + k, posY);
 			  }
-			  else gc.drawImage(marcoMachine, posX + k, posY);
+			  else {
+				  if(isLookUp) gc.drawImage(marcoMachUp, posX + k, posY - 20);
+				  else if(isLookDown) gc.drawImage(marcoMachDown, posX - 8 + k, posY);
+				  else gc.drawImage(marcoMachine, posX + k, posY);
+			  }
 		  }
 		  	
 		  //gc.setFill(Color.BISQUE);
