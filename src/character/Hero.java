@@ -37,7 +37,7 @@ public class Hero extends Person implements Shootable{
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
-		gun = 0;
+		gun = 1;
 		this.firerate = 200;
 		veloX = 0;
 		veloY = 0;
@@ -228,7 +228,7 @@ public class Hero extends Person implements Shootable{
 			bullet.addBullet();
 		}
 		if(gun == 1) {
-			firerate = 100;
+			firerate = 150;
 			MachineGunBullet bullet = new MachineGunBullet(this);
 			bullet.addBullet();
 		}

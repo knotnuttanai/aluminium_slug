@@ -13,6 +13,7 @@ public class Bullet {
 	protected double posY;
 	protected double veloX, baseVeloX;
 	protected double veloY, baseVeloY;
+	protected boolean bulletUp, bulletDown;
 	public boolean isHit;
 	protected double width;
 	protected double height;
@@ -21,8 +22,25 @@ public class Bullet {
 	public Bullet(Person p) {
 		posX = p.getPosX() + 40;
 		posY = p.getPosY() + 10;
-		veloX = 10;
-		veloY = 0;
+		
+		bulletUp = p.isLookUp();
+		bulletDown = p.isLookDown();
+		if(bulletUp) {
+			veloX = 0;
+			veloY = -10;
+			posX = p.getPosX() + 20;
+			posY = p.getPosY() ;
+		}
+		else if(bulletDown) {
+			veloX = 0;
+			veloY = 10;
+			posX = p.getPosX() + 20;
+			posY = p.getPosY() +30 ;
+		}
+		else {
+			veloX = 10;
+			veloY = 0;
+		}
 		baseVeloX = veloX;
 		baseVeloY = veloY;
 		isHit = false;
@@ -41,9 +59,14 @@ public class Bullet {
 		if(this.posY >=800||this.posX +this.width < -10) {
 			setHit();
 		}
-		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
+		calculateRelaSpeed();
 		posX += veloX;
 		posY += veloY;
+	}
+	public void calculateRelaSpeed() {
+		if(!bulletUp) {
+			veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
+		}
 	}
 	public void render(GraphicsContext gc) {
 		//gc.clearRect(posX-5, posY, 5, 5);

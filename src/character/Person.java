@@ -260,5 +260,14 @@ public abstract class Person implements Movable{
 	public void setStandOnMainTerrain(boolean isStandOnMainTerrain) {
 		this.isStandOnMainTerrain = isStandOnMainTerrain;
 	}
+	public boolean isLookUp() {
+		return isLookUp;
+	}
+	
+	public boolean isLookDown() {
+		return isLookDown;
+	}
+	
+	
 }
 

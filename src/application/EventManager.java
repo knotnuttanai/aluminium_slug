@@ -201,8 +201,8 @@ public class EventManager {
 			else {
 				//GameEntity.getCurrentFg().moveScreen(-6);
 				for(Foreground fg : GameEntity.fgs) {
-					fg.moveScreen(-12);
-					System.out.println("ha");
+					fg.moveScreen(-5);
+					
 				}
 				
 				
