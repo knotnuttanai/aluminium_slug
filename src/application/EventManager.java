@@ -196,10 +196,8 @@ public class EventManager {
 				hero.Walk(2);
 			}
 			else {
-				fg.moveScreen(-2);
-				for(Terrain x : GameEntity.terrains) {
-					x.walk(-2);
-				}
+				fg.moveScreen(-6);
+				
 				
 			}
 		}

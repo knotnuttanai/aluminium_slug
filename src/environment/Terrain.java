@@ -1,6 +1,7 @@
 package environment;
 
 import application.GameEntity;
+import application.GameScene;
 import character.Person;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,11 +31,12 @@ public class Terrain {
 		posX += direction*2;
 	}
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.CHARTREUSE);
+		gc.setFill(Color.BLACK);
 		gc.fillRect(posX, posY, width, height);
 		
 	}
 	public void update() {
+		veloX = GameScene.getFgSpeed()*2;
 		posX += veloX;
 		b = new BoundingBox(posX, posY, width, height);
 	}
@@ -68,11 +70,10 @@ public class Terrain {
 	public void standVertical(Person p) {
 		BoundingBox personBound = new BoundingBox(p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		
-	if(b.intersects(personBound)&&(p.getPosY() + p.getHeight()-2 <= posY || !p.isHasHorizontalCollision())) {
+	if(b.intersects(personBound)&&(p.getPosY() + p.getHeight()-10 <= posY )) {
 		   if(p.getVeloY() > 0) {
 			   p.setPosY(posY - p.getHeight());
 			   p.setJump(false);
-			  
 			  
 		   }
 		   p.setStandOnMainTerrain(true);

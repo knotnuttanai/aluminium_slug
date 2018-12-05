@@ -24,7 +24,7 @@ public class Foreground {
 	
 	public void update() {
 		posX += veloX;
-		
+		System.out.println(posX);
 				
 	}
 	

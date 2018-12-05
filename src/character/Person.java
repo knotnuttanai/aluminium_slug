@@ -14,7 +14,7 @@ public abstract class Person implements Movable{
 	protected boolean isAlive;
 	protected double veloY, maxVeloY;
 	protected double veloX;
-	protected static final double GRAVITY = 1;
+	protected static final double GRAVITY = 0.8;
 	
 	protected double base;
 	protected boolean isJump;
@@ -102,9 +102,8 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Jump() {
-		isStandOnMainTerrain = false;
 		if(hasVerticalCollition&&!isJump) {
-			veloY = -20;
+			veloY = -15;
 			isJump = true;
 			System.out.println(veloY);
 			
