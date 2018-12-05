@@ -68,7 +68,7 @@ public class Bullet extends GameObject{
 		posY += veloY;
 	}
 	public void calculateRelaSpeed() {
-		if(!bulletUp) {
+		if(!bulletUp && !bulletDown) {
 			veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
 		}
 	}
