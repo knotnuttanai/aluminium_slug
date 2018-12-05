@@ -48,7 +48,6 @@ public class Bullet extends GameObject{
 		isHit = false;
 		damage = 10;
 		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",50, 32.5, false, false);
-		System.out.println(posY);
 		
 		
 				

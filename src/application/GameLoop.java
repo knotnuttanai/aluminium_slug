@@ -17,13 +17,13 @@ public class GameLoop implements Runnable{
 	private Thread thread;
 	private EventManager ev;
 	private AnimationTimer an;
-	private SpawnManager spawnManager;
 	private Foreground curFg;
 	private boolean toggle = false;
+	private ScorePane score;
 	
 	public GameLoop() {
+		score  = new ScorePane();
 		canvas = new Canvas(640 ,480);
-		spawnManager = new SpawnManager();
 		gameScene = new GameScene(canvas);
 		for(Hero x : GameEntity.hero) {
 			ev = new EventManager(gameScene.getScene(), x);
@@ -74,8 +74,11 @@ public class GameLoop implements Runnable{
 	}
 	private void updateContent() {
 		// TODO Auto-generated method stub
+		score.update();
 		if(GameEntity.getCurrentFg().getPosX() <= -8550+640) {
-			spawnManager.initWorld(640);
+			GameEntity.spawnManager.initWorld(640);
+			GameEntity.increaseEnemyPower();
+			GameEntity.restoreHeroHp();
 		}
 		if(!ev.getHero().isAlive()) {
 			gameScene.getRoot().getChildren().clear();
@@ -83,7 +86,7 @@ public class GameLoop implements Runnable{
 			
 		}
 		ev.keyHandle();
-		spawnManager.spawnEnemy();
+		GameEntity.spawnManager.spawnEnemy();
 		GameEntity.checkStand();
 		if(heroWalkOverBase()) {
 			ev.setHeroWalkOverBase(true);
@@ -112,7 +115,7 @@ public class GameLoop implements Runnable{
 			if(Math.random() < 0.01) {
 				x.Jump();
 			}
-			if(Math.random() < 0.01) {
+			if(Math.random() < 0.005) {
 				x.shoot();
 			}
 		}
@@ -127,9 +130,11 @@ public class GameLoop implements Runnable{
 	private void renderContent() {
 		gameScene.blink();
 		
+		
 		for(Foreground fg : GameEntity.fgs) {
 			fg.render(gameScene.getView());
 		}
+		score.render(gameScene.getView());
 		for(Hero x: GameEntity.hero) {
 			x.render(gameScene.getView());
 			

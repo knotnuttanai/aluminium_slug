@@ -16,7 +16,7 @@ public abstract class Person implements Movable{
 	protected double veloY, maxVeloY;
 	protected double veloX;
 	protected static final double GRAVITY = 0.8;
-	
+	protected int dmg;
 	protected double base;
 	protected boolean isJump;
 	protected boolean isWalk;
@@ -105,7 +105,7 @@ public abstract class Person implements Movable{
 		if(hasVerticalCollition&&!isJump) {
 			veloY = -15;
 			isJump = true;
-			System.out.println(veloY);
+			
 			
 		}
 		
@@ -273,6 +273,12 @@ public abstract class Person implements Movable{
 	
 	public boolean isLookDown() {
 		return isLookDown;
+	}
+	public int getDmg() {
+		return dmg;
+	}
+	public void setDmg(int dmg) {
+		this.dmg = dmg;
 	}
 	
 	

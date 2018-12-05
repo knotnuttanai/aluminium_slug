@@ -10,14 +10,18 @@ public class SpawnManager {
 	private int numberOfEnemy;
 	private int limitNumber;
 	private double baseOfHero;
-	public double spawnRate;
+	private double spawnRate;
+	private int dmg;
+	private int hp;
 	public SpawnManager() {
 		limitNumber = 3;
 		numberOfEnemy = 0;
-		spawnRate = 0.01;
-		for(Hero x : GameEntity.hero) {
+		spawnRate = 0.03;
+		dmg = 0;
+		hp = 0;
+		/*for(Hero x : GameEntity.hero) {
 			baseOfHero = x.getBaseX();
-		}
+		}*/
 	}
 	public void checkEnemyNumber() {
 		int count = 0;
@@ -33,10 +37,17 @@ public class SpawnManager {
 		}
 		if(Math.random() < spawnRate) {
 			Enemy enemy = new Enemy(640+100*Math.random(), 100, 50);
+			enemy.setDmg(dmg+enemy.getDmg());
+			enemy.setHealth(hp+enemy.getHealth());
 			enemy.addEnemy();
 			System.out.println("added");
 		}
 		
+	}
+	public void increaseEnemyPower() {
+		dmg += 5;
+		hp += 10;
+				
 	}
 	public void initWorld(double start) {
 		Foreground fg = new Foreground(start);
@@ -78,6 +89,18 @@ public class SpawnManager {
 			terrain2.setPriority(priority);
 			GameEntity.createTerrain(terrain2);
 		}
+	}
+	public double getSpawnRate() {
+		return spawnRate;
+	}
+	public void setSpawnRate(double spawnRate) {
+		this.spawnRate = spawnRate;
+	}
+	public int getLimitNumber() {
+		return limitNumber;
+	}
+	public void setLimitNumber(int limitNumber) {
+		this.limitNumber = limitNumber;
 	}
 	
 }

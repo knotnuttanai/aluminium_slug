@@ -60,7 +60,7 @@ public class EventManager {
 					e.printStackTrace();
 				}
 				});thread.start();
-				System.out.println("shoot");
+				//System.out.println("shoot");
 			}
 				
 		});
@@ -222,7 +222,7 @@ public class EventManager {
 				//return;
 			}
 			if(!isAtTheEndOfScreen()) {
-				GameEntity.getCurrentFg().moveScreen(0);
+				//GameEntity.getCurrentFg().moveScreen(0);
 				hero.Walk(-2);
 				/*for(Enemy x: GameEntity.enemies) {
 					x.walk(fg.getVeloX());

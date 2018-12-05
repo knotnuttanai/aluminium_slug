@@ -13,6 +13,7 @@ import weapon.HeroBullet;
 public class Enemy extends Person {
 	Image marco;
 	private double baseVeloX;
+	private double fireRate;
 	public Enemy(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
@@ -23,6 +24,8 @@ public class Enemy extends Person {
 		veloX = -2;
 		walkDirection = -1;
 		baseVeloX = veloX;
+		fireRate = 0.005;
+		dmg = 0;
 		
 	}
 
@@ -49,6 +52,7 @@ public class Enemy extends Person {
 	public void shoot() {
 		isShoot = true;
 		EnemyBullet bullet = new EnemyBullet(this);
+		bullet.setDamage(dmg+bullet.getDamage());
 		bullet.addBullet();
 	}
 	public void update() {
@@ -69,4 +73,13 @@ public class Enemy extends Person {
 		this.posX += this.veloX;
 		
 	}
+
+	public double getFireRate() {
+		return fireRate;
+	}
+
+	public void setFireRate(double fireRate) {
+		this.fireRate = fireRate;
+	}
+	
 }

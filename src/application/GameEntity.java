@@ -14,6 +14,7 @@ import weapon.GameObject;
 import weapon.HeroBullet;
 
 public class GameEntity {
+	public static SpawnManager spawnManager = new SpawnManager();
 	public static ArrayList<Hero> hero = new ArrayList<>();
 	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
@@ -45,6 +46,19 @@ public class GameEntity {
 			return null;
 		}
 		
+	}
+	public static void increaseEnemyPower() {
+		/*for(Enemy e : enemies) {
+			e.setHealth(e.getHealth()+hp);
+			e.setDmg(dmg);
+		}*/
+		spawnManager.increaseEnemyPower();
+		spawnManager.setLimitNumber(spawnManager.getLimitNumber()+1);
+	}
+	public static void restoreHeroHp() {
+		for(Hero h : hero) {
+			h.setHealth(h.getMaxHealth());
+		}
 	}
 	public static void checkStand() {
 		for(Hero h : hero) {
@@ -120,6 +134,7 @@ public class GameEntity {
 		for(int i = 0; i < enemies.size(); i++) {
 			if(!enemies.get(i).isAlive()) {
 				enemies.remove(i);
+				ScorePane.addScore(200);
 			}
 		}
 		for(int i = 0; i < bullets.size(); i++) {

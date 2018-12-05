@@ -6,7 +6,7 @@ public class MachineGunBullet extends HeroBullet {
 
 	public MachineGunBullet(Person p) {
 		super(p);
-		damage = 8;
+		damage = 10;
 		// TODO Auto-generated constructor stub
 	}
 
