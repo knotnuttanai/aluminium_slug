@@ -4,6 +4,7 @@ import environment.Foreground;
 import environment.Terrain;
 import javafx.geometry.BoundingBox;
 import weapon.Bullet;
+import weapon.Gun;
 
 public abstract class Person implements Movable{
 	protected int walkDirection;
@@ -14,7 +15,6 @@ public abstract class Person implements Movable{
 	protected double veloY, maxVeloY;
 	protected double veloX;
 	protected static final double GRAVITY = 1;
-	
 	
 	protected double base;
 	protected boolean isJump;
@@ -51,9 +51,7 @@ public abstract class Person implements Movable{
 		
 	}
 	public void update() {
-		if(isStandOnMainTerrain) {
-			System.out.println(veloY);
-		}
+		
 		if(posY >=800) {
 			setPosX(baseX);
 			setPosY(base);
@@ -108,6 +106,7 @@ public abstract class Person implements Movable{
 		if(hasVerticalCollition&&!isJump) {
 			veloY = -20;
 			isJump = true;
+			System.out.println(veloY);
 			
 		}
 		
@@ -130,16 +129,23 @@ public abstract class Person implements Movable{
 		}
 	}*/
 	
-	public boolean checkInteract(Terrain terrain) {
+	public boolean checkInteract(Object o) {
 		BoundingBox p = new BoundingBox(posX, posY, width, height);
-		if(p.intersects(terrain.b)) { 
-			terrain.setInteract(true);
-			return true;}
-		else {
-			terrain.setInteract(false);
-			return false;
+		if(o instanceof Terrain) {
+			Terrain terrain = (Terrain) o;
+			if(p.intersects(terrain.b)) { 
+				terrain.setInteract(true);
+				return true;}
+			else {
+				terrain.setInteract(false);
+				return false;
+			}
 		}
-		
+		if(o instanceof Gun) {
+			Gun gun = (Gun) o;
+			BoundingBox b = new BoundingBox(gun.getPosX(), gun.getPosY(), gun.getWidth(), gun.getHeight());	
+		}
+		return hasHorizontalCollision;
 	}
 	public void setDead() {
 		isAlive = false ;

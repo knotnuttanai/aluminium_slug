@@ -30,7 +30,7 @@ public class Terrain {
 		posX += direction*2;
 	}
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.ANTIQUEWHITE);
+		gc.setFill(Color.CHARTREUSE);
 		gc.fillRect(posX, posY, width, height);
 		
 	}

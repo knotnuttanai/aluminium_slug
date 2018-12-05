@@ -19,6 +19,10 @@ public class Main extends Application {
 		GameEntity.createTerrain(terrain1);
 		SpawnManager.createStair(1600, 346, 20,60 ,45,8,8,-2,0);
 		SpawnManager.createStair(1800, 350, 15,60 ,60,8,0,2,1);
+		//Terrain terrain2 = new Terrain(1960, 256, 670, 10);
+		//GameEntity.createTerrain(terrain2);
+		Terrain terrain3 = new Terrain(1960, 470, 6000, 10);
+		GameEntity.createTerrain(terrain3);
 		Gun gun = new Gun(400, 200, 10, 10);
 		gun.addGun();
 		

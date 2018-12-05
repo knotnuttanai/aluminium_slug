@@ -214,7 +214,7 @@ public class EventManager {
 			hero.setIsWalk(true);
 			hero.setWalkDirection(-1);
 			if(hero.isHasHorizontalCollision()) {
-				return;
+				//return;
 			}
 			if(!isAtTheEndOfScreen()) {
 				fg.moveScreen(0);

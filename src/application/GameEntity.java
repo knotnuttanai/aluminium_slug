@@ -1,6 +1,8 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import character.Enemy;
 import character.Hero;
@@ -12,7 +14,7 @@ import weapon.HeroBullet;
 
 public class GameEntity {
 	public static ArrayList<Hero> hero = new ArrayList<>();
-	public static ArrayList<Bullet> bullets = new ArrayList<>();
+	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static ArrayList<Gun> guns = new ArrayList<>();
