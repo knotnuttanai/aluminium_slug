@@ -1,5 +1,6 @@
 package weapon;
 
+import application.GameEntity;
 import character.Person;
 
 public class HeroBullet extends Bullet {
@@ -8,6 +9,11 @@ public class HeroBullet extends Bullet {
 		super(p);
 		
 		// TODO Auto-generated constructor stub
+	}
+	public void calculateRelaSpeed() {
+		if(!bulletUp) {
+			veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX()+5;
+		}
 	}
 	
 }

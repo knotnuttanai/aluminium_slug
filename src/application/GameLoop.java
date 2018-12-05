@@ -20,13 +20,16 @@ public class GameLoop implements Runnable{
 	private Foreground curFg;
 	private boolean toggle = false;
 	private ScorePane score;
+	private BulletPane bullet1;
 	
 	public GameLoop() {
 		score  = new ScorePane();
+		
 		canvas = new Canvas(640 ,480);
 		gameScene = new GameScene(canvas);
 		for(Hero x : GameEntity.hero) {
 			ev = new EventManager(gameScene.getScene(), x);
+			bullet1 = new BulletPane(x);
 		}
 		ev.setPlayerControl();
 	
@@ -75,6 +78,7 @@ public class GameLoop implements Runnable{
 	private void updateContent() {
 		// TODO Auto-generated method stub
 		score.update();
+		bullet1.update();
 		if(GameEntity.getCurrentFg().getPosX() <= -8550+640) {
 			GameEntity.spawnManager.initWorld(640);
 			GameEntity.increaseEnemyPower();
@@ -135,6 +139,7 @@ public class GameLoop implements Runnable{
 			fg.render(gameScene.getView());
 		}
 		score.render(gameScene.getView());
+		bullet1.render(gameScene.getView());
 		for(Hero x: GameEntity.hero) {
 			x.render(gameScene.getView());
 			
