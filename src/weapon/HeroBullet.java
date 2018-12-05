@@ -11,7 +11,7 @@ public class HeroBullet extends Bullet {
 		// TODO Auto-generated constructor stub
 	}
 	public void calculateRelaSpeed() {
-		if(!bulletUp) {
+		if(!bulletUp && !bulletDown) {
 			veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX()+5;
 		}
 	}
