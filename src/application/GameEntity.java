@@ -167,7 +167,7 @@ public class GameEntity {
 		for(int i = 0; i < enemies.size(); i++) {
 			if(enemies.get(i).isAnimatedDead()) {
 				enemies.remove(i);
-				ScorePane.addScore(200);
+				
 			}
 		}
 		for(int i = 0; i < bullets.size(); i++) {

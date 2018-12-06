@@ -1,0 +1,32 @@
+package application;
+
+import javafx.scene.control.ProgressBar;
+
+public class ExpBar extends ProgressBar {
+	private static int killCount;
+	private double maxKillCount;
+	public ExpBar() {
+		super(1);
+		setPrefWidth(680);
+		setPrefHeight(10);
+		setTranslateX(0);
+		setTranslateY(470);
+		setProgress(0);
+		maxKillCount = 5;
+		// TODO Auto-generated constructor stub
+	}
+	public void update() {
+		checkLevelUp();
+		setProgress((double)killCount/maxKillCount);
+	}
+	public void checkLevelUp() {
+		if(killCount >= maxKillCount) {
+			killCount = 0;
+			maxKillCount = maxKillCount*1.2;
+			HeroStatusPane.isEnable = true;
+		}
+	}
+	public static void addKillCount(int kills) {
+		killCount += kills;
+	}
+}

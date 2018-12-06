@@ -76,7 +76,7 @@ public class GameLoop implements Runnable{
 			GameEntity.spawnManager.initWorld(640);
 			GameEntity.increaseEnemyPower();
 			GameEntity.restoreHeroHp();
-			gameScene.getHeroStatusPane().isEnable = true;
+			
 		}
 		if(!ev.getHero().isAlive()) {
 			gameScene.getRoot().getChildren().clear();
@@ -127,6 +127,7 @@ public class GameLoop implements Runnable{
 		for(GameObject g : GameEntity.gameObjects) {
 			g.update();
 		}
+		gameScene.getExpBar().update();
 		
 	}
 	private void renderContent() {

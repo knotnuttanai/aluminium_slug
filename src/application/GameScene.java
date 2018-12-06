@@ -17,10 +17,11 @@ public class GameScene {
 	private Group root;
 	private Canvas canvas;
 	private HpBar hpBar;
+	private ExpBar expBar;
 	private GraphicsContext view;
 	private HeroStatusPane heroStatusPane;
 	public GameScene(Canvas canvas) {
-		
+		expBar = new ExpBar();
 	    hpBar = new HpBar();
 		root = new Group();
 		heroStatusPane = new HeroStatusPane();
@@ -32,6 +33,7 @@ public class GameScene {
 		root.getChildren().add(canvas);
 		root.getChildren().add(hpBar);
 		root.getChildren().add(heroStatusPane);
+		root.getChildren().add(expBar);
 		root.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
 	        if ( k.getCode() == KeyCode.SPACE){
 	            for(Hero h : GameEntity.hero) {
@@ -93,6 +95,12 @@ public class GameScene {
 	}
 	public void setHeroStatusPane(HeroStatusPane heroStatusPane) {
 		this.heroStatusPane = heroStatusPane;
+	}
+	public ExpBar getExpBar() {
+		return expBar;
+	}
+	public void setExpBar(ExpBar expBar) {
+		this.expBar = expBar;
 	}
 	
 

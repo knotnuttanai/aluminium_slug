@@ -1,5 +1,7 @@
 package character;
 
+import application.ExpBar;
+import application.ScorePane;
 import environment.Foreground;
 import environment.Terrain;
 import javafx.geometry.BoundingBox;
@@ -80,6 +82,8 @@ public abstract class Person implements Movable{
 		if(health > 0) {
 			health = health - dmg;
 			if(health <= 0) {
+				ScorePane.addScore(200);
+				ExpBar.addKillCount(1);
 				setDead();
 			}
 		}

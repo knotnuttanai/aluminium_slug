@@ -16,9 +16,9 @@ public class SpawnManager {
 	private int dmg;
 	private int hp;
 	public SpawnManager() {
-		limitNumber = 10;
+		limitNumber = 3;
 		numberOfEnemy = 0;
-		spawnRate = 1;
+		spawnRate = 0.02;
 		dmg = 0;
 		hp = 0;
 		/*for(Hero x : GameEntity.hero) {
