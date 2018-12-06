@@ -26,7 +26,7 @@ public abstract class Person implements Movable{
 	protected boolean isLookDown;
 	protected double height;
 	protected double width;
-	protected  double baseX;
+	protected double baseX;
 	protected boolean isShoot, hasVerticalCollition, hasHorizontalCollision, isStandOnMainTerrain;
 	protected boolean isAnimatedDead;
 	private Terrain terrian;
