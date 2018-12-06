@@ -46,7 +46,7 @@ public class HeroStatusPane extends HBox {
 			
 			this.setDisable(false);
 		}else {
-			System.out.println(statusPoint);
+			
 			this.setDisable(true);
 		}
 	}
@@ -78,7 +78,7 @@ public class HeroStatusPane extends HBox {
 			checkPoint();
 		});
 		increaseLuk.setOnMouseClicked(e->{
-			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.0002);
+			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.0001);
 			checkPoint();
 		});
 	

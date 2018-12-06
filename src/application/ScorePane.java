@@ -30,7 +30,7 @@ public class ScorePane {
 		Font font1 =  Font.font("Tahoma",FontWeight.BOLD, 30);
 		gc.setFont(font1);
 		String level = "LVL: "+Integer.toString(ExpBar.level);
-		gc.fillText(level, 0, 50);
+		gc.fillText(level, 0, 120);
 	}
 	public static void addScore(int point) {
 		score += point;

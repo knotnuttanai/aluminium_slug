@@ -17,10 +17,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		
-		Hero hero = new Hero(200, 200, 10000);
-
 		GameEntity.spawnManager.initWorld(0);
-		Tank tank = new Tank(500, 200, 100, 100, hero);
+		Tank tank = new Tank(500, 200, 100, 100, GameEntity.hero);
 		tank.addObject();
 		
 		

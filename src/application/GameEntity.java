@@ -17,7 +17,7 @@ import weapon.HeroBullet;
 import weapon.Tank;
 
 public class GameEntity {
-	
+	public static SoundManager soundManager = new SoundManager();
 	public static SpawnManager spawnManager = new SpawnManager();
 	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
@@ -139,7 +139,9 @@ public class GameEntity {
 					for(GameObject g : GameEntity.gameObjects) {
 						if(GameEntity.hero.checkInteract(g)) {
 							if(g instanceof Gun) {
+								soundManager.playSound("/res/sounds/HeavyMachineGun.mp3");
 								GameEntity.hero.setGun(1);
+								GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet()+256);
 								g.setHit(true);
 							}
 							if(g instanceof Tank) {

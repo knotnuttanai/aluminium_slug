@@ -18,7 +18,7 @@ public class SpawnManager {
 	private int dmg;
 	private int hp;
 	public SpawnManager() {
-		machineGunSpawnrate = 0.001;
+		machineGunSpawnrate = 0.01;
 		limitNumber = 3;
 		numberOfEnemy = 0;
 		spawnRate = 0.02;

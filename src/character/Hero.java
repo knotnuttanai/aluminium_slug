@@ -19,7 +19,6 @@ public class Hero extends Person implements Shootable{
 	//gun1 is machine gun
 	//gun3 is tank
 	private int moveSpeed;
-	private int maxGun1Bullet;
 	private int useGunBullet;
 	private Image marcoTop;
 	private Image marcoBottom;
@@ -47,8 +46,7 @@ public class Hero extends Person implements Shootable{
 		gun = 0;
 		this.firerate = 200;
 		moveSpeed = -5;
-		maxGun1Bullet = 256;
-		useGunBullet = 256;
+		useGunBullet = 0;
 		veloX = 0;
 		veloY = 0;
 		height = 75;
@@ -335,21 +333,7 @@ public class Hero extends Person implements Shootable{
 		this.gun = gun;
 	}
 
-	public int getMaxGun1Bullet() {
-		return maxGun1Bullet;
-	}
 
-	public void setMaxGun1Bullet(int maxGun1Bullet) {
-		this.maxGun1Bullet = maxGun1Bullet;
-	}
-
-	public int getUsedGun1Bullet() {
-		return useGunBullet;
-	}
-
-	public void setUsedGun1Bullet(int usedGun1Bullet) {
-		this.useGunBullet = usedGun1Bullet;
-	}
 
 	public boolean isInTheTank() {
 		return isInTheTank;

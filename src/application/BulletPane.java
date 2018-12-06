@@ -17,7 +17,7 @@ public class BulletPane extends NumberPane{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		showText = Integer.toString(hero.getUsedGun1Bullet());
+		showText = Integer.toString(hero.getUseGunBullet());
 	}
 	public void render(GraphicsContext gc) {
 		if(hero.getGun()==1) {
