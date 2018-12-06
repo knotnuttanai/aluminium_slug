@@ -19,8 +19,8 @@ public class Bomb extends GameObject {
 		this.hero = hero;
 		posX = hero.getPosX();
 		posY = hero.getPosY();
-		baseVeloX = 10;
-		veloY = -5;
+		baseVeloX = 8;
+		veloY = -10;
 		isIgnited = false;
 		Bomb = new Image[9];
 		for(int i = 1; i <= 9; i++) {
@@ -75,7 +75,7 @@ public class Bomb extends GameObject {
 				}
 			});thread.start();
 		}
-		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
+		veloX = baseVeloX - GameEntity.getCurrentFg().getVeloX()/2;
 		posX += veloX;
 		posY += veloY;
 		b = new BoundingBox(posX, posY, width, height);

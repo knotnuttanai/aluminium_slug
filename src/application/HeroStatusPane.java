@@ -59,22 +59,22 @@ public class HeroStatusPane extends HBox {
 	}
 	public void setEvent() {
 		increaseStr.setOnMouseClicked(e->{
-			for(Hero h : GameEntity.hero) {
-				h.setDmg(h.getDmg()+5);
-			}
+			
+			GameEntity.hero.setDmg(GameEntity.hero.getDmg()+5);
+			
 			checkPoint();
 		});
 		increaseAgi.setOnMouseClicked(e->{
-			for(Hero h : GameEntity.hero) {
-				h.setMoveSpeed(h.getMoveSpeed()-1);
-			}
+			
+				GameEntity.hero.setMoveSpeed(GameEntity.hero.getMoveSpeed()-1);
+			
 			checkPoint();
 		});
 		increaseVit.setOnMouseClicked(e->{
-			for(Hero h : GameEntity.hero) {
-				h.setMaxHealth(h.getMaxHealth()+20);
-				h.setHealth(h.getMaxHealth());
-			}
+			
+				GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth()+20);
+				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
+			
 			checkPoint();
 		});
 		increaseLuk.setOnMouseClicked(e->{

@@ -27,10 +27,10 @@ public class GameLoop implements Runnable{
 		
 		canvas = new Canvas(640 ,480);
 		gameScene = new GameScene(canvas);
-		for(Hero x : GameEntity.hero) {
-			ev = new EventManager(gameScene.getScene(), x);
-			bullet1 = new BulletPane(x);
-		}
+		
+			ev = new EventManager(gameScene.getScene(), GameEntity.hero);
+			bullet1 = new BulletPane(GameEntity.hero);
+		
 		ev.setPlayerControl();
 	
 	}
@@ -75,7 +75,7 @@ public class GameLoop implements Runnable{
 		if(GameEntity.getCurrentFg().getPosX() <= -8550+640) {
 			GameEntity.spawnManager.initWorld(640);
 			GameEntity.increaseEnemyPower();
-			GameEntity.restoreHeroHp();
+			GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
 			
 		}
 		if(!ev.getHero().isAlive()) {
@@ -100,9 +100,7 @@ public class GameLoop implements Runnable{
 		for(Foreground fg : GameEntity.fgs) {
 			fg.update();
 		}
-		for(Hero x: GameEntity.hero) {
-			x.update();
-		}
+		GameEntity.hero.update();
 		gameScene.getHpBar().update();
 		for(Bullet x: GameEntity.bullets) {
 			x.update();
@@ -140,10 +138,10 @@ public class GameLoop implements Runnable{
 		}
 		score.render(gameScene.getView());
 		bullet1.render(gameScene.getView());
-		for(Hero x: GameEntity.hero) {
-			x.render(gameScene.getView());
+		
+			GameEntity.hero.render(gameScene.getView());
 			
-		}
+		
 		
 		for(Bullet x: GameEntity.bullets) {
 			x.render(gameScene.getView());

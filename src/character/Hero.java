@@ -21,7 +21,6 @@ public class Hero extends Person implements Shootable{
 	private int moveSpeed;
 	private int maxGun1Bullet;
 	private int useGunBullet;
-	
 	private Image marcoTop;
 	private Image marcoBottom;
 	private Image marcoMachine;
@@ -113,7 +112,7 @@ public class Hero extends Person implements Shootable{
 			ThrowingBomb[i-1] = new Image("file:res/images/throwbomb" + i + ".png");
 		}
 		
-		GameEntity.createHero(this);
+	
 	}
 	
 	public int getFirerate() {

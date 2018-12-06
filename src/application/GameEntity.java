@@ -17,16 +17,15 @@ import weapon.HeroBullet;
 import weapon.Tank;
 
 public class GameEntity {
+	
 	public static SpawnManager spawnManager = new SpawnManager();
-	public static ArrayList<Hero> hero = new ArrayList<>();
 	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
-	public static void createHero(Hero h) {
-		hero.add(h);
-	}
+	public static Hero hero = new Hero(200, 200, 100);
+	
 	public static void createBullet(Bullet b) {
 		bullets.add(b);
 	}
@@ -58,18 +57,14 @@ public class GameEntity {
 		spawnManager.increaseEnemyPower();
 		spawnManager.setLimitNumber(spawnManager.getLimitNumber()+1);
 	}
-	public static void restoreHeroHp() {
-		for(Hero h : hero) {
-			h.setHealth(h.getMaxHealth());
-		}
-	}
+	
 	public static void checkStand() {
 			try {
-				for(Hero h : hero) {
-					h.setHasHorizontalCollision(false);
-					h.setHasVerticalCollition(false);
-					h.setStandOnMainTerrain(false);
-				}
+				
+					GameEntity.hero.setHasHorizontalCollision(false);
+					GameEntity.hero.setHasVerticalCollition(false);
+					GameEntity.hero.setStandOnMainTerrain(false);
+				
 				for(Enemy e : enemies) {
 					e.setHasHorizontalCollision(false);
 					e.setHasVerticalCollition(false);
@@ -87,16 +82,16 @@ public class GameEntity {
 						}
 				}
 				}
-				for(Hero h : hero) {
+				
 					for(Terrain t : terrains) {
-						if(h.checkInteract(t)) {
-							t.isSomeOneHitHere(h);
-							t.standVertical(h);
+						if(GameEntity.hero.checkInteract(t)) {
+							t.isSomeOneHitHere(GameEntity.hero);
+							t.standVertical(GameEntity.hero);
 							 
 						}
 						
 					}
-				}
+				
 				for(GameObject g : gameObjects) {
 					for(Terrain t : terrains) {
 						
@@ -130,33 +125,33 @@ public class GameEntity {
 						}
 					}
 				}
-				for(Hero h: hero) {
+				
 					for(Bullet b : bullets) {
 						if(b instanceof EnemyBullet) {
 							EnemyBullet b1 = (EnemyBullet) b;
-							if(h.isHitByBullet(b1)) {
-								h.takeDamage(b1.getDamage());
+							if(GameEntity.hero.isHitByBullet(b1)) {
+								GameEntity.hero.takeDamage(b1.getDamage());
 								b.setHit();
 								
 							}
 						}
 					}
 					for(GameObject g : GameEntity.gameObjects) {
-						if(h.checkInteract(g)) {
+						if(GameEntity.hero.checkInteract(g)) {
 							if(g instanceof Gun) {
-								h.setGun(1);
+								GameEntity.hero.setGun(1);
 								g.setHit(true);
 							}
 							if(g instanceof Tank) {
 								Tank tank = (Tank) g;
-								if(h.isRequestToEnterTank()) {
+								if(GameEntity.hero.isRequestToEnterTank()) {
 									tank.setUsed(true);
-									h.setInTheTank(true);
+									GameEntity.hero.setInTheTank(true);
 								}
 							}
 						}
 					}
-				}
+				
 			}
 			catch(ArrayIndexOutOfBoundsException e) {
 			

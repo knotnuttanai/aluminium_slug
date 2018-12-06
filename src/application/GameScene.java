@@ -36,9 +36,7 @@ public class GameScene {
 		root.getChildren().add(expBar);
 		root.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
 	        if ( k.getCode() == KeyCode.SPACE){
-	            for(Hero h : GameEntity.hero) {
-	            	h.Jump();
-	            }
+	        	GameEntity.hero.Jump();
 	        }
 	    });
 		scene = new Scene(root, 640, 480);

@@ -8,9 +8,9 @@ public class HpBar extends ProgressBar  {
 	public HpBar() {
 		super(1);
 		setPrefWidth(200);
-		for(Hero x : GameEntity.hero) {
-			hero = x;
-		}
+		
+			hero = GameEntity.hero;
+		
 		setProgress(100);
 		
 	}
