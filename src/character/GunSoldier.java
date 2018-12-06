@@ -19,7 +19,7 @@ public class GunSoldier extends Enemy implements Shootable{
 	private boolean normalCondition;
 	private boolean grabGunCondition;
 	private boolean shootCondition;
-	final private int walkCount = (int)(Math.random()*4+1);
+	final private int walkCount = (int)(Math.random()*2);
 
 	public GunSoldier(double posX, double posY, int health) {
 		super(posX, posY, health);
