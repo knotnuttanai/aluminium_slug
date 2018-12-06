@@ -11,7 +11,9 @@ public class Bomb extends GameObject {
 	Hero hero;
 	private boolean isIgnited;
 	private Image[] Bomb;
+	private Image[] Smoke;
 	private int bombFrame;
+	private int smokeFrame;
 	
 	public Bomb(double width, double height, Hero hero) 
 	{
@@ -28,11 +30,20 @@ public class Bomb extends GameObject {
 		}
 		bombFrame = 0;
 		
+		Smoke = new Image[21];
+		for(int i = 1; i <= 21; i++) {
+			Smoke[i-1] = new Image("file:res/images/Layer " + i + ".png");
+		}
+		smokeFrame = 0;
 	}
 	
 	@Override
 	public void render(GraphicsContext gc) {
-		if(bombFrame == 18) gc.drawImage(Bomb[8], posX, posY);
+		if(isIgnited) {
+			gc.drawImage(Smoke[smokeFrame], posX - 10, posY - 100);
+			smokeFrame++;
+			if(smokeFrame == 21) isHit = true;
+		}
 		else {
 			gc.drawImage(Bomb[(bombFrame/2)], posX, posY);
 			bombFrame++;
@@ -65,8 +76,8 @@ public class Bomb extends GameObject {
 			Thread thread = new Thread(()->{
 				try {
 					Thread.sleep(200);
-					isHit = true;
 					setHeroCanShoot();
+					hero.setThrowingBomb(false);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
