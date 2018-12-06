@@ -139,7 +139,7 @@ public class GameEntity {
 					for(GameObject g : GameEntity.gameObjects) {
 						if(GameEntity.hero.checkInteract(g)) {
 							if(g instanceof Gun) {
-								soundManager.playSound("/res/sounds/HeavyMachineGun.mp3");
+								soundManager.playSound();
 								GameEntity.hero.setGun(1);
 								GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet()+256);
 								g.setHit(true);

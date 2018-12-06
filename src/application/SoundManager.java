@@ -1,17 +1,17 @@
 package application;
 
-import java.io.File;
-
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class SoundManager {
 	public SoundManager() {
 		
 	}
-	public void playSound(String soundUrl) {
-		AudioClip sound = new AudioClip(new File(soundUrl).toURI().toString());
-		sound.play();
+	public void playSound() {
+		Media sound = new Media(this.getClass().getResource("HeavyMachineGun.mp3").toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
 		System.out.println("2");
 	}
 }
