@@ -11,6 +11,7 @@ import weapon.Gun;
 import weapon.Tank;
 
 public abstract class Person implements Movable{
+	protected boolean canShoot;
 	protected int walkDirection;
 	protected int health, maxHealth;
 	protected double posX;
@@ -41,6 +42,7 @@ public abstract class Person implements Movable{
 		maxHealth = this.health;
 		veloX = 0;
 		veloY = 0;
+		canShoot = true;
 		maxVeloY = 20;
 		base = posY;
 		baseX = posX;
@@ -308,7 +310,13 @@ public abstract class Person implements Movable{
 	public void setDmg(int dmg) {
 		this.dmg = dmg;
 	}
-	
+	public boolean isCanShoot() {
+		return canShoot;
+	}
+
+	public void setCanShoot(boolean canShoot) {
+		this.canShoot = canShoot;
+	}
 	
 }
 

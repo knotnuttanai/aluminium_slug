@@ -20,7 +20,7 @@ public class Hero extends Person implements Shootable{
 	//gun3 is tank
 	private int maxGun1Bullet;
 	private int useGunBullet;
-	private boolean canShoot;
+	
 	private Image marcoTop;
 	private Image marcoBottom;
 	private Image marcoMachine;
@@ -338,13 +338,7 @@ public class Hero extends Person implements Shootable{
 		this.useGunBullet = useGunBullet;
 	}
 
-	public boolean isCanShoot() {
-		return canShoot;
-	}
-
-	public void setCanShoot(boolean canShoot) {
-		this.canShoot = canShoot;
-	}
+	
 	
 	
 	

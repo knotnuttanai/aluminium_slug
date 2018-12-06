@@ -16,13 +16,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-<<<<<<< HEAD
+
 		Hero hero = new Hero(200, 200, 100000);
-||||||| merged common ancestors
-		Hero hero = new Hero(200, 200, 100);
-=======
-		Hero hero = new Hero(200, 200, 10000);
->>>>>>> 2d6a1afcac719a0d49ea946f4451ed6aa5b6899f
+
 		GameEntity.spawnManager.initWorld(0);
 		Gun gun = new Gun(400, 200, 50, 50);
 		gun.addObject();

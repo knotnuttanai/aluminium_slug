@@ -6,7 +6,8 @@ import javafx.scene.image.Image;
 import weapon.EnemyBullet;
 
 public class GunSoldier extends Enemy implements Shootable{
-	
+	Thread thread;
+	int count;
 	private Image[] normal;
 	private Image[] grabGun;
 	private Image[] SoldierShoot;
@@ -22,6 +23,7 @@ public class GunSoldier extends Enemy implements Shootable{
 
 	public GunSoldier(double posX, double posY, int health) {
 		super(posX, posY, health);
+		count = 0;
 		normal = new Image[12];
 		for(int i = 1; i <= 12; i++) {
 			normal[i-1] = new Image("file:res/images/normalsoldier" + i + ".png");
@@ -78,9 +80,29 @@ public class GunSoldier extends Enemy implements Shootable{
 		this.posY += this.veloY;
 		
 		this.posX += this.veloX;
-		
-		if(shootCondition) {
-			if(shootFrame == 0) shoot();
+		if(normalCondition) {
+			
+			if(normalFrame >= walkCount * 36) {
+				normalCondition = false;
+				grabGunCondition = true;
+				
+			}
+		}
+		if(grabGunCondition) {
+			veloX = 0;
+			walkDirection = 0;
+			baseVeloX = veloX;
+			if(grabGunFrame == 24) {
+				grabGunCondition = false;
+				shootCondition = true;
+				//shoot();
+			}
+			
+		}
+		if (shootCondition) {
+			if(Math.random() < 0.002) {
+				count = 0;
+			}
 		}
 	}
 	
@@ -99,33 +121,61 @@ public class GunSoldier extends Enemy implements Shootable{
 			gc.drawImage(normal[(normalFrame/3)%12], posX, posY);
 			normalFrame++;
 
-			if(normalFrame >= walkCount * 36) {
+			/*if(normalFrame >= walkCount * 36) {
 				normalCondition = false;
 				grabGunCondition = true;
 				
-			}
+			}*/
 		}
 		if(grabGunCondition) {
-			veloX = 0;
-			walkDirection = 0;
-			baseVeloX = veloX;
+			//veloX = 0;
+			//walkDirection = 0;
+			//baseVeloX = veloX;
 			gc.drawImage(grabGun[grabGunFrame/3], posX, posY);
 			grabGunFrame++;
-			if(grabGunFrame == 24) {
+			/*if(grabGunFrame == 24) {
 				grabGunCondition = false;
 				shootCondition = true;
 				shoot();
-			}
+			}*/
 			
 		}
 		if(shootCondition) {
 			gc.drawImage(SoldierShoot[(shootFrame/3)%5], posX - adjustShootPosX(), posY + adjustShootPosY());
-			if(shootFrame == 0) shoot();
 			shootFrame++;
-			if(shootFrame >= 15) {
-				shootFrame = 0;
+			
+			thread = new Thread(()->{
+			try {
+			
+					if(shootFrame >= 15) {
+						shootFrame = 0;
+						if(count <= 1) {
+							shoot();
+							count++;
+						}
+						
+					}
+				
 			}
-		}}
+			catch(ArrayIndexOutOfBoundsException e) {
+				
+			}
+			
+			});thread.start();
+			if(!isAlive) {
+				try {
+					thread.interrupt();
+					thread.join();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
+			
+		}
+		}
 	}
 	
 	private int adjustShootPosX() {
