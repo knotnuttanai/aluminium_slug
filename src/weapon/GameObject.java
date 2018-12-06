@@ -46,9 +46,6 @@ public class GameObject {
 	public void render(GraphicsContext gc) {
 		gc.setFill(Color.AQUA);
 		gc.fillRect(posX, posY, width, height);
-		
-		
-		
 	}
 	public double getWidth() {
 		return width;
