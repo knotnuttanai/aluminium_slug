@@ -36,7 +36,8 @@ public class Hero extends Person implements Shootable{
 	private Image[] shootDown;
 	private Image[] walk;
 	private Image[] ThrowingBomb;
-	private int walkFrame,shootFrame,shootUpFrame,shootDownFrame,machFrame,machUpFrame,machDownFrame,throwingBombFrame;
+	private Image[] MachThrowBomb;
+	private int walkFrame,shootFrame,shootUpFrame,shootDownFrame,machFrame,machUpFrame,machDownFrame,throwingBombFrame,machBombFrame;
 	private int firerate;
 
 	public Hero(double posX, double posY, int health) {
@@ -71,6 +72,7 @@ public class Hero extends Person implements Shootable{
 		walk = new Image[10];
 		machShoot = new Image[4];
 		ThrowingBomb = new Image[5];
+		MachThrowBomb = new Image[6];
 		walkFrame = 0;
 		shootFrame = 0;
 		shootUpFrame = 0;
@@ -79,6 +81,7 @@ public class Hero extends Person implements Shootable{
 		machUpFrame = 0;
 		machDownFrame = 0;
 		throwingBombFrame = 0;
+		machBombFrame = 0;
 		
 		for(int i = 1; i <= 10; i++) {
 			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
@@ -110,6 +113,10 @@ public class Hero extends Person implements Shootable{
 		
 		for(int i = 1; i <= 5; i++) {
 			ThrowingBomb[i-1] = new Image("file:res/images/throwbomb" + i + ".png");
+		}
+		
+		for(int i = 1; i <= 6; i++) {
+			MachThrowBomb[i-1] = new Image("file:res/images/machbomb" + i + ".png");
 		}
 		
 	
@@ -232,6 +239,14 @@ public class Hero extends Person implements Shootable{
 				  throwingBombFrame++;
 				  if(throwingBombFrame == 5) {
 					  throwingBombFrame = 0;
+					  isThrowingBomb = false;
+				  }
+			  }
+			  else {
+				  gc.drawImage(MachThrowBomb[machBombFrame/2], posX + k, posY);
+				  machBombFrame++;
+				  if(machBombFrame == 12) {
+					  machBombFrame = 0;
 					  isThrowingBomb = false;
 				  }
 			  }
