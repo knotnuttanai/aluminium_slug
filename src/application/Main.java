@@ -18,7 +18,7 @@ public class Main extends Application {
 		Hero hero = new Hero(200, 200, 10000);
 		GameEntity.spawnManager.initWorld(0);
 		Gun gun = new Gun(400, 200, 50, 50);
-		gun.addGun();
+		gun.addObject();
 		
 		
 		

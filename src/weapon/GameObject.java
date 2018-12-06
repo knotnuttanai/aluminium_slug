@@ -74,7 +74,7 @@ public class GameObject {
 	public void setPosY(double posY) {
 		this.posY = posY;
 	}
-	public void addGun() {
+	public void addObject() {
 		GameEntity.createGameObject(this);
 	}
 	public double getVeloX() {

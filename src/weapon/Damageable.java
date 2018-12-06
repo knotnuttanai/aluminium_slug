@@ -1,6 +1,6 @@
 package weapon;
 
 public interface Damageable {
-	public void takeDamage();
+	public void takeDamage(int dmg);
 	
 }

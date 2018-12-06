@@ -13,10 +13,11 @@ import weapon.MachineGunBullet;
 import weapon.PistolBullet;
 
 public class Hero extends Person implements Shootable{
-	protected boolean isJump;
+	private boolean isJump, isInTheTank;
 	private int gun;
 	//gun0 is pistol
 	//gun1 is machine gun
+	//gun3 is tank
 	private int maxGun1Bullet;
 	private int useGun1Bullet;
 	private Image marcoTop;
@@ -39,6 +40,7 @@ public class Hero extends Person implements Shootable{
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
+		
 		gun = 0;
 		this.firerate = 200;
 		maxGun1Bullet = 256;
@@ -47,6 +49,7 @@ public class Hero extends Person implements Shootable{
 		veloY = 0;
 		height = 75;
 		width = 45;
+		isInTheTank = false;
 		marcoTop = new Image("file:res/images/top_marco1.png");
 		marcoMachine = new Image("file:res/images/machgun.png");
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
@@ -151,7 +154,7 @@ public class Hero extends Person implements Shootable{
 		else if(frame.equals("machDownFrame")) machDownFrame = 0;
 		else if(frame.equals("machFrame")) machFrame = 0;
 	}
-
+	
 	public void render(GraphicsContext gc) {
 
 		int k = 0;
