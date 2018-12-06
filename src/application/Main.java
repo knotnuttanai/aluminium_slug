@@ -16,7 +16,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		Hero hero = new Hero(200, 200, 100);
+		Hero hero = new Hero(200, 200, 100000);
 		GameEntity.spawnManager.initWorld(0);
 		Gun gun = new Gun(400, 200, 50, 50);
 		gun.addObject();

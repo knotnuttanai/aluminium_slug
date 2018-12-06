@@ -7,6 +7,7 @@ import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import weapon.Bomb;
 import weapon.GameObject;
 
 public class Terrain {
@@ -88,8 +89,11 @@ public class Terrain {
 		
 	if(b.intersects(personBound)&&(g.getPosY() + g.getHeight()-2 <= posY || !g.isHasHorizontalCollision())) {
 		   if(g.getVeloY() > 0) {
-			   g.setPosY(posY - g.getHeight());
-			   
+			   if(g instanceof Bomb) {
+				   g.setPosY(posY -100);
+			   }else {
+				   g.setPosY(posY - g.getHeight());
+			   }
 		   }
 		   
 		   g.setHasVerticalCollition(true);

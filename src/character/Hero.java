@@ -247,7 +247,7 @@ public class Hero extends Person implements Shootable{
 						gun = 0;
 						firerate = 300;
 						canShoot = false;
-						Bomb bomb = new Bomb(10, 10, this);
+						Bomb bomb = new Bomb(15, 15, this);
 						bomb.setVeloY(bomb.getVeloY()-5 );
 						bomb.addObject();
 						return;

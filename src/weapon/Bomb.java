@@ -38,7 +38,7 @@ public class Bomb extends GameObject {
 			baseVeloX  = 0;
 			width = 100;
 			height = 100;
-			posY = posY - height+10;
+			//posY = posY - height+10;
 			
 			
 			Thread thread = new Thread(()->{
