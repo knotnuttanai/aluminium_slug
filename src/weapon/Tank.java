@@ -11,6 +11,7 @@ public class Tank extends GameObject {
 	public boolean isAlive, isUsed;
 	private int health;
 	Hero hero;
+	private boolean toggle;
 	public Tank(double posX, double posY, double width, double height, Hero hero) {
 		super(posX, posY, width, height);
 		// TODO Auto-generated constructor stub
@@ -18,9 +19,11 @@ public class Tank extends GameObject {
 		isUsed = true;
 		this.hero = hero;
 		health = 200;
+		toggle = false;
 	}
 
 	public void update() {
+		
 		if(this.posY >=800||this.posX +this.width < -10) {
 			this.setUsed(true);
 		} 

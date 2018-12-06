@@ -75,7 +75,9 @@ public class Enemy extends Person {
 		bullet.addBullet();
 	}
 	public void update() {
-		
+		if(!isAlive) {
+			baseVeloX = 0;
+		}
 		if(this.posY >=800||this.posX +this.width < -10) {
 			this.setDead();
 		}
