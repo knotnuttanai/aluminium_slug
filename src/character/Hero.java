@@ -248,11 +248,11 @@ public class Hero extends Person implements Shootable{
 			useGun1Bullet--;
 		}
 		if(gun == 0) {
-			/*firerate = 200;
+			firerate = 200;
 			PistolBullet bullet = new PistolBullet(this);
-			bullet.addBullet();*/
+			bullet.addBullet();/*
 			Bomb bomb = new Bomb(10, 10, this);
-			bomb.addGun();
+			bomb.addGun();*/
 		}
 		
 		

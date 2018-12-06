@@ -16,7 +16,7 @@ public class Enemy extends Person {
 	Image soldierAim;
 	Image[] soldierShoot;
 	int shootFrame;
-	private double baseVeloX;
+	protected double baseVeloX;
 	private double fireRate;
 	
 	public Enemy(double posX, double posY, int health) {

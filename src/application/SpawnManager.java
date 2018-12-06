@@ -1,6 +1,7 @@
 package application;
 
 import character.Enemy;
+import character.HandSoldier;
 import character.Hero;
 import environment.Foreground;
 import environment.StairTerrain;
@@ -36,7 +37,7 @@ public class SpawnManager {
 			return;
 		}
 		if(Math.random() < spawnRate) {
-			Enemy enemy = new Enemy(640+100*Math.random(), 100, 50);
+			HandSoldier enemy = new HandSoldier(640+100*Math.random(), 100, 50);
 			enemy.setDmg(dmg+enemy.getDmg());
 			enemy.setHealth(hp+enemy.getHealth());
 			enemy.addEnemy();
