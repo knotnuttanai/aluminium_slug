@@ -1,10 +1,12 @@
 package application;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
 public class ExpBar extends ProgressBar {
 	private static int killCount;
 	private double maxKillCount;
+	public static int level = 1;
 	public ExpBar() {
 		super(1);
 		setPrefWidth(680);
@@ -12,7 +14,10 @@ public class ExpBar extends ProgressBar {
 		setTranslateX(0);
 		setTranslateY(470);
 		setProgress(0);
+		Label lebel = new Label("hi");
+		getChildren().add(lebel);
 		maxKillCount = 5;
+		
 		// TODO Auto-generated constructor stub
 	}
 	public void update() {
@@ -23,7 +28,8 @@ public class ExpBar extends ProgressBar {
 		if(killCount >= maxKillCount) {
 			killCount = 0;
 			maxKillCount = maxKillCount*1.2;
-			HeroStatusPane.isEnable = true;
+			level++;
+			HeroStatusPane.statusPoint++;
 		}
 	}
 	public static void addKillCount(int kills) {

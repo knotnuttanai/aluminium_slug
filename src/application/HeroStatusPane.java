@@ -10,11 +10,15 @@ import javafx.scene.layout.HBox;
 
 public class HeroStatusPane extends HBox {
 	private Button increaseStr,increaseVit, increaseAgi, increaseLuk, spawnTank;
-	public static boolean isEnable;
+	public boolean isEnable;
+	public static int statusPoint;
+	private int count;
 	public HeroStatusPane() {
 		setTranslateX(0);
 		setTranslateY(445);
 		setPrefWidth(680);
+		statusPoint = 0;
+		count = 0;
 		setAlignment(Pos.CENTER);
 		isEnable = true;
 		increaseStr = new Button("STR");
@@ -33,13 +37,22 @@ public class HeroStatusPane extends HBox {
 		spawnTank = new Button("Hi MOtherF");
 		getChildren().addAll(increaseStr,increaseAgi,increaseVit,increaseLuk,spawnTank);
 		setEvent();
-		//this.setDisable(true);
+		this.setDisable(true);
 	}
 	
 	public void update() {
 		
-		if(isEnable) {
+		if(statusPoint > 0) {
+			
 			this.setDisable(false);
+		}else {
+			System.out.println(statusPoint);
+			this.setDisable(true);
+		}
+	}
+	public void checkPoint() {
+		if(statusPoint>0) {
+			statusPoint--;
 		}else {
 			this.setDisable(true);
 		}
@@ -49,19 +62,19 @@ public class HeroStatusPane extends HBox {
 			for(Hero h : GameEntity.hero) {
 				h.setDmg(h.getDmg()+5);
 			}
-			isEnable = false;
+			checkPoint();
 		});
 		increaseAgi.setOnMouseClicked(e->{
 			for(Hero h : GameEntity.hero) {
 				h.setMoveSpeed(h.getMoveSpeed()-1);
 			}
-			isEnable = false;
+			checkPoint();
 		});
 		increaseVit.setOnMouseClicked(e->{
 			for(Hero h : GameEntity.hero) {
 				h.setMaxHealth(h.getMaxHealth()+20);
 			}
-			isEnable = false;
+			checkPoint();
 		});
 	
 	}

@@ -25,6 +25,12 @@ public class ScorePane {
 		Font font =  Font.font("Tahoma",FontWeight.BOLD, 30);
 		gc.setFont(font);
 		gc.fillText(showScore, 320, 25);
+		gc.setFill(Color.BEIGE);
+		gc.setStroke(Color.BLACK);
+		Font font1 =  Font.font("Tahoma",FontWeight.BOLD, 30);
+		gc.setFont(font1);
+		String level = "LVL: "+Integer.toString(ExpBar.level);
+		gc.fillText(level, 0, 50);
 	}
 	public static void addScore(int point) {
 		score += point;
