@@ -165,7 +165,7 @@ public class Hero extends Person implements Shootable{
 		int d = 0;
 		
 		  if(isWalk) {
-		   gc.drawImage(walk[walkFrame/5], posX, posY + 38);
+		   gc.drawImage(walk[(walkFrame/5)%10], posX, posY + 38);
 		   k = WalkAdjustPos();
 		   walkFrame++;
 		   
@@ -178,19 +178,19 @@ public class Hero extends Person implements Shootable{
 			  if(gun == 0) {
 					  if(isLookUp) {
 						  d = ShootAdjustPos();
-						  gc.drawImage(shootUp[shootUpFrame/2], posX + k , posY - d);
+						  gc.drawImage(shootUp[(shootUpFrame/2)%10], posX + k , posY - d);
 						  shootUpFrame++;
 						  if(shootUpFrame==20) finishShoot("shootUpFrame");
 						  
 					  }
 					  else if(isLookDown) {
-						  gc.drawImage(shootDown[shootDownFrame/2], posX + k , posY);
+						  gc.drawImage(shootDown[(shootDownFrame/2)%6], posX + k , posY);
 						  shootDownFrame++;
 						  if(shootDownFrame==12) finishShoot("shootDownFrame");
 					  }
 					  
 					  else {
-						  gc.drawImage(shoot[shootFrame/2], posX + k , posY);
+						  gc.drawImage(shoot[(shootFrame/2)%10], posX + k , posY);
 						  shootFrame++;
 						  if(shootFrame==20) finishShoot("shootFrame");
 						}
@@ -200,18 +200,18 @@ public class Hero extends Person implements Shootable{
 	
 					  if(isLookUp) {
 						  d = MachAdjustPos();
-						  gc.drawImage(machShootUp[machUpFrame/2], posX + k , posY - d);
+						  gc.drawImage(machShootUp[(machUpFrame/2)%4], posX + k , posY - d);
 						  machUpFrame++;
 						  if(machUpFrame==8) finishShoot("machUpFrame");
 					  }
 					  
 					  else if(isLookDown) {
-						  gc.drawImage(machShootDown[machDownFrame/2], posX - 8 + k , posY);
+						  gc.drawImage(machShootDown[(machDownFrame/2)%4], posX - 8 + k , posY);
 						  machDownFrame++;
 						  if(machDownFrame==8) finishShoot("machDownFrame");
 					  }
 					  else {
-						  gc.drawImage(machShoot[machFrame/2], posX + k , posY);
+						  gc.drawImage(machShoot[(machFrame/2)%4], posX + k , posY);
 						  machFrame++;
 						  if(machFrame==8) finishShoot("machFrame");
 					  }

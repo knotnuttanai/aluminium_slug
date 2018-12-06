@@ -13,6 +13,8 @@ public class EnemyBullet extends Bullet {
 		damage = 20;
 		baseVeloX = veloX;
 		baseVeloY = veloY;
+		posX -= 10;
+		posY += 8;
 
 		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",15, 32.5, false, false);
 		
