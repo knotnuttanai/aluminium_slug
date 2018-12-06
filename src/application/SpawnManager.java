@@ -88,10 +88,26 @@ public class SpawnManager {
 		GameEntity.createTerrain(terrain11);
 		Terrain terrain12 = new Terrain(start+5940, 256, 684 , 10);
 		GameEntity.createTerrain(terrain12);
+		Terrain terrain13 = new Terrain(start+3035, 350, 115, 10);
+		GameEntity.createTerrain(terrain13);
 		createStair(start+6612, 256, 2,60 ,40,8,0,2,0);
 		createStair(start+6252, 470, 20,60 ,62,8,8,-2,0);
-		Terrain terrain13 = new Terrain(start+6740, 350, 1800, 10);
-		GameEntity.createTerrain(terrain13);
+		Terrain terrain14 = new Terrain(start+6740, 350, 1800, 10);
+		GameEntity.createTerrain(terrain14);
+		Terrain terrain15 = new Terrain(start+3310, 370, 85, 10);
+		GameEntity.createTerrain(terrain15);
+		Terrain terrain16 = new Terrain(start+3576, 370, 85, 10);
+		GameEntity.createTerrain(terrain16);
+		Terrain terrain17 = new Terrain(start+4900, 370, 80, 10);
+		GameEntity.createTerrain(terrain17);
+		Terrain terrain18 = new Terrain(start+5165, 370, 75, 10);
+		GameEntity.createTerrain(terrain18);
+		Terrain terrain19 = new Terrain(start+5410, 365, 115, 10);
+		GameEntity.createTerrain(terrain19);
+		Terrain terrain20 = new Terrain(start+5695, 370, 75, 10);
+		GameEntity.createTerrain(terrain20);
+		Terrain terrain21 = new Terrain(start+6012, 365, 115 , 10);
+		GameEntity.createTerrain(terrain21);
 	}
 	public void createStair(double posX, double posY, double width, double height,int count, int x, int xPrime , int y,int priority) {
 		for(int i = 0; i < count; i++) {

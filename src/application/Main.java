@@ -17,7 +17,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		
-		Hero hero = new Hero(200, 200, 100000);
+		Hero hero = new Hero(200, 200, 100);
 
 		GameEntity.spawnManager.initWorld(0);
 		Gun gun = new Gun(400, 200, 50, 50);
