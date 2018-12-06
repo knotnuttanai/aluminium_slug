@@ -73,7 +73,12 @@ public class HeroStatusPane extends HBox {
 		increaseVit.setOnMouseClicked(e->{
 			for(Hero h : GameEntity.hero) {
 				h.setMaxHealth(h.getMaxHealth()+20);
+				h.setHealth(h.getMaxHealth());
 			}
+			checkPoint();
+		});
+		increaseLuk.setOnMouseClicked(e->{
+			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.0002);
 			checkPoint();
 		});
 	

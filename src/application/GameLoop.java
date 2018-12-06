@@ -128,6 +128,7 @@ public class GameLoop implements Runnable{
 			g.update();
 		}
 		gameScene.getExpBar().update();
+		GameEntity.spawnManager.spawnMachineGun();
 		
 	}
 	private void renderContent() {

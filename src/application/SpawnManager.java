@@ -7,15 +7,18 @@ import character.Hero;
 import environment.Foreground;
 import environment.StairTerrain;
 import environment.Terrain;
+import weapon.Gun;
 
 public class SpawnManager {
 	private int numberOfEnemy;
 	private int limitNumber;
 	private double baseOfHero;
 	private double spawnRate;
+	private double machineGunSpawnrate;
 	private int dmg;
 	private int hp;
 	public SpawnManager() {
+		machineGunSpawnrate = 0.0001;
 		limitNumber = 3;
 		numberOfEnemy = 0;
 		spawnRate = 0.02;
@@ -32,6 +35,12 @@ public class SpawnManager {
 			count++;
 		}
 		numberOfEnemy = count;
+	}
+	public void spawnMachineGun() {
+		if(Math.random() < machineGunSpawnrate) {
+			Gun gun = new Gun(400, -20, 50, 50);
+			gun.addObject();
+		}
 	}
 	public void spawnEnemy() {
 		checkEnemyNumber();
@@ -131,6 +140,12 @@ public class SpawnManager {
 	}
 	public void setLimitNumber(int limitNumber) {
 		this.limitNumber = limitNumber;
+	}
+	public double getMachineGunSpawnrate() {
+		return machineGunSpawnrate;
+	}
+	public void setMachineGunSpawnrate(double machineGunSpawnrate) {
+		this.machineGunSpawnrate = machineGunSpawnrate;
 	}
 	
 	
