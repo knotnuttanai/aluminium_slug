@@ -32,9 +32,6 @@ public class Bomb extends GameObject {
 	
 	@Override
 	public void render(GraphicsContext gc) {
-		if(hero.isCanShoot()) {
-			
-		}
 		if(bombFrame == 18) gc.drawImage(Bomb[8], posX, posY);
 		else {
 			gc.drawImage(Bomb[(bombFrame/2)], posX, posY);

@@ -13,7 +13,7 @@ import weapon.MachineGunBullet;
 import weapon.PistolBullet;
 
 public class Hero extends Person implements Shootable{
-	private boolean isJump, isInTheTank, requestToEnterTank;
+	private boolean isJump, isInTheTank, requestToEnterTank, isThrowingBomb;
 	private int gun;
 	//gun0 is pistol
 	//gun1 is machine gun
@@ -36,7 +36,8 @@ public class Hero extends Person implements Shootable{
 	private Image[] shootUp;
 	private Image[] shootDown;
 	private Image[] walk;
-	private int walkFrame,shootFrame,shootUpFrame,shootDownFrame,machFrame,machUpFrame,machDownFrame;
+	private Image[] ThrowingBomb;
+	private int walkFrame,shootFrame,shootUpFrame,shootDownFrame,machFrame,machUpFrame,machDownFrame,throwingBombFrame;
 	private int firerate;
 
 	public Hero(double posX, double posY, int health) {
@@ -55,6 +56,7 @@ public class Hero extends Person implements Shootable{
 		canShoot = true;
 		isInTheTank = false;
 		requestToEnterTank = false;
+		isThrowingBomb = false;
 		marcoTop = new Image("file:res/images/top_marco1.png");
 		marcoMachine = new Image("file:res/images/machgun.png");
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
@@ -69,6 +71,7 @@ public class Hero extends Person implements Shootable{
 		machShootDown = new Image[4];
 		walk = new Image[10];
 		machShoot = new Image[4];
+		ThrowingBomb = new Image[5];
 		walkFrame = 0;
 		shootFrame = 0;
 		shootUpFrame = 0;
@@ -76,6 +79,7 @@ public class Hero extends Person implements Shootable{
 		machFrame = 0;
 		machUpFrame = 0;
 		machDownFrame = 0;
+		throwingBombFrame = 0;
 		
 		for(int i = 1; i <= 10; i++) {
 			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
@@ -105,6 +109,9 @@ public class Hero extends Person implements Shootable{
 			machShootDown[i-1] = new Image("file:res/images/machshootdown" + i + ".png");
 		}
 		
+		for(int i = 1; i <= 5; i++) {
+			ThrowingBomb[i-1] = new Image("file:res/images/throwbomb" + i + ".png");
+		}
 		
 		GameEntity.createHero(this);
 	}
@@ -219,6 +226,17 @@ public class Hero extends Person implements Shootable{
 					  }
 			  }
 		  }
+		  
+		  else if(isThrowingBomb) {
+			  if(gun == 0) {
+				  gc.drawImage(ThrowingBomb[throwingBombFrame], posX + k, posY);
+				  throwingBombFrame++;
+				  if(throwingBombFrame == 5) {
+					  throwingBombFrame = 0;
+					  isThrowingBomb = false;
+				  }
+			  }
+		  }
 			  
 		  else {
 			  if(gun == 0) {
@@ -281,6 +299,14 @@ public class Hero extends Person implements Shootable{
 		}
 		
 	}
+	
+	public void throwBomb() {
+		if(isThrowingBomb) {
+			Bomb bomb = new Bomb(10,10,this);
+			bomb.addObject();
+		}
+	}
+	
 	public boolean isHitByBullet(EnemyBullet b) {
 		BoundingBox b1 = new BoundingBox(posX, posY, width, height);
 		BoundingBox b2 = new BoundingBox(b.getPosX(), b.getPosY(), b.getWidth(), b.getHeight());
@@ -352,6 +378,9 @@ public class Hero extends Person implements Shootable{
 	}
 
 	
+	public void setThrowingBomb(boolean throwingBomb) {
+		isThrowingBomb = throwingBomb;
+	}
 	
 	
 	

@@ -110,6 +110,13 @@ public class EventManager {
 					}
 					
 				}
+				
+				else if(event.getCode() == KeyCode.B) {
+					hero.setThrowingBomb(true);
+					hero.throwBomb();
+					
+				}
+				
 			  else if(event.getCode() == KeyCode.SPACE) {
 				
 						hero.Jump();
