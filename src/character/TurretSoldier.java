@@ -10,7 +10,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 	private Image[] TurretShoot;
 
 	public TurretSoldier(double posX, double posY, int health) {
-		super(posX, posY, health);
+		super(posX, posY - 10, health);
 		veloX = 0;
 		baseVeloX = 0;
 		walkDirection = 0;
@@ -31,6 +31,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 	
 	@Override
 	public void render(GraphicsContext gc) {
+		gc.drawImage(Turret, posX, posY);
 		
 	}
 
