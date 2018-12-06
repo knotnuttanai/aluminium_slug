@@ -1,5 +1,6 @@
 package character;
 
+import application.GameEntity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import weapon.EnemyBullet;
@@ -17,6 +18,7 @@ public class GunSoldier extends Enemy implements Shootable{
 	private boolean normalCondition;
 	private boolean grabGunCondition;
 	private boolean shootCondition;
+	final private int walkCount = (int)(Math.random()*4+1);
 
 	public GunSoldier(double posX, double posY, int health) {
 		super(posX, posY, health);
@@ -58,6 +60,31 @@ public class GunSoldier extends Enemy implements Shootable{
 	}
 	
 	@Override
+	public void update() {
+		if(!isAlive) {
+			baseVeloX = 0;
+		}
+		if(this.posY >=800||this.posX +this.width < -10) {
+			this.setDead();
+		}
+		if(isJump || !isHasVerticalCollition()) {
+			this.veloY += GRAVITY;
+	
+		}
+		else if(hasVerticalCollition && veloY > 0) {
+			this.veloY = 0;
+		}
+		veloX = baseVeloX+GameEntity.getCurrentFg().getVeloX();
+		this.posY += this.veloY;
+		
+		this.posX += this.veloX;
+		
+		if(shootCondition) {
+			if(shootFrame == 0) shoot();
+		}
+	}
+	
+	@Override
 	public void render(GraphicsContext gc) {
 		
 		if(!isAlive) {
@@ -72,7 +99,7 @@ public class GunSoldier extends Enemy implements Shootable{
 			gc.drawImage(normal[(normalFrame/3)%12], posX, posY);
 			normalFrame++;
 
-			if(normalFrame >= 144) {
+			if(normalFrame >= walkCount * 36) {
 				normalCondition = false;
 				grabGunCondition = true;
 				

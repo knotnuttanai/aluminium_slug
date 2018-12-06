@@ -320,7 +320,9 @@ public class Hero extends Person implements Shootable{
 
 	public void setRequestToEnterTank(boolean requestToEnterTank) {
 		this.requestToEnterTank = requestToEnterTank;
-	}public void increaseHp(int heal) {
+	}
+	
+	public void increaseHp(int heal) {
 		int hp = health + heal;
 		if(hp >= maxHealth) {
 			hp = maxHealth;
