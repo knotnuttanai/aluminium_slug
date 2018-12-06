@@ -116,6 +116,9 @@ public class SpawnManager {
 			GameEntity.createTerrain(terrain2);
 		}
 	}
+	public void clearWorld() {
+		
+	}
 	public double getSpawnRate() {
 		return spawnRate;
 	}
@@ -128,5 +131,6 @@ public class SpawnManager {
 	public void setLimitNumber(int limitNumber) {
 		this.limitNumber = limitNumber;
 	}
+	
 	
 }

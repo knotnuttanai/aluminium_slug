@@ -167,7 +167,7 @@ public class EventManager {
 		
 	}
 	
-	public void continueToWalk() {
+	/*public void continueToWalk() {
 		if(!doneMovingLeft) {
 		hero.Walk(0);
 		for(Foreground fg : GameEntity.fgs) {
@@ -175,7 +175,7 @@ public class EventManager {
 		}
 		doneMovingLeft = true;
 		}
-	}
+	}*/
 	public boolean isAtTheEndOfScreen() {
 		if(hero.getPosX() > 10 && hero.getPosX() < 680) {
 			return false;
@@ -211,7 +211,7 @@ public class EventManager {
 			else {
 				//GameEntity.getCurrentFg().moveScreen(-6);
 				for(Foreground fg : GameEntity.fgs) {
-					fg.moveScreen(-5);
+					fg.moveScreen(hero.getMoveSpeed());
 					
 				}
 				

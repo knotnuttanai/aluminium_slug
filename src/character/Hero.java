@@ -18,6 +18,7 @@ public class Hero extends Person implements Shootable{
 	//gun0 is pistol
 	//gun1 is machine gun
 	//gun3 is tank
+	private int moveSpeed;
 	private int maxGun1Bullet;
 	private int useGunBullet;
 	
@@ -41,9 +42,10 @@ public class Hero extends Person implements Shootable{
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
-		
+		dmg = 0;
 		gun = 0;
 		this.firerate = 200;
+		moveSpeed = -5;
 		maxGun1Bullet = 256;
 		useGunBullet = 256;
 		veloX = 0;
@@ -258,17 +260,20 @@ public class Hero extends Person implements Shootable{
 							gun = 0;
 							firerate = 200;
 							PistolBullet bullet = new PistolBullet(this);
+							bullet.setDamage(dmg+bullet.getDamage());
 							bullet.addBullet();
 							return;
 						}
 						firerate = 80;
 						MachineGunBullet bullet = new MachineGunBullet(this);
+						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
 						useGunBullet--;
 					}
 					if(gun == 0) {
 						firerate = 200;
 						PistolBullet bullet = new PistolBullet(this);
+						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();/*
 						Bomb bomb = new Bomb(10, 10, this);
 						bomb.addGun();*/
@@ -336,6 +341,14 @@ public class Hero extends Person implements Shootable{
 
 	public void setUseGunBullet(int useGunBullet) {
 		this.useGunBullet = useGunBullet;
+	}
+
+	public int getMoveSpeed() {
+		return moveSpeed;
+	}
+
+	public void setMoveSpeed(int moveSpeed) {
+		this.moveSpeed = moveSpeed;
 	}
 
 	

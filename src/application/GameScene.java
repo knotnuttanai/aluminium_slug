@@ -16,15 +16,17 @@ public class GameScene {
 	private Canvas canvas;
 	private HpBar hpBar;
 	private GraphicsContext view;
-	
+	private HeroStatusPane heroStatusPane;
 	public GameScene(Canvas canvas) {
 		
 	    hpBar = new HpBar();
 		root = new Group();
+		heroStatusPane = new HeroStatusPane();
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		root.getChildren().add(hpBar);
+		root.getChildren().add(heroStatusPane);
 		scene = new Scene(root, 640, 480);
 		stage = new Stage();
 		stage.setScene(scene);
@@ -73,6 +75,12 @@ public class GameScene {
 	}
 	public void setHpBar(HpBar hpBar) {
 		this.hpBar = hpBar;
+	}
+	public HeroStatusPane getHeroStatusPane() {
+		return heroStatusPane;
+	}
+	public void setHeroStatusPane(HeroStatusPane heroStatusPane) {
+		this.heroStatusPane = heroStatusPane;
 	}
 	
 

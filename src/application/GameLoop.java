@@ -70,11 +70,13 @@ public class GameLoop implements Runnable{
 	private void updateContent() {
 		// TODO Auto-generated method stub
 		score.update();
+		gameScene.getHeroStatusPane().update();
 		bullet1.update();
 		if(GameEntity.getCurrentFg().getPosX() <= -8550+640) {
 			GameEntity.spawnManager.initWorld(640);
 			GameEntity.increaseEnemyPower();
 			GameEntity.restoreHeroHp();
+			gameScene.getHeroStatusPane().isEnable = true;
 		}
 		if(!ev.getHero().isAlive()) {
 			gameScene.getRoot().getChildren().clear();
