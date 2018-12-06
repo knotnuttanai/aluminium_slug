@@ -15,15 +15,8 @@ public class EnemyBullet extends Bullet {
 		baseVeloY = veloY;
 		posX -= 100;
 		posY += 8;
-
-		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",15, 32.5, false, false);
-		
-
-		bullet = new Image("file:res/images/Glenos-G_160_bullet.png",15, 32.5, false, false);
-
 		bullet = new Image("file:res/images/enemybullet.png",15, 32.5, false, false);
 
-		// TODO Auto-generated constructor stub
 	}
 	
 

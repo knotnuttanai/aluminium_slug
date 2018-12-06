@@ -4,6 +4,7 @@ import character.Enemy;
 import character.GunSoldier;
 import character.HandSoldier;
 import character.Hero;
+import character.TurretSoldier;
 import environment.Foreground;
 import environment.StairTerrain;
 import environment.Terrain;
