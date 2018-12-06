@@ -40,7 +40,7 @@ public class GameLoop implements Runnable{
 		thread.start();
 	}
 	@Override
-	public void run() {
+	public void run()  {
 		// TODO Auto-generated method stub
 		if(running) {
 			an = new AnimationTimer() {
@@ -49,7 +49,7 @@ public class GameLoop implements Runnable{
 				public void handle(long now) {
 					// TODO Auto-generated method stub
 					
-					gameScene.blink();
+					//gameScene.blink();
 					try {
 						updateContent();
 						renderContent();
@@ -66,17 +66,7 @@ public class GameLoop implements Runnable{
 		}
 		
 	}
-	private void stop() {
-		// TODO Auto-generated method stub
-		try {
-			thread.join();
-			running = false;
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
 	private void updateContent() {
 		// TODO Auto-generated method stub
 		score.update();

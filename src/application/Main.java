@@ -16,7 +16,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-
+		
 		Hero hero = new Hero(200, 200, 100000);
 
 		GameEntity.spawnManager.initWorld(0);
@@ -33,6 +33,7 @@ public class Main extends Application {
 		primaryStage = loop.getGameScene().getStage();
  		primaryStage.show();
  		loop.start();
+		
 		
 	}
 

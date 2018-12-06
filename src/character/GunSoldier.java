@@ -104,6 +104,7 @@ public class GunSoldier extends Enemy implements Shootable{
 				count = 0;
 			}
 		}
+		//new condition while not shooting?
 	}
 	
 	@Override
@@ -152,6 +153,9 @@ public class GunSoldier extends Enemy implements Shootable{
 						if(count <= 1) {
 							shoot();
 							count++;
+							//หยุดยิงตอนcountเกิน
+						}else {
+							//change condition ?????
 						}
 						
 					}

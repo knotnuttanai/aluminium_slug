@@ -1,5 +1,6 @@
 package character;
 
+import application.GameEntity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -47,7 +48,30 @@ public class HandSoldier extends Enemy {
 		deadFrame = 0;
 		
 	}
+	public void update() {
+		if(!isAlive) {
+			baseVeloX = 0;
+		}
+		if(Math.random() < 0.02) {
+			this.Jump();
+		}
+		if(this.posY >=800||this.posX +this.width < -10) {
+			this.setDead();
+		}
+		if(isJump || !isHasVerticalCollition()) {
+			this.veloY += GRAVITY;
 	
+		}
+		else if(hasVerticalCollition && veloY > 0) {
+			this.veloY = 0;
+		}
+		veloX = baseVeloX+GameEntity.getCurrentFg().getVeloX();
+		this.posY += this.veloY;
+		
+		this.posX += this.veloX;
+		
+	}
+
 	@Override
 	public void render(GraphicsContext gc) {
 		if(!isAlive) {

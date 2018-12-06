@@ -39,10 +39,17 @@ public class SpawnManager {
 			return;
 		}
 		if(Math.random() < spawnRate) {
-			GunSoldier enemy = new GunSoldier(640+100*Math.random(), 100, 50);
-			enemy.setDmg(dmg+enemy.getDmg());
-			enemy.setHealth(hp+enemy.getHealth());
-			enemy.addEnemy();
+			if(Math.random() < 0.7) {
+				GunSoldier enemy = new GunSoldier(640+100*Math.random(), 100, 50);
+				enemy.setDmg(dmg+enemy.getDmg());
+				enemy.setHealth(hp+enemy.getHealth());
+				enemy.addEnemy();
+			}else {
+				HandSoldier enemy = new HandSoldier(640+100*Math.random(), 100, 50);
+				enemy.setDmg(dmg+enemy.getDmg());
+				enemy.setHealth(hp+enemy.getHealth());
+				enemy.addEnemy();
+			}
 			System.out.println("added");
 		}
 		
