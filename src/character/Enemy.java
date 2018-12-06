@@ -12,10 +12,6 @@ import weapon.HeroBullet;
 
 public class Enemy extends Person {
 	
-	Image soldierStand;
-	Image soldierAim;
-	Image[] soldierShoot;
-	int shootFrame;
 	protected double baseVeloX;
 	private double fireRate;
 	
@@ -25,13 +21,7 @@ public class Enemy extends Person {
 		
 		height = 75;
 		width = 56;
-		soldierStand = new Image("file:res/images/soldierstand.png");
-		soldierAim = new Image("file:res/images/soldieraim.png");
-		soldierShoot = new Image[4];
-		for(int i = 1; i <= 4; i++) {
-			soldierShoot[i-1] = new Image("file:res/images/soldiershoot" + i + ".png");
-		}
-		shootFrame = 0;
+		
 		veloX = -2;
 		walkDirection = -1;
 		baseVeloX = veloX;
@@ -42,16 +32,7 @@ public class Enemy extends Person {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		if(isShoot) {
-
-			gc.drawImage(soldierShoot[shootFrame/2], posX, posY);
-			shootFrame++;
-			if(shootFrame == 8) {
-				shootFrame = 0;
-				isShoot = false;
-			}
-		}
-		else gc.drawImage(soldierAim, posX, posY);
+		
 	}
 	
 	public void addEnemy() {

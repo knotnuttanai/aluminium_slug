@@ -55,7 +55,6 @@ public class GunSoldier extends Enemy implements Shootable{
 
 	@Override
 	public void shoot() {
-		isShoot = true;
 		EnemyBullet bullet = new EnemyBullet(this);
 		bullet.setDamage(dmg+bullet.getDamage());
 		bullet.addBullet();

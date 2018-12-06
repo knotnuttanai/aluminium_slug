@@ -20,12 +20,12 @@ public class MachineGunBullet extends HeroBullet {
 		}
 	}
 	
-	@Override
+	/*@Override
 	public void render(GraphicsContext gc) {
 		if(bulletUp) gc.drawImage(bulletShootUp, posX, posY);
 		else if(bulletDown) gc.drawImage(bulletShootDown, posX, posY);
 		else gc.drawImage(bullet, posX, posY);
 		
-	}
+	}*/
 
 }
