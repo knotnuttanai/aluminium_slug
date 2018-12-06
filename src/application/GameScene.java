@@ -7,6 +7,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class GameScene {
@@ -22,11 +24,21 @@ public class GameScene {
 	    hpBar = new HpBar();
 		root = new Group();
 		heroStatusPane = new HeroStatusPane();
+		/*heroStatusPane.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
+	       k.consume();
+	    });*/
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
 		root.getChildren().add(canvas);
 		root.getChildren().add(hpBar);
 		root.getChildren().add(heroStatusPane);
+		root.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
+	        if ( k.getCode() == KeyCode.SPACE){
+	            for(Hero h : GameEntity.hero) {
+	            	h.Jump();
+	            }
+	        }
+	    });
 		scene = new Scene(root, 640, 480);
 		stage = new Stage();
 		stage.setScene(scene);

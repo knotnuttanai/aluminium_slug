@@ -3,6 +3,8 @@ package application;
 import character.Hero;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
 public class HeroStatusPane extends HBox {
@@ -13,7 +15,7 @@ public class HeroStatusPane extends HBox {
 		setTranslateY(450);
 		setPrefWidth(680);
 		setAlignment(Pos.CENTER);
-		isEnable = false;
+		isEnable = true;
 		increaseStr = new Button("STR");
 		increaseAgi = new Button("AGI");
 		increaseLuk = new Button("LUK");
@@ -21,10 +23,11 @@ public class HeroStatusPane extends HBox {
 		spawnTank = new Button("Hi MOtherF");
 		getChildren().addAll(increaseStr,increaseAgi,increaseVit,increaseLuk,spawnTank);
 		setEvent();
-		this.setDisable(true);
+		//this.setDisable(true);
 	}
 	
 	public void update() {
+		
 		if(isEnable) {
 			this.setDisable(false);
 		}else {

@@ -84,7 +84,7 @@ public class GameLoop implements Runnable{
 			
 		}
 		ev.keyHandle();
-		//GameEntity.spawnManager.spawnEnemy();
+		GameEntity.spawnManager.spawnEnemy();
 		GameEntity.checkStand();
 		if(heroWalkOverBase()) {
 			ev.setHeroWalkOverBase(true);

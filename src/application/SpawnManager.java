@@ -16,9 +16,9 @@ public class SpawnManager {
 	private int dmg;
 	private int hp;
 	public SpawnManager() {
-		limitNumber = 3;
+		limitNumber = 10;
 		numberOfEnemy = 0;
-		spawnRate = 0.01;
+		spawnRate = 1;
 		dmg = 0;
 		hp = 0;
 		/*for(Hero x : GameEntity.hero) {
@@ -58,6 +58,7 @@ public class SpawnManager {
 		dmg += 5;
 		hp += 10;
 		spawnRate += 0.002;	
+		limitNumber++;
 	}
 	public void initWorld(double start) {
 		Foreground fg = new Foreground(start);
