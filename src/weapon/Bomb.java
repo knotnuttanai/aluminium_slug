@@ -45,7 +45,7 @@ public class Bomb extends GameObject {
 			if(smokeFrame == 21) isHit = true;
 		}
 		else {
-			gc.drawImage(Bomb[(bombFrame/2)], posX, posY);
+			gc.drawImage(Bomb[(bombFrame/3)%9], posX, posY);
 			bombFrame++;
 		}
 	}
