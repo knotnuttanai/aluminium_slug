@@ -100,7 +100,7 @@ public class GunSoldier extends Enemy implements Shootable{
 			
 		}
 		if (shootCondition) {
-			if(Math.random() < 0.002) {
+			if((int)(Math.random()*99)+1 < 2) {
 				count = 0;
 			}
 		}
@@ -142,9 +142,13 @@ public class GunSoldier extends Enemy implements Shootable{
 			
 		}
 		if(shootCondition) {
-			gc.drawImage(SoldierShoot[(shootFrame/3)%5], posX - adjustShootPosX(), posY + adjustShootPosY());
-			shootFrame++;
-			
+			if(count<=1) {
+				gc.drawImage(SoldierShoot[(shootFrame/3)%5], posX - adjustShootPosX(), posY + adjustShootPosY());
+				shootFrame++;
+			}
+			else {
+				gc.drawImage(SoldierShoot[0], posX, posY);
+			}
 			thread = new Thread(()->{
 			try {
 			

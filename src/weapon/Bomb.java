@@ -3,10 +3,16 @@ package weapon;
 import application.GameEntity;
 import character.Hero;
 import javafx.geometry.BoundingBox;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 public class Bomb extends GameObject {
+	
 	Hero hero;
 	private boolean isIgnited;
+	private Image[] Bomb;
+	private int bombFrame;
+	
 	public Bomb(double width, double height, Hero hero) 
 	{
 		super(0, 0, width, height);
@@ -16,8 +22,26 @@ public class Bomb extends GameObject {
 		baseVeloX = 10;
 		veloY = -5;
 		isIgnited = false;
-		// TODO Auto-generated constructor stub
+		Bomb = new Image[9];
+		for(int i = 1; i <= 9; i++) {
+			Bomb[i-1] = new Image("file:res/images/bomb" + i + ".png");
+		}
+		bombFrame = 0;
+		
 	}
+	
+	@Override
+	public void render(GraphicsContext gc) {
+		if(hero.isCanShoot()) {
+			
+		}
+		if(bombFrame == 18) gc.drawImage(Bomb[8], posX, posY);
+		else {
+			gc.drawImage(Bomb[(bombFrame/2)], posX, posY);
+			bombFrame++;
+		}
+	}
+	
 	public void update() {
 		if(posY >= 800 || posX < -width) {
 			isHit = true;
