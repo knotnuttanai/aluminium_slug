@@ -27,6 +27,7 @@ public class SpawnManager {
 	public void checkEnemyNumber() {
 		int count = 0;
 		for(Enemy x : GameEntity.enemies) {
+			
 			count++;
 		}
 		numberOfEnemy = count;

@@ -28,6 +28,7 @@ public abstract class Person implements Movable{
 	protected double width;
 	protected  double baseX;
 	protected boolean isShoot, hasVerticalCollition, hasHorizontalCollision, isStandOnMainTerrain;
+	protected boolean isAnimatedDead;
 	private Terrain terrian;
 	
 	
@@ -51,6 +52,7 @@ public abstract class Person implements Movable{
 		hasHorizontalCollision = false;
 		walkDirection = 0;
 		isStandOnMainTerrain = false;
+		isAnimatedDead = false;
 		
 	}
 	public void update() {
@@ -171,6 +173,10 @@ public abstract class Person implements Movable{
 		return isAlive;
 	}
 
+	public boolean isAnimatedDead() {
+		return isAnimatedDead;
+	}
+	
 	public int getHealth() {
 		return health;
 	}

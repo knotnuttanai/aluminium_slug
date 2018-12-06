@@ -2,14 +2,17 @@ package character;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class HandSoldier extends Enemy {
 	private Image[] normal;
 	private Image[] scare;
 	private Image[] run;
+	private Image[] dead;
 	private int normalFrame;
 	private int scareFrame;
 	private int runFrame;
+	private int deadFrame;
 	private boolean normalCondition;
 	private boolean scareCondition;
 	private boolean runCondition;
@@ -37,10 +40,22 @@ public class HandSoldier extends Enemy {
 		runFrame = 0;
 		runCondition = false;
 		
+		dead = new Image[11];
+		for(int i = 1; i <= 11; i++) {
+			dead[i-1] = new Image("file:res/images/soldierdead" + i + ".png");
+		}
+		deadFrame = 0;
+		
 	}
 	
 	@Override
 	public void render(GraphicsContext gc) {
+		if(!isAlive) {
+			gc.drawImage(dead[deadFrame/3], posX, posY + deadFrame);
+			deadFrame++;
+			if(deadFrame == 33) isAnimatedDead = true;
+		}
+		else {
 		if(normalCondition) {
 			gc.drawImage(normal[normalFrame/3], posX, posY);
 			normalFrame++;
@@ -70,7 +85,7 @@ public class HandSoldier extends Enemy {
 				baseVeloX = veloX;
 				
 			}
-		}
+		}}
 		
 	}
 	
