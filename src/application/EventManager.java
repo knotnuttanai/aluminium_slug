@@ -104,7 +104,12 @@ public class EventManager {
 					hero.setIsLookDown(true);
 					
 				}
-				
+				else if(event.getCode() == KeyCode.E) {
+					if(!hero.isRequestToEnterTank()&&!hero.isInTheTank()) {
+						hero.setRequestToEnterTank(true);
+					}
+					
+				}
 			  else if(event.getCode() == KeyCode.SPACE) {
 				
 						hero.Jump();
@@ -146,7 +151,12 @@ public class EventManager {
 						x.stop();
 					}
 				}
-				
+				else if(event.getCode() == KeyCode.E) {
+					if(hero.isRequestToEnterTank()&&!hero.isInTheTank()) {
+						hero.setRequestToEnterTank(false);
+					}
+					
+				}
 				else if(event.getCode() == KeyCode.S) {
 					hero.setIsLookDown(false);
 					

@@ -19,6 +19,10 @@ public class Bomb extends GameObject {
 		// TODO Auto-generated constructor stub
 	}
 	public void update() {
+		if(posY >= 800 || posX < -width) {
+			isHit = true;
+			setHeroCanShoot();
+		}
 		if(!hasVerticalCollition) {
 			this.veloY += GRAVITY;
 			/*if(baseVeloX > 2) {
@@ -41,6 +45,7 @@ public class Bomb extends GameObject {
 				try {
 					Thread.sleep(200);
 					isHit = true;
+					setHeroCanShoot();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -60,5 +65,7 @@ public class Bomb extends GameObject {
 	public void setIgnited(boolean isIgnited) {
 		this.isIgnited = isIgnited;
 	}
-	
+	public void setHeroCanShoot() {
+		hero.setCanShoot(true);
+	}
 }

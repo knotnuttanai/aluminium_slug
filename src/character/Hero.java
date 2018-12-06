@@ -13,13 +13,14 @@ import weapon.MachineGunBullet;
 import weapon.PistolBullet;
 
 public class Hero extends Person implements Shootable{
-	private boolean isJump, isInTheTank;
+	private boolean isJump, isInTheTank, requestToEnterTank;
 	private int gun;
 	//gun0 is pistol
 	//gun1 is machine gun
 	//gun3 is tank
 	private int maxGun1Bullet;
-	private int useGun1Bullet;
+	private int useGunBullet;
+	private boolean canShoot;
 	private Image marcoTop;
 	private Image marcoBottom;
 	private Image marcoMachine;
@@ -44,12 +45,14 @@ public class Hero extends Person implements Shootable{
 		gun = 0;
 		this.firerate = 200;
 		maxGun1Bullet = 256;
-		useGun1Bullet = 256;
+		useGunBullet = 256;
 		veloX = 0;
 		veloY = 0;
 		height = 75;
 		width = 45;
+		canShoot = true;
 		isInTheTank = false;
+		requestToEnterTank = false;
 		marcoTop = new Image("file:res/images/top_marco1.png");
 		marcoMachine = new Image("file:res/images/machgun.png");
 		marcoBottom = new Image("file:res/images/bottom_marco.png");
@@ -155,6 +158,7 @@ public class Hero extends Person implements Shootable{
 		else if(frame.equals("machFrame")) machFrame = 0;
 	}
 	
+
 	public void render(GraphicsContext gc) {
 
 		int k = 0;
@@ -236,28 +240,40 @@ public class Hero extends Person implements Shootable{
 	}
 	
 	public void shoot() {
-		isShoot = true;
-		if(gun == 1) {
-			if(useGun1Bullet == 0) {
-				gun = 0;
-				firerate = 200;
-				PistolBullet bullet = new PistolBullet(this);
-				bullet.addBullet();
-				return;
-			}
-			firerate = 80;
-			MachineGunBullet bullet = new MachineGunBullet(this);
-			bullet.addBullet();
-			useGun1Bullet--;
-		}
-		if(gun == 0) {
-			firerate = 200;
-			PistolBullet bullet = new PistolBullet(this);
-			bullet.addBullet();/*
-			Bomb bomb = new Bomb(10, 10, this);
-			bomb.addGun();*/
-		}
 		
+		if(canShoot) {
+			isShoot = true;
+					if(isInTheTank) {
+						gun = 0;
+						firerate = 300;
+						canShoot = false;
+						Bomb bomb = new Bomb(10, 10, this);
+						bomb.setVeloY(bomb.getVeloY()-5 );
+						bomb.addObject();
+						return;
+						
+					}
+					if(gun == 1) {
+						if(useGunBullet == 0) {
+							gun = 0;
+							firerate = 200;
+							PistolBullet bullet = new PistolBullet(this);
+							bullet.addBullet();
+							return;
+						}
+						firerate = 80;
+						MachineGunBullet bullet = new MachineGunBullet(this);
+						bullet.addBullet();
+						useGunBullet--;
+					}
+					if(gun == 0) {
+						firerate = 200;
+						PistolBullet bullet = new PistolBullet(this);
+						bullet.addBullet();/*
+						Bomb bomb = new Bomb(10, 10, this);
+						bomb.addGun();*/
+					}
+		}
 		
 	}
 	public boolean isHitByBullet(EnemyBullet b) {
@@ -283,11 +299,49 @@ public class Hero extends Person implements Shootable{
 	}
 
 	public int getUsedGun1Bullet() {
-		return useGun1Bullet;
+		return useGunBullet;
 	}
 
 	public void setUsedGun1Bullet(int usedGun1Bullet) {
-		this.useGun1Bullet = usedGun1Bullet;
+		this.useGunBullet = usedGun1Bullet;
+	}
+
+	public boolean isInTheTank() {
+		return isInTheTank;
+	}
+
+	public void setInTheTank(boolean isInTheTank) {
+		this.isInTheTank = isInTheTank;
+	}
+
+	public boolean isRequestToEnterTank() {
+		return requestToEnterTank;
+	}
+
+	public void setRequestToEnterTank(boolean requestToEnterTank) {
+		this.requestToEnterTank = requestToEnterTank;
+	}public void increaseHp(int heal) {
+		int hp = health + heal;
+		if(hp >= maxHealth) {
+			hp = maxHealth;
+		}
+		health = hp;
+	}
+
+	public int getUseGunBullet() {
+		return useGunBullet;
+	}
+
+	public void setUseGunBullet(int useGunBullet) {
+		this.useGunBullet = useGunBullet;
+	}
+
+	public boolean isCanShoot() {
+		return canShoot;
+	}
+
+	public void setCanShoot(boolean canShoot) {
+		this.canShoot = canShoot;
 	}
 	
 	

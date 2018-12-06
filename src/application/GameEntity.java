@@ -14,6 +14,7 @@ import weapon.EnemyBullet;
 import weapon.GameObject;
 import weapon.Gun;
 import weapon.HeroBullet;
+import weapon.Tank;
 
 public class GameEntity {
 	public static SpawnManager spawnManager = new SpawnManager();
@@ -63,87 +64,106 @@ public class GameEntity {
 		}
 	}
 	public static void checkStand() {
-		for(Hero h : hero) {
-			h.setHasHorizontalCollision(false);
-			h.setHasVerticalCollition(false);
-			h.setStandOnMainTerrain(false);
-		}
-		for(Enemy e : enemies) {
-			e.setHasHorizontalCollision(false);
-			e.setHasVerticalCollition(false);
-			e.setStandOnMainTerrain(false);
-		}
-		for(GameObject g : gameObjects) {
-			g.setHasVerticalCollition(false);
-		}
-		for(Enemy e : enemies) {
-			for(Terrain t : terrains) {
-				/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
-				if(e.checkInteract(t)) {
-					t.isSomeOneHitHere(e);
-					t.standVertical(e);
+			try {
+				for(Hero h : hero) {
+					h.setHasHorizontalCollision(false);
+					h.setHasVerticalCollition(false);
+					h.setStandOnMainTerrain(false);
+				}
+				for(Enemy e : enemies) {
+					e.setHasHorizontalCollision(false);
+					e.setHasVerticalCollition(false);
+					e.setStandOnMainTerrain(false);
+				}
+				for(GameObject g : gameObjects) {
+					g.setHasVerticalCollition(false);
+				}
+				for(Enemy e : enemies) {
+					for(Terrain t : terrains) {
+						/*if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) {*/
+						if(e.checkInteract(t)) {
+							t.isSomeOneHitHere(e);
+							t.standVertical(e);
+						}
+				}
+				}
+				for(Hero h : hero) {
+					for(Terrain t : terrains) {
+						if(h.checkInteract(t)) {
+							t.isSomeOneHitHere(h);
+							t.standVertical(h);
+							 
+						}
+						
+					}
+				}
+				for(GameObject g : gameObjects) {
+					for(Terrain t : terrains) {
+						
+						t.gunStandVertical(g);
+					}
 				}
 		}
-		}
-		for(Hero h : hero) {
-			for(Terrain t : terrains) {
-				if(h.checkInteract(t)) {
-					t.isSomeOneHitHere(h);
-					t.standVertical(h);
-					 
-				}
-				
-			}
-		}
-		for(GameObject g : gameObjects) {
-			for(Terrain t : terrains) {
-				t.gunStandVertical(g);
-			}
+		catch(ArrayIndexOutOfBoundsException e) {
+		
 		}
 	}
 	public static void calculateHit() {
-		for(Enemy e : enemies) {
-			for(Bullet b : bullets) {
-				if(b instanceof HeroBullet) {
-					HeroBullet b1 = (HeroBullet) b;
-					if(e.isHitByBullet(b1)) {
-						e.takeDamage(b1.getDamage());
-						b.setHit();
+			try {
+				for(Enemy e : enemies) {
+					for(Bullet b : bullets) {
+						if(b instanceof HeroBullet) {
+							HeroBullet b1 = (HeroBullet) b;
+							if(e.isHitByBullet(b1)) {
+								e.takeDamage(b1.getDamage());
+								b.setHit();
+							}
+						}
+					}
+					for(GameObject g : GameEntity.gameObjects) {
+						if(e.checkInteract(g)) {
+							if(g instanceof Bomb) {
+								if(((Bomb) g).isIgnited()) {
+									e.takeDamage(10);
+								}
+							}
+						}
 					}
 				}
-			}
-			for(GameObject g : GameEntity.gameObjects) {
-				if(e.checkInteract(g)) {
-					if(g instanceof Bomb) {
-						if(((Bomb) g).isIgnited()) {
-							e.takeDamage(10);
+				for(Hero h: hero) {
+					for(Bullet b : bullets) {
+						if(b instanceof EnemyBullet) {
+							EnemyBullet b1 = (EnemyBullet) b;
+							if(h.isHitByBullet(b1)) {
+								h.takeDamage(b1.getDamage());
+								b.setHit();
+								
+							}
+						}
+					}
+					for(GameObject g : GameEntity.gameObjects) {
+						if(h.checkInteract(g)) {
+							if(g instanceof Gun) {
+								h.setGun(1);
+								g.setHit(true);
+							}
+							if(g instanceof Tank) {
+								Tank tank = (Tank) g;
+								if(h.isRequestToEnterTank()) {
+									tank.setUsed(true);
+									h.setInTheTank(true);
+								}
+							}
 						}
 					}
 				}
 			}
-		}
-		for(Hero h: hero) {
-			for(Bullet b : bullets) {
-				if(b instanceof EnemyBullet) {
-					EnemyBullet b1 = (EnemyBullet) b;
-					if(h.isHitByBullet(b1)) {
-						h.takeDamage(b1.getDamage());
-						b.setHit();
-						
-					}
-				}
+			catch(ArrayIndexOutOfBoundsException e) {
+			
 			}
-			for(GameObject g : GameEntity.gameObjects) {
-				if(h.checkInteract(g)) {
-					if(g instanceof Gun) {
-						h.setGun(1);
-						g.setHit(true);
-					}
-				}
-			}
-		}
 	}
 	public static void clearDead() {
+		try {
 		for(int i = 0; i < enemies.size(); i++) {
 			if(enemies.get(i).isAnimatedDead()) {
 				enemies.remove(i);
@@ -156,10 +176,14 @@ public class GameEntity {
 			}
 		}
 		for(int i = 0; i < gameObjects.size(); i++) {
+			
 			if(gameObjects.get(i).isHit()) {
 				gameObjects.remove(i);
 				
 			}
+			
+		}
+		}catch(ArrayIndexOutOfBoundsException e) {
 			
 		}
 	}

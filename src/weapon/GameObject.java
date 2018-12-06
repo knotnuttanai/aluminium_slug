@@ -113,5 +113,11 @@ public class GameObject {
 	public void setB(BoundingBox b) {
 		this.b = b;
 	}
+	public double getBaseVeloX() {
+		return baseVeloX;
+	}
+	public void setBaseVeloX(double baseVeloX) {
+		this.baseVeloX = baseVeloX;
+	}
 	
 }

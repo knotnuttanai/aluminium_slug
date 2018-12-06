@@ -8,6 +8,7 @@ import weapon.Bullet;
 import weapon.Damageable;
 import weapon.GameObject;
 import weapon.Gun;
+import weapon.Tank;
 
 public abstract class Person implements Movable{
 	protected int walkDirection;
@@ -163,7 +164,16 @@ public abstract class Person implements Movable{
 				return false;
 			}
 			
+		}if(this instanceof Hero && o instanceof Tank) {
+			Tank tank = (Tank) o;
+			if(p.intersects(tank.getB())) {
+				return true;
+			}else {
+				return false;
+			}
+			
 		}
+		
 		return false;
 	}
 	public void setDead() {

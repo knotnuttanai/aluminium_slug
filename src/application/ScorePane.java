@@ -24,7 +24,7 @@ public class ScorePane {
 		gc.setStroke(Color.BLACK);
 		Font font =  Font.font("Tahoma",FontWeight.BOLD, 30);
 		gc.setFont(font);
-		gc.fillText(showScore, 0, 200);
+		gc.fillText(showScore, 320, 25);
 	}
 	public static void addScore(int point) {
 		score += point;
