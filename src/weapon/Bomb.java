@@ -6,6 +6,7 @@ import javafx.geometry.BoundingBox;
 
 public class Bomb extends GameObject {
 	Hero hero;
+	private boolean isIgnited;
 	public Bomb(double width, double height, Hero hero) 
 	{
 		super(0, 0, width, height);
@@ -14,6 +15,7 @@ public class Bomb extends GameObject {
 		posY = hero.getPosY();
 		baseVeloX = 10;
 		veloY = -5;
+		isIgnited = false;
 		// TODO Auto-generated constructor stub
 	}
 	public void update() {
@@ -32,11 +34,30 @@ public class Bomb extends GameObject {
 			width = 100;
 			height = 100;
 			posY = posY - height+10;
+			isIgnited = true;
+			
+			Thread thread = new Thread(()->{
+				try {
+					Thread.sleep(200);
+					isHit = true;
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}catch(ArrayIndexOutOfBoundsException e) {
+					
+				}
+			});thread.start();
 		}
 		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
 		posX += veloX;
 		posY += veloY;
 		b = new BoundingBox(posX, posY, width, height);
+	}
+	public boolean isIgnited() {
+		return isIgnited;
+	}
+	public void setIgnited(boolean isIgnited) {
+		this.isIgnited = isIgnited;
 	}
 	
 }

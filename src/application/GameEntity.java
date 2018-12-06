@@ -115,8 +115,9 @@ public class GameEntity {
 			for(GameObject g : GameEntity.gameObjects) {
 				if(e.checkInteract(g)) {
 					if(g instanceof Bomb) {
-						e.takeDamage(20);
-						g.setHit(true);
+						if(((Bomb) g).isIgnited()) {
+							e.takeDamage(10);
+						}
 					}
 				}
 			}
@@ -157,6 +158,7 @@ public class GameEntity {
 		for(int i = 0; i < gameObjects.size(); i++) {
 			if(gameObjects.get(i).isHit()) {
 				gameObjects.remove(i);
+				
 			}
 			
 		}
