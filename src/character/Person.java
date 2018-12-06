@@ -5,6 +5,7 @@ import environment.Terrain;
 import javafx.geometry.BoundingBox;
 import weapon.Bomb;
 import weapon.Bullet;
+import weapon.Damageable;
 import weapon.GameObject;
 import weapon.Gun;
 

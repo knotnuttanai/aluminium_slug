@@ -29,12 +29,13 @@ public class Bomb extends GameObject {
 			}*/
 		}
 		else if(hasVerticalCollition && veloY > 0) {
+			isIgnited = true;
 			this.veloY = 0;
 			baseVeloX  = 0;
 			width = 100;
 			height = 100;
 			posY = posY - height+10;
-			isIgnited = true;
+			
 			
 			Thread thread = new Thread(()->{
 				try {
