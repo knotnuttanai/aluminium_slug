@@ -4,12 +4,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import weapon.EnemyBullet;
 
-public class TerretSoldier extends Enemy implements Shootable {
+public class TurretSoldier extends Enemy implements Shootable {
 	
 	private Image Turret;
 	private Image[] TurretShoot;
 
-	public TerretSoldier(double posX, double posY, int health) {
+	public TurretSoldier(double posX, double posY, int health) {
 		super(posX, posY, health);
 		veloX = 0;
 		baseVeloX = 0;
