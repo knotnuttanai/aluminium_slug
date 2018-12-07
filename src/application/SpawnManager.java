@@ -60,19 +60,22 @@ public class SpawnManager {
 			return;
 		}
 		if(Math.random() < spawnRate) {
-			if(Math.random() < 0.7) {
-				if(Math.random()<=1) {
-					GunSoldier enemy = new GunSoldier(640+100*Math.random(), 100, 50);
-					enemy.setDmg(dmg+enemy.getDmg());
-					enemy.setHealth(hp+enemy.getHealth());
-					enemy.addEnemy();
-				}else {
-					TurretSoldier enemy = new TurretSoldier(640+100*Math.random(), 100, 50);
-					enemy.setDmg(dmg+enemy.getDmg());
-					enemy.setHealth(hp+enemy.getHealth());
-					enemy.addEnemy();
-				}
-			}else {
+
+			double a = Math.random();
+			if(a < 0.45) {
+				GunSoldier enemy = new GunSoldier(640+100*Math.random(), 100, 50);
+				enemy.setDmg(dmg+enemy.getDmg());
+				enemy.setHealth(hp+enemy.getHealth());
+				enemy.addEnemy();
+			}
+			else if(a < 0.75) {
+				TurretSoldier enemy = new TurretSoldier(640+100*Math.random(), 100, 50);
+				enemy.setDmg(dmg+enemy.getDmg());
+				enemy.setHealth(hp+enemy.getHealth());
+				enemy.addEnemy();
+			}
+			else {
+
 				HandSoldier enemy = new HandSoldier(640+100*Math.random(), 100, 50);
 				enemy.setDmg(dmg+enemy.getDmg());
 				enemy.setHealth(hp+enemy.getHealth());
