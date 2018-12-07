@@ -88,7 +88,7 @@ public abstract class Person implements Movable{
 			if(health <= 0) {
 				ScorePane.addScore(200);
 				ExpBar.addKillCount(1);
-				SoundManager.play("Death", 1);
+				SoundManager.play("Death", 0.4);
 				setDead();
 			}
 		}
