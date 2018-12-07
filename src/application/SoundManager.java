@@ -10,7 +10,7 @@ public class SoundManager {
 		
 	}
 	public void playSound() {
-		URL url = getClass().getResource("HeavyMachineGun.wav");
+		URL url = getClass().getResource("res/sounds/HeavyMachineGun.wav");
 		AudioClip sound = new AudioClip(url.toString());
 		sound.play();
 		System.out.println("2");

@@ -68,6 +68,7 @@ public class GunSoldier extends Enemy implements Shootable{
 		}
 		if(this.posY >=800||this.posX +this.width < -10) {
 			this.setDead();
+			
 		}
 		if(isJump || !isHasVerticalCollition()) {
 			this.veloY += GRAVITY;
@@ -100,7 +101,7 @@ public class GunSoldier extends Enemy implements Shootable{
 			
 		}
 		if (shootCondition) {
-			if((int)(Math.random()*99)+1 < 1) {
+			if((int)(Math.random()*99)+1 < 2) {
 				count = 0;
 			}
 			

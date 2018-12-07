@@ -17,7 +17,7 @@ import weapon.HeroBullet;
 import weapon.Tank;
 
 public class GameEntity {
-	public static SoundManager soundManager = new SoundManager();
+	
 	public static SpawnManager spawnManager = new SpawnManager();
 	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
@@ -139,7 +139,7 @@ public class GameEntity {
 					for(GameObject g : GameEntity.gameObjects) {
 						if(GameEntity.hero.checkInteract(g)) {
 							if(g instanceof Gun) {
-								soundManager.playSound();
+								//soundManager.playSound();
 								GameEntity.hero.setGun(1);
 								GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet()+256);
 								g.setHit(true);
@@ -179,6 +179,18 @@ public class GameEntity {
 				
 			}
 			
+		}
+		for(int i = 0; i < terrains.size(); i++) {
+				if(terrains.get(i).isDead()) {
+					terrains.remove(i);
+				}
+			
+					
+		}
+		for(int i = 0; i < fgs.size(); i++) {
+			if(fgs.get(i).isDead()) {
+				fgs.remove(i);
+			}
 		}
 		}catch(ArrayIndexOutOfBoundsException e) {
 			

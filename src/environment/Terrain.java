@@ -15,6 +15,7 @@ public class Terrain {
 	Image terrain;
 	public BoundingBox b;
 	private boolean isInteract;
+	private boolean isDead;
 	public Terrain(double posX, double posY, double width, double height) {
 		super();
 		this.posX = posX;
@@ -22,7 +23,7 @@ public class Terrain {
 		this.width = width;
 		this.height = height;
 		veloX = 0;
-		
+		isDead = false;
 		isInteract = false;
 		b = new BoundingBox(posX, posY, width, height);
 		
@@ -37,6 +38,7 @@ public class Terrain {
 		
 	}
 	public void update() {
+		checkSelfDelete();
 		veloX = GameEntity.getCurrentFg().getVeloX();
 		posX += veloX;
 		b = new BoundingBox(posX, posY, width, height);
@@ -108,6 +110,17 @@ public class Terrain {
 	public void setInteract(boolean isInteract) {
 		this.isInteract = isInteract;
 	}
-	
-	
+	public void checkSelfDelete() {
+		
+		if(this.posX +this.width < -10) {
+			
+			setDead();
+		}
+	}
+	public void setDead() {
+		isDead = true;
+	}
+	public boolean isDead() {
+		return isDead;
+	}
 }

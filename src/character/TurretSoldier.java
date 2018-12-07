@@ -13,6 +13,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 		super(posX, posY - 10, health);
 		veloX = 0;
 		baseVeloX = 0;
+		dmg = 0;
 		walkDirection = 0;
 		Turret = new Image("file:res/images/turret.png");
 		TurretShoot = new Image[3];
