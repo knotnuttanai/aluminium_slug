@@ -55,6 +55,13 @@ public class Tank extends GameObject {
 			shootUp[i] = new Image("file:res/images/tankup" + i + ".png");
 		}
 		upFrame = 0;
+		
+		tankDown = new Image("file:res/images/tankdown0.png");
+		shootDown = new Image[5];
+		for(int i = 0; i<= 4; i++) {
+			shootDown[i] = new Image("file:res/images/tankdown" + i + ".png");
+		}
+		upFrame = 0;
 	}
 
 	public void update() {
@@ -135,6 +142,18 @@ public class Tank extends GameObject {
 						hero.setIsShoot(false);
 					}
 				}
+				else if(hero.isLookDown()) {
+					int k = 0;
+					if(downFrame/3 == 1) k=6;
+					if(downFrame/3 == 2) k=4;
+					
+					gc.drawImage(shootDown[(downFrame/3)%5], posX - k , posY);
+					downFrame++;
+					if(downFrame >= 15) {
+						downFrame = 0;
+						hero.setIsShoot(false);
+					}
+				}
 				else {
 					gc.drawImage(shootGun[(shootFrame/3)%5], posX, posY - adjustShootPos());
 					shootFrame++;
@@ -146,6 +165,7 @@ public class Tank extends GameObject {
 			}
 			else {
 				if(hero.isLookUp()) gc.drawImage(tankUp, posX , posY - 26);
+				else if(hero.isLookDown()) gc.drawImage(tankDown, posX, posY);
 				else gc.drawImage(tankGun, posX, posY);
 			}
 		}

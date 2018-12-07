@@ -17,6 +17,10 @@ public class TankBullet extends HeroBullet {
 			posX -= 10;
 			posY -= 20;
 		}
+		if(p.isLookDown()) {
+			posX -= 10;
+			posY -= 30;
+		}
 	}
 
 }
