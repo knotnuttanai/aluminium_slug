@@ -83,11 +83,13 @@ public class TurretSoldier extends Enemy implements Shootable {
 				needRandomShoot = false;
 				gc.drawImage(TurretShoot[(turretFrame/3)%3], posX - adjustShootPosX(), posY /*+ adjustShootPosY()*/);
 				turretFrame++;
-				if(turretFrame == 3) shoot();
-				if(turretFrame >= 9) {
-					turretFrame = 0;
-					needRandomShoot = true;
-				}
+				Thread thread = new Thread(()->{
+					if(turretFrame == 3) shoot();
+					if(turretFrame >= 9) {
+						turretFrame = 0;
+						needRandomShoot = true;
+					}
+				});thread.start();
 				
 			}
 			else gc.drawImage(Turret, posX - 50, posY);
@@ -97,7 +99,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 						turretFrame = 0;
 						if(count <= 1) {
 							shoot();
-							count++;	//หยุดยิงตอนcountเกิน
+							count++;	//เธซเธขเธธเธ”เธขเธดเธ�เธ•เธญเธ�countเน€เธ�เธดเธ�
 						}
 						else {
 								//change condition ?????
@@ -132,7 +134,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 						if(count <= 1) {
 							shoot();
 							count++;
-							//หยุดยิงตอนcountเกิน
+							//เธซเธขเธธเธ”เธขเธดเธ�เธ•เธญเธ�countเน€เธ�เธดเธ�
 						}else {
 							//change condition ?????
 						}
