@@ -61,6 +61,7 @@ public class Enemy extends Person {
 			baseVeloX = 0;
 		}
 		if(this.posY >=800||this.posX +this.width < -10) {
+			
 			this.setDead();
 		}
 		if(isJump || !isHasVerticalCollition()) {

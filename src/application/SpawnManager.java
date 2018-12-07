@@ -24,7 +24,7 @@ public class SpawnManager {
 		tankSpawnRate = 0;
 		limitNumber = 3;
 		numberOfEnemy = 0;
-		spawnRate = 0.02;
+		spawnRate = 0.01;
 		dmg = 0;
 		hp = 0;
 		/*for(Hero x : GameEntity.hero) {

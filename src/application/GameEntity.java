@@ -173,6 +173,7 @@ public class GameEntity {
 		try {
 		for(int i = 0; i < enemies.size(); i++) {
 			if(enemies.get(i).isAnimatedDead()) {
+				System.out.println("dead");
 				enemies.remove(i);
 				
 			}

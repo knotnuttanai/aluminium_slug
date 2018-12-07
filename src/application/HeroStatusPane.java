@@ -17,7 +17,7 @@ public class HeroStatusPane extends HBox {
 		setTranslateX(0);
 		setTranslateY(445);
 		setPrefWidth(680);
-		statusPoint = 5;
+		statusPoint = 0;
 		count = 0;
 		setAlignment(Pos.CENTER);
 		isEnable = true;
@@ -41,7 +41,7 @@ public class HeroStatusPane extends HBox {
 	}
 	
 	public void update() {
-		if(statusPoint <5) {
+		if(statusPoint <3) {
 			spawnTank.setDisable(true);
 		}else {
 			spawnTank.setDisable(false);
@@ -89,7 +89,7 @@ public class HeroStatusPane extends HBox {
 		spawnTank.setOnMouseClicked(e->{
 			SoundManager.play("Reload", 1);
 			GameEntity.spawnManager.spawnTank();
-			statusPoint = statusPoint - 5;
+			statusPoint = statusPoint - 3;
 			//checkPoint();
 		});
 	

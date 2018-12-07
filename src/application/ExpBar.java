@@ -16,7 +16,7 @@ public class ExpBar extends ProgressBar {
 		setProgress(0);
 		Label lebel = new Label("hi");
 		getChildren().add(lebel);
-		maxKillCount = 5;
+		maxKillCount = 3;
 		
 		// TODO Auto-generated constructor stub
 	}
