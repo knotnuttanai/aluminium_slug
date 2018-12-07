@@ -1,6 +1,7 @@
 package application;
 
 import character.Enemy;
+import character.GunSoldier;
 import character.Hero;
 import environment.Foreground;
 import environment.Terrain;
@@ -51,7 +52,7 @@ public class GameLoop implements Runnable{
 					
 					//gameScene.blink();
 					try {
-						updateContent();
+						updateContent(now);
 						renderContent();
 					}catch(ArrayIndexOutOfBoundsException e) {
 						System.out.println("index out of bound");
@@ -67,7 +68,7 @@ public class GameLoop implements Runnable{
 		
 	}
 	
-	private void updateContent() {
+	private void updateContent(long now) {
 		// TODO Auto-generated method stub
 		score.update();
 		gameScene.getHeroStatusPane().update();
@@ -106,7 +107,11 @@ public class GameLoop implements Runnable{
 			x.update();
 		}
 		for(Enemy x : GameEntity.enemies) {
-			x.update();
+			if(x instanceof GunSoldier) {
+				GunSoldier x1 = (GunSoldier) x;
+				x1.update(now);
+			}
+			else x.update();
 			
 
 			

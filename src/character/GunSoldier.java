@@ -8,6 +8,7 @@ import weapon.EnemyBullet;
 public class GunSoldier extends Enemy implements Shootable{
 	Thread thread;
 	int count;
+	long lastTime;
 	private Image[] normal;
 	private Image[] grabGun;
 	private Image[] SoldierShoot;
@@ -24,6 +25,7 @@ public class GunSoldier extends Enemy implements Shootable{
 	public GunSoldier(double posX, double posY, int health) {
 		super(posX, posY, health);
 		count = 0;
+		lastTime = 0;
 		normal = new Image[12];
 		for(int i = 1; i <= 12; i++) {
 			normal[i-1] = new Image("file:res/images/normalsoldier" + i + ".png");
@@ -60,8 +62,7 @@ public class GunSoldier extends Enemy implements Shootable{
 		bullet.addBullet();
 	}
 	
-	@Override
-	public void update() {
+	public void update(long now) {
 		if(!isAlive) {
 			baseVeloX = 0;
 		}
@@ -99,9 +100,12 @@ public class GunSoldier extends Enemy implements Shootable{
 			
 		}
 		if (shootCondition) {
-			if((int)(Math.random()*99)+1 < 2) {
+			if((int)(Math.random()*99)+1 < 1) {
 				count = 0;
 			}
+			
+			
+			
 		}
 		//new condition while not shooting?
 	}

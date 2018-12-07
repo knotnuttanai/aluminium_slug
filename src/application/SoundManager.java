@@ -1,7 +1,8 @@
 package application;
 
+import java.net.URL;
+
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class SoundManager {
@@ -9,9 +10,9 @@ public class SoundManager {
 		
 	}
 	public void playSound() {
-		Media sound = new Media(this.getClass().getResource("HeavyMachineGun.mp3").toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
+		URL url = getClass().getResource("HeavyMachineGun.wav");
+		AudioClip sound = new AudioClip(url.toString());
+		sound.play();
 		System.out.println("2");
 	}
 }
