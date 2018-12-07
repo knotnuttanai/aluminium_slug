@@ -61,7 +61,7 @@ public class SpawnManager {
 		}
 		if(Math.random() < spawnRate) {
 			if(Math.random() < 0.7) {
-				GunSoldier enemy = new GunSoldier(640+100*Math.random(), 100, 50);
+				TurretSoldier enemy = new TurretSoldier(640+100*Math.random(), 100, 50);
 				enemy.setDmg(dmg+enemy.getDmg());
 				enemy.setHealth(hp+enemy.getHealth());
 				enemy.addEnemy();
