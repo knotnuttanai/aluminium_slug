@@ -62,7 +62,7 @@ public class Enemy extends Person {
 		}
 		if(this.posY >=800||this.posX +this.width < -10) {
 			
-			this.setDead();
+			this.isAnimatedDead = true;
 		}
 		if(isJump || !isHasVerticalCollition()) {
 			this.veloY += GRAVITY;
