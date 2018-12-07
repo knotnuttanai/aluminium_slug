@@ -38,7 +38,8 @@ public class Hero extends Person implements Shootable{
 	private Image[] walk;
 	private Image[] ThrowingBomb;
 	private Image[] MachThrowBomb;
-	private int walkFrame,shootFrame,shootUpFrame,shootDownFrame,machFrame,machUpFrame,machDownFrame,throwingBombFrame,machBombFrame;
+	private Image[] MarcoDead;
+	private int walkFrame,shootFrame,shootUpFrame,shootDownFrame,machFrame,machUpFrame,machDownFrame,throwingBombFrame,machBombFrame,deadFrame;
 	private int firerate;
 
 	public Hero(double posX, double posY, int health) {
@@ -73,6 +74,7 @@ public class Hero extends Person implements Shootable{
 		machShoot = new Image[4];
 		ThrowingBomb = new Image[5];
 		MachThrowBomb = new Image[6];
+		MarcoDead = new Image[19];
 		walkFrame = 0;
 		shootFrame = 0;
 		shootUpFrame = 0;
@@ -82,6 +84,7 @@ public class Hero extends Person implements Shootable{
 		machDownFrame = 0;
 		throwingBombFrame = 0;
 		machBombFrame = 0;
+		deadFrame = 0;
 		
 		for(int i = 1; i <= 10; i++) {
 			shoot[i-1] = new Image("file:res/images/shoot" + i + ".png");
@@ -119,6 +122,9 @@ public class Hero extends Person implements Shootable{
 			MachThrowBomb[i-1] = new Image("file:res/images/machbomb" + i + ".png");
 		}
 		
+		for(int i = 1; i <= 19; i++) {
+			MarcoDead[i-1] = new Image("file:res/images/machbomb" + i + ".png");
+		}
 	
 	}
 	
@@ -175,6 +181,8 @@ public class Hero extends Person implements Shootable{
 	
 
 	public void render(GraphicsContext gc) {
+		
+		//if(health == 0)
 		
 		if(isInTheTank) return;
 
@@ -297,7 +305,7 @@ public class Hero extends Person implements Shootable{
 							PistolBullet bullet = new PistolBullet(this);
 							bullet.setDamage(dmg+bullet.getDamage());
 							bullet.addBullet();
-							SoundManager.play("shoot1",0.1);
+							SoundManager.play("pistolbullet",1);
 							return;
 						}
 						firerate = 80;
@@ -306,7 +314,7 @@ public class Hero extends Person implements Shootable{
 						bullet.addBullet();
 						//bullet.getSound().play();
 						
-							SoundManager.play("macShoot",0.1);
+							SoundManager.play("machbullet",1);
 							
 						useGunBullet--;
 					}
@@ -315,7 +323,7 @@ public class Hero extends Person implements Shootable{
 						PistolBullet bullet = new PistolBullet(this);
 						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
-						SoundManager.play("shoot1",0.1);
+						SoundManager.play("pistolbullet",1);
 						/*Bomb bomb = new Bomb(10, 10, this);
 						bomb.addGun();*/
 					}
