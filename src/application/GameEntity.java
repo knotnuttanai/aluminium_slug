@@ -17,6 +17,7 @@ import weapon.GameObject;
 import weapon.Gun;
 import weapon.HeroBullet;
 import weapon.Tank;
+import weapon.TankBullet;
 
 public class GameEntity {
 	public static SpawnManager spawnManager = new SpawnManager();
@@ -112,7 +113,11 @@ public class GameEntity {
 							HeroBullet b1 = (HeroBullet) b;
 							if(e.isHitByBullet(b1)) {
 								e.takeDamage(b1.getDamage());
-								b.setHit();
+								if(b1 instanceof TankBullet) {
+									
+								}else {
+									b.setHit();
+								}
 							}
 						}
 					}
@@ -141,8 +146,8 @@ public class GameEntity {
 						if(GameEntity.hero.checkInteract(g)) {
 							if(g instanceof Gun) {
 								
-								AudioClip clip = new AudioClip("file:src/sounds/HeavyMachineGun.wav");
-								clip.play();
+							/*	AudioClip clip = new AudioClip("file:res/sounds/HeavyMachineGun.wav");
+								clip.play();*/
 								GameEntity.hero.setGun(1);
 								GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet()+256);
 								g.setHit(true);

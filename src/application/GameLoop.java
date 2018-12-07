@@ -85,8 +85,7 @@ public class GameLoop implements Runnable{
 			
 		}
 		ev.keyHandle();
-		GameEntity.spawnManager.spawnEnemy();
-		GameEntity.checkStand();
+		
 		if(heroWalkOverBase()) {
 			ev.setHeroWalkOverBase(true);
 			setWalk(false);
@@ -95,7 +94,8 @@ public class GameLoop implements Runnable{
 			ev.setHeroWalkOverBase(false);
 			setWalk(true);
 		}
-		
+		GameEntity.spawnManager.spawnEnemy();
+		GameEntity.checkStand();
 		GameEntity.calculateHit();
 		GameEntity.clearDead();
 		for(Foreground fg : GameEntity.fgs) {
@@ -140,16 +140,15 @@ public class GameLoop implements Runnable{
 		score.render(gameScene.getView());
 		bullet1.render(gameScene.getView());
 		
-			GameEntity.hero.render(gameScene.getView());
-			
-		
-		
-		for(Bullet x: GameEntity.bullets) {
-			x.render(gameScene.getView());
-		}
+		GameEntity.hero.render(gameScene.getView());
+
 		for(Enemy x : GameEntity.enemies) {
-			x.render(gameScene.getView());
+				x.render(gameScene.getView());
+			}
+		for(Bullet x: GameEntity.bullets) {
+				x.render(gameScene.getView());
 		}
+		
 		for(Terrain x : GameEntity.terrains) {
 			x.render(gameScene.getView());
 		}

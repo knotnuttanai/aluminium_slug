@@ -62,7 +62,7 @@ public class Bullet extends GameObject{
 	public void update() 
 	{	
 		
-		if(this.posY >=800||this.posX +this.width < -10) {
+		if(this.posY >=1000||this.posX +this.width < -10) {
 			setHit();
 		}
 		calculateRelaSpeed();

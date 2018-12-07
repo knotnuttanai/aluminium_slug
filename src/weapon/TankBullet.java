@@ -7,7 +7,9 @@ public class TankBullet extends HeroBullet {
 
 	public TankBullet(Person p) {
 		super(p);
-		damage = 20;
+		width = 40;
+		height = 20;
+		damage = 2;
 		bullet = new Image("file:res/images/tankbullet.png");
 	}
 
