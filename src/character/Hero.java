@@ -123,7 +123,7 @@ public class Hero extends Person implements Shootable{
 		}
 		
 		for(int i = 1; i <= 19; i++) {
-			MarcoDead[i-1] = new Image("file:res/images/machbomb" + i + ".png");
+			MarcoDead[i-1] = new Image("file:res/images/marcodead" + i + ".png");
 		}
 	
 	}
@@ -169,6 +169,17 @@ public class Hero extends Person implements Shootable{
 		else return 0;
 	}
 	
+	private int DeadAdjustPos() {
+		if(deadFrame/5 < 5) return 48;
+		else if(deadFrame/5 < 9) return 48 - 4*(deadFrame/5 - 4);
+		else if(deadFrame/5 == 9) return 36;
+		else if(deadFrame/5 == 10) return 32;
+		else if(deadFrame/5 < 15) return 30 - 4*(deadFrame/5 - 11);
+		else if(deadFrame/5 == 15) return 10;
+		else if(deadFrame/5 == 17) return 2;
+		return 0;
+	}
+	
 	private void finishShoot(String frame) {
 		isShoot = false;
 		if(frame.equals("shootUpFrame")) shootUpFrame = 0;
@@ -182,7 +193,12 @@ public class Hero extends Person implements Shootable{
 
 	public void render(GraphicsContext gc) {
 		
-		//if(health == 0)
+		if(!isAlive) {
+			gc.drawImage(MarcoDead[(deadFrame/5)], posX, posY + 38 - DeadAdjustPos());
+			deadFrame++;
+			if(deadFrame==95) isAnimatedDead = true;
+			return;
+		}
 		
 		if(isInTheTank) return;
 

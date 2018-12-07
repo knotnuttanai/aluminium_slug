@@ -80,7 +80,7 @@ public class GameLoop implements Runnable{
 			GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
 			
 		}
-		if(!ev.getHero().isAlive()) {
+		if(ev.getHero().isAnimatedDead()) {
 			gameScene.getRoot().getChildren().clear();
 			an.stop();
 			
