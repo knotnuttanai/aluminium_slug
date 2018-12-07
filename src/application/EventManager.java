@@ -207,6 +207,7 @@ public class EventManager {
 		this.heroWalkOverBase = heroWalkOverBase;
 	}
 	public void keyHandle() {
+		if(!hero.isAlive()) return;
 		//start key D
 		if(dIsPressed) {
 			hero.setIsWalk(true);
