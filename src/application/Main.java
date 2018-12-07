@@ -22,14 +22,16 @@ public class Main extends Application {
 		tank.addObject();
 		
 		
-		
 		loop = new GameLoop();
 		
 		
 		primaryStage = loop.getGameScene().getStage();
  		primaryStage.show();
  		loop.start();
-		
+ 		Sound s = new Sound("res/sounds/BGM.wav");
+		s.loop();
+		Sound start = new Sound("res/sounds/Mission1.wav");
+		start.play();
 		
 	}
 

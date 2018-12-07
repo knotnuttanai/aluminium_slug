@@ -1,5 +1,6 @@
 package weapon;
 
+import application.Sound;
 import character.Person;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -18,6 +19,7 @@ public class MachineGunBullet extends HeroBullet {
 			posX += 4;
 			posY += 18;
 		}
+		bulletSound = new Sound("res/sounds/machbullet.wav");
 	}
 	
 	/*@Override

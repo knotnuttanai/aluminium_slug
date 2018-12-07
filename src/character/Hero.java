@@ -292,19 +292,22 @@ public class Hero extends Person implements Shootable{
 							PistolBullet bullet = new PistolBullet(this);
 							bullet.setDamage(dmg+bullet.getDamage());
 							bullet.addBullet();
+							bullet.getSound().loop();
 							return;
 						}
 						firerate = 80;
 						MachineGunBullet bullet = new MachineGunBullet(this);
 						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
+						bullet.getSound().play();
 						useGunBullet--;
 					}
 					if(gun == 0) {
 						firerate = 200;
 						PistolBullet bullet = new PistolBullet(this);
 						bullet.setDamage(dmg+bullet.getDamage());
-						bullet.addBullet();/*
+						bullet.addBullet();
+						bullet.getSound().play();/*
 						Bomb bomb = new Bomb(10, 10, this);
 						bomb.addGun();*/
 					}
