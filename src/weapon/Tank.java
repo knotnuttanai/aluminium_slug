@@ -90,6 +90,13 @@ public class Tank extends GameObject {
 		}
 		b = new BoundingBox(posX, posY, width, height);
 	}
+	
+	private int adjustShootPos() {
+		if(shootFrame/3 == 1) return 8;
+		if(shootFrame/3 == 2) return 4;
+		return 0;
+	}
+	
 	public void render(GraphicsContext gc) {
 		if(!isUsed) {
 			gc.drawImage(tankImage, posX, posY - 8);
@@ -101,7 +108,7 @@ public class Tank extends GameObject {
 			if(tankFrame >= 42) tankFrame = 0;
 			
 			if(hero.isShoot()) {
-				gc.drawImage(shootGun[(shootFrame/3)%5], posX, posY);
+				gc.drawImage(shootGun[(shootFrame/3)%5], posX, posY - adjustShootPos());
 				shootFrame++;
 				if(shootFrame >= 15) {
 					shootFrame = 0;
