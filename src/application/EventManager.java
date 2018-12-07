@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import weapon.MachineGunBullet;
 
 public class EventManager {
 	private Scene scene;
@@ -70,6 +71,7 @@ public class EventManager {
 				try {
 					thread.interrupt();
 					thread.join();
+					MachineGunBullet.getMachineGunSound().stop();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

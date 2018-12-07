@@ -22,11 +22,10 @@ public class GameLoop implements Runnable{
 	private boolean toggle = false;
 	private ScorePane score;
 	private BulletPane bullet1;
-	private SoundManager soundManager;
+	
 	
 	public GameLoop() {
 		score  = new ScorePane();
-		soundManager = new SoundManager();
 		canvas = new Canvas(640 ,480);
 		gameScene = new GameScene(canvas);
 		

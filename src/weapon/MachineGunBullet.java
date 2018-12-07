@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class MachineGunBullet extends HeroBullet {
 	public int maxBullets;
+	public static Sound bulletSound = new Sound("res/sounds/machbullet.wav");
 	public MachineGunBullet(Person p) {
 		super(p);
 		damage = 10;
@@ -19,7 +20,7 @@ public class MachineGunBullet extends HeroBullet {
 			posX += 4;
 			posY += 18;
 		}
-		bulletSound = new Sound("res/sounds/machbullet.wav");
+		
 	}
 	
 	/*@Override
@@ -29,5 +30,8 @@ public class MachineGunBullet extends HeroBullet {
 		else gc.drawImage(bullet, posX, posY);
 		
 	}*/
+	public static Sound getMachineGunSound() {
+		return bulletSound;
+	}
 
 }

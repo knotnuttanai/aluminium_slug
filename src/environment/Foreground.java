@@ -67,7 +67,6 @@ public class Foreground implements Deleteable {
 	public void checkSelfDelete() {
 		// TODO Auto-generated method stub
 		if(posX <= -10000) {
-			System.out.println("dead");
 			setDead();
 		}
 	}

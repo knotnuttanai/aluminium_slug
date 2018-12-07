@@ -2,6 +2,7 @@ package character;
 
 import application.GameEntity;
 import application.GameScene;
+import environment.Deleteable;
 import environment.Foreground;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
@@ -83,5 +84,7 @@ public class Enemy extends Person {
 	public void setFireRate(double fireRate) {
 		this.fireRate = fireRate;
 	}
+
+	
 	
 }

@@ -299,7 +299,8 @@ public class Hero extends Person implements Shootable{
 						MachineGunBullet bullet = new MachineGunBullet(this);
 						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
-						bullet.getSound().play();
+						//bullet.getSound().play();
+						MachineGunBullet.getMachineGunSound().loop();
 						useGunBullet--;
 					}
 					if(gun == 0) {
