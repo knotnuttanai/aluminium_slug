@@ -81,7 +81,7 @@ public class SpawnManager {
 				enemy.setHealth(hp+enemy.getHealth());
 				enemy.addEnemy();
 			}
-			System.out.println("added");
+			
 		}
 		
 	}
