@@ -1,6 +1,7 @@
 package character;
 import javafx.geometry.BoundingBox;
 import application.GameEntity;
+import application.SoundManager;
 import environment.Foreground;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -295,7 +296,7 @@ public class Hero extends Person implements Shootable{
 							PistolBullet bullet = new PistolBullet(this);
 							bullet.setDamage(dmg+bullet.getDamage());
 							bullet.addBullet();
-							PistolBullet.bulletSound.play();
+							SoundManager.play("pistolbullet",1);
 							return;
 						}
 						firerate = 80;
@@ -304,7 +305,7 @@ public class Hero extends Person implements Shootable{
 						bullet.addBullet();
 						//bullet.getSound().play();
 						
-							MachineGunBullet.getMachineGunSound().loop();
+							SoundManager.play("machbullet",1);
 							
 						useGunBullet--;
 					}
@@ -313,7 +314,7 @@ public class Hero extends Person implements Shootable{
 						PistolBullet bullet = new PistolBullet(this);
 						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
-						PistolBullet.bulletSound.play();
+						SoundManager.play("pistolbullet",1);
 						/*Bomb bomb = new Bomb(10, 10, this);
 						bomb.addGun();*/
 					}

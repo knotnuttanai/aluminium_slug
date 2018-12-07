@@ -2,7 +2,6 @@ package weapon;
 
 import application.GameEntity;
 import application.GameScene;
-import application.Sound;
 import character.Hero;
 import character.Person;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,7 +21,7 @@ public class Bullet extends GameObject{
 	protected Image bullet;
 	protected Image bulletShootUp;
 	protected Image bulletShootDown;
-	protected Sound bulletSound;
+	
 	
 	public Bullet(Person p) {
 		super(p.getPosX() + 40,p.getPosY(),50,10);
@@ -132,8 +131,5 @@ public class Bullet extends GameObject{
 		this.damage = damage;
 	}
 	
-	public Sound getSound() {
-		return bulletSound;
-	}
 	
 }

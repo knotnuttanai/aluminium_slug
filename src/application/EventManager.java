@@ -72,14 +72,7 @@ public class EventManager {
 				try {
 					thread.interrupt();
 					thread.join();
-					if(GameEntity.hero.getGun()==1) {
-					int frame = MachineGunBullet.getMachineGunSound().getFramePosistion();
 					
-					MachineGunBullet.getMachineGunSound().stop();
-					//MachineGunBullet.getMachineGunSound().setFramePosition(frame);
-					MachineGunBullet.getMachineGunSound().play();
-					
-					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

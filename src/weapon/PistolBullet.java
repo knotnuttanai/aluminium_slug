@@ -1,11 +1,10 @@
 package weapon;
 
-import application.Sound;
+
 import character.Person;
 import javafx.scene.image.Image;
 
 public class PistolBullet extends HeroBullet {
-	public static Sound bulletSound = new Sound("res/sounds/pistolbullet.wav");
 	public PistolBullet(Person p) {
 		super(p);
 		this.damage = 10;

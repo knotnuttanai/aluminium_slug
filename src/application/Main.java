@@ -24,17 +24,16 @@ public class Main extends Application {
 		
 		
 		loop = new GameLoop();
-		
-		
+		SoundManager.playMediaLoop("BGM");
+		/*Sound s = new Sound("res/sounds/BGM.wav");
+		s.loop();
+		Sound start = new Sound("res/sounds/Mission1.wav");
+		start.play();*/
 		primaryStage = loop.getGameScene().getStage();
  		primaryStage.show();
  		loop.start();
- 		Sound s = new Sound("res/sounds/BGM.wav");
-		s.loop();
-		Sound start = new Sound("res/sounds/Mission1.wav");
-		start.play();
-		/*AudioClip clip = new AudioClip(this.getClass().getResource("/aluminium_slug/res/sounds/HeavyMachineGun.wav").toString());
-		clip.play();*/
+ 		
+		
 		
 	}
 
