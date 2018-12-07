@@ -15,9 +15,14 @@ public class Tank extends GameObject {
 	private boolean toggle;
 	private Image tankImage;
 	private Image tankGun;
+	private Image tankUp;
+	private Image tankDown;
 	private Image[] movingTank;
 	private Image[] shootGun;
-	private int tankFrame,shootFrame;
+	private Image[] shootUp;
+	private Image[] shootDown;
+	
+	private int tankFrame,shootFrame,upFrame,downFrame ;
 	
 	public Tank(double posX, double posY, double width, double height, Hero hero) {
 		super(posX, posY, width, height);
@@ -43,6 +48,13 @@ public class Tank extends GameObject {
 			shootGun[i-1] = new Image("file:res/images/tankgun" + i + ".png");
 		}
 		shootFrame = 0;
+		
+		tankUp = new Image("file:res/images/tankup0.png");
+		shootUp = new Image[5];
+		for(int i = 0; i<= 4; i++) {
+			shootUp[i] = new Image("file:res/images/tankup" + i + ".png");
+		}
+		upFrame = 0;
 	}
 
 	public void update() {
@@ -108,15 +120,33 @@ public class Tank extends GameObject {
 			if(tankFrame >= 42) tankFrame = 0;
 			
 			if(hero.isShoot()) {
-				gc.drawImage(shootGun[(shootFrame/3)%5], posX, posY - adjustShootPos());
-				shootFrame++;
-				if(shootFrame >= 15) {
-					shootFrame = 0;
-					hero.setIsShoot(false);
+				if(hero.isLookUp()) {
+					int k = 0;
+					int t = 0;
+					if(upFrame/3 == 1) {k=8;t=48;}
+					if(upFrame/3 == 2) {k=4;t=62;}
+					if(upFrame/3 == 3) {k=0;t=74;}
+					if(upFrame/3 == 4) {k=0;t=76;}
+					
+					gc.drawImage(shootUp[(upFrame/3)%5], posX - k , posY - 26 - t);
+					upFrame++;
+					if(upFrame >= 15) {
+						upFrame = 0;
+						hero.setIsShoot(false);
+					}
+				}
+				else {
+					gc.drawImage(shootGun[(shootFrame/3)%5], posX, posY - adjustShootPos());
+					shootFrame++;
+					if(shootFrame >= 15) {
+						shootFrame = 0;
+						hero.setIsShoot(false);
+					}
 				}
 			}
 			else {
-				gc.drawImage(tankGun, posX, posY);
+				if(hero.isLookUp()) gc.drawImage(tankUp, posX , posY - 26);
+				else gc.drawImage(tankGun, posX, posY);
 			}
 		}
 		
