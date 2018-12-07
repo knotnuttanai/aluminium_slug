@@ -55,7 +55,7 @@ public class HandSoldier extends Enemy {
 		if(!isAlive) {
 			baseVeloX = 0;
 		}
-		if(Math.random() < 0.002) {
+		if(Math.random() < 0.02) {
 			this.Jump();
 		}
 		if(this.posY >=800||this.posX +this.width < -10) {
