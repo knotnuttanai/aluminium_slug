@@ -56,6 +56,7 @@ public class GameLoop implements Runnable{
 						renderContent();
 					}catch(ArrayIndexOutOfBoundsException e) {
 						System.out.println("index out of bound");
+						SoundManager.playMediaLoop("BGM");
 					}
 				
 				}

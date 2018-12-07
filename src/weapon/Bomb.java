@@ -1,6 +1,7 @@
 package weapon;
 
 import application.GameEntity;
+import application.SoundManager;
 import character.Hero;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,11 +15,12 @@ public class Bomb extends GameObject {
 	private Image[] Smoke;
 	private int bombFrame;
 	private int smokeFrame;
-	
+	private boolean soundisplay;
 	public Bomb(double width, double height, Hero hero) 
 	{
 		super(0, 0, width, height);
 		this.hero = hero;
+		soundisplay = false;
 		posX = hero.getPosX();
 		posY = hero.getPosY();
 		baseVeloX = 8;
@@ -43,6 +45,10 @@ public class Bomb extends GameObject {
 			gc.drawImage(Smoke[smokeFrame], posX - 10, posY - 100);
 			smokeFrame++;
 			if(smokeFrame == 21) isHit = true;
+			if(!soundisplay) {
+				SoundManager.play("grenade", 1);
+				soundisplay = true;
+			}
 		}
 		else {
 			gc.drawImage(Bomb[(bombFrame/3)%9], posX, posY);

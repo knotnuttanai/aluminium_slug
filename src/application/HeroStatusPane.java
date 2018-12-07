@@ -61,23 +61,24 @@ public class HeroStatusPane extends HBox {
 		increaseStr.setOnMouseClicked(e->{
 			
 			GameEntity.hero.setDmg(GameEntity.hero.getDmg()+5);
-			
+			SoundManager.play("Reload", 1);
 			checkPoint();
 		});
 		increaseAgi.setOnMouseClicked(e->{
 			
-				GameEntity.hero.setMoveSpeed(GameEntity.hero.getMoveSpeed()-1);
-			
+			GameEntity.hero.setMoveSpeed(GameEntity.hero.getMoveSpeed()-1);
+			SoundManager.play("Reload", 1);
 			checkPoint();
 		});
 		increaseVit.setOnMouseClicked(e->{
 			
 				GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth()+20);
 				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
-			
+				SoundManager.play("Reload", 1);
 			checkPoint();
 		});
 		increaseLuk.setOnMouseClicked(e->{
+			SoundManager.play("Reload", 1);
 			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.0001);
 			checkPoint();
 		});

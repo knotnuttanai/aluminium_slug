@@ -1,6 +1,7 @@
 package character;
 
 import application.GameEntity;
+import application.SoundManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -17,9 +18,11 @@ public class HandSoldier extends Enemy {
 	private boolean normalCondition;
 	private boolean scareCondition;
 	private boolean runCondition;
+	public boolean soundIsPlay;
 
 	public HandSoldier(double posX, double posY, int health) {
 		super(posX, posY, health);
+		soundIsPlay = false;
 		normal = new Image[12];
 		for(int i = 1; i <= 12; i++) {
 			normal[i-1] = new Image("file:res/images/normalsoldier" + i + ".png");
@@ -93,6 +96,10 @@ public class HandSoldier extends Enemy {
 		}
 	
 		else if(CheckScareCondition()) {
+			if(!soundIsPlay) {
+				SoundManager.play("scare", 0.2);
+				soundIsPlay = true;
+			}
 			if(scareFrame >= 83)  gc.drawImage(scare[5], posX, posY);
 			else if(scareFrame >= 80) gc.drawImage(scare[4], posX, posY);
 			else gc.drawImage(scare[scareFrame/20], posX, posY);

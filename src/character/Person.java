@@ -2,6 +2,7 @@ package character;
 
 import application.ExpBar;
 import application.ScorePane;
+import application.SoundManager;
 import environment.Foreground;
 import environment.Terrain;
 import javafx.geometry.BoundingBox;
@@ -79,11 +80,15 @@ public abstract class Person implements Movable{
 		
 	}
 	public void takeDamage(int dmg) {
+		if(this instanceof Enemy) {
+			//SoundManager.play("Gettinghit", 0.5);
+		}
 		if(health > 0) {
 			health = health - dmg;
 			if(health <= 0) {
 				ScorePane.addScore(200);
 				ExpBar.addKillCount(1);
+				SoundManager.play("Death", 1);
 				setDead();
 			}
 		}

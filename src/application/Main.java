@@ -25,6 +25,7 @@ public class Main extends Application {
 		
 		loop = new GameLoop();
 		SoundManager.playMediaLoop("BGM");
+		SoundManager.play("Mission1",1);
 		/*Sound s = new Sound("res/sounds/BGM.wav");
 		s.loop();
 		Sound start = new Sound("res/sounds/Mission1.wav");

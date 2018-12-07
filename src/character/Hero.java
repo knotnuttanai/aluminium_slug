@@ -285,6 +285,7 @@ public class Hero extends Person implements Shootable{
 						TankBullet bullet = new TankBullet(this);
 						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
+						SoundManager.play("Tank", 0.5);
 						//bullet.getSound().loop();
 						return;
 						
@@ -324,7 +325,7 @@ public class Hero extends Person implements Shootable{
 	
 	public void throwBomb() {
 		if(isThrowingBomb) {
-			Bomb bomb = new Bomb(10,10,this);
+			Bomb bomb = new Bomb(50,50,this);
 			bomb.addObject();
 		}
 	}
