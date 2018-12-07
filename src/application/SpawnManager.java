@@ -20,7 +20,7 @@ public class SpawnManager {
 	private int dmg;
 	private int hp;
 	public SpawnManager() {
-		machineGunSpawnrate = 0.01;
+		machineGunSpawnrate = 0.0001;
 		tankSpawnRate = 0;
 		limitNumber = 3;
 		numberOfEnemy = 0;
@@ -61,10 +61,17 @@ public class SpawnManager {
 		}
 		if(Math.random() < spawnRate) {
 			if(Math.random() < 0.7) {
-				GunSoldier enemy = new GunSoldier(640+100*Math.random(), 100, 50);
-				enemy.setDmg(dmg+enemy.getDmg());
-				enemy.setHealth(hp+enemy.getHealth());
-				enemy.addEnemy();
+				if(Math.random()<=1) {
+					GunSoldier enemy = new GunSoldier(640+100*Math.random(), 100, 50);
+					enemy.setDmg(dmg+enemy.getDmg());
+					enemy.setHealth(hp+enemy.getHealth());
+					enemy.addEnemy();
+				}else {
+					TurretSoldier enemy = new TurretSoldier(640+100*Math.random(), 100, 50);
+					enemy.setDmg(dmg+enemy.getDmg());
+					enemy.setHealth(hp+enemy.getHealth());
+					enemy.addEnemy();
+				}
 			}else {
 				HandSoldier enemy = new HandSoldier(640+100*Math.random(), 100, 50);
 				enemy.setDmg(dmg+enemy.getDmg());

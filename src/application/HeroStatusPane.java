@@ -17,7 +17,7 @@ public class HeroStatusPane extends HBox {
 		setTranslateX(0);
 		setTranslateY(445);
 		setPrefWidth(680);
-		statusPoint = 0;
+		statusPoint = 5;
 		count = 0;
 		setAlignment(Pos.CENTER);
 		isEnable = true;
@@ -76,7 +76,7 @@ public class HeroStatusPane extends HBox {
 		});
 		increaseVit.setOnMouseClicked(e->{
 			
-				GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth()+20);
+				GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth()+40);
 				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
 				SoundManager.play("Reload", 1);
 			checkPoint();
@@ -86,7 +86,7 @@ public class HeroStatusPane extends HBox {
 			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.0001);
 			checkPoint();
 		});
-		increaseLuk.setOnMouseClicked(e->{
+		spawnTank.setOnMouseClicked(e->{
 			SoundManager.play("Reload", 1);
 			GameEntity.spawnManager.spawnTank();
 			statusPoint = statusPoint - 5;

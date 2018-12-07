@@ -10,7 +10,7 @@ public class EnemyBullet extends Bullet {
 		width = 15;
 		height = 10;
 		veloX = -4;
-		damage = 0;
+		damage = 10;
 		baseVeloX = veloX;
 		baseVeloY = veloY;
 		posX -= 100;

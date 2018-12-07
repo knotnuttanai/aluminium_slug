@@ -26,7 +26,7 @@ public class GameEntity {
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
-	public static Hero hero = new Hero(200, 200, 10000000);
+	public static Hero hero = new Hero(200, 200, 100);
 	
 	public static void createBullet(Bullet b) {
 		bullets.add(b);
@@ -137,6 +137,7 @@ public class GameEntity {
 							EnemyBullet b1 = (EnemyBullet) b;
 							if(GameEntity.hero.isHitByBullet(b1)) {
 								GameEntity.hero.takeDamage(b1.getDamage());
+								System.out.println("dmg");
 								b.setHit();
 								
 							}
@@ -145,10 +146,12 @@ public class GameEntity {
 					for(GameObject g : GameEntity.gameObjects) {
 						if(GameEntity.hero.checkInteract(g)) {
 							if(g instanceof Gun) {
+								if(!GameEntity.hero.isInTheTank()) {
+									SoundManager.play("HeavyMachineGun",0.2);
+									GameEntity.hero.setGun(1);
+									GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet()+256);
+								}
 								
-								SoundManager.play("HeavyMachineGun",0.2);
-								GameEntity.hero.setGun(1);
-								GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet()+256);
 								g.setHit(true);
 							}
 							if(g instanceof Tank) {
