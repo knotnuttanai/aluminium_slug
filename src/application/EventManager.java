@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import weapon.MachineGunBullet;
+import weapon.PistolBullet;
 
 public class EventManager {
 	private Scene scene;
@@ -71,7 +72,14 @@ public class EventManager {
 				try {
 					thread.interrupt();
 					thread.join();
+					if(GameEntity.hero.getGun()==1) {
+					int frame = MachineGunBullet.getMachineGunSound().getFramePosistion();
+					
 					MachineGunBullet.getMachineGunSound().stop();
+					//MachineGunBullet.getMachineGunSound().setFramePosition(frame);
+					MachineGunBullet.getMachineGunSound().play();
+					
+					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

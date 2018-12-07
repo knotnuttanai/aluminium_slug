@@ -33,6 +33,7 @@ public class Main extends Application {
 		Sound start = new Sound("res/sounds/Mission1.wav");
 		start.play();
 		
+		
 	}
 
 	public static void main(String[] args) {

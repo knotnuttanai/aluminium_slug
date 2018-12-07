@@ -1,5 +1,6 @@
 package application;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -8,6 +9,7 @@ import character.Enemy;
 import character.Hero;
 import environment.Foreground;
 import environment.Terrain;
+import javafx.scene.media.AudioClip;
 import weapon.Bomb;
 import weapon.Bullet;
 import weapon.EnemyBullet;
@@ -17,7 +19,6 @@ import weapon.HeroBullet;
 import weapon.Tank;
 
 public class GameEntity {
-	
 	public static SpawnManager spawnManager = new SpawnManager();
 	public static List<Bullet> bullets = new CopyOnWriteArrayList<>();
 	public static ArrayList<Enemy> enemies = new ArrayList<>();
@@ -139,7 +140,9 @@ public class GameEntity {
 					for(GameObject g : GameEntity.gameObjects) {
 						if(GameEntity.hero.checkInteract(g)) {
 							if(g instanceof Gun) {
-								//soundManager.playSound();
+								
+								AudioClip clip = new AudioClip("file:src/sounds/HeavyMachineGun.wav");
+								clip.play();
 								GameEntity.hero.setGun(1);
 								GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet()+256);
 								g.setHit(true);

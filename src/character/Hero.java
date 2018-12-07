@@ -292,7 +292,7 @@ public class Hero extends Person implements Shootable{
 							PistolBullet bullet = new PistolBullet(this);
 							bullet.setDamage(dmg+bullet.getDamage());
 							bullet.addBullet();
-							bullet.getSound().loop();
+							PistolBullet.bulletSound.play();
 							return;
 						}
 						firerate = 80;
@@ -300,7 +300,9 @@ public class Hero extends Person implements Shootable{
 						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
 						//bullet.getSound().play();
-						MachineGunBullet.getMachineGunSound().loop();
+						
+							MachineGunBullet.getMachineGunSound().loop();
+							
 						useGunBullet--;
 					}
 					if(gun == 0) {
@@ -308,8 +310,8 @@ public class Hero extends Person implements Shootable{
 						PistolBullet bullet = new PistolBullet(this);
 						bullet.setDamage(dmg+bullet.getDamage());
 						bullet.addBullet();
-						bullet.getSound().play();/*
-						Bomb bomb = new Bomb(10, 10, this);
+						PistolBullet.bulletSound.play();
+						/*Bomb bomb = new Bomb(10, 10, this);
 						bomb.addGun();*/
 					}
 		}
