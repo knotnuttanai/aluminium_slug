@@ -11,6 +11,7 @@ import weapon.EnemyBullet;
 import weapon.HeroBullet;
 import weapon.MachineGunBullet;
 import weapon.PistolBullet;
+import weapon.TankBullet;
 
 public class Hero extends Person implements Shootable{
 	private boolean isJump, isInTheTank, requestToEnterTank, isThrowingBomb;
@@ -173,6 +174,8 @@ public class Hero extends Person implements Shootable{
 	
 
 	public void render(GraphicsContext gc) {
+		
+		if(isInTheTank) return;
 
 		int k = 0;
 		int d = 0;
@@ -278,10 +281,10 @@ public class Hero extends Person implements Shootable{
 					if(isInTheTank) {
 						gun = 0;
 						firerate = 300;
-						canShoot = false;
-						Bomb bomb = new Bomb(15, 15, this);
-						bomb.setVeloY(bomb.getVeloY()-5 );
-						bomb.addObject();
+						TankBullet bullet = new TankBullet(this);
+						bullet.setDamage(dmg+bullet.getDamage());
+						bullet.addBullet();
+						//bullet.getSound().loop();
 						return;
 						
 					}
@@ -382,6 +385,15 @@ public class Hero extends Person implements Shootable{
 	
 	public void setThrowingBomb(boolean throwingBomb) {
 		isThrowingBomb = throwingBomb;
+	}
+	
+	public boolean isShoot() {
+		return isShoot;
+	}
+
+	public void setIsShoot(boolean isShoot) {
+		this.isShoot = isShoot;
+		
 	}
 	
 	
