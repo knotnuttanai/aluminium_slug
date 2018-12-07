@@ -16,6 +16,7 @@ import weapon.EnemyBullet;
 import weapon.GameObject;
 import weapon.Gun;
 import weapon.HeroBullet;
+import weapon.MachineGunBullet;
 import weapon.Tank;
 import weapon.TankBullet;
 
@@ -51,14 +52,7 @@ public class GameEntity {
 		}
 		
 	}
-	public static void increaseEnemyPower() {
-		/*for(Enemy e : enemies) {
-			e.setHealth(e.getHealth()+hp);
-			e.setDmg(dmg);
-		}*/
-		spawnManager.increaseEnemyPower();
-		spawnManager.setLimitNumber(spawnManager.getLimitNumber()+1);
-	}
+
 	
 	public static void checkStand() {
 			try {
@@ -115,7 +109,10 @@ public class GameEntity {
 								e.takeDamage(b1.getDamage());
 								if(b1 instanceof TankBullet) {
 									
-								}else {
+								}else if(b1 instanceof MachineGunBullet) {
+									
+								}
+								else {
 									b.setHit();
 								}
 							}

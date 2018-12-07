@@ -83,7 +83,7 @@ public class HeroStatusPane extends HBox {
 		});
 		increaseLuk.setOnMouseClicked(e->{
 			SoundManager.play("Reload", 1);
-			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.0001);
+			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.001);
 			checkPoint();
 		});
 		spawnTank.setOnMouseClicked(e->{

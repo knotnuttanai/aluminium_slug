@@ -76,9 +76,10 @@ public class GameLoop implements Runnable{
 		bullet1.update();
 		if(GameEntity.getCurrentFg().getPosX() <= -8550+640) {
 			GameEntity.spawnManager.initWorld(640);
-			GameEntity.increaseEnemyPower();
-			GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
-			
+			GameEntity.spawnManager.increaseEnemyPower();
+			if(!GameEntity.hero.isInTheTank()) {
+				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
+			}
 		}
 		if(ev.getHero().isAnimatedDead()) {
 			gameScene.getRoot().getChildren().clear();
