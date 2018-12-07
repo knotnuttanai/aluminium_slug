@@ -19,8 +19,7 @@ public class Main extends Application {
 		
 		
 		GameEntity.spawnManager.initWorld(0);
-		Tank tank = new Tank(500, 200, 100, 100, GameEntity.hero);
-		tank.addObject();
+		
 		
 		
 		loop = new GameLoop();

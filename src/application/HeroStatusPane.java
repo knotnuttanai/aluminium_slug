@@ -34,14 +34,18 @@ public class HeroStatusPane extends HBox {
 		increaseAgi = new Button("AGI");
 		increaseLuk = new Button("LUK");
 		increaseVit = new Button("VIT");
-		spawnTank = new Button("Hi MOtherF");
+		spawnTank = new Button("Do not press");
 		getChildren().addAll(increaseStr,increaseAgi,increaseVit,increaseLuk,spawnTank);
 		setEvent();
 		this.setDisable(true);
 	}
 	
 	public void update() {
-		
+		if(statusPoint <5) {
+			spawnTank.setDisable(true);
+		}else {
+			spawnTank.setDisable(false);
+		}
 		if(statusPoint > 0) {
 			
 			this.setDisable(false);
@@ -81,6 +85,12 @@ public class HeroStatusPane extends HBox {
 			SoundManager.play("Reload", 1);
 			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate()+0.0001);
 			checkPoint();
+		});
+		increaseLuk.setOnMouseClicked(e->{
+			SoundManager.play("Reload", 1);
+			GameEntity.spawnManager.spawnTank();
+			statusPoint = statusPoint - 5;
+			//checkPoint();
 		});
 	
 	}
