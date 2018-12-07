@@ -5,6 +5,7 @@ import character.Hero;
 import environment.Terrain;
 import environment.StairTerrain;
 import javafx.application.Application;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import weapon.GameObject;
 import weapon.Gun;
@@ -32,7 +33,8 @@ public class Main extends Application {
 		s.loop();
 		Sound start = new Sound("res/sounds/Mission1.wav");
 		start.play();
-		
+		/*AudioClip clip = new AudioClip(this.getClass().getResource("/aluminium_slug/res/sounds/HeavyMachineGun.wav").toString());
+		clip.play();*/
 		
 	}
 

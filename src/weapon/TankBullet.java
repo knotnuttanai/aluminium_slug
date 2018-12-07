@@ -9,7 +9,7 @@ public class TankBullet extends HeroBullet {
 		super(p);
 		width = 40;
 		height = 20;
-		damage = 2;
+		damage = 5;
 		bullet = new Image("file:res/images/tankbullet.png");
 	}
 
