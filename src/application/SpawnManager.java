@@ -1,6 +1,5 @@
 package application;
 
-import character.Enemy;
 import character.GunSoldier;
 import character.HandSoldier;
 import character.TurretSoldier;
@@ -13,10 +12,9 @@ import weapon.Tank;
 public class SpawnManager {
 	private int numberOfEnemy;
 	private int limitNumber;
-	private double baseOfHero;
 	private double spawnRate;
 	private double machineGunSpawnrate, tankSpawnRate;
-	private int dmg;
+	private int damage;
 	private int hp;
 
 	public SpawnManager() {
@@ -25,20 +23,12 @@ public class SpawnManager {
 		limitNumber = 3;
 		numberOfEnemy = 0;
 		spawnRate = 0.01;
-		dmg = 0;
+		damage = 0;
 		hp = 0;
-		/*
-		 * for(Hero x : GameEntity.hero) { baseOfHero = x.getBaseX(); }
-		 */
 	}
 
 	public void checkEnemyNumber() {
-		int count = 0;
-		for (Enemy x : GameEntity.enemies) {
-
-			count++;
-		}
-		numberOfEnemy = count;
+		numberOfEnemy = GameEntity.enemies.size();
 	}
 
 	public void spawnTank() {
@@ -66,32 +56,28 @@ public class SpawnManager {
 			return;
 		}
 		if (Math.random() < spawnRate) {
-
 			double a = Math.random();
 			if (a < 0.45) {
 				GunSoldier enemy = new GunSoldier(640 + 100 * Math.random(), 100, 50);
-				enemy.setDamage(dmg + enemy.getDamage());
+				enemy.setDamage(damage + enemy.getDamage());
 				enemy.setHealth(hp + enemy.getHealth());
 				enemy.addEnemy();
 			} else if (a < 0.75) {
 				TurretSoldier enemy = new TurretSoldier(640 + 100 * Math.random(), 100, 50);
-				enemy.setDamage(dmg + enemy.getDamage());
+				enemy.setDamage(damage + enemy.getDamage());
 				enemy.setHealth(hp + enemy.getHealth());
 				enemy.addEnemy();
 			} else {
-
 				HandSoldier enemy = new HandSoldier(640 + 100 * Math.random(), 100, 50);
-				enemy.setDamage(dmg + enemy.getDamage());
+				enemy.setDamage(damage + enemy.getDamage());
 				enemy.setHealth(hp + enemy.getHealth());
 				enemy.addEnemy();
 			}
-
 		}
-
 	}
 
 	public void increaseEnemyPower() {
-		dmg += 5;
+		damage += 5;
 		hp += 10;
 		spawnRate += 0.002;
 		limitNumber++;
@@ -146,8 +132,6 @@ public class SpawnManager {
 		GameEntity.createTerrain(terrain20);
 		Terrain terrain21 = new Terrain(start + 6012, 365, 115, 10);
 		GameEntity.createTerrain(terrain21);
-		Gun gun = new Gun(400, -20, 50, 50);
-		gun.addObject();
 	}
 
 	public void createStair(double posX, double posY, double width, double height, int count, int x, int xPrime, int y,
@@ -157,10 +141,6 @@ public class SpawnManager {
 			terrain2.setPriority(priority);
 			GameEntity.createTerrain(terrain2);
 		}
-	}
-
-	public void clearWorld() {
-
 	}
 
 	public double getSpawnRate() {

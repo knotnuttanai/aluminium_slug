@@ -11,7 +11,7 @@ import weapon.PistolBullet;
 import weapon.TankBullet;
 
 public class Hero extends Person implements Shootable {
-	private boolean isIneTank, requestToEnterTank, isThrowingBomb;
+	private boolean requestToEnterTank, isThrowingBomb;
 	private int gun;
 	// 0 is pistol
 	// 1 is machine gun
@@ -42,6 +42,7 @@ public class Hero extends Person implements Shootable {
 	private int machBombFrame;
 	private int firerate;
 	private boolean isInTheTank;
+
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		maxGrenade = 10;
@@ -396,7 +397,7 @@ public class Hero extends Person implements Shootable {
 	}
 
 	public void throwBomb() {
-		if (isThrowingBomb&&maxGrenade>0) {
+		if (isThrowingBomb && maxGrenade > 0) {
 			Bomb bomb = new Bomb(50, 50, this);
 			bomb.addObject();
 			maxGrenade--;
@@ -476,5 +477,5 @@ public class Hero extends Person implements Shootable {
 	public void setMaxGrenade(int maxGrenade) {
 		this.maxGrenade = maxGrenade;
 	}
-	
+
 }
