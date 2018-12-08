@@ -2,6 +2,7 @@ package application;
 
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -32,9 +33,9 @@ public class MenuPane extends StackPane{
 		   try {
 	    		
 	    		while(!running) {
-	    	    imageView0.setVisible(false);
+	    		imageView0.setVisible(true);
 				Thread.sleep(500);
-				imageView0.setVisible(true);
+				imageView0.setVisible(false);
 				Thread.sleep(500);
 	    		}
 			} catch (InterruptedException e) {
@@ -47,7 +48,7 @@ public class MenuPane extends StackPane{
 
 	}
 
-
+	
 	
 }
  
