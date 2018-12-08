@@ -45,10 +45,10 @@ public class EventManager {
 				// TODO Auto-generated method stub
 				if(event.getCode() == KeyCode.ENTER) {
 		    		MenuPane.running = true;
-		    		MenuPane.imageView0.setVisible(false);
-		    		MenuPane.imageView0.setDisable(true);
 		    		MenuPane.imageView1.setVisible(false);
 		    		MenuPane.imageView1.setDisable(true);
+		    		MenuPane.imageView0.setVisible(false);
+		    		MenuPane.imageView0.setDisable(true);
 		    		
 		    	}
 			}
