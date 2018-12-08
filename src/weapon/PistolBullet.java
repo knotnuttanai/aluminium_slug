@@ -10,7 +10,7 @@ public class PistolBullet extends HeroBullet {
 		this.damage = 10;
 		width = 20;
 		height = 20;
-		bullet = new Image("file:res/images/Glenos-G_160_bullet.png", 20, 50, false, false);
+		bullet = new Image(ClassLoader.getSystemResource("Glenos-G_160_bullet.png").toString(), 20, 50, false, false);
 	}
 
 }

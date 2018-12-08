@@ -28,13 +28,13 @@ public class Bomb extends GameObject {
 		isIgnited = false;
 		Bomb = new Image[9];
 		for (int i = 1; i <= 9; i++) {
-			Bomb[i - 1] = new Image("file:res/images/bomb" + i + ".png");
+			Bomb[i - 1] = new Image(ClassLoader.getSystemResource("bomb" + i + ".png").toString());
 		}
 		bombFrame = 0;
 
 		Smoke = new Image[21];
 		for (int i = 1; i <= 21; i++) {
-			Smoke[i - 1] = new Image("file:res/images/Layer " + i + ".png");
+			Smoke[i - 1] = new Image(ClassLoader.getSystemResource("Layer" + i + ".png").toString());
 		}
 		smokeFrame = 0;
 	}

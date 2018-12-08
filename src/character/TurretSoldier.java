@@ -20,15 +20,15 @@ public class TurretSoldier extends Enemy implements Shootable {
 		baseVeloX = 0;
 		damage = 0;
 		walkDirection = 0;
-		turret = new Image("file:res/images/turret.png");
+		turret = new Image(ClassLoader.getSystemResource("turret.png").toString());
 		shoot = new Image[3];
 		for (int i = 1; i <= 3; i++) {
-			shoot[i - 1] = new Image("file:res/images/turretfiring" + i + ".png");
+			shoot[i - 1] = new Image(ClassLoader.getSystemResource("turretfiring" + i + ".png").toString());
 		}
 		shootFrame = 0;
 		dead = new Image[21];
 		for (int i = 1; i <= 21; i++) {
-			dead[i - 1] = new Image("file:res/images/Layer " + i + ".png");
+			dead[i - 1] = new Image(ClassLoader.getSystemResource("Layer " + i + ".png").toString());
 		}
 		deadFrame = 0;
 		shootCondition = false;

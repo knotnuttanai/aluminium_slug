@@ -44,9 +44,9 @@ public class Bullet extends GameObject {
 		baseVeloY = veloY;
 		isHit = false;
 		damage = 10;
-		bullet = new Image("file:res/images/Glenos-G_160_bullet.png", 50, 32.5, false, false);
-		bulletShootUp = new Image("file:res/images/bulletup.png", 32.5, 50, false, false);
-		bulletShootDown = new Image("file:res/images/bulletdown.png", 32.5, 50, false, false);
+		bullet = new Image(ClassLoader.getSystemResource("Glenos-G_160_bullet.png").toString(), 50, 32.5, false, false);
+		bulletShootUp = new Image(ClassLoader.getSystemResource("bulletup.png").toString(), 32.5, 50, false, false);
+		bulletShootDown = new Image(ClassLoader.getSystemResource("bulletdown.png").toString(), 32.5, 50, false, false);
 	}
 
 	@Override

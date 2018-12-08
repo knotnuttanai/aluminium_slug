@@ -12,7 +12,7 @@ public class Foreground implements Deleteable {
 	private boolean isDead;
 
 	public Foreground(double posX) {
-		fg = new Image("file:res/images/foreground2.png");
+		fg = new Image(ClassLoader.getSystemResource("foreground2.png").toString());
 		veloX = 0;
 		this.posX = posX;
 		isDead = false;
