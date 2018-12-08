@@ -81,6 +81,7 @@ public class EventManager {
 				} else if (event.getCode() == KeyCode.E) {
 					if (!hero.isRequestToEnterTank() && !hero.isInTheTank()) {
 						hero.setRequestToEnterTank(true);
+						System.out.println("hihi");
 					}
 				} else if (event.getCode() == KeyCode.B) {
 					hero.setThrowingBomb(true);

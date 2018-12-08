@@ -32,7 +32,7 @@ public class Tank extends GameObject {
 		isUsed = false;
 		this.hero = hero;
 		health = 0;
-		maxHealth = 20000;
+		maxHealth = 500;
 		toggle = false;
 		gunOfHero = 0;
 		healthOfHero = 0;
