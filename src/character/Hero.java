@@ -11,7 +11,7 @@ import weapon.PistolBullet;
 import weapon.TankBullet;
 
 public class Hero extends Person implements Shootable {
-	private boolean requestToEnterTank, isThrowingBomb;
+
 	private int gun;
 	// 0 is pistol
 	// 1 is machine gun
@@ -42,6 +42,8 @@ public class Hero extends Person implements Shootable {
 	private int machBombFrame;
 	private int firerate;
 	private boolean isInTheTank;
+	private boolean requestToEnterTank;
+	private boolean isThrowingBomb;
 
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
