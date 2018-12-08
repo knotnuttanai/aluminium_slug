@@ -10,14 +10,12 @@ public class HeroStatusPane extends HBox {
 	private Button increaseStr, increaseVit, increaseAgi, increaseLuk, spawnTank;
 	public boolean isEnable;
 	public static int statusPoint;
-	private int count;
 
 	public HeroStatusPane() {
 		setTranslateX(0);
 		setTranslateY(445);
 		setPrefWidth(680);
 		statusPoint = 3;
-		count = 0;
 		setAlignment(Pos.CENTER);
 		isEnable = true;
 		increaseStr = new Button("STR");
@@ -46,10 +44,8 @@ public class HeroStatusPane extends HBox {
 			spawnTank.setDisable(false);
 		}
 		if (statusPoint > 0) {
-
 			this.setDisable(false);
 		} else {
-
 			this.setDisable(true);
 		}
 	}
@@ -64,19 +60,16 @@ public class HeroStatusPane extends HBox {
 
 	public void setEvent() {
 		increaseStr.setOnMouseClicked(e -> {
-
 			GameEntity.hero.setDamage(GameEntity.hero.getDamage() + 5);
 			SoundManager.play("Reload", 1);
 			checkPoint();
 		});
 		increaseAgi.setOnMouseClicked(e -> {
-
 			GameEntity.hero.setMoveSpeed(GameEntity.hero.getMoveSpeed() - 1);
 			SoundManager.play("Reload", 1);
 			checkPoint();
 		});
 		increaseVit.setOnMouseClicked(e -> {
-
 			GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth() + 40);
 			GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
 			SoundManager.play("Reload", 1);
@@ -91,8 +84,6 @@ public class HeroStatusPane extends HBox {
 			SoundManager.play("Reload", 1);
 			GameEntity.spawnManager.spawnTank();
 			statusPoint = statusPoint - 3;
-			// checkPoint();
 		});
-
 	}
 }
