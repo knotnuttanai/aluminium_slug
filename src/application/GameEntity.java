@@ -194,6 +194,7 @@ public class GameEntity {
 		spawnManager.initWorld(0);
 		hero.Walk(0);
 		hero.setIsWalk(false);
+		hero.setInTheTank(false);
 		hero.setHealth(200);
 		hero.setMaxHealth(200);
 		hero.setMaxGrenade(10);
