@@ -18,8 +18,8 @@ public class SpawnManager {
 	private int hp;
 
 	public SpawnManager() {
-		machineGunSpawnrate = 0.001;
-		tankSpawnRate = 0;
+		machineGunSpawnrate = 0.0005;
+		tankSpawnRate = 0.0001;
 		limitNumber = 3;
 		numberOfEnemy = 0;
 		spawnRate = 0.01;
@@ -175,4 +175,12 @@ public class SpawnManager {
 		this.machineGunSpawnrate = machineGunSpawnrate;
 	}
 
+	public double getTankSpawnRate() {
+		return tankSpawnRate;
+	}
+
+	public void setTankSpawnRate(double tankSpawnRate) {
+		this.tankSpawnRate = tankSpawnRate;
+	}
+	
 }
