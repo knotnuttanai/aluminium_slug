@@ -3,17 +3,14 @@ package character;
 import application.ExpBar;
 import application.ScorePane;
 import application.SoundManager;
-import environment.Foreground;
 import environment.Terrain;
 import javafx.geometry.BoundingBox;
+import javafx.scene.image.Image;
 import weapon.Bomb;
-import weapon.Bullet;
-import weapon.Damageable;
-import weapon.GameObject;
 import weapon.Gun;
 import weapon.Tank;
 
-public abstract class Person implements Movable{
+public abstract class Person implements Movable {
 	protected boolean canShoot;
 	protected int walkDirection;
 	protected int health, maxHealth;
@@ -34,11 +31,14 @@ public abstract class Person implements Movable{
 	protected double baseX;
 	protected boolean isShoot, hasVerticalCollition, hasHorizontalCollision, isStandOnMainTerrain;
 	protected boolean isAnimatedDead;
-	private Terrain terrian;
-	
-	
-	
-	public Person(double posX, double posY , int health) {
+	protected Image[] dead;
+	protected int deadFrame;
+	protected Image[] walk;
+	protected int walkFrame;
+	protected Image[] shoot;
+	protected int shootFrame;
+
+	public Person(double posX, double posY, int health) {
 		this.posX = posX;
 		this.posY = posY;
 		this.health = health;
@@ -53,39 +53,35 @@ public abstract class Person implements Movable{
 		isAlive = true;
 		isShoot = false;
 		isLookUp = false;
-		isLookDown = false; 
+		isLookDown = false;
 		hasVerticalCollition = false;
 		hasHorizontalCollision = false;
 		walkDirection = 0;
 		isStandOnMainTerrain = false;
 		isAnimatedDead = false;
-		
+
 	}
+
 	public void update() {
-		if(posY >=800) {
-			setPosX(baseX);
-			setPosY(base);
-			veloY = 0;
-		}
-		if(isJump || !isHasVerticalCollition()) {
+
+		if (isJump || !isHasVerticalCollition()) {
 			veloY += GRAVITY;
-	
-		}
-		else if(hasVerticalCollition && veloY > 0) {
+
+		} else if (hasVerticalCollition && veloY > 0) {
 			veloY = 0;
 		}
 		posY += veloY;
-		
 		posX += veloX;
-		
+
 	}
+
 	public void takeDamage(int dmg) {
-		if(this instanceof Enemy) {
-			//SoundManager.play("Gettinghit", 0.5);
+		if (this instanceof Enemy) {
+			// SoundManager.play("Gettinghit", 0.5);
 		}
-		if(health > 0) {
+		if (health > 0) {
 			health = health - dmg;
-			if(health <= 0) {
+			if (health <= 0) {
 				ScorePane.addScore(200);
 				ExpBar.addKillCount(1);
 				SoundManager.play("Death", 0.4);
@@ -93,6 +89,7 @@ public abstract class Person implements Movable{
 			}
 		}
 	}
+
 	public double getBaseX() {
 		return baseX;
 	}
@@ -103,28 +100,25 @@ public abstract class Person implements Movable{
 
 	@Override
 	public void Walk(int direction) {
-		if(!hasHorizontalCollision) {
-		veloX = direction*2;
-		}
-		else {
+		if (!hasHorizontalCollision) {
+			veloX = direction * 2;
+		} else {
 			veloX = 0;
 		}
-		
+
 	}
-	
+
 	public void setIsWalk(boolean isWalk) {
 		this.isWalk = isWalk;
 	}
 
 	@Override
 	public void Jump() {
-		if(hasVerticalCollition&&!isJump) {
+		if (hasVerticalCollition && !isJump) {
 			veloY = -15;
 			isJump = true;
-			
-			
 		}
-		
+
 	}
 
 	public double getPosX() {
@@ -134,62 +128,54 @@ public abstract class Person implements Movable{
 	public double getPosY() {
 		return posY;
 	}
-	/*
-	public boolean isHitByBullet(Bullet b) {
-		if(this.posX <= b.getPosX()+10 && this.posX >= b.getPosX()-10 && (this.posY <= b.getPosY()+20 && this.posY >= b.getPosY())) {
-			System.out.println("HIT!!");
-			return true;
-		}else {
-			return false;
-		}
-	}*/
-	
+
 	public boolean checkInteract(Object o) {
 		BoundingBox p = new BoundingBox(posX, posY, width, height);
-		if(o instanceof Terrain) {
+		if (o instanceof Terrain) {
 			Terrain terrain = (Terrain) o;
-			if(p.intersects(terrain.b)) { 
+			if (p.intersects(terrain.b)) {
 				terrain.setInteract(true);
-				return true;}
-			else {
+				return true;
+			} else {
 				terrain.setInteract(false);
 				return false;
 			}
 		}
-		if(o instanceof Gun) {
+		if (o instanceof Gun) {
 			Gun gun = (Gun) o;
-			
-			if(p.intersects(gun.getB())) {
+
+			if (p.intersects(gun.getB())) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
-		if(this instanceof Enemy&&o instanceof Bomb) {
+		if (this instanceof Enemy && o instanceof Bomb) {
 			Bomb bomb = (Bomb) o;
-			if(p.intersects(bomb.getB())) {
-				
+			if (p.intersects(bomb.getB())) {
+
 				return true;
-			}else {
+			} else {
 				return false;
 			}
-			
-		}if(this instanceof Hero && o instanceof Tank) {
-			Tank tank = (Tank) o;
-			if(p.intersects(tank.getB())) {
-				return true;
-			}else {
-				return false;
-			}
-			
+
 		}
-		
+		if (this instanceof Hero && o instanceof Tank) {
+			Tank tank = (Tank) o;
+			if (p.intersects(tank.getB())) {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
 		return false;
 	}
+
 	public void setDead() {
-		isAlive = false ;
+		isAlive = false;
 	}
+
 	public boolean isAlive() {
 		return isAlive;
 	}
@@ -197,7 +183,7 @@ public abstract class Person implements Movable{
 	public boolean isAnimatedDead() {
 		return isAnimatedDead;
 	}
-	
+
 	public int getHealth() {
 		return health;
 	}
@@ -265,7 +251,7 @@ public abstract class Person implements Movable{
 	public boolean setIsLookUp(boolean isLookUp) {
 		return this.isLookUp = isLookUp;
 	}
-	
+
 	public boolean setIsLookDown(boolean isLookDown) {
 		return this.isLookDown = isLookDown;
 	}
@@ -286,7 +272,6 @@ public abstract class Person implements Movable{
 		this.hasHorizontalCollision = hasHorizontalCollision;
 	}
 
-	
 	public int getWalkDirection() {
 		return walkDirection;
 	}
@@ -294,31 +279,39 @@ public abstract class Person implements Movable{
 	public void setWalkDirection(int walkDirection) {
 		this.walkDirection = walkDirection;
 	}
+
 	public int getMaxHealth() {
 		return maxHealth;
 	}
+
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
+
 	public boolean isStandOnMainTerrain() {
 		return isStandOnMainTerrain;
 	}
+
 	public void setStandOnMainTerrain(boolean isStandOnMainTerrain) {
 		this.isStandOnMainTerrain = isStandOnMainTerrain;
 	}
+
 	public boolean isLookUp() {
 		return isLookUp;
 	}
-	
+
 	public boolean isLookDown() {
 		return isLookDown;
 	}
+
 	public int getDmg() {
 		return dmg;
 	}
+
 	public void setDmg(int dmg) {
 		this.dmg = dmg;
 	}
+
 	public boolean isCanShoot() {
 		return canShoot;
 	}
@@ -326,6 +319,5 @@ public abstract class Person implements Movable{
 	public void setCanShoot(boolean canShoot) {
 		this.canShoot = canShoot;
 	}
-	
-}
 
+}
