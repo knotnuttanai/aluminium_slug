@@ -35,8 +35,6 @@ public class GameLoop implements Runnable {
 		thread.start();
 	}
 
-
-
 	@Override
 	public void run() {
 		if (running) {
@@ -107,7 +105,6 @@ public class GameLoop implements Runnable {
 		gameScene.getExpBar().update();
 		GameEntity.spawnManager.spawnMachineGun();
 	}
-
 
 	private void renderContent() {
 		gameScene.blink();
