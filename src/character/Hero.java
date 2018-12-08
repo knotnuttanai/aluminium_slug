@@ -61,13 +61,13 @@ public class Hero extends Person implements Shootable {
 		isInTheTank = false;
 		requestToEnterTank = false;
 		isThrowingBomb = false;
-		marcoTop = new Image(ClassLoader.getSystemResource("images/top_marco1.png").toString());
-		marcoMachine = new Image(ClassLoader.getSystemResource("images/machgun.png").toString());
-		marcoBottom = new Image(ClassLoader.getSystemResource("images/bottom_marco.png").toString());
-		marcoLookUp = new Image(ClassLoader.getSystemResource("images/marcoUp.png").toString());
-		marcoLookDown = new Image(ClassLoader.getSystemResource("images/marcodown.png").toString());
-		marcoMachUp = new Image(ClassLoader.getSystemResource("images/machup.png").toString());
-		marcoMachDown = new Image(ClassLoader.getSystemResource("images/machdown.png").toString());
+		marcoTop = new Image(ClassLoader.getSystemResource("top_marco1.png").toString());
+		marcoMachine = new Image(ClassLoader.getSystemResource("machgun.png").toString());
+		marcoBottom = new Image(ClassLoader.getSystemResource("bottom_marco.png").toString());
+		marcoLookUp = new Image(ClassLoader.getSystemResource("marcoUp.png").toString());
+		marcoLookDown = new Image(ClassLoader.getSystemResource("marcodown.png").toString());
+		marcoMachUp = new Image(ClassLoader.getSystemResource("machup.png").toString());
+		marcoMachDown = new Image(ClassLoader.getSystemResource("machdown.png").toString());
 		shoot = new Image[10];
 		shootUp = new Image[10];
 		shootDown = new Image[6];
@@ -89,35 +89,34 @@ public class Hero extends Person implements Shootable {
 		machBombFrame = 0;
 		deadFrame = 0;
 		for (int i = 1; i <= 10; i++) {
-			shoot[i - 1] = new Image(ClassLoader.getSystemResource("images/shoot" + i + ".png").toString());
+			shoot[i - 1] = new Image(ClassLoader.getSystemResource("shoot" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 10; i++) {
-			shootUp[i - 1] = new Image(ClassLoader.getSystemResource("images/shootup" + i + ".png").toString());
+			shootUp[i - 1] = new Image(ClassLoader.getSystemResource("shootup" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 6; i++) {
-			shootDown[i - 1] = new Image(ClassLoader.getSystemResource("images/shootdown" + i + ".png").toString());
+			shootDown[i - 1] = new Image(ClassLoader.getSystemResource("shootdown" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 10; i++) {
-			walk[i - 1] = new Image(ClassLoader.getSystemResource("images/walk" + i + ".png").toString());
+			walk[i - 1] = new Image(ClassLoader.getSystemResource("walk" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 4; i++) {
-			machShoot[i - 1] = new Image(ClassLoader.getSystemResource("images/mach" + i + ".png").toString());
+			machShoot[i - 1] = new Image(ClassLoader.getSystemResource("mach" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 4; i++) {
-			machShootUp[i - 1] = new Image(ClassLoader.getSystemResource("images/machshootup" + i + ".png").toString());
+			machShootUp[i - 1] = new Image(ClassLoader.getSystemResource("machshootup" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 4; i++) {
-			machShootDown[i - 1] = new Image(
-					ClassLoader.getSystemResource("images/machshootdown" + i + ".png").toString());
+			machShootDown[i - 1] = new Image(ClassLoader.getSystemResource("machshootdown" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 5; i++) {
-			ThrowingBomb[i - 1] = new Image(ClassLoader.getSystemResource("images/throwbomb" + i + ".png").toString());
+			ThrowingBomb[i - 1] = new Image(ClassLoader.getSystemResource("throwbomb" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 6; i++) {
-			MachThrowBomb[i - 1] = new Image(ClassLoader.getSystemResource("images/machbomb" + i + ".png").toString());
+			MachThrowBomb[i - 1] = new Image(ClassLoader.getSystemResource("machbomb" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 19; i++) {
-			dead[i - 1] = new Image(ClassLoader.getSystemResource("images/marcodead" + i + ".png").toString());
+			dead[i - 1] = new Image(ClassLoader.getSystemResource("marcodead" + i + ".png").toString());
 		}
 	}
 
