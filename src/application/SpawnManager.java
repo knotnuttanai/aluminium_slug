@@ -37,6 +37,7 @@ public class SpawnManager {
 	}
 
 	public void RandomSpawnTank() {
+		
 		if (Math.random() < tankSpawnRate) {
 			Tank tank = new Tank(500, -200, 100, 100, GameEntity.hero);
 			tank.addObject();

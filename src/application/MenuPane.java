@@ -20,6 +20,10 @@ public class MenuPane extends StackPane {
 		this.getChildren().add(imageView0);
 		this.getChildren().add(imageView2);
 		imageView2.setVisible(false);
+		run();
+
+	}
+	public static void run() {
 		Thread thread = new Thread(() -> {
 
 			try {
@@ -38,7 +42,6 @@ public class MenuPane extends StackPane {
 		});
 		thread.setDaemon(true);
 		thread.start();
-
 	}
 
 }

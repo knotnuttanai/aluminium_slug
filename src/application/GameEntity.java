@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import character.Enemy;
 import character.Hero;
+import environment.Deleteable;
 import environment.Foreground;
 import environment.Terrain;
 import weapon.Bomb;
@@ -181,5 +182,27 @@ public class GameEntity {
 		} catch (ArrayIndexOutOfBoundsException e) {
 		}
 	}
-
+	public static void restart() {
+		GameLoop.an.stop();
+		enemies.clear();
+		bullets.clear();
+		gameObjects.clear();
+		fgs.clear();
+		terrains.clear();
+		hero.setPosX(hero.getBaseX());
+		hero.setPosY(hero.getBase());
+		spawnManager.initWorld(0);
+		hero.Walk(0);
+		hero.setIsWalk(false);
+		hero.setHealth(200);
+		hero.setMaxHealth(200);
+		hero.setMaxGrenade(10);
+		ScorePane.score = 0;
+		ExpBar.level = 0;
+		HeroStatusPane.statusPoint = 0;
+		hero.setUseGunBullet(0);
+		hero.setDamage(0);
+		hero.setMoveSpeed(-5);
+		GameLoop.an.start();
+	}
 }

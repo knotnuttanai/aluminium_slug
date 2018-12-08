@@ -15,7 +15,7 @@ public class EventManager {
 	private Hero hero;
 	private boolean heroWalkOverBase;
 	private boolean canWalk;
-	public boolean dIsPressed, aIsPressed, isPaused;
+	public boolean dIsPressed, aIsPressed, isPaused,escIsPressed;
 	private Thread thread;
 
 	public EventManager(Scene scene, Hero hero) {
@@ -27,6 +27,7 @@ public class EventManager {
 		dIsPressed = false;
 		aIsPressed = false;
 		isPaused = false;
+		escIsPressed = false;
 	}
 
 	public boolean isCanWalk() {
@@ -38,21 +39,7 @@ public class EventManager {
 	}
 
 	public void setPlayerControl() {
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.ENTER) {
-					if (!MenuPane.running) {
-						SoundManager.play("Mission1", 0.3);
-					}
-					MenuPane.running = true;
-					MenuPane.imageView1.setVisible(false);
-					MenuPane.imageView1.setDisable(true);
-					MenuPane.imageView0.setVisible(false);
-					MenuPane.imageView0.setDisable(true);
-				}
-			}
-		});
+		
 	}
 
 	public boolean isAtTheEndOfScreen() {
@@ -83,10 +70,24 @@ public class EventManager {
 	}
 
 	public void keyHandle() {
-
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if (event.getCode() == KeyCode.ENTER) {
+					if (!MenuPane.running) {
+						SoundManager.play("Mission1", 0.3);
+					}
+					MenuPane.running = true;
+					MenuPane.imageView1.setVisible(false);
+					MenuPane.imageView1.setDisable(true);
+					MenuPane.imageView0.setVisible(false);
+					MenuPane.imageView0.setDisable(true);
+				}
+			}
+		});
 		if(MenuPane.running) {
 			
-
+			
 			scene.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
@@ -121,12 +122,28 @@ public class EventManager {
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent event) {
+					
 					if (event.getCode() == KeyCode.ESCAPE) {
-						if(!isPaused) {
+						
+						if(!isPaused&&!escIsPressed) {
 							GameLoop.an.stop();
 							MenuPane.imageView2.setVisible(true);
 							isPaused = true;
+							escIsPressed = true;
 						}
+						if(isPaused&&!escIsPressed) {
+							GameEntity.restart();
+							MenuPane.imageView2.setVisible(false);
+							MenuPane.imageView1.setVisible(true);
+							MenuPane.imageView1.setDisable(false);
+							MenuPane.imageView0.setVisible(true);
+							MenuPane.imageView0.setDisable(false);
+							isPaused = false;
+							MenuPane.running = false;
+							MenuPane.run();
+							escIsPressed = true;
+						}
+						
 					}
 					if (event.getCode() == KeyCode.ENTER) {
 						if(isPaused) {
@@ -186,9 +203,12 @@ public class EventManager {
 					} else if (event.getCode() == KeyCode.S) {
 						hero.setIsLookDown(false);
 					}
+				 else if (event.getCode() == KeyCode.ESCAPE) {
+					escIsPressed = false;
+				}
 				}
 			});
-		}
+		
 		if (!hero.isAlive())
 			return;
 		if (dIsPressed) {
@@ -220,6 +240,7 @@ public class EventManager {
 		} else {
 			hero.Walk(0);
 		}
+	}
 	}
 
 }

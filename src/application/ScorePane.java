@@ -6,7 +6,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class ScorePane {
-	private static int score;
+	public static int score;
 	private String showScore;
 
 	public ScorePane() {

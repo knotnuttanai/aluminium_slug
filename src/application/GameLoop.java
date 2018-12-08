@@ -78,6 +78,7 @@ public class GameLoop implements Runnable {
 			setWalk(true);
 		}
 		GameEntity.spawnManager.spawnEnemy();
+		GameEntity.spawnManager.RandomSpawnTank();
 		GameEntity.checkStand();
 		GameEntity.calculateHit();
 		GameEntity.clearDead();
