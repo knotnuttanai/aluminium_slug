@@ -51,9 +51,16 @@ public class SpawnManager {
 	}
 
 	public void spawnEnemy() {
+	
 		checkEnemyNumber();
 		if (numberOfEnemy >= limitNumber) {
 			return;
+		}
+		if(!MenuPane.running) {
+			HandSoldier enemy = new HandSoldier(640 + 100 * Math.random(), 100, 50);
+			enemy.setDamage(damage + enemy.getDamage());
+			enemy.setHealth(hp + enemy.getHealth());
+			enemy.addEnemy();
 		}
 		if (Math.random() < spawnRate) {
 			double a = Math.random();

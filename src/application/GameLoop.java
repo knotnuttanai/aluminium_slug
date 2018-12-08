@@ -44,6 +44,8 @@ public class GameLoop implements Runnable {
      try {
       updateContent(now);
       renderContent();
+      //gameMenu();
+      
      } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("index out of bound");
       SoundManager.playMediaLoop("BGM");
@@ -69,7 +71,9 @@ public class GameLoop implements Runnable {
    gameScene.getRoot().getChildren().clear();
    an.stop();
   }
-  ev.keyHandle();
+	  ev.keyHandle();
+	  GameEntity.spawnManager.spawnEnemy();
+  
   if (heroWalkOverBase()) {
    ev.setHeroWalkOverBase(true);
    setWalk(false);
@@ -77,7 +81,7 @@ public class GameLoop implements Runnable {
    ev.setHeroWalkOverBase(false);
    setWalk(true);
   }
-  GameEntity.spawnManager.spawnEnemy();
+  
   GameEntity.checkStand();
   GameEntity.calculateHit();
   GameEntity.clearDead();

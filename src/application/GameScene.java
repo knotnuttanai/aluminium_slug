@@ -27,11 +27,12 @@ public class GameScene {
 		heroStatusPane = new HeroStatusPane();
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
-		root.getChildren().add(menu);
+		
 		root.getChildren().add(canvas);
 		root.getChildren().add(hpBar);
 		root.getChildren().add(heroStatusPane);
 		root.getChildren().add(expBar);
+		root.getChildren().add(menu);
 		root.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
 			if (k.getCode() == KeyCode.SPACE) {
 				GameEntity.hero.Jump();

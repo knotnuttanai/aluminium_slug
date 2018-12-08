@@ -38,89 +38,23 @@ public class EventManager {
 	}
 
 	public void setPlayerControl() {
-		scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				thread = new Thread(() -> {
-					try {
-						while (true) {
-							hero.shoot();
-							Thread.sleep(hero.getFirerate());
-						}
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				});
-				thread.start();
-			}
-		});
-		scene.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				try {
-					thread.interrupt();
-					thread.join();
-
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		});
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
 			@Override
 			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.W) {
-					hero.setIsLookUp(true);
-				}
-				if (event.getCode() == KeyCode.D) {
-					dIsPressed = true;
-				} else if (event.getCode() == KeyCode.A) {
-					aIsPressed = true;
-				} else if (event.getCode() == KeyCode.S) {
-					hero.setIsLookDown(true);
-				} else if (event.getCode() == KeyCode.E) {
-					if (!hero.isRequestToEnterTank() && !hero.isInTheTank()) {
-						hero.setRequestToEnterTank(true);
-						System.out.println("hihi");
-					}
-				} else if (event.getCode() == KeyCode.B) {
-					hero.setThrowingBomb(true);
-					hero.throwBomb();
-				} else if (event.getCode() == KeyCode.SPACE) {
-					hero.Jump();
-				}
+				// TODO Auto-generated method stub
+				if(event.getCode() == KeyCode.ENTER) {
+		    		MenuPane.running = true;
+		    		MenuPane.imageView0.setVisible(false);
+		    		MenuPane.imageView0.setDisable(true);
+		    		MenuPane.imageView1.setVisible(false);
+		    		MenuPane.imageView1.setDisable(true);
+		    		
+		    	}
 			}
 		});
-		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.W) {
-					hero.setIsLookUp(false);
-				}
-				if (event.getCode() == KeyCode.D) {
-					dIsPressed = false;
-					for (Enemy e : GameEntity.enemies) {
-						e.stop();
-					}
-					for (Foreground fg : GameEntity.fgs) {
-						fg.moveScreen(0);
-					}
-
-				} else if (event.getCode() == KeyCode.A) {
-					aIsPressed = false;
-					for (Enemy x : GameEntity.enemies) {
-						x.stop();
-					}
-				} else if (event.getCode() == KeyCode.E) {
-					if (hero.isRequestToEnterTank() && !hero.isInTheTank()) {
-						hero.setRequestToEnterTank(false);
-					}
-
-				} else if (event.getCode() == KeyCode.S) {
-					hero.setIsLookDown(false);
-				}
-			}
-		});
+		
+		
 	}
 
 	public boolean isAtTheEndOfScreen() {
@@ -151,6 +85,91 @@ public class EventManager {
 	}
 
 	public void keyHandle() {
+		if(MenuPane.running) {
+			scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					thread = new Thread(() -> {
+						try {
+							while (true) {
+								hero.shoot();
+								Thread.sleep(hero.getFirerate());
+							}
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					});
+					thread.start();
+				}
+			});
+			scene.setOnMouseReleased(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					try {
+						thread.interrupt();
+						thread.join();
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent event) {
+					if (event.getCode() == KeyCode.W) {
+						hero.setIsLookUp(true);
+					}
+					if (event.getCode() == KeyCode.D) {
+						dIsPressed = true;
+					} else if (event.getCode() == KeyCode.A) {
+						aIsPressed = true;
+					} else if (event.getCode() == KeyCode.S) {
+						hero.setIsLookDown(true);
+					} else if (event.getCode() == KeyCode.E) {
+						if (!hero.isRequestToEnterTank() && !hero.isInTheTank()) {
+							hero.setRequestToEnterTank(true);
+							System.out.println("hihi");
+						}
+					} else if (event.getCode() == KeyCode.B) {
+						hero.setThrowingBomb(true);
+						hero.throwBomb();
+					} else if (event.getCode() == KeyCode.SPACE) {
+						hero.Jump();
+					}
+				}
+			});
+			scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent event) {
+					if (event.getCode() == KeyCode.W) {
+						hero.setIsLookUp(false);
+					}
+					if (event.getCode() == KeyCode.D) {
+						dIsPressed = false;
+						for (Enemy e : GameEntity.enemies) {
+							e.stop();
+						}
+						for (Foreground fg : GameEntity.fgs) {
+							fg.moveScreen(0);
+						}
+
+					} else if (event.getCode() == KeyCode.A) {
+						aIsPressed = false;
+						for (Enemy x : GameEntity.enemies) {
+							x.stop();
+						}
+					} else if (event.getCode() == KeyCode.E) {
+						if (hero.isRequestToEnterTank() && !hero.isInTheTank()) {
+							hero.setRequestToEnterTank(false);
+						}
+
+					} else if (event.getCode() == KeyCode.S) {
+						hero.setIsLookDown(false);
+					}
+				}
+			});
+		}
 		if (!hero.isAlive())
 			return;
 		if (dIsPressed) {
