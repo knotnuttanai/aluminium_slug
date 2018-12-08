@@ -3,6 +3,7 @@ package application;
 import character.Enemy;
 import character.Hero;
 import environment.Foreground;
+import exception.NoMoreArmoException;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -100,6 +101,9 @@ public class EventManager {
 							}
 						} catch (InterruptedException e) {
 							e.printStackTrace();
+						} catch (NoMoreArmoException e) {
+							// TODO Auto-generated catch block
+							System.out.println("MachineGun out of armo");
 						}
 					});
 					thread.start();
@@ -168,7 +172,12 @@ public class EventManager {
 						}
 					} else if (event.getCode() == KeyCode.B) {
 						hero.setThrowingBomb(true);
-						hero.throwBomb();
+						try {
+							hero.throwBomb();
+						} catch (NoMoreArmoException e) {
+							// TODO Auto-generated catch block
+							System.out.println("No more armo");
+						}
 					} else if (event.getCode() == KeyCode.SPACE) {
 						hero.Jump();
 					}

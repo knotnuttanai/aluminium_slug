@@ -2,6 +2,7 @@ package character;
 
 import application.ImageManager;
 import application.SoundManager;
+import exception.NoMoreArmoException;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -359,7 +360,7 @@ public class Hero extends Person implements Shootable {
 	}
 
 	@Override
-	public void shoot() {
+	public void shoot() throws NoMoreArmoException{
 
 		if (canShoot) {
 			isShoot = true;
@@ -380,7 +381,7 @@ public class Hero extends Person implements Shootable {
 					bullet.setDamage(damage + bullet.getDamage());
 					bullet.addBullet();
 					SoundManager.play("pistolbullet", 1);
-					return;
+					throw new NoMoreArmoException();
 				}
 				firerate = 80;
 				MachineGunBullet bullet = new MachineGunBullet(this);
@@ -399,8 +400,12 @@ public class Hero extends Person implements Shootable {
 		}
 	}
 
-	public void throwBomb() {
-		if (isThrowingBomb && maxGrenade > 0) {
+	public void throwBomb() throws NoMoreArmoException {
+		
+		if (isThrowingBomb) {
+			if(maxGrenade == 0) {
+				throw new NoMoreArmoException();
+			}
 			Bomb bomb = new Bomb(50, 50, this);
 			bomb.addObject();
 			maxGrenade--;
