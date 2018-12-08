@@ -14,7 +14,6 @@ import weapon.EnemyBullet;
 import weapon.GameObject;
 import weapon.Gun;
 import weapon.HeroBullet;
-import weapon.MachineGunBullet;
 import weapon.Tank;
 import weapon.TankBullet;
 
@@ -111,9 +110,11 @@ public class GameEntity {
 							e.takeDamage(b1.getDamage());
 							if (b1 instanceof TankBullet) {
 
-							} else if (b1 instanceof MachineGunBullet) {
-
-							} else {
+							} /*
+								 * else if (b1 instanceof MachineGunBullet) {
+								 * 
+								 * }
+								 */ else {
 								b.setHit();
 							}
 						}
