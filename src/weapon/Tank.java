@@ -76,10 +76,10 @@ public class Tank extends GameObject {
 			} else {
 				bulletOfHero = 0;
 			}
-			health = hero.getHealth();
-			hero.setHealth(health + maxHealth + 20000000);
+			
+			hero.setHealth(maxHealth + 20000000);
 		} else if (isUsed) {
-			if (hero.getHealth() <= health + 20000000) {
+			if (hero.getHealth() <= 20000000) {
 				hero.setGun(gunOfHero);
 				hero.setHealth(healthOfHero);
 				hero.setUseGunBullet(bulletOfHero);

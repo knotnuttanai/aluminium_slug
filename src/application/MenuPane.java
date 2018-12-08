@@ -17,17 +17,19 @@ public class MenuPane extends StackPane{
 	public static boolean running = false;
 	public static ImageView imageView0 = new ImageView(new Image(ClassLoader.getSystemResource("presstostart.png").toString()));
 	public static ImageView imageView1 = new ImageView(new Image(ClassLoader.getSystemResource("startscreen.png").toString()));
+	public static ImageView imageView2 = new ImageView(new Image(ClassLoader.getSystemResource("pause.png").toString()));
 
 
 	public MenuPane() {
-		setPrefWidth(680);
+		setPrefWidth(640);
 		setPrefHeight(480);
 		setAlignment(Pos.CENTER);
 
 		
 		this.getChildren().add(imageView1);
 	    this.getChildren().add(imageView0);
-	    
+	    this.getChildren().add(imageView2);
+	    imageView2.setVisible(false);
 	   Thread thread = new Thread(()->{
 		   
 		   try {
@@ -43,6 +45,7 @@ public class MenuPane extends StackPane{
 				e.printStackTrace();
 			}
 	    });
+	   thread.setDaemon(true);
 	   thread.start();
 	   
 
