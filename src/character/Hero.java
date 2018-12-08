@@ -61,13 +61,13 @@ public class Hero extends Person implements Shootable {
 		isInTheTank = false;
 		requestToEnterTank = false;
 		isThrowingBomb = false;
-		marcoTop = new Image("file:res/images/top_marco1.png");
-		marcoMachine = new Image("file:res/images/machgun.png");
-		marcoBottom = new Image("file:res/images/bottom_marco.png");
-		marcoLookUp = new Image("file:res/images/marcoUp.png");
-		marcoLookDown = new Image("file:res/images/marcodown.png");
-		marcoMachUp = new Image("file:res/images/machup.png");
-		marcoMachDown = new Image("file:res/images/machdown.png");
+		marcoTop = new Image(ClassLoader.getSystemResource("images/top_marco1.png").toString());
+		marcoMachine = new Image(ClassLoader.getSystemResource("images/machgun.png").toString());
+		marcoBottom = new Image(ClassLoader.getSystemResource("images/bottom_marco.png").toString());
+		marcoLookUp = new Image(ClassLoader.getSystemResource("images/marcoUp.png").toString());
+		marcoLookDown = new Image(ClassLoader.getSystemResource("images/marcodown.png").toString());
+		marcoMachUp = new Image(ClassLoader.getSystemResource("images/machup.png").toString());
+		marcoMachDown = new Image(ClassLoader.getSystemResource("images/machdown.png").toString());
 		shoot = new Image[10];
 		shootUp = new Image[10];
 		shootDown = new Image[6];
@@ -89,34 +89,35 @@ public class Hero extends Person implements Shootable {
 		machBombFrame = 0;
 		deadFrame = 0;
 		for (int i = 1; i <= 10; i++) {
-			shoot[i - 1] = new Image("file:res/images/shoot" + i + ".png");
+			shoot[i - 1] = new Image(ClassLoader.getSystemResource("images/shoot" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 10; i++) {
-			shootUp[i - 1] = new Image("file:res/images/shootup" + i + ".png");
+			shootUp[i - 1] = new Image(ClassLoader.getSystemResource("images/shootup" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 6; i++) {
-			shootDown[i - 1] = new Image("file:res/images/shootdown" + i + ".png");
+			shootDown[i - 1] = new Image(ClassLoader.getSystemResource("images/shootdown" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 10; i++) {
-			walk[i - 1] = new Image("file:res/images/walk" + i + ".png");
+			walk[i - 1] = new Image(ClassLoader.getSystemResource("images/walk" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 4; i++) {
-			machShoot[i - 1] = new Image("file:res/images/mach" + i + ".png");
+			machShoot[i - 1] = new Image(ClassLoader.getSystemResource("images/mach" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 4; i++) {
-			machShootUp[i - 1] = new Image("file:res/images/machshootup" + i + ".png");
+			machShootUp[i - 1] = new Image(ClassLoader.getSystemResource("images/machshootup" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 4; i++) {
-			machShootDown[i - 1] = new Image("file:res/images/machshootdown" + i + ".png");
+			machShootDown[i - 1] = new Image(
+					ClassLoader.getSystemResource("images/machshootdown" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 5; i++) {
-			ThrowingBomb[i - 1] = new Image("file:res/images/throwbomb" + i + ".png");
+			ThrowingBomb[i - 1] = new Image(ClassLoader.getSystemResource("images/throwbomb" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 6; i++) {
-			MachThrowBomb[i - 1] = new Image("file:res/images/machbomb" + i + ".png");
+			MachThrowBomb[i - 1] = new Image(ClassLoader.getSystemResource("images/machbomb" + i + ".png").toString());
 		}
 		for (int i = 1; i <= 19; i++) {
-			dead[i - 1] = new Image("file:res/images/marcodead" + i + ".png");
+			dead[i - 1] = new Image(ClassLoader.getSystemResource("images/marcodead" + i + ".png").toString());
 		}
 	}
 
