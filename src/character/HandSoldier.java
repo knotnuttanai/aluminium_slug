@@ -1,5 +1,6 @@
 package character;
 
+import application.ImageManager;
 import application.SoundManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -19,28 +20,28 @@ public class HandSoldier extends Enemy {
 		soundIsPlay = false;
 		walk = new Image[12];
 		for (int i = 1; i <= 12; i++) {
-			walk[i - 1] = new Image(ClassLoader.getSystemResource("normalsoldier" + i + ".png").toString());
+			walk[i - 1] = ImageManager.buildImage("normalsoldier" + i + ".png");
 		}
 		walkFrame = 0;
 		normalCondition = true;
 
 		scare = new Image[6];
 		for (int i = 1; i <= 6; i++) {
-			scare[i - 1] = new Image(ClassLoader.getSystemResource("soldierscare" + i + ".png").toString());
+			scare[i - 1] = ImageManager.buildImage("soldierscare" + i + ".png");
 		}
 		scareFrame = 0;
 		scareCondition = false;
 
 		run = new Image[11];
 		for (int i = 3; i <= 13; i++) {
-			run[i - 3] = new Image(ClassLoader.getSystemResource("soldierrun" + i + ".png").toString());
+			run[i - 3] = ImageManager.buildImage("soldierrun" + i + ".png");
 		}
 		runFrame = 0;
 		runCondition = false;
 
 		dead = new Image[11];
 		for (int i = 1; i <= 11; i++) {
-			dead[i - 1] = new Image(ClassLoader.getSystemResource("soldierdead" + i + ".png").toString());
+			dead[i - 1] = ImageManager.buildImage("soldierdead" + i + ".png");
 		}
 		deadFrame = 0;
 	}

@@ -1,5 +1,6 @@
 package character;
 
+import application.ImageManager;
 import application.SoundManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -20,15 +21,15 @@ public class TurretSoldier extends Enemy implements Shootable {
 		baseVeloX = 0;
 		damage = 0;
 		walkDirection = 0;
-		turret = new Image(ClassLoader.getSystemResource("turret.png").toString());
+		turret = ImageManager.buildImage("turret.png");
 		shoot = new Image[3];
 		for (int i = 1; i <= 3; i++) {
-			shoot[i - 1] = new Image(ClassLoader.getSystemResource("turretfiring" + i + ".png").toString());
+			shoot[i - 1] = ImageManager.buildImage("turretfiring" + i + ".png");
 		}
 		shootFrame = 0;
 		dead = new Image[21];
 		for (int i = 1; i <= 21; i++) {
-			dead[i - 1] = new Image(ClassLoader.getSystemResource("Layer " + i + ".png").toString());
+			dead[i - 1] = ImageManager.buildImage("Layer " + i + ".png");
 		}
 		deadFrame = 0;
 		shootCondition = false;

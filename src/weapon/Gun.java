@@ -1,5 +1,6 @@
 package weapon;
 
+import application.ImageManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -9,7 +10,7 @@ public class Gun extends GameObject {
 
 	public Gun(double posX, double posY, double width, double height) {
 		super(posX, posY, width, height);
-		Item = new Image(ClassLoader.getSystemResource("H.png").toString());
+		Item = ImageManager.buildImage("H.png");
 	}
 
 	@Override

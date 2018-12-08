@@ -1,6 +1,7 @@
 package environment;
 
 import application.GameEntity;
+import application.ImageManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -12,7 +13,7 @@ public class Foreground implements Deleteable {
 	private boolean isDead;
 
 	public Foreground(double posX) {
-		fg = new Image(ClassLoader.getSystemResource("foreground2.png").toString());
+		fg = ImageManager.buildImage("foreground2.png");
 		veloX = 0;
 		this.posX = posX;
 		isDead = false;

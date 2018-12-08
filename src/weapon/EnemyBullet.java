@@ -1,7 +1,7 @@
 package weapon;
 
+import application.ImageManager;
 import character.Person;
-import javafx.scene.image.Image;
 
 public class EnemyBullet extends Bullet {
 
@@ -15,7 +15,7 @@ public class EnemyBullet extends Bullet {
 		baseVeloY = veloY;
 		posX -= 100;
 		posY += 8;
-		bullet = new Image(ClassLoader.getSystemResource("enemybullet.png").toString(), 15, 32.5, false, false);
+		bullet = ImageManager.buildImage("enemybullet.png", 15, 32.5, false, false);
 	}
 
 }

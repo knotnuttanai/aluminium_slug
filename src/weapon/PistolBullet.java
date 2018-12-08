@@ -1,7 +1,7 @@
 package weapon;
 
+import application.ImageManager;
 import character.Person;
-import javafx.scene.image.Image;
 
 public class PistolBullet extends HeroBullet {
 
@@ -10,7 +10,7 @@ public class PistolBullet extends HeroBullet {
 		this.damage = 10;
 		width = 20;
 		height = 20;
-		bullet = new Image(ClassLoader.getSystemResource("Glenos-G_160_bullet.png").toString(), 20, 50, false, false);
+		bullet = ImageManager.buildImage("Glenos-G_160_bullet.png", 20, 50, false, false);
 	}
 
 }

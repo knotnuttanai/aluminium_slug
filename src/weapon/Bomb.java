@@ -1,6 +1,7 @@
 package weapon;
 
 import application.GameEntity;
+import application.ImageManager;
 import application.SoundManager;
 import character.Hero;
 import javafx.geometry.BoundingBox;
@@ -28,13 +29,13 @@ public class Bomb extends GameObject {
 		isIgnited = false;
 		Bomb = new Image[9];
 		for (int i = 1; i <= 9; i++) {
-			Bomb[i - 1] = new Image(ClassLoader.getSystemResource("bomb" + i + ".png").toString());
+			Bomb[i - 1] = ImageManager.buildImage("bomb" + i + ".png");
 		}
 		bombFrame = 0;
 
 		Smoke = new Image[21];
 		for (int i = 1; i <= 21; i++) {
-			Smoke[i - 1] = new Image(ClassLoader.getSystemResource("Layer " + i + ".png").toString());
+			Smoke[i - 1] = ImageManager.buildImage("Layer " + i + ".png");
 		}
 		smokeFrame = 0;
 	}

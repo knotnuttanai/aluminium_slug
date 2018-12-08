@@ -1,6 +1,7 @@
 package weapon;
 
 import application.GameEntity;
+import application.ImageManager;
 import character.Person;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -44,9 +45,9 @@ public class Bullet extends GameObject {
 		baseVeloY = veloY;
 		isHit = false;
 		damage = 10;
-		bullet = new Image(ClassLoader.getSystemResource("Glenos-G_160_bullet.png").toString(), 50, 32.5, false, false);
-		bulletShootUp = new Image(ClassLoader.getSystemResource("bulletup.png").toString(), 32.5, 50, false, false);
-		bulletShootDown = new Image(ClassLoader.getSystemResource("bulletdown.png").toString(), 32.5, 50, false, false);
+		bullet = ImageManager.buildImage("Glenos-G_160_bullet.png", 50, 32.5, false, false);
+		bulletShootUp = ImageManager.buildImage("bulletup.png", 32.5, 50, false, false);
+		bulletShootDown = ImageManager.buildImage("bulletdown.png", 32.5, 50, false, false);
 	}
 
 	@Override

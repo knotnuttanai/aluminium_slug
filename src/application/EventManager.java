@@ -39,10 +39,8 @@ public class EventManager {
 
 	public void setPlayerControl() {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
 			@Override
 			public void handle(KeyEvent event) {
-				// TODO Auto-generated method stub
 				if (event.getCode() == KeyCode.ENTER) {
 					if (!MenuPane.running) {
 						SoundManager.play("Mission1", 0.3);
@@ -52,11 +50,9 @@ public class EventManager {
 					MenuPane.imageView1.setDisable(true);
 					MenuPane.imageView0.setVisible(false);
 					MenuPane.imageView0.setDisable(true);
-
 				}
 			}
 		});
-
 	}
 
 	public boolean isAtTheEndOfScreen() {

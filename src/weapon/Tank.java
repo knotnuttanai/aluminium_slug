@@ -1,5 +1,6 @@
 package weapon;
 
+import application.ImageManager;
 import application.SoundManager;
 import character.Hero;
 import javafx.geometry.BoundingBox;
@@ -42,33 +43,33 @@ public class Tank extends GameObject {
 		gunOfHero = 0;
 		healthOfHero = 0;
 		bulletOfHero = 0;
-		tankImage = new Image(ClassLoader.getSystemResource("tank1.png").toString());
+		tankImage = ImageManager.buildImage("tank1.png");
 		movingTank = new Image[14];
 		for (int i = 1; i <= 14; i++) {
-			movingTank[i - 1] = new Image(ClassLoader.getSystemResource("tank" + i + ".png").toString());
+			movingTank[i - 1] = ImageManager.buildImage("tank" + i + ".png");
 		}
 		tankFrame = 0;
-		tankGun = new Image(ClassLoader.getSystemResource("tankgun1.png").toString());
+		tankGun = ImageManager.buildImage("tankgun1.png");
 		shootGun = new Image[5];
 		for (int i = 1; i <= 5; i++) {
-			shootGun[i - 1] = new Image(ClassLoader.getSystemResource("tankgun" + i + ".png").toString());
+			shootGun[i - 1] = ImageManager.buildImage("tankgun" + i + ".png");
 		}
 		shootFrame = 0;
-		tankUp = new Image(ClassLoader.getSystemResource("tankup0.png").toString());
+		tankUp = ImageManager.buildImage("tankup0.png");
 		shootUp = new Image[5];
 		for (int i = 0; i <= 4; i++) {
-			shootUp[i] = new Image(ClassLoader.getSystemResource("tankup" + i + ".png").toString());
+			shootUp[i] = ImageManager.buildImage("tankup" + i + ".png");
 		}
 		upFrame = 0;
-		tankDown = new Image(ClassLoader.getSystemResource("tankdown0.png").toString());
+		tankDown = ImageManager.buildImage("tankdown0.png");
 		shootDown = new Image[5];
 		for (int i = 0; i <= 4; i++) {
-			shootDown[i] = new Image(ClassLoader.getSystemResource("tankdown" + i + ".png").toString());
+			shootDown[i] = ImageManager.buildImage("tankdown" + i + ".png");
 		}
 		downFrame = 0;
 		dead = new Image[21];
 		for (int i = 1; i <= 21; i++) {
-			dead[i - 1] = new Image(ClassLoader.getSystemResource("Layer " + i + ".png").toString());
+			dead[i - 1] = ImageManager.buildImage("Layer " + i + ".png");
 		}
 		deadFrame = 0;
 		readyToDead = false;

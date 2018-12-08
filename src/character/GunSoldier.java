@@ -1,5 +1,6 @@
 package character;
 
+import application.ImageManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import weapon.EnemyBullet;
@@ -19,28 +20,28 @@ public class GunSoldier extends Enemy implements Shootable {
 		count = 0;
 		walk = new Image[12];
 		for (int i = 1; i <= 12; i++) {
-			walk[i - 1] = new Image(ClassLoader.getSystemResource("normalsoldier" + i + ".png").toString());
+			walk[i - 1] = ImageManager.buildImage("normalsoldier" + i + ".png");
 		}
 		walkFrame = 0;
 		normalCondition = true;
 
 		grabGun = new Image[8];
 		for (int i = 1; i <= 8; i++) {
-			grabGun[i - 1] = new Image(ClassLoader.getSystemResource("grabgun" + i + ".png").toString());
+			grabGun[i - 1] = ImageManager.buildImage("grabgun" + i + ".png");
 		}
 		grabGunFrame = 0;
 		grabGunCondition = false;
 
 		shoot = new Image[5];
 		for (int i = 0; i <= 4; i++) {
-			shoot[i] = new Image(ClassLoader.getSystemResource("soldiershoot" + i + ".png").toString());
+			shoot[i] = ImageManager.buildImage("soldiershoot" + i + ".png");
 		}
 		shootFrame = 0;
 		shootCondition = false;
 
 		dead = new Image[6];
 		for (int i = 1; i <= 6; i++) {
-			dead[i - 1] = new Image(ClassLoader.getSystemResource("gundead" + i + ".png").toString());
+			dead[i - 1] = ImageManager.buildImage("gundead" + i + ".png");
 		}
 		deadFrame = 0;
 
