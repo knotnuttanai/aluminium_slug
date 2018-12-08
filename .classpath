@@ -2,8 +2,9 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry excluding="sounds/" kind="src" path="res"/>
+	<classpathentry excluding="sounds/|images/" kind="src" path="res"/>
 	<classpathentry kind="src" path="res/sounds"/>
+	<classpathentry kind="src" path="res/images"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -18,14 +18,16 @@ public class GameScene {
 	private ExpBar expBar;
 	private GraphicsContext view;
 	private HeroStatusPane heroStatusPane;
-
+	private MenuPane menu;
 	public GameScene(Canvas canvas) {
+		menu = new MenuPane();
 		expBar = new ExpBar();
 		hpBar = new HpBar();
 		root = new Group();
 		heroStatusPane = new HeroStatusPane();
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
+		root.getChildren().add(menu);
 		root.getChildren().add(canvas);
 		root.getChildren().add(hpBar);
 		root.getChildren().add(heroStatusPane);

@@ -24,7 +24,7 @@ public class GameEntity {
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
-	public static Hero hero = new Hero(200, 200, 100000);
+	public static Hero hero = new Hero(200, 200, 200);
 
 	public static void createBullet(Bullet b) {
 		bullets.add(b);
@@ -138,8 +138,10 @@ public class GameEntity {
 					if (g instanceof Tank) {
 						Tank tank = (Tank) g;
 						if (GameEntity.hero.isRequestToEnterTank()) {
-							tank.setUsed(true);
-							GameEntity.hero.setInTheTank(true);
+							if(!GameEntity.hero.isInTheTank()) {
+								tank.setUsed(true);
+								GameEntity.hero.setInTheTank(true);
+							}
 						}
 					}
 				}
