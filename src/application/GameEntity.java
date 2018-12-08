@@ -52,16 +52,13 @@ public class GameEntity {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return null;
 		}
-
 	}
 
 	public static void checkStand() {
 		try {
-
 			GameEntity.hero.setHasHorizontalCollision(false);
 			GameEntity.hero.setHasVerticalCollition(false);
 			GameEntity.hero.setStandOnMainTerrain(false);
-
 			for (Enemy e : enemies) {
 				e.setHasHorizontalCollision(false);
 				e.setHasVerticalCollition(false);
@@ -72,31 +69,24 @@ public class GameEntity {
 			}
 			for (Enemy e : enemies) {
 				for (Terrain t : terrains) {
-					/* if(h.getPosX() >= t.posX && h.getPosX() <= t.posX + t.width) { */
 					if (e.checkInteract(t)) {
 						t.isSomeOneHitHere(e);
 						t.standVertical(e);
 					}
 				}
 			}
-
 			for (Terrain t : terrains) {
 				if (GameEntity.hero.checkInteract(t)) {
 					t.isSomeOneHitHere(GameEntity.hero);
 					t.standVertical(GameEntity.hero);
-
 				}
-
 			}
-
 			for (GameObject g : gameObjects) {
 				for (Terrain t : terrains) {
-
 					t.gunStandVertical(g);
 				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-
 		}
 	}
 
@@ -108,13 +98,7 @@ public class GameEntity {
 						HeroBullet b1 = (HeroBullet) b;
 						if (e.isHitByBullet(b1)) {
 							e.takeDamage(b1.getDamage());
-							if (b1 instanceof TankBullet) {
-
-							} /*
-								 * else if (b1 instanceof MachineGunBullet) {
-								 * 
-								 * }
-								 */ else {
+							if (!(b1 instanceof TankBullet)) {
 								b.setHit();
 							}
 						}
@@ -130,15 +114,14 @@ public class GameEntity {
 					}
 				}
 			}
-
 			for (Bullet b : bullets) {
 				if (b instanceof EnemyBullet) {
 					EnemyBullet b1 = (EnemyBullet) b;
 					if (GameEntity.hero.isHitByBullet(b1)) {
 						GameEntity.hero.takeDamage(b1.getDamage());
+						System.out.println(GameEntity.hero.getHealth());
 						System.out.println("dmg");
 						b.setHit();
-
 					}
 				}
 			}
@@ -150,7 +133,6 @@ public class GameEntity {
 							GameEntity.hero.setGun(1);
 							GameEntity.hero.setUseGunBullet(GameEntity.hero.getUseGunBullet() + 256);
 						}
-
 						g.setHit(true);
 					}
 					if (g instanceof Tank) {
@@ -162,9 +144,7 @@ public class GameEntity {
 					}
 				}
 			}
-
 		} catch (ArrayIndexOutOfBoundsException e) {
-
 		}
 	}
 
@@ -173,7 +153,6 @@ public class GameEntity {
 			for (int i = 0; i < enemies.size(); i++) {
 				if (enemies.get(i).isAnimatedDead()) {
 					enemies.remove(i);
-
 				}
 			}
 			for (int i = 0; i < bullets.size(); i++) {
@@ -185,15 +164,12 @@ public class GameEntity {
 
 				if (gameObjects.get(i).isHit()) {
 					gameObjects.remove(i);
-
 				}
-
 			}
 			for (int i = 0; i < terrains.size(); i++) {
 				if (terrains.get(i).isDead()) {
 					terrains.remove(i);
 				}
-
 			}
 			for (int i = 0; i < fgs.size(); i++) {
 				if (fgs.get(i).isDead()) {
@@ -201,7 +177,6 @@ public class GameEntity {
 				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-
 		}
 	}
 

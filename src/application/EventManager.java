@@ -1,19 +1,13 @@
 package application;
 
-
-import character.Person;
 import character.Enemy;
 import character.Hero;
 import environment.Foreground;
-import environment.Terrain;
 import javafx.event.EventHandler;
-import javafx.geometry.BoundingBox;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import weapon.MachineGunBullet;
-import weapon.PistolBullet;
 
 public class EventManager {
 	private Scene scene;
@@ -21,8 +15,9 @@ public class EventManager {
 	private Hero hero;
 	private boolean heroWalkOverBase;
 	private boolean canWalk;
-	public boolean dIsPressed , aIsPressed;
-	Thread thread;
+	public boolean dIsPressed, aIsPressed;
+	private Thread thread;
+
 	public EventManager(Scene scene, Hero hero) {
 		this.scene = scene;
 		this.hero = hero;
@@ -31,40 +26,33 @@ public class EventManager {
 		canWalk = false;
 		dIsPressed = false;
 		aIsPressed = false;
-		
+
 	}
+
 	public boolean isCanWalk() {
 		return canWalk;
 	}
+
 	public void setCanWalk(boolean canWalk) {
 		this.canWalk = canWalk;
 	}
+
 	public void setPlayerControl() {
-		/*scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				hero.shoot();
-			}
-				
-		});*/
 		scene.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				 thread = new Thread(() -> {
-				
-				try {
-					while(true) {
-					hero.shoot();
-					Thread.sleep(hero.getFirerate());
+				thread = new Thread(() -> {
+					try {
+						while (true) {
+							hero.shoot();
+							Thread.sleep(hero.getFirerate());
+						}
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				});thread.start();
-				//System.out.println("shoot");
+				});
+				thread.start();
 			}
-				
 		});
 		scene.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
@@ -72,201 +60,127 @@ public class EventManager {
 				try {
 					thread.interrupt();
 					thread.join();
-					
+
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-				
 		});
-		
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
 			@Override
 			public void handle(KeyEvent event) {
-				// TODO Auto-generated method stub
-				if(event.getCode() == KeyCode.W) {
-					
-						hero.setIsLookUp(true);
-					
-					
+				if (event.getCode() == KeyCode.W) {
+					hero.setIsLookUp(true);
 				}
-				if(event.getCode() == KeyCode.D ) {
+				if (event.getCode() == KeyCode.D) {
 					dIsPressed = true;
-					
-					
-				}
-				
-				else if(event.getCode() == KeyCode.A) {
+				} else if (event.getCode() == KeyCode.A) {
 					aIsPressed = true;
-					
-				}
-				
-				else if(event.getCode() == KeyCode.S) {
+				} else if (event.getCode() == KeyCode.S) {
 					hero.setIsLookDown(true);
-					
-				}
-				else if(event.getCode() == KeyCode.E) {
-					if(!hero.isRequestToEnterTank()&&!hero.isInTheTank()) {
+				} else if (event.getCode() == KeyCode.E) {
+					if (!hero.isRequestToEnterTank() && !hero.isInTheTank()) {
 						hero.setRequestToEnterTank(true);
 					}
-					
-				}
-				
-				else if(event.getCode() == KeyCode.B) {
+				} else if (event.getCode() == KeyCode.B) {
 					hero.setThrowingBomb(true);
 					hero.throwBomb();
-					
+				} else if (event.getCode() == KeyCode.SPACE) {
+					hero.Jump();
 				}
-				
-			  else if(event.getCode() == KeyCode.SPACE) {
-				
-						hero.Jump();
-						/*if(heroWalkOverBase) {
-							continueToWalk();
-						}*/
-						
-				  
-			  }
-			
 			}
-			
 		});
 		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
 			@Override
 			public void handle(KeyEvent event) {
-				// TODO Auto-generated method stub
-				if(event.getCode() == KeyCode.W) {
-					
+				if (event.getCode() == KeyCode.W) {
 					hero.setIsLookUp(false);
-				
-				
-			}
-				if(event.getCode() == KeyCode.D) {
+				}
+				if (event.getCode() == KeyCode.D) {
 					dIsPressed = false;
-					for(Enemy e: GameEntity.enemies) {
+					for (Enemy e : GameEntity.enemies) {
 						e.stop();
 					}
-					//GameEntity.getCurrentFg().moveScreen(0);
-					for(Foreground fg : GameEntity.fgs) {
+					for (Foreground fg : GameEntity.fgs) {
 						fg.moveScreen(0);
 					}
-					
-				}
-				else if(event.getCode() == KeyCode.A) {
+
+				} else if (event.getCode() == KeyCode.A) {
 					aIsPressed = false;
-					for(Enemy x: GameEntity.enemies) {
+					for (Enemy x : GameEntity.enemies) {
 						x.stop();
 					}
-				}
-				else if(event.getCode() == KeyCode.E) {
-					if(hero.isRequestToEnterTank()&&!hero.isInTheTank()) {
+				} else if (event.getCode() == KeyCode.E) {
+					if (hero.isRequestToEnterTank() && !hero.isInTheTank()) {
 						hero.setRequestToEnterTank(false);
 					}
-					
-				}
-				else if(event.getCode() == KeyCode.S) {
+
+				} else if (event.getCode() == KeyCode.S) {
 					hero.setIsLookDown(false);
-					
 				}
-				
 			}
 		});
-		
 	}
-	
-	/*public void continueToWalk() {
-		if(!doneMovingLeft) {
-		hero.Walk(0);
-		for(Foreground fg : GameEntity.fgs) {
-			fg.moveScreen(-1);
-		}
-		doneMovingLeft = true;
-		}
-	}*/
+
 	public boolean isAtTheEndOfScreen() {
-		if(hero.getPosX() > 10 && hero.getPosX() < 680) {
+		if (hero.getPosX() > 10 && hero.getPosX() < 680) {
 			return false;
 		}
-		else {
-			return true;
-		}
+		return true;
 	}
+
 	public Hero getHero() {
 		return hero;
 	}
+
 	public void setHero(Hero hero) {
 		this.hero = hero;
 	}
+
 	public boolean isHeroWalkOverBase() {
 		return heroWalkOverBase;
 	}
+
 	public void setHeroWalkOverBase(boolean heroWalkOverBase) {
 		this.heroWalkOverBase = heroWalkOverBase;
 	}
+
+	public boolean doneMovingLeft() {
+		return doneMovingLeft;
+	}
+
 	public void keyHandle() {
-		if(!hero.isAlive()) return;
-		//start key D
-		if(dIsPressed) {
+		if (!hero.isAlive())
+			return;
+		if (dIsPressed) {
 			hero.setIsWalk(true);
 			hero.setWalkDirection(1);
-			if(hero.isHasHorizontalCollision()) {
-				
+			if (hero.isHasHorizontalCollision()) {
 				return;
 			}
-			if(canWalk) {
+			if (canWalk) {
 				hero.Walk(2);
-			}
-			else {
-				//GameEntity.getCurrentFg().moveScreen(-6);
-				for(Foreground fg : GameEntity.fgs) {
+			} else {
+				for (Foreground fg : GameEntity.fgs) {
 					fg.moveScreen(hero.getMoveSpeed());
-					
 				}
-				
-				
 			}
-		}
-		else {
+		} else {
 			hero.setIsWalk(false);
-			
-			
 		}
-		//end key D
-		//start key A
-		if(aIsPressed) {
+
+		if (aIsPressed) {
 			hero.setIsWalk(true);
 			hero.setWalkDirection(-1);
-			if(hero.isHasHorizontalCollision()) {
-				//return;
-			}
-			if(!isAtTheEndOfScreen()) {
-				//GameEntity.getCurrentFg().moveScreen(0);
+			if (!isAtTheEndOfScreen()) {
 				hero.Walk(-2);
-				/*for(Enemy x: GameEntity.enemies) {
-					x.walk(fg.getVeloX());
-				}*/
-			}
-			else {
+			} else {
 				hero.Walk(0);
-				
 			}
 			doneMovingLeft = false;
-		}
-		else {
-			
-			//hero.setIsWalk(false);
+		} else {
 			hero.Walk(0);
-			//fg.stop();
-			
-			
 		}
-		//end key A
-		
-		
 	}
-	
-	
+
 }

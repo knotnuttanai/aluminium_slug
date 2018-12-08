@@ -7,6 +7,7 @@ public class ExpBar extends ProgressBar {
 	private static int killCount;
 	private double maxKillCount;
 	public static int level = 1;
+
 	public ExpBar() {
 		super(1);
 		setPrefWidth(680);
@@ -17,21 +18,22 @@ public class ExpBar extends ProgressBar {
 		Label lebel = new Label("hi");
 		getChildren().add(lebel);
 		maxKillCount = 3;
-		
-		// TODO Auto-generated constructor stub
 	}
+
 	public void update() {
 		checkLevelUp();
-		setProgress((double)killCount/maxKillCount);
+		setProgress((double) killCount / maxKillCount);
 	}
+
 	public void checkLevelUp() {
-		if(killCount >= maxKillCount) {
+		if (killCount >= maxKillCount) {
 			killCount = 0;
-			maxKillCount = maxKillCount*1.2;
+			maxKillCount = maxKillCount * 1.2;
 			level++;
 			HeroStatusPane.statusPoint++;
 		}
 	}
+
 	public static void addKillCount(int kills) {
 		killCount += kills;
 	}
