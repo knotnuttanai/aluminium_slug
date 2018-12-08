@@ -17,32 +17,28 @@ public class Foreground implements Deleteable {
 		this.posX = posX;
 		isDead = false;
 	}
-	
+
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
 		gc.drawImage(fg, posX, 0);
-		
 	}
-	
+
 	public void update() {
 		checkSelfDelete();
 		posX += veloX;
-		//System.out.println(posX);
-				
 	}
-	
+
 	public void moveScreen(int direction) {
 		veloX = direction;
 	}
 
 	public void stop() {
-		// TODO Auto-generated method stub
 		veloX = 0;
 	}
 
 	public double getVeloX() {
 		return veloX;
 	}
+
 	public void addFg() {
 		GameEntity.createFg(this);
 	}
@@ -65,22 +61,19 @@ public class Foreground implements Deleteable {
 
 	@Override
 	public void checkSelfDelete() {
-		// TODO Auto-generated method stub
-		if(posX <= -10000) {
+		if (posX <= -10000) {
 			setDead();
 		}
 	}
 
 	@Override
 	public boolean isDead() {
-		// TODO Auto-generated method stub
 		return isDead;
 	}
 
 	@Override
 	public void setDead() {
-		// TODO Auto-generated method stub
 		isDead = true;
 	}
-	
+
 }

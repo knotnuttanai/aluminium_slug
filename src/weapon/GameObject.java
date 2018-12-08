@@ -126,11 +126,11 @@ public class GameObject {
 		this.isHit = isHit;
 	}
 
-	public BoundingBox getB() {
+	public BoundingBox getBox() {
 		return box;
 	}
 
-	public void setB(BoundingBox box) {
+	public void setBox(BoundingBox box) {
 		this.box = box;
 	}
 

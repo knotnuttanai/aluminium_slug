@@ -138,7 +138,7 @@ public abstract class Person implements Movable, Damageable {
 		BoundingBox p = new BoundingBox(posX, posY, width, height);
 		if (o instanceof Terrain) {
 			Terrain terrain = (Terrain) o;
-			if (p.intersects(terrain.b)) {
+			if (p.intersects(terrain.box)) {
 				terrain.setInteract(true);
 				return true;
 			} else {
@@ -149,7 +149,7 @@ public abstract class Person implements Movable, Damageable {
 		if (o instanceof Gun) {
 			Gun gun = (Gun) o;
 
-			if (p.intersects(gun.getB())) {
+			if (p.intersects(gun.getBox())) {
 				return true;
 			} else {
 				return false;
@@ -157,7 +157,7 @@ public abstract class Person implements Movable, Damageable {
 		}
 		if (this instanceof Enemy && o instanceof Bomb) {
 			Bomb bomb = (Bomb) o;
-			if (p.intersects(bomb.getB())) {
+			if (p.intersects(bomb.getBox())) {
 				return true;
 			} else {
 				return false;
@@ -165,7 +165,7 @@ public abstract class Person implements Movable, Damageable {
 		}
 		if (this instanceof Hero && o instanceof Tank) {
 			Tank tank = (Tank) o;
-			if (p.intersects(tank.getB())) {
+			if (p.intersects(tank.getBox())) {
 				return true;
 			} else {
 				return false;

@@ -6,16 +6,16 @@ public class Background {
 	private int SpeedX;
 	private boolean move;
 
-	public Background (int x, int y){
+	public Background(int x, int y) {
 		bgX = x;
 		bgY = y;
 		SpeedX = 0;
 		move = true;
 	}
-	
+
 	public void update() {
 		bgX += SpeedX;
-		if (bgX <= -2160){
+		if (bgX <= -2160) {
 			SpeedX = 0;
 			move = false;
 		}
@@ -44,7 +44,7 @@ public class Background {
 	public void setSpeedX(int speedX) {
 		this.SpeedX = speedX;
 	}
-	
+
 	public boolean getMove() {
 		return move;
 	}
