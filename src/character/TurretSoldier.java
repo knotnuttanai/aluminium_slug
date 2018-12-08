@@ -16,7 +16,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 		super(posX, posY - 10, health);
 		veloX = 0;
 		baseVeloX = 0;
-		dmg = 0;
+		damage = 0;
 		walkDirection = 0;
 		turret = new Image("file:res/images/turret.png");
 		shoot = new Image[3];
@@ -37,7 +37,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 	@Override
 	public void shoot() {
 		TurretBullet bullet = new TurretBullet(this);
-		bullet.setDamage(dmg + bullet.getDamage());
+		bullet.setDamage(damage + bullet.getDamage());
 		bullet.addBullet();
 
 	}

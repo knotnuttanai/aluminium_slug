@@ -5,22 +5,25 @@ import application.ScorePane;
 import application.SoundManager;
 import environment.Terrain;
 import javafx.geometry.BoundingBox;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import weapon.Bomb;
 import weapon.Gun;
 import weapon.Tank;
 
-public abstract class Person implements Movable {
+public abstract class Person implements Movable, Damageable {
+
 	protected boolean canShoot;
 	protected int walkDirection;
-	protected int health, maxHealth;
+	protected int health;
+	protected int maxHealth;
 	protected double posX;
 	protected double posY;
 	protected boolean isAlive;
-	protected double veloY, maxVeloY;
+	protected double veloY;
 	protected double veloX;
 	protected static final double GRAVITY = 0.8;
-	protected int dmg;
+	protected int damage;
 	protected double base;
 	protected boolean isJump;
 	protected boolean isWalk;
@@ -29,7 +32,10 @@ public abstract class Person implements Movable {
 	protected double height;
 	protected double width;
 	protected double baseX;
-	protected boolean isShoot, hasVerticalCollition, hasHorizontalCollision, isStandOnMainTerrain;
+	protected boolean isShoot;
+	protected boolean hasVerticalCollition;
+	protected boolean hasHorizontalCollision;
+	protected boolean isStandOnMainTerrain;
 	protected boolean isAnimatedDead;
 	protected Image[] dead;
 	protected int deadFrame;
@@ -46,7 +52,6 @@ public abstract class Person implements Movable {
 		veloX = 0;
 		veloY = 0;
 		canShoot = true;
-		maxVeloY = 20;
 		base = posY;
 		baseX = posX;
 		isJump = false;
@@ -75,12 +80,17 @@ public abstract class Person implements Movable {
 
 	}
 
-	public void takeDamage(int dmg) {
+	@Override
+	public void render(GraphicsContext gc) {
+	}
+
+	@Override
+	public void takeDamage(int damage) {
 		if (this instanceof Enemy) {
 			// SoundManager.play("Gettinghit", 0.5);
 		}
 		if (health > 0) {
-			health = health - dmg;
+			health = health - damage;
 			if (health <= 0) {
 				ScorePane.addScore(200);
 				ExpBar.addKillCount(1);
@@ -305,11 +315,11 @@ public abstract class Person implements Movable {
 	}
 
 	public int getDmg() {
-		return dmg;
+		return damage;
 	}
 
-	public void setDmg(int dmg) {
-		this.dmg = dmg;
+	public void setDmg(int damage) {
+		this.damage = damage;
 	}
 
 	public boolean isCanShoot() {

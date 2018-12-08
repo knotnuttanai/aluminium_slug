@@ -21,7 +21,7 @@ public class Enemy extends Person {
 		walkDirection = -1;
 		baseVeloX = veloX;
 		fireRate = 0.005;
-		dmg = 0;
+		damage = 0;
 
 	}
 
@@ -50,7 +50,7 @@ public class Enemy extends Person {
 	public void shoot() {
 		isShoot = true;
 		EnemyBullet bullet = new EnemyBullet(this);
-		bullet.setDamage(dmg + bullet.getDamage());
+		bullet.setDamage(damage + bullet.getDamage());
 		bullet.addBullet();
 	}
 

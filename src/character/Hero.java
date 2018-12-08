@@ -13,9 +13,9 @@ import weapon.TankBullet;
 public class Hero extends Person implements Shootable {
 	private boolean isInTheTank, requestToEnterTank, isThrowingBomb;
 	private int gun;
-	// gun0 is pistol
-	// gun1 is machine gun
-	// gun3 is tank
+	// 0 is pistol
+	// 1 is machine gun
+	// 3 is tank
 	private int moveSpeed;
 	private int useGunBullet;
 	private Image marcoTop;
@@ -32,13 +32,19 @@ public class Hero extends Person implements Shootable {
 	private Image[] shootDown;
 	private Image[] ThrowingBomb;
 	private Image[] MachThrowBomb;
-	private int shootUpFrame, shootDownFrame, machFrame, machUpFrame, machDownFrame, throwingBombFrame, machBombFrame;
+	private int shootUpFrame;
+	private int shootDownFrame;
+	private int machFrame;
+	private int machUpFrame;
+	private int machDownFrame;
+	private int throwingBombFrame;
+	private int machBombFrame;
 	private int firerate;
 
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
 		// TODO Auto-generated constructor stub
-		dmg = 0;
+		damage = 0;
 		gun = 0;
 		this.firerate = 200;
 		moveSpeed = -5;
@@ -270,8 +276,9 @@ public class Hero extends Person implements Shootable {
 			if (walkFrame == 50) {
 				walkFrame = 0;
 			}
-		} else
+		} else {
 			gc.drawImage(marcoBottom, posX, posY + 38);
+		}
 
 		if (isShoot) {
 
@@ -279,21 +286,24 @@ public class Hero extends Person implements Shootable {
 				if (isLookUp) {
 					gc.drawImage(shootUp[(shootUpFrame / 2) % 10], posX + walkPos, posY - ShootAdjustPos());
 					shootUpFrame++;
-					if (shootUpFrame == 20)
+					if (shootUpFrame == 20) {
 						finishShoot("shootUpFrame");
+					}
 
 				} else if (isLookDown) {
 					gc.drawImage(shootDown[(shootDownFrame / 2) % 6], posX + walkPos, posY);
 					shootDownFrame++;
-					if (shootDownFrame == 12)
+					if (shootDownFrame == 12) {
 						finishShoot("shootDownFrame");
+					}
 				}
 
 				else {
 					gc.drawImage(shoot[(shootFrame / 2) % 10], posX + walkPos, posY);
 					shootFrame++;
-					if (shootFrame == 20)
+					if (shootFrame == 20) {
 						finishShoot("shootFrame");
+					}
 				}
 
 			} else {
@@ -301,20 +311,23 @@ public class Hero extends Person implements Shootable {
 				if (isLookUp) {
 					gc.drawImage(machShootUp[(machUpFrame / 2) % 4], posX + walkPos, posY - MachAdjustPos());
 					machUpFrame++;
-					if (machUpFrame == 8)
+					if (machUpFrame == 8) {
 						finishShoot("machUpFrame");
+					}
 				}
 
 				else if (isLookDown) {
 					gc.drawImage(machShootDown[(machDownFrame / 2) % 4], posX - 8 + walkPos, posY);
 					machDownFrame++;
-					if (machDownFrame == 8)
+					if (machDownFrame == 8) {
 						finishShoot("machDownFrame");
+					}
 				} else {
 					gc.drawImage(machShoot[(machFrame / 2) % 4], posX + walkPos, posY);
 					machFrame++;
-					if (machFrame == 8)
+					if (machFrame == 8) {
 						finishShoot("machFrame");
+					}
 				}
 			}
 		}
@@ -339,19 +352,21 @@ public class Hero extends Person implements Shootable {
 
 		else {
 			if (gun == 0) {
-				if (isLookUp)
+				if (isLookUp) {
 					gc.drawImage(marcoLookUp, posX + walkPos, posY - 6);
-				else if (isLookDown)
+				} else if (isLookDown) {
 					gc.drawImage(marcoLookDown, posX + walkPos, posY);
-				else
+				} else {
 					gc.drawImage(marcoTop, posX + walkPos, posY);
+				}
 			} else {
-				if (isLookUp)
+				if (isLookUp) {
 					gc.drawImage(marcoMachUp, posX + walkPos, posY - 20);
-				else if (isLookDown)
+				} else if (isLookDown) {
 					gc.drawImage(marcoMachDown, posX - 8 + walkPos, posY);
-				else
+				} else {
 					gc.drawImage(marcoMachine, posX + walkPos, posY);
+				}
 			}
 		}
 	}
@@ -369,7 +384,7 @@ public class Hero extends Person implements Shootable {
 				gun = 0;
 				firerate = 300;
 				TankBullet bullet = new TankBullet(this);
-				bullet.setDamage(dmg + bullet.getDamage());
+				bullet.setDamage(damage + bullet.getDamage());
 				bullet.addBullet();
 				SoundManager.play("Tank", 0.5);
 				return;
@@ -380,14 +395,14 @@ public class Hero extends Person implements Shootable {
 					gun = 0;
 					firerate = 200;
 					PistolBullet bullet = new PistolBullet(this);
-					bullet.setDamage(dmg + bullet.getDamage());
+					bullet.setDamage(damage + bullet.getDamage());
 					bullet.addBullet();
 					SoundManager.play("pistolbullet", 1);
 					return;
 				}
 				firerate = 80;
 				MachineGunBullet bullet = new MachineGunBullet(this);
-				bullet.setDamage(dmg + bullet.getDamage());
+				bullet.setDamage(damage + bullet.getDamage());
 				bullet.addBullet();
 				SoundManager.play("machbullet", 1);
 				useGunBullet--;
@@ -395,7 +410,7 @@ public class Hero extends Person implements Shootable {
 			if (gun == 0) {
 				firerate = 200;
 				PistolBullet bullet = new PistolBullet(this);
-				bullet.setDamage(dmg + bullet.getDamage());
+				bullet.setDamage(damage + bullet.getDamage());
 				bullet.addBullet();
 				SoundManager.play("pistolbullet", 1);
 			}

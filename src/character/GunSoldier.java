@@ -49,7 +49,7 @@ public class GunSoldier extends Enemy implements Shootable {
 	@Override
 	public void shoot() {
 		EnemyBullet bullet = new EnemyBullet(this);
-		bullet.setDamage(dmg + bullet.getDamage());
+		bullet.setDamage(damage + bullet.getDamage());
 		bullet.addBullet();
 	}
 
