@@ -34,7 +34,7 @@ public class Bomb extends GameObject {
 
 		Smoke = new Image[21];
 		for (int i = 1; i <= 21; i++) {
-			Smoke[i - 1] = new Image(ClassLoader.getSystemResource("Layer" + i + ".png").toString());
+			Smoke[i - 1] = new Image(ClassLoader.getSystemResource("Layer " + i + ".png").toString());
 		}
 		smokeFrame = 0;
 	}

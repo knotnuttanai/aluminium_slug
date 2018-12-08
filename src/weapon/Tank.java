@@ -1,5 +1,6 @@
 package weapon;
 
+import application.SoundManager;
 import character.Hero;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,6 +15,8 @@ public class Tank extends GameObject {
 	private int healthOfHero;
 	private Hero hero;
 	private boolean toggle;
+	private boolean readyToDead;
+	private boolean soundIsPlay;
 	private Image tankImage;
 	private Image tankGun;
 	private Image tankUp;
@@ -22,10 +25,12 @@ public class Tank extends GameObject {
 	private Image[] shootGun;
 	private Image[] shootUp;
 	private Image[] shootDown;
+	private Image[] dead;
 	private int shootFrame;
 	private int tankFrame;
 	private int upFrame;
 	private int downFrame;
+	private int deadFrame;
 
 	public Tank(double posX, double posY, double width, double height, Hero hero) {
 		super(posX, posY, width, height);
@@ -61,6 +66,12 @@ public class Tank extends GameObject {
 			shootDown[i] = new Image(ClassLoader.getSystemResource("tankdown" + i + ".png").toString());
 		}
 		downFrame = 0;
+		dead = new Image[21];
+		for (int i = 1; i <= 21; i++) {
+			dead[i - 1] = new Image(ClassLoader.getSystemResource("Layer " + i + ".png").toString());
+		}
+		deadFrame = 0;
+		readyToDead = false;
 	}
 
 	public void update() {
@@ -85,7 +96,7 @@ public class Tank extends GameObject {
 				hero.setUseGunBullet(bulletOfHero);
 				hero.setInTheTank(false);
 				hero.setRequestToEnterTank(false);
-				isHit = true;
+				readyToDead = true;
 			} else {
 				posX = hero.getPosX();
 				posY = hero.getPosY();
@@ -143,6 +154,17 @@ public class Tank extends GameObject {
 	}
 
 	public void render(GraphicsContext gc) {
+		if (readyToDead) {
+			gc.drawImage(dead[deadFrame], posX, posY - 100);
+			deadFrame++;
+			if (deadFrame == 21) {
+				isHit = true;
+			}
+			if (!soundIsPlay) {
+				SoundManager.play("grenade", 1);
+				soundIsPlay = true;
+			}
+		}
 		if (!isUsed) {
 			gc.drawImage(tankImage, posX, posY - 8);
 		} else {
