@@ -485,5 +485,5 @@ public class Hero extends Person implements Shootable {
 	public void setMaxGrenade(int maxGrenade) {
 		this.maxGrenade = maxGrenade;
 	}
-
+	
 }

@@ -42,6 +42,20 @@ public class GameLoop implements Runnable {
 				@Override
 				public void handle(long now) {
 					try {
+						if (ev.getHero().isAnimatedDead()) {
+							canvas.getGraphicsContext2D().clearRect(0, 0, 640, 480);
+							GameEntity.restart();
+							an.stop();
+							MenuPane.running = false;
+							MenuPane.imageView2.setVisible(false);
+							MenuPane.imageView1.setVisible(true);
+							MenuPane.imageView1.setDisable(false);
+							MenuPane.imageView0.setVisible(true);
+							MenuPane.imageView0.setDisable(false);
+							MenuPane.running = false;
+							MenuPane.run();
+							an.start();
+						}
 						updateContent(now);
 						renderContent();
 					} catch (ArrayIndexOutOfBoundsException e) {
@@ -64,10 +78,6 @@ public class GameLoop implements Runnable {
 			if (!GameEntity.hero.isInTheTank()) {
 				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
 			}
-		}
-		if (ev.getHero().isAnimatedDead()) {
-			gameScene.getRoot().getChildren().clear();
-			an.stop();
 		}
 		ev.keyHandle();
 		if (heroWalkOverBase()) {

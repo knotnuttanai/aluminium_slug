@@ -25,7 +25,7 @@ public class GameEntity {
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
-	public static Hero hero = new Hero(200, 200, 200);
+	public static Hero hero = new Hero(200, 200, 20);
 
 	public static void createBullet(Bullet b) {
 		bullets.add(b);
@@ -198,6 +198,8 @@ public class GameEntity {
 		hero.setHealth(200);
 		hero.setMaxHealth(200);
 		hero.setMaxGrenade(10);
+		hero.setAlive(true);
+		hero.setAnimatedDead(false);
 		ScorePane.score = 0;
 		ExpBar.level = 0;
 		HeroStatusPane.statusPoint = 0;
