@@ -16,7 +16,7 @@ public class HeroStatusPane extends HBox {
 		setTranslateX(0);
 		setTranslateY(445);
 		setPrefWidth(680);
-		statusPoint = 3;
+		statusPoint = 10;
 		count = 0;
 		setAlignment(Pos.CENTER);
 		isEnable = true;

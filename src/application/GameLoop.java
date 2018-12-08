@@ -75,6 +75,7 @@ public class GameLoop implements Runnable{
 		gameScene.getHeroStatusPane().update();
 		bullet1.update();
 		if(GameEntity.getCurrentFg().getPosX() <= -8550+640) {
+			GameEntity.hero.setMaxGrenade(GameEntity.hero.getMaxGrenade()+10);
 			GameEntity.spawnManager.initWorld(640);
 			GameEntity.spawnManager.increaseEnemyPower();
 			if(!GameEntity.hero.isInTheTank()) {

@@ -65,7 +65,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 	@Override
 	public void render(GraphicsContext gc) {
 
-		if (health == 0) {
+		if (health <= 0) {
 			gc.drawImage(dead[deadFrame], posX, posY - 100);
 			deadFrame++;
 			if (deadFrame == 21) {

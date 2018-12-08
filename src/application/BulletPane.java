@@ -24,7 +24,7 @@ public class BulletPane extends NumberPane{
 		gc.setStroke(Color.BLACK);
 		Font font1 =  Font.font("Tahoma",FontWeight.BOLD, 30);
 		gc.setFont(font1);
-		gc.fillText("Gre: "+Integer.toString(GameEntity.hero.getMaxGrenade()), 500, 25);
+		gc.fillText("GRE: "+Integer.toString(GameEntity.hero.getMaxGrenade()), 500, 25);
 		if(hero.getGun()==1) {
 			gc.setFill(Color.BEIGE);
 			gc.setStroke(Color.BLACK);
