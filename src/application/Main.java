@@ -11,7 +11,6 @@ public class Main extends Application {
 		GameEntity.spawnManager.initWorld(0);
 		loop = new GameLoop();
 		SoundManager.playMediaLoop("BGM");
-		SoundManager.play("Mission1", 0.3);
 		primaryStage = loop.getGameScene().getStage();
 		primaryStage.show();
 		loop.start();
