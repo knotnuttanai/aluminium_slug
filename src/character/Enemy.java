@@ -13,16 +13,13 @@ public class Enemy extends Person {
 
 	public Enemy(double posX, double posY, int health) {
 		super(posX, posY, health);
-
 		height = 75;
 		width = 56;
-
 		veloX = -2;
 		walkDirection = -1;
 		baseVeloX = veloX;
 		fireRate = 0.005;
 		damage = 0;
-
 	}
 
 	@Override

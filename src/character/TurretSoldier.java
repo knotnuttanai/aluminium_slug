@@ -29,7 +29,6 @@ public class TurretSoldier extends Enemy implements Shootable {
 			dead[i - 1] = new Image("file:res/images/Layer " + i + ".png");
 		}
 		deadFrame = 0;
-
 		shootCondition = false;
 		needRandomShoot = true;
 	}
@@ -39,7 +38,6 @@ public class TurretSoldier extends Enemy implements Shootable {
 		TurretBullet bullet = new TurretBullet(this);
 		bullet.setDamage(damage + bullet.getDamage());
 		bullet.addBullet();
-
 	}
 
 	private boolean randomShoot() {
@@ -89,16 +87,18 @@ public class TurretSoldier extends Enemy implements Shootable {
 				gc.drawImage(shoot[(shootFrame / 3) % 3], posX - adjustShootPosX(), posY);
 				shootFrame++;
 				Thread thread = new Thread(() -> {
-					if (shootFrame == 3)
+					if (shootFrame == 3) {
 						shoot();
+					}
 					if (shootFrame >= 9) {
 						shootFrame = 0;
 						needRandomShoot = true;
 					}
 				});
 				thread.start();
-			} else
+			} else {
 				gc.drawImage(turret, posX - 50, posY);
+			}
 		}
 	}
 }

@@ -11,7 +11,6 @@ public class HpBar extends ProgressBar {
 		setPrefWidth(200);
 		hero = GameEntity.hero;
 		setProgress(100);
-
 	}
 
 	public void update() {

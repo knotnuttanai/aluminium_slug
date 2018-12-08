@@ -86,7 +86,6 @@ public class GunSoldier extends Enemy implements Shootable {
 			if (deadFrame == 30)
 				isAnimatedDead = true;
 		} else {
-
 			if (normalCondition) {
 				gc.drawImage(walk[(walkFrame / 3) % 12], posX, posY);
 				walkFrame++;

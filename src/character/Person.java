@@ -64,11 +64,9 @@ public abstract class Person implements Movable, Damageable {
 		walkDirection = 0;
 		isStandOnMainTerrain = false;
 		isAnimatedDead = false;
-
 	}
 
 	public void update() {
-
 		if (isJump || !isHasVerticalCollition()) {
 			veloY += GRAVITY;
 
@@ -77,7 +75,6 @@ public abstract class Person implements Movable, Damageable {
 		}
 		posY += veloY;
 		posX += veloX;
-
 	}
 
 	@Override
@@ -115,7 +112,6 @@ public abstract class Person implements Movable, Damageable {
 		} else {
 			veloX = 0;
 		}
-
 	}
 
 	public void setIsWalk(boolean isWalk) {
@@ -128,7 +124,6 @@ public abstract class Person implements Movable, Damageable {
 			veloY = -15;
 			isJump = true;
 		}
-
 	}
 
 	public double getPosX() {
@@ -163,12 +158,10 @@ public abstract class Person implements Movable, Damageable {
 		if (this instanceof Enemy && o instanceof Bomb) {
 			Bomb bomb = (Bomb) o;
 			if (p.intersects(bomb.getB())) {
-
 				return true;
 			} else {
 				return false;
 			}
-
 		}
 		if (this instanceof Hero && o instanceof Tank) {
 			Tank tank = (Tank) o;
@@ -177,7 +170,6 @@ public abstract class Person implements Movable, Damageable {
 			} else {
 				return false;
 			}
-
 		}
 		return false;
 	}
@@ -314,11 +306,11 @@ public abstract class Person implements Movable, Damageable {
 		return isLookDown;
 	}
 
-	public int getDmg() {
+	public int getDamage() {
 		return damage;
 	}
 
-	public void setDmg(int damage) {
+	public void setDamage(int damage) {
 		this.damage = damage;
 	}
 

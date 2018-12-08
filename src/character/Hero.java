@@ -43,7 +43,6 @@ public class Hero extends Person implements Shootable {
 
 	public Hero(double posX, double posY, int health) {
 		super(posX, posY, health);
-		// TODO Auto-generated constructor stub
 		damage = 0;
 		gun = 0;
 		this.firerate = 200;
@@ -84,47 +83,36 @@ public class Hero extends Person implements Shootable {
 		throwingBombFrame = 0;
 		machBombFrame = 0;
 		deadFrame = 0;
-
 		for (int i = 1; i <= 10; i++) {
 			shoot[i - 1] = new Image("file:res/images/shoot" + i + ".png");
 		}
-
 		for (int i = 1; i <= 10; i++) {
 			shootUp[i - 1] = new Image("file:res/images/shootup" + i + ".png");
 		}
-
 		for (int i = 1; i <= 6; i++) {
 			shootDown[i - 1] = new Image("file:res/images/shootdown" + i + ".png");
 		}
-
 		for (int i = 1; i <= 10; i++) {
 			walk[i - 1] = new Image("file:res/images/walk" + i + ".png");
 		}
-
 		for (int i = 1; i <= 4; i++) {
 			machShoot[i - 1] = new Image("file:res/images/mach" + i + ".png");
 		}
-
 		for (int i = 1; i <= 4; i++) {
 			machShootUp[i - 1] = new Image("file:res/images/machshootup" + i + ".png");
 		}
-
 		for (int i = 1; i <= 4; i++) {
 			machShootDown[i - 1] = new Image("file:res/images/machshootdown" + i + ".png");
 		}
-
 		for (int i = 1; i <= 5; i++) {
 			ThrowingBomb[i - 1] = new Image("file:res/images/throwbomb" + i + ".png");
 		}
-
 		for (int i = 1; i <= 6; i++) {
 			MachThrowBomb[i - 1] = new Image("file:res/images/machbomb" + i + ".png");
 		}
-
 		for (int i = 1; i <= 19; i++) {
 			dead[i - 1] = new Image("file:res/images/marcodead" + i + ".png");
 		}
-
 	}
 
 	public int getFirerate() {
@@ -252,8 +240,8 @@ public class Hero extends Person implements Shootable {
 		}
 	}
 
+	@Override
 	public void render(GraphicsContext gc) {
-
 		if (!isAlive) {
 			gc.drawImage(dead[(deadFrame / 5)], posX, posY + 38 - DeadAdjustPos());
 			deadFrame++;
@@ -281,7 +269,6 @@ public class Hero extends Person implements Shootable {
 		}
 
 		if (isShoot) {
-
 			if (gun == 0) {
 				if (isLookUp) {
 					gc.drawImage(shootUp[(shootUpFrame / 2) % 10], posX + walkPos, posY - ShootAdjustPos());
@@ -289,34 +276,27 @@ public class Hero extends Person implements Shootable {
 					if (shootUpFrame == 20) {
 						finishShoot("shootUpFrame");
 					}
-
 				} else if (isLookDown) {
 					gc.drawImage(shootDown[(shootDownFrame / 2) % 6], posX + walkPos, posY);
 					shootDownFrame++;
 					if (shootDownFrame == 12) {
 						finishShoot("shootDownFrame");
 					}
-				}
-
-				else {
+				} else {
 					gc.drawImage(shoot[(shootFrame / 2) % 10], posX + walkPos, posY);
 					shootFrame++;
 					if (shootFrame == 20) {
 						finishShoot("shootFrame");
 					}
 				}
-
 			} else {
-
 				if (isLookUp) {
 					gc.drawImage(machShootUp[(machUpFrame / 2) % 4], posX + walkPos, posY - MachAdjustPos());
 					machUpFrame++;
 					if (machUpFrame == 8) {
 						finishShoot("machUpFrame");
 					}
-				}
-
-				else if (isLookDown) {
+				} else if (isLookDown) {
 					gc.drawImage(machShootDown[(machDownFrame / 2) % 4], posX - 8 + walkPos, posY);
 					machDownFrame++;
 					if (machDownFrame == 8) {
@@ -330,9 +310,7 @@ public class Hero extends Person implements Shootable {
 					}
 				}
 			}
-		}
-
-		else if (isThrowingBomb) {
+		} else if (isThrowingBomb) {
 			if (gun == 0) {
 				gc.drawImage(ThrowingBomb[throwingBombFrame], posX + walkPos, posY);
 				throwingBombFrame++;
@@ -348,9 +326,7 @@ public class Hero extends Person implements Shootable {
 					isThrowingBomb = false;
 				}
 			}
-		}
-
-		else {
+		} else {
 			if (gun == 0) {
 				if (isLookUp) {
 					gc.drawImage(marcoLookUp, posX + walkPos, posY - 6);
@@ -376,6 +352,7 @@ public class Hero extends Person implements Shootable {
 		posX += direction * 2;
 	}
 
+	@Override
 	public void shoot() {
 
 		if (canShoot) {
@@ -388,7 +365,6 @@ public class Hero extends Person implements Shootable {
 				bullet.addBullet();
 				SoundManager.play("Tank", 0.5);
 				return;
-
 			}
 			if (gun == 1) {
 				if (useGunBullet == 0) {
@@ -415,7 +391,6 @@ public class Hero extends Person implements Shootable {
 				SoundManager.play("pistolbullet", 1);
 			}
 		}
-
 	}
 
 	public void throwBomb() {
@@ -489,7 +464,6 @@ public class Hero extends Person implements Shootable {
 
 	public void setIsShoot(boolean isShoot) {
 		this.isShoot = isShoot;
-
 	}
 
 }

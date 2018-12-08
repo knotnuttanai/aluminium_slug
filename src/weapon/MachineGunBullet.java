@@ -3,6 +3,7 @@ package weapon;
 import character.Person;
 
 public class MachineGunBullet extends HeroBullet {
+
 	public int maxBullets;
 
 	public MachineGunBullet(Person p) {

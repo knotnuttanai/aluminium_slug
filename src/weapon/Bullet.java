@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Bullet extends GameObject {
+
 	protected double posX;
 	protected double posY;
 	protected double veloX, baseVeloX;
@@ -46,7 +47,6 @@ public class Bullet extends GameObject {
 		bullet = new Image("file:res/images/Glenos-G_160_bullet.png", 50, 32.5, false, false);
 		bulletShootUp = new Image("file:res/images/bulletup.png", 32.5, 50, false, false);
 		bulletShootDown = new Image("file:res/images/bulletdown.png", 32.5, 50, false, false);
-
 	}
 
 	@Override
@@ -81,34 +81,42 @@ public class Bullet extends GameObject {
 		GameEntity.createBullet(this);
 	}
 
+	@Override
 	public double getPosX() {
 		return posX;
 	}
 
+	@Override
 	public void setPosX(double posX) {
 		this.posX = posX;
 	}
 
+	@Override
 	public double getPosY() {
 		return posY;
 	}
 
+	@Override
 	public void setPosY(double posY) {
 		this.posY = posY;
 	}
 
+	@Override
 	public double getVeloX() {
 		return veloX;
 	}
 
+	@Override
 	public void setVeloX(double veloX) {
 		this.veloX = veloX;
 	}
 
+	@Override
 	public double getVeloY() {
 		return veloY;
 	}
 
+	@Override
 	public void setVeloY(double veloY) {
 		this.veloY = veloY;
 	}
@@ -117,22 +125,27 @@ public class Bullet extends GameObject {
 		isHit = true;
 	}
 
+	@Override
 	public boolean isHit() {
 		return isHit;
 	}
 
+	@Override
 	public double getWidth() {
 		return width;
 	}
 
+	@Override
 	public void setWidth(double width) {
 		this.width = width;
 	}
 
+	@Override
 	public double getHeight() {
 		return height;
 	}
 
+	@Override
 	public void setHeight(double height) {
 		this.height = height;
 	}

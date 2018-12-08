@@ -43,7 +43,6 @@ public class HandSoldier extends Enemy {
 			dead[i - 1] = new Image("file:res/images/soldierdead" + i + ".png");
 		}
 		deadFrame = 0;
-
 	}
 
 	@Override
@@ -60,34 +59,36 @@ public class HandSoldier extends Enemy {
 		if (!isAlive) {
 			gc.drawImage(dead[deadFrame / 3], posX, posY + deadFrame);
 			deadFrame++;
-			if (deadFrame == 33)
+			if (deadFrame == 33) {
 				isAnimatedDead = true;
+			}
 		} else {
 			if (normalCondition) {
 				gc.drawImage(walk[walkFrame / 3], posX, posY);
 				walkFrame++;
-				if (walkFrame == 36)
+				if (walkFrame == 36) {
 					walkFrame = 0;
+				}
 			}
 
 			if (runCondition) {
 				gc.drawImage(run[runFrame / 3], posX, posY);
 				runFrame++;
-				if (runFrame == 33)
+				if (runFrame == 33) {
 					runFrame = 0;
-			}
-
-			else if (CheckScareCondition()) {
+				}
+			} else if (CheckScareCondition()) {
 				if (!soundIsPlay) {
 					SoundManager.play("scare", 0.2);
 					soundIsPlay = true;
 				}
-				if (scareFrame >= 83)
+				if (scareFrame >= 83) {
 					gc.drawImage(scare[5], posX, posY);
-				else if (scareFrame >= 80)
+				} else if (scareFrame >= 80) {
 					gc.drawImage(scare[4], posX, posY);
-				else
+				} else {
 					gc.drawImage(scare[scareFrame / 20], posX, posY);
+				}
 				scareFrame++;
 				if (scareFrame < 80) {
 					veloX = 0;
@@ -99,11 +100,9 @@ public class HandSoldier extends Enemy {
 					veloX = 2;
 					walkDirection = 1;
 					baseVeloX = veloX;
-
 				}
 			}
 		}
-
 	}
 
 	private boolean CheckScareCondition() {
