@@ -32,6 +32,12 @@ public class ScorePane {
 			gc.setFont(font1);
 			String level = "LVL: " + Integer.toString(ExpBar.level);
 			gc.fillText(level, 0, 95);
+			gc.setFill(Color.BEIGE);
+			gc.setStroke(Color.BLACK);
+			Font font2 = Font.font("Tahoma", FontWeight.BOLD, 30);
+			gc.setFont(font1);
+			String status = "Stat: " + Integer.toString(HeroStatusPane.statusPoint);
+			gc.fillText(status, 0, 140);
 		}
 	}
 
