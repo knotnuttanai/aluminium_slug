@@ -19,28 +19,28 @@ public class GunSoldier extends Enemy implements Shootable {
 		count = 0;
 		walk = new Image[12];
 		for (int i = 1; i <= 12; i++) {
-			walk[i - 1] = new Image("file:res/images/normalsoldier" + i + ".png");
+			walk[i - 1] = new Image(ClassLoader.getSystemResource("normalsoldier" + i + ".png").toString());
 		}
 		walkFrame = 0;
 		normalCondition = true;
 
 		grabGun = new Image[8];
 		for (int i = 1; i <= 8; i++) {
-			grabGun[i - 1] = new Image("file:res/images/grabgun" + i + ".png");
+			grabGun[i - 1] = new Image(ClassLoader.getSystemResource("grabgun" + i + ".png").toString());
 		}
 		grabGunFrame = 0;
 		grabGunCondition = false;
 
 		shoot = new Image[5];
 		for (int i = 0; i <= 4; i++) {
-			shoot[i] = new Image("file:res/images/soldiershoot" + i + ".png");
+			shoot[i] = new Image(ClassLoader.getSystemResource("soldiershoot" + i + ".png").toString());
 		}
 		shootFrame = 0;
 		shootCondition = false;
 
 		dead = new Image[6];
 		for (int i = 1; i <= 6; i++) {
-			dead[i - 1] = new Image("file:res/images/gundead" + i + ".png");
+			dead[i - 1] = new Image(ClassLoader.getSystemResource("gundead" + i + ".png").toString());
 		}
 		deadFrame = 0;
 

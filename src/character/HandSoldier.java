@@ -19,28 +19,28 @@ public class HandSoldier extends Enemy {
 		soundIsPlay = false;
 		walk = new Image[12];
 		for (int i = 1; i <= 12; i++) {
-			walk[i - 1] = new Image("file:res/images/normalsoldier" + i + ".png");
+			walk[i - 1] = new Image(ClassLoader.getSystemResource("normalsoldier" + i + ".png").toString());
 		}
 		walkFrame = 0;
 		normalCondition = true;
 
 		scare = new Image[6];
 		for (int i = 1; i <= 6; i++) {
-			scare[i - 1] = new Image("file:res/images/soldierscare" + i + ".png");
+			scare[i - 1] = new Image(ClassLoader.getSystemResource("soldierscare" + i + ".png").toString());
 		}
 		scareFrame = 0;
 		scareCondition = false;
 
 		run = new Image[11];
 		for (int i = 3; i <= 13; i++) {
-			run[i - 3] = new Image("file:res/images/soldierrun" + i + ".png");
+			run[i - 3] = new Image(ClassLoader.getSystemResource("soldierrun" + i + ".png").toString());
 		}
 		runFrame = 0;
 		runCondition = false;
 
 		dead = new Image[11];
 		for (int i = 1; i <= 11; i++) {
-			dead[i - 1] = new Image("file:res/images/soldierdead" + i + ".png");
+			dead[i - 1] = new Image(ClassLoader.getSystemResource("soldierdead" + i + ".png").toString());
 		}
 		deadFrame = 0;
 	}

@@ -9,7 +9,7 @@ public class Gun extends GameObject {
 
 	public Gun(double posX, double posY, double width, double height) {
 		super(posX, posY, width, height);
-		Item = new Image("file:res/images/H.png");
+		Item = new Image(ClassLoader.getSystemResource("H.png").toString());
 	}
 
 	@Override

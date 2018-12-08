@@ -9,7 +9,7 @@ public class TurretBullet extends EnemyBullet {
 		super(p);
 		posX -= 28;
 		posY += 24;
-		bullet = new Image("file:res/images/turretbullet.png", 50, 32.5, false, false);
+		bullet = new Image(ClassLoader.getSystemResource("turretbullet.png").toString(), 50, 32.5, false, false);
 	}
 
 }

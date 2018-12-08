@@ -37,28 +37,28 @@ public class Tank extends GameObject {
 		gunOfHero = 0;
 		healthOfHero = 0;
 		bulletOfHero = 0;
-		tankImage = new Image("file:res/images/tank1.png");
+		tankImage = new Image(ClassLoader.getSystemResource("tank1.png").toString());
 		movingTank = new Image[14];
 		for (int i = 1; i <= 14; i++) {
-			movingTank[i - 1] = new Image("file:res/images/tank" + i + ".png");
+			movingTank[i - 1] = new Image(ClassLoader.getSystemResource("tank" + i + ".png").toString());
 		}
 		tankFrame = 0;
-		tankGun = new Image("file:res/images/tankgun1.png");
+		tankGun = new Image(ClassLoader.getSystemResource("tankgun1.png").toString());
 		shootGun = new Image[5];
 		for (int i = 1; i <= 5; i++) {
-			shootGun[i - 1] = new Image("file:res/images/tankgun" + i + ".png");
+			shootGun[i - 1] = new Image(ClassLoader.getSystemResource("tankgun" + i + ".png").toString());
 		}
 		shootFrame = 0;
-		tankUp = new Image("file:res/images/tankup0.png");
+		tankUp = new Image(ClassLoader.getSystemResource("tankup0.png").toString());
 		shootUp = new Image[5];
 		for (int i = 0; i <= 4; i++) {
-			shootUp[i] = new Image("file:res/images/tankup" + i + ".png");
+			shootUp[i] = new Image(ClassLoader.getSystemResource("tankup" + i + ".png").toString());
 		}
 		upFrame = 0;
-		tankDown = new Image("file:res/images/tankdown0.png");
+		tankDown = new Image(ClassLoader.getSystemResource("tankdown0.png").toString());
 		shootDown = new Image[5];
 		for (int i = 0; i <= 4; i++) {
-			shootDown[i] = new Image("file:res/images/tankdown" + i + ".png");
+			shootDown[i] = new Image(ClassLoader.getSystemResource("tankdown" + i + ".png").toString());
 		}
 		downFrame = 0;
 	}

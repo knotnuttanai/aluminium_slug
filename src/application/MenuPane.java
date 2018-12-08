@@ -1,9 +1,7 @@
- package application;
+package application;
 
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -12,15 +10,19 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+
 public class MenuPane extends StackPane{
-	Image menu;
+
 	public static boolean running = false;
 	public static ImageView imageView0 = new ImageView(new Image(ClassLoader.getSystemResource("presstostart.png").toString()));
 	public static ImageView imageView1 = new ImageView(new Image(ClassLoader.getSystemResource("startscreen.png").toString()));
+
+
 	public MenuPane() {
 		setPrefWidth(680);
 		setPrefHeight(480);
 		setAlignment(Pos.CENTER);
+
 		
 		this.getChildren().add(imageView1);
 	    this.getChildren().add(imageView0);
@@ -40,7 +42,10 @@ public class MenuPane extends StackPane{
 			}
 	    });thread.start();
 	   
+
 	}
+
+
 	
 }
  
