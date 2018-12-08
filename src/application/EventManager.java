@@ -15,7 +15,7 @@ public class EventManager {
 	private Hero hero;
 	private boolean heroWalkOverBase;
 	private boolean canWalk;
-	public boolean dIsPressed, aIsPressed;
+	public boolean dIsPressed, aIsPressed, isPaused;
 	private Thread thread;
 
 	public EventManager(Scene scene, Hero hero) {
@@ -26,7 +26,7 @@ public class EventManager {
 		canWalk = false;
 		dIsPressed = false;
 		aIsPressed = false;
-
+		isPaused = false;
 	}
 
 	public boolean isCanWalk() {
@@ -83,10 +83,14 @@ public class EventManager {
 	}
 
 	public void keyHandle() {
-		if (MenuPane.running) {
+
+		if(MenuPane.running) {
+			
+
 			scene.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
+					if(!isPaused) {
 					thread = new Thread(() -> {
 						try {
 							while (true) {
@@ -98,6 +102,7 @@ public class EventManager {
 						}
 					});
 					thread.start();
+					}
 				}
 			});
 			scene.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -112,13 +117,28 @@ public class EventManager {
 					}
 				}
 			});
+			
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent event) {
+					if (event.getCode() == KeyCode.ESCAPE) {
+						if(!isPaused) {
+							GameLoop.an.stop();
+							MenuPane.imageView2.setVisible(true);
+							isPaused = true;
+						}
+					}
+					if (event.getCode() == KeyCode.ENTER) {
+						if(isPaused) {
+							GameLoop.an.start();
+							MenuPane.imageView2.setVisible(false);
+							isPaused = false;
+						}
+					}
 					if (event.getCode() == KeyCode.W) {
 						hero.setIsLookUp(true);
 					}
-					if (event.getCode() == KeyCode.D) {
+					else if (event.getCode() == KeyCode.D) {
 						dIsPressed = true;
 					} else if (event.getCode() == KeyCode.A) {
 						aIsPressed = true;
@@ -135,6 +155,7 @@ public class EventManager {
 					} else if (event.getCode() == KeyCode.SPACE) {
 						hero.Jump();
 					}
+					
 				}
 			});
 			scene.setOnKeyReleased(new EventHandler<KeyEvent>() {

@@ -15,8 +15,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 
 	public TurretSoldier(double posX, double posY, int health) {
 		super(posX, posY - 10, health);
-		width = 110;
-		height = 80;
+		
 		veloX = 0;
 		baseVeloX = 0;
 		damage = 0;

@@ -61,7 +61,7 @@ public class SpawnManager {
 			enemy.setDamage(damage + enemy.getDamage());
 			enemy.setHealth(hp + enemy.getHealth());
 			enemy.addEnemy();
-		}
+		}else {
 		if (Math.random() < spawnRate) {
 			double a = Math.random();
 			if (a < 0.45) {
@@ -80,6 +80,7 @@ public class SpawnManager {
 				enemy.setHealth(hp + enemy.getHealth());
 				enemy.addEnemy();
 			}
+		}
 		}
 	}
 

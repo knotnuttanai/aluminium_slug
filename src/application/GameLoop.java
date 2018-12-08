@@ -16,7 +16,7 @@ public class GameLoop implements Runnable {
 	private Canvas canvas;
 	private Thread thread;
 	private EventManager ev;
-	private AnimationTimer an;
+	public static AnimationTimer an;
 	private ScorePane score;
 	private BulletPane bullet1;
 
