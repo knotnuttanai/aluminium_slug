@@ -146,6 +146,8 @@ public class SpawnManager {
 		GameEntity.createTerrain(terrain20);
 		Terrain terrain21 = new Terrain(start + 6012, 365, 115, 10);
 		GameEntity.createTerrain(terrain21);
+		Gun gun = new Gun(400, -20, 50, 50);
+		gun.addObject();
 	}
 
 	public void createStair(double posX, double posY, double width, double height, int count, int x, int xPrime, int y,

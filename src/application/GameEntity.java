@@ -24,7 +24,7 @@ public class GameEntity {
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
-	public static Hero hero = new Hero(200, 200, 100);
+	public static Hero hero = new Hero(200, 200, 100000);
 
 	public static void createBullet(Bullet b) {
 		bullets.add(b);
