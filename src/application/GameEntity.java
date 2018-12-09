@@ -200,6 +200,8 @@ public class GameEntity {
 		hero.setMaxGrenade(10);
 		hero.setAlive(true);
 		hero.setAnimatedDead(false);
+		ExpBar.killCount = 0;
+		ExpBar.maxKillCount = 3;
 		ScorePane.score = 0;
 		ExpBar.level = 0;
 		HeroStatusPane.statusPoint = 0;

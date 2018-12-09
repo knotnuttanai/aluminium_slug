@@ -12,7 +12,7 @@ public class Tank extends GameObject {
 	private int maxHealth;
 	private int gunOfHero;
 	private int bulletOfHero;
-	private int healthOfHero;
+	public static int healthOfHero = 0;
 	private Hero hero;
 	private boolean toggle;
 	private boolean readyToDead;
@@ -39,7 +39,6 @@ public class Tank extends GameObject {
 		maxHealth = 500;
 		toggle = false;
 		gunOfHero = 0;
-		healthOfHero = 0;
 		bulletOfHero = 0;
 		tankImage = ImageManager.buildImage("tank1.png");
 		movingTank = new Image[14];
@@ -215,4 +214,6 @@ public class Tank extends GameObject {
 		this.isUsed = isUsed;
 	}
 
+
+	
 }

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import weapon.Tank;
 
 public class HeroStatusPane extends HBox {
 	private Button increaseStr;
@@ -73,8 +74,14 @@ public class HeroStatusPane extends HBox {
 			checkPoint();
 		});
 		increaseVit.setOnMouseClicked(e -> {
-			GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth() + 40);
-			GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
+			if(GameEntity.hero.isInTheTank()) {
+				GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth() + 40);
+				Tank.healthOfHero = GameEntity.hero.getMaxHealth();
+				
+			}else {
+				GameEntity.hero.setMaxHealth(GameEntity.hero.getMaxHealth() + 40);
+				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
+			}
 			SoundManager.play("Reload", 1);
 			checkPoint();
 		});

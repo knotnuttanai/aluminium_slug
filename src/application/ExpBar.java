@@ -4,8 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
 public class ExpBar extends ProgressBar {
-	private static int killCount;
-	private double maxKillCount;
+	public static int killCount;
+	public static double maxKillCount;
 	public static int level = 1;
 
 	public ExpBar() {
