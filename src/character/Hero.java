@@ -253,6 +253,7 @@ public class Hero extends Person implements Shootable {
 			deadFrame++;
 			if (deadFrame == 95) {
 				isAnimatedDead = true;
+				deadFrame = 0;
 			}
 			return;
 		}
