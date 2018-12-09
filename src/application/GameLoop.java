@@ -45,7 +45,7 @@ public class GameLoop implements Runnable {
 						if (ev.getHero().isAnimatedDead()) {
 							canvas.getGraphicsContext2D().clearRect(0, 0, 640, 480);
 							GameEntity.restart();
-							an.stop();
+							// an.stop();
 							MenuPane.running = false;
 							MenuPane.imageView2.setVisible(false);
 							MenuPane.imageView1.setVisible(true);
