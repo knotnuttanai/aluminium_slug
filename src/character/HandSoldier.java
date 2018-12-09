@@ -50,7 +50,7 @@ public class HandSoldier extends Enemy {
 	public void update() {
 		super.update();
 		if (Math.random() < 0.02) {
-			this.Jump();
+			this.jump();
 		}
 
 	}

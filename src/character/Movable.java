@@ -3,10 +3,10 @@ package character;
 import javafx.scene.canvas.GraphicsContext;
 
 public interface Movable {
-	public void Jump();
+	public void jump();
 
 	void render(GraphicsContext gc);
 
-	void Walk(int direction);
+	void walk(int direction);
 
 }

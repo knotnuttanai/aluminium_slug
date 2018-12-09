@@ -13,7 +13,7 @@ import weapon.Tank;
 
 public abstract class Person implements Movable, Damageable {
 
-	protected boolean canShoot;
+	// protected boolean canShoot;
 	protected int walkDirection;
 	protected int health;
 	protected int maxHealth;
@@ -24,7 +24,7 @@ public abstract class Person implements Movable, Damageable {
 	protected double veloX;
 	protected static final double GRAVITY = 0.8;
 	protected int damage;
-	protected double base;
+	protected double baseY;
 	protected boolean isJump;
 	protected boolean isWalk;
 	protected boolean isLookUp;
@@ -51,8 +51,8 @@ public abstract class Person implements Movable, Damageable {
 		maxHealth = this.health;
 		veloX = 0;
 		veloY = 0;
-		canShoot = true;
-		base = posY;
+		// canShoot = true;
+		baseY = posY;
 		baseX = posX;
 		isJump = false;
 		isAlive = true;
@@ -83,9 +83,6 @@ public abstract class Person implements Movable, Damageable {
 
 	@Override
 	public void takeDamage(int damage) {
-		if (this instanceof Enemy) {
-			// SoundManager.play("Gettinghit", 0.5);
-		}
 		if (health > 0) {
 			health = health - damage;
 			if (health <= 0) {
@@ -106,7 +103,7 @@ public abstract class Person implements Movable, Damageable {
 	}
 
 	@Override
-	public void Walk(int direction) {
+	public void walk(int direction) {
 		if (!hasHorizontalCollision) {
 			veloX = direction * 2;
 		} else {
@@ -119,7 +116,7 @@ public abstract class Person implements Movable, Damageable {
 	}
 
 	@Override
-	public void Jump() {
+	public void jump() {
 		if (hasVerticalCollition && !isJump) {
 			veloY = -15;
 			isJump = true;
@@ -234,12 +231,12 @@ public abstract class Person implements Movable, Damageable {
 		this.width = width;
 	}
 
-	public double getBase() {
-		return base;
+	public double getBaseY() {
+		return baseY;
 	}
 
-	public void setBase(double base) {
-		this.base = base;
+	public void setBaseY(double baseY) {
+		this.baseY = baseY;
 	}
 
 	public boolean isHasVerticalCollition() {
@@ -312,14 +309,6 @@ public abstract class Person implements Movable, Damageable {
 
 	public void setDamage(int damage) {
 		this.damage = damage;
-	}
-
-	public boolean isCanShoot() {
-		return canShoot;
-	}
-
-	public void setCanShoot(boolean canShoot) {
-		this.canShoot = canShoot;
 	}
 
 }

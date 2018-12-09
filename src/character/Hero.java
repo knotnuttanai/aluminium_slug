@@ -59,7 +59,7 @@ public class Hero extends Person implements Shootable {
 		veloY = 0;
 		height = 75;
 		width = 45;
-		canShoot = true;
+		// canShoot = true;
 		isInTheTank = false;
 		requestToEnterTank = false;
 		isThrowingBomb = false;
@@ -355,55 +355,55 @@ public class Hero extends Person implements Shootable {
 	}
 
 	@Override
-	public void Walk(int direction) {
+	public void walk(int direction) {
 		posX += direction * 2;
 	}
 
 	@Override
-	public void shoot() throws NoMoreArmoException{
+	public void shoot() throws NoMoreArmoException {
 
-		if (canShoot) {
-			isShoot = true;
-			if (isInTheTank) {
+		// if (canShoot) {
+		isShoot = true;
+		if (isInTheTank) {
+			gun = 0;
+			firerate = 300;
+			TankBullet bullet = new TankBullet(this);
+			bullet.setDamage(damage + bullet.getDamage());
+			bullet.addBullet();
+			SoundManager.play("Tank", 0.5);
+			return;
+		}
+		if (gun == 1) {
+			if (useGunBullet == 0) {
 				gun = 0;
-				firerate = 300;
-				TankBullet bullet = new TankBullet(this);
-				bullet.setDamage(damage + bullet.getDamage());
-				bullet.addBullet();
-				SoundManager.play("Tank", 0.5);
-				return;
-			}
-			if (gun == 1) {
-				if (useGunBullet == 0) {
-					gun = 0;
-					firerate = 200;
-					PistolBullet bullet = new PistolBullet(this);
-					bullet.setDamage(damage + bullet.getDamage());
-					bullet.addBullet();
-					SoundManager.play("pistolbullet", 1);
-					throw new NoMoreArmoException();
-				}
-				firerate = 80;
-				MachineGunBullet bullet = new MachineGunBullet(this);
-				bullet.setDamage(damage + bullet.getDamage());
-				bullet.addBullet();
-				SoundManager.play("machbullet", 1);
-				useGunBullet--;
-			}
-			if (gun == 0) {
 				firerate = 200;
 				PistolBullet bullet = new PistolBullet(this);
 				bullet.setDamage(damage + bullet.getDamage());
 				bullet.addBullet();
 				SoundManager.play("pistolbullet", 1);
+				throw new NoMoreArmoException();
 			}
+			firerate = 80;
+			MachineGunBullet bullet = new MachineGunBullet(this);
+			bullet.setDamage(damage + bullet.getDamage());
+			bullet.addBullet();
+			SoundManager.play("machbullet", 1);
+			useGunBullet--;
 		}
+		if (gun == 0) {
+			firerate = 200;
+			PistolBullet bullet = new PistolBullet(this);
+			bullet.setDamage(damage + bullet.getDamage());
+			bullet.addBullet();
+			SoundManager.play("pistolbullet", 1);
+		}
+		// }
 	}
 
 	public void throwBomb() throws NoMoreArmoException {
-		
+
 		if (isThrowingBomb) {
-			if(maxGrenade == 0) {
+			if (maxGrenade == 0) {
 				throw new NoMoreArmoException();
 			}
 			Bomb bomb = new Bomb(50, 50, this);
