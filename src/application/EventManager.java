@@ -16,7 +16,7 @@ public class EventManager {
 	private Hero hero;
 	private boolean heroWalkOverBase;
 	private boolean canWalk;
-	public boolean dIsPressed, aIsPressed, isPaused,escIsPressed;
+	public boolean dIsPressed, aIsPressed, isPaused, escIsPressed;
 	private Thread thread;
 
 	public EventManager(Scene scene, Hero hero) {
@@ -40,7 +40,7 @@ public class EventManager {
 	}
 
 	public void setPlayerControl() {
-		
+
 	}
 
 	public boolean isAtTheEndOfScreen() {
@@ -86,27 +86,26 @@ public class EventManager {
 				}
 			}
 		});
-		if(MenuPane.running) {
-			
-			
+		if (MenuPane.running) {
+
 			scene.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					if(!isPaused) {
-					thread = new Thread(() -> {
-						try {
-							while (true) {
-								hero.shoot();
-								Thread.sleep(hero.getFirerate());
+					if (!isPaused) {
+						thread = new Thread(() -> {
+							try {
+								while (true) {
+									hero.shoot();
+									Thread.sleep(hero.getFirerate());
+								}
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							} catch (NoMoreArmoException e) {
+								// TODO Auto-generated catch block
+								System.out.println("MachineGun out of armo");
 							}
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						} catch (NoMoreArmoException e) {
-							// TODO Auto-generated catch block
-							System.out.println("MachineGun out of armo");
-						}
-					});
-					thread.start();
+						});
+						thread.start();
 					}
 				}
 			});
@@ -122,20 +121,20 @@ public class EventManager {
 					}
 				}
 			});
-			
+
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent event) {
-					
+
 					if (event.getCode() == KeyCode.ESCAPE) {
-						
-						if(!isPaused&&!escIsPressed) {
+
+						if (!isPaused && !escIsPressed) {
 							GameLoop.an.stop();
 							MenuPane.imageView2.setVisible(true);
 							isPaused = true;
 							escIsPressed = true;
 						}
-						if(isPaused&&!escIsPressed) {
+						if (isPaused && !escIsPressed) {
 							GameEntity.restart();
 							MenuPane.imageView2.setVisible(false);
 							MenuPane.imageView1.setVisible(true);
@@ -147,10 +146,10 @@ public class EventManager {
 							MenuPane.run();
 							escIsPressed = true;
 						}
-						
+
 					}
 					if (event.getCode() == KeyCode.ENTER) {
-						if(isPaused) {
+						if (isPaused) {
 							GameLoop.an.start();
 							MenuPane.imageView2.setVisible(false);
 							isPaused = false;
@@ -158,8 +157,7 @@ public class EventManager {
 					}
 					if (event.getCode() == KeyCode.W) {
 						hero.setIsLookUp(true);
-					}
-					else if (event.getCode() == KeyCode.D) {
+					} else if (event.getCode() == KeyCode.D) {
 						dIsPressed = true;
 					} else if (event.getCode() == KeyCode.A) {
 						aIsPressed = true;
@@ -179,9 +177,9 @@ public class EventManager {
 							System.out.println("No more armo");
 						}
 					} else if (event.getCode() == KeyCode.SPACE) {
-						hero.Jump();
+						hero.jump();
 					}
-					
+
 				}
 			});
 			scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -211,45 +209,44 @@ public class EventManager {
 
 					} else if (event.getCode() == KeyCode.S) {
 						hero.setIsLookDown(false);
+					} else if (event.getCode() == KeyCode.ESCAPE) {
+						escIsPressed = false;
 					}
-				 else if (event.getCode() == KeyCode.ESCAPE) {
-					escIsPressed = false;
-				}
 				}
 			});
-		
-		if (!hero.isAlive())
-			return;
-		if (dIsPressed) {
-			hero.setIsWalk(true);
-			hero.setWalkDirection(1);
-			if (hero.isHasHorizontalCollision()) {
-				return;
-			}
-			if (canWalk) {
-				hero.Walk(2);
-			} else {
-				for (Foreground fg : GameEntity.fgs) {
-					fg.moveScreen(hero.getMoveSpeed());
-				}
-			}
-		} else {
-			hero.setIsWalk(false);
-		}
 
-		if (aIsPressed) {
-			hero.setIsWalk(true);
-			hero.setWalkDirection(-1);
-			if (!isAtTheEndOfScreen()) {
-				hero.Walk(-2);
+			if (!hero.isAlive())
+				return;
+			if (dIsPressed) {
+				hero.setIsWalk(true);
+				hero.setWalkDirection(1);
+				if (hero.isHasHorizontalCollision()) {
+					return;
+				}
+				if (canWalk) {
+					hero.walk(2);
+				} else {
+					for (Foreground fg : GameEntity.fgs) {
+						fg.moveScreen(hero.getMoveSpeed());
+					}
+				}
 			} else {
-				hero.Walk(0);
+				hero.setIsWalk(false);
 			}
-			doneMovingLeft = false;
-		} else {
-			hero.Walk(0);
+
+			if (aIsPressed) {
+				hero.setIsWalk(true);
+				hero.setWalkDirection(-1);
+				if (!isAtTheEndOfScreen()) {
+					hero.walk(-2);
+				} else {
+					hero.walk(0);
+				}
+				doneMovingLeft = false;
+			} else {
+				hero.walk(0);
+			}
 		}
-	}
 	}
 
 }

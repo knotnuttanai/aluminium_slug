@@ -19,6 +19,7 @@ public class GameScene {
 	private GraphicsContext view;
 	private HeroStatusPane heroStatusPane;
 	private MenuPane menu;
+
 	public GameScene(Canvas canvas) {
 		menu = new MenuPane();
 		expBar = new ExpBar();
@@ -27,16 +28,16 @@ public class GameScene {
 		heroStatusPane = new HeroStatusPane();
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
-		
+
 		root.getChildren().add(canvas);
 		root.getChildren().add(hpBar);
 		root.getChildren().add(menu);
 		root.getChildren().add(heroStatusPane);
 		root.getChildren().add(expBar);
-		
+
 		root.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
 			if (k.getCode() == KeyCode.SPACE) {
-				GameEntity.hero.Jump();
+				GameEntity.hero.jump();
 			}
 		});
 		scene = new Scene(root, 640, 480);

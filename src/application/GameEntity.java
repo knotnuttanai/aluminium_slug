@@ -192,7 +192,7 @@ public class GameEntity {
 		hero.setPosX(hero.getBaseX());
 		hero.setPosY(hero.getBaseY());
 		spawnManager.initWorld(0);
-		hero.Walk(0);
+		hero.walk(0);
 		hero.setIsWalk(false);
 		hero.setInTheTank(false);
 		hero.setHealth(200);
