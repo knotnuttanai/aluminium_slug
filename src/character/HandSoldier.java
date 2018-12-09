@@ -58,14 +58,14 @@ public class HandSoldier extends Enemy {
 	@Override
 	public void render(GraphicsContext gc) {
 		if (!isAlive) {
-			gc.drawImage(dead[deadFrame / 3], posX, posY + deadFrame);
+			gc.drawImage(dead[(deadFrame / 3) % 11], posX, posY + deadFrame);
 			deadFrame++;
 			if (deadFrame == 33) {
 				isAnimatedDead = true;
 			}
 		} else {
 			if (normalCondition) {
-				gc.drawImage(walk[walkFrame / 3], posX, posY);
+				gc.drawImage(walk[(walkFrame / 3) % 12], posX, posY);
 				walkFrame++;
 				if (walkFrame == 36) {
 					walkFrame = 0;
@@ -73,7 +73,7 @@ public class HandSoldier extends Enemy {
 			}
 
 			if (runCondition) {
-				gc.drawImage(run[runFrame / 3], posX, posY);
+				gc.drawImage(run[(runFrame / 3) % 11], posX, posY);
 				runFrame++;
 				if (runFrame == 33) {
 					runFrame = 0;

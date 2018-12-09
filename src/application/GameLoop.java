@@ -103,8 +103,9 @@ public class GameLoop implements Runnable {
 			if (x instanceof GunSoldier) {
 				GunSoldier x1 = (GunSoldier) x;
 				x1.update(now);
-			} else
+			} else {
 				x.update();
+			}
 		}
 		for (Terrain x : GameEntity.terrains) {
 			x.update();

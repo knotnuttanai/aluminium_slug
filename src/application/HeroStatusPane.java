@@ -7,14 +7,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
 public class HeroStatusPane extends HBox {
-	private Button increaseStr, increaseVit, increaseAgi, increaseLuk, spawnTank;
+	private Button increaseStr;
+	private Button increaseVit;
+	private Button increaseAgi;
+	private Button increaseLuk;
+	private Button spawnTank;
 	public boolean isEnable;
 	public static int statusPoint;
 
 	public HeroStatusPane() {
 		setTranslateX(0);
 		setTranslateY(445);
-		setPrefWidth(680);
+		setPrefWidth(640);
 		statusPoint = 0;
 		setAlignment(Pos.CENTER);
 		isEnable = true;
@@ -77,7 +81,7 @@ public class HeroStatusPane extends HBox {
 		increaseLuk.setOnMouseClicked(e -> {
 			SoundManager.play("Reload", 1);
 			GameEntity.spawnManager.setMachineGunSpawnrate(GameEntity.spawnManager.getMachineGunSpawnrate() + 0.0007);
-			GameEntity.spawnManager.setTankSpawnRate(GameEntity.spawnManager.getTankSpawnRate()+0.0003);
+			GameEntity.spawnManager.setTankSpawnRate(GameEntity.spawnManager.getTankSpawnRate() + 0.0003);
 			checkPoint();
 		});
 		spawnTank.setOnMouseClicked(e -> {

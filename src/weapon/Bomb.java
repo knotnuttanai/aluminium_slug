@@ -43,7 +43,7 @@ public class Bomb extends GameObject {
 	@Override
 	public void render(GraphicsContext gc) {
 		if (isIgnited) {
-			gc.drawImage(Smoke[smokeFrame], posX - 10, posY - 100);
+			gc.drawImage(Smoke[smokeFrame % 21], posX - 10, posY - 100);
 			smokeFrame++;
 			if (smokeFrame == 21) {
 				isHit = true;
@@ -61,7 +61,6 @@ public class Bomb extends GameObject {
 	public void update() {
 		if (posY >= 800 || posX < -width) {
 			isHit = true;
-			setHeroCanShoot();
 		}
 		if (!hasVerticalCollition) {
 			this.veloY += GRAVITY;
@@ -74,7 +73,6 @@ public class Bomb extends GameObject {
 			Thread thread = new Thread(() -> {
 				try {
 					Thread.sleep(200);
-					setHeroCanShoot();
 					hero.setThrowingBomb(false);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -98,7 +96,4 @@ public class Bomb extends GameObject {
 		this.isIgnited = isIgnited;
 	}
 
-	public void setHeroCanShoot() {
-		hero.setCanShoot(true);
-	}
 }

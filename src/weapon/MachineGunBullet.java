@@ -10,7 +10,6 @@ public class MachineGunBullet extends HeroBullet {
 		super(p);
 		damage = 10;
 		maxBullets = 256;
-
 		if (bulletDown) {
 			posX -= 10;
 			posY += 10;
@@ -18,7 +17,6 @@ public class MachineGunBullet extends HeroBullet {
 			posX += 4;
 			posY += 18;
 		}
-
 	}
 
 }

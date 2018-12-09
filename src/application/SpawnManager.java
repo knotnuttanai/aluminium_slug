@@ -37,7 +37,7 @@ public class SpawnManager {
 	}
 
 	public void RandomSpawnTank() {
-		
+
 		if (Math.random() < tankSpawnRate) {
 			Tank tank = new Tank(500, -200, 100, 100, GameEntity.hero);
 			tank.addObject();
@@ -62,26 +62,26 @@ public class SpawnManager {
 			enemy.setDamage(damage + enemy.getDamage());
 			enemy.setHealth(hp + enemy.getHealth());
 			enemy.addEnemy();
-		}else {
-		if (Math.random() < spawnRate) {
-			double a = Math.random();
-			if (a < 0.45) {
-				GunSoldier enemy = new GunSoldier(640 + 100 * Math.random(), 100, 50);
-				enemy.setDamage(damage + enemy.getDamage());
-				enemy.setHealth(hp + enemy.getHealth());
-				enemy.addEnemy();
-			} else if (a < 0.75) {
-				TurretSoldier enemy = new TurretSoldier(640 + 100 * Math.random(), 100, 50);
-				enemy.setDamage(damage + enemy.getDamage());
-				enemy.setHealth(hp + enemy.getHealth());
-				enemy.addEnemy();
-			} else {
-				HandSoldier enemy = new HandSoldier(640 + 100 * Math.random(), 100, 50);
-				enemy.setDamage(damage + enemy.getDamage());
-				enemy.setHealth(hp + enemy.getHealth());
-				enemy.addEnemy();
+		} else {
+			if (Math.random() < spawnRate) {
+				double a = Math.random();
+				if (a < 0.45) {
+					GunSoldier enemy = new GunSoldier(640 + 100 * Math.random(), 100, 50);
+					enemy.setDamage(damage + enemy.getDamage());
+					enemy.setHealth(hp + enemy.getHealth());
+					enemy.addEnemy();
+				} else if (a < 0.75) {
+					TurretSoldier enemy = new TurretSoldier(640 + 100 * Math.random(), 100, 50);
+					enemy.setDamage(damage + enemy.getDamage());
+					enemy.setHealth(hp + enemy.getHealth());
+					enemy.addEnemy();
+				} else {
+					HandSoldier enemy = new HandSoldier(640 + 100 * Math.random(), 100, 50);
+					enemy.setDamage(damage + enemy.getDamage());
+					enemy.setHealth(hp + enemy.getHealth());
+					enemy.addEnemy();
+				}
 			}
-		}
 		}
 	}
 
@@ -183,5 +183,5 @@ public class SpawnManager {
 	public void setTankSpawnRate(double tankSpawnRate) {
 		this.tankSpawnRate = tankSpawnRate;
 	}
-	
+
 }

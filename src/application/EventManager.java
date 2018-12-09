@@ -16,7 +16,10 @@ public class EventManager {
 	private Hero hero;
 	private boolean heroWalkOverBase;
 	private boolean canWalk;
-	public boolean dIsPressed, aIsPressed, isPaused, escIsPressed;
+	private boolean dIsPressed;
+	private boolean aIsPressed;
+	private boolean isPaused;
+	private boolean escIsPressed;
 	private Thread thread;
 
 	public EventManager(Scene scene, Hero hero) {
@@ -40,7 +43,6 @@ public class EventManager {
 	}
 
 	public void setPlayerControl() {
-
 	}
 
 	public boolean isAtTheEndOfScreen() {
@@ -87,7 +89,6 @@ public class EventManager {
 			}
 		});
 		if (MenuPane.running) {
-
 			scene.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
@@ -101,7 +102,6 @@ public class EventManager {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							} catch (NoMoreArmoException e) {
-								// TODO Auto-generated catch block
 								System.out.println("MachineGun out of armo");
 							}
 						});
@@ -121,13 +121,11 @@ public class EventManager {
 					}
 				}
 			});
-
 			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent event) {
 
 					if (event.getCode() == KeyCode.ESCAPE) {
-
 						if (!isPaused && !escIsPressed) {
 							GameLoop.an.stop();
 							MenuPane.imageView2.setVisible(true);
@@ -146,7 +144,6 @@ public class EventManager {
 							MenuPane.run();
 							escIsPressed = true;
 						}
-
 					}
 					if (event.getCode() == KeyCode.ENTER) {
 						if (isPaused) {
@@ -179,7 +176,6 @@ public class EventManager {
 					} else if (event.getCode() == KeyCode.SPACE) {
 						hero.jump();
 					}
-
 				}
 			});
 			scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -214,7 +210,6 @@ public class EventManager {
 					}
 				}
 			});
-
 			if (!hero.isAlive())
 				return;
 			if (dIsPressed) {

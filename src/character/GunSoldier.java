@@ -82,7 +82,7 @@ public class GunSoldier extends Enemy implements Shootable {
 	public void render(GraphicsContext gc) {
 
 		if (!isAlive) {
-			gc.drawImage(dead[deadFrame / 5], posX, posY + deadFrame * 1.1);
+			gc.drawImage(dead[(deadFrame / 5) % 6], posX, posY + deadFrame * 1.1);
 			deadFrame++;
 			if (deadFrame == 30)
 				isAnimatedDead = true;
@@ -92,7 +92,7 @@ public class GunSoldier extends Enemy implements Shootable {
 				walkFrame++;
 			}
 			if (grabGunCondition) {
-				gc.drawImage(grabGun[grabGunFrame / 3], posX, posY);
+				gc.drawImage(grabGun[(grabGunFrame / 3) % 8], posX, posY);
 				grabGunFrame++;
 			}
 			if (shootCondition) {

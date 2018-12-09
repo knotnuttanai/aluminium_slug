@@ -37,7 +37,6 @@ public class GameObject {
 	public void update() {
 		if (!hasVerticalCollition) {
 			this.veloY += GRAVITY;
-
 		} else if (hasVerticalCollition && veloY > 0) {
 			this.veloY = 0;
 		}

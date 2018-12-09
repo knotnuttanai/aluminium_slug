@@ -15,7 +15,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 
 	public TurretSoldier(double posX, double posY, int health) {
 		super(posX, posY - 10, health);
-		
+
 		veloX = 0;
 		baseVeloX = 0;
 		damage = 0;
@@ -64,9 +64,8 @@ public class TurretSoldier extends Enemy implements Shootable {
 
 	@Override
 	public void render(GraphicsContext gc) {
-
 		if (health <= 0) {
-			gc.drawImage(dead[deadFrame], posX, posY - 100);
+			gc.drawImage(dead[deadFrame % 21], posX, posY - 100);
 			deadFrame++;
 			if (deadFrame == 21) {
 				isAnimatedDead = true;
@@ -75,12 +74,7 @@ public class TurretSoldier extends Enemy implements Shootable {
 				SoundManager.play("grenade", 1);
 				soundIsPlay = true;
 			}
-			if (deadFrame == 30) {
-				isAnimatedDead = true;
-			}
-		}
-
-		else {
+		} else {
 			if (needRandomShoot) {
 				shootCondition = randomShoot();
 			}

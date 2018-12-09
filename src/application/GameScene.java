@@ -28,13 +28,11 @@ public class GameScene {
 		heroStatusPane = new HeroStatusPane();
 		this.canvas = canvas;
 		view = canvas.getGraphicsContext2D();
-
 		root.getChildren().add(canvas);
 		root.getChildren().add(hpBar);
 		root.getChildren().add(menu);
 		root.getChildren().add(heroStatusPane);
 		root.getChildren().add(expBar);
-
 		root.addEventFilter(KeyEvent.KEY_PRESSED, k -> {
 			if (k.getCode() == KeyCode.SPACE) {
 				GameEntity.hero.jump();
@@ -43,7 +41,6 @@ public class GameScene {
 		scene = new Scene(root, 640, 480);
 		stage = new Stage();
 		stage.setScene(scene);
-
 	}
 
 	public void addEntity(GraphicsContext gc) {

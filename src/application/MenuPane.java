@@ -15,7 +15,6 @@ public class MenuPane extends StackPane {
 		setPrefWidth(640);
 		setPrefHeight(480);
 		setAlignment(Pos.CENTER);
-
 		this.getChildren().add(imageView1);
 		this.getChildren().add(imageView0);
 		this.getChildren().add(imageView2);
@@ -23,11 +22,10 @@ public class MenuPane extends StackPane {
 		run();
 
 	}
+
 	public static void run() {
 		Thread thread = new Thread(() -> {
-
 			try {
-
 				while (!running) {
 					imageView0.setVisible(true);
 					Thread.sleep(500);
@@ -35,10 +33,8 @@ public class MenuPane extends StackPane {
 					Thread.sleep(500);
 				}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		});
 		thread.setDaemon(true);
 		thread.start();

@@ -12,11 +12,10 @@ public class Main extends Application {
 		loop = new GameLoop();
 		SoundManager.playMediaLoop("BGM");
 		primaryStage = loop.getGameScene().getStage();
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		loop.start();
-		
 	}
-	
 
 	public static void main(String[] args) {
 		launch(args);

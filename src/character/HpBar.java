@@ -14,8 +14,8 @@ public class HpBar extends ProgressBar {
 	}
 
 	public void update() {
-		if(GameEntity.hero.isInTheTank()) {
-			setProgress(((double) hero.getHealth() - 20000000 )/ 500);
+		if (GameEntity.hero.isInTheTank()) {
+			setProgress(((double) hero.getHealth() - 20000000) / 500);
 			return;
 		}
 		setProgress((double) hero.getHealth() / (double) hero.getMaxHealth());

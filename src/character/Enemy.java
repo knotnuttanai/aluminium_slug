@@ -51,16 +51,16 @@ public class Enemy extends Person {
 		bullet.addBullet();
 	}
 
+	@Override
 	public void update() {
 		if (!isAlive) {
 			baseVeloX = 0;
 		}
 		veloX = baseVeloX + GameEntity.getCurrentFg().getVeloX();
-		if (this.posY >= 800 || this.posX + this.width < -10||this.posX > 3000) {
+		if (this.posY >= 800 || this.posX + this.width < -10 || this.posX > 3000) {
 			this.isAnimatedDead = true;
 		}
 		super.update();
-
 	}
 
 	public double getFireRate() {

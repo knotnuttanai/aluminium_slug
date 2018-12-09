@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 
 public class Tank extends GameObject {
 	public boolean isUsed;
-	private int health;
 	private int maxHealth;
 	private int gunOfHero;
 	private int bulletOfHero;
@@ -37,7 +36,6 @@ public class Tank extends GameObject {
 		super(posX, posY, width, height);
 		isUsed = false;
 		this.hero = hero;
-		health = 0;
 		maxHealth = 500;
 		toggle = false;
 		gunOfHero = 0;
@@ -88,7 +86,7 @@ public class Tank extends GameObject {
 			} else {
 				bulletOfHero = 0;
 			}
-			
+
 			hero.setHealth(maxHealth + 20000000);
 		} else if (isUsed) {
 			if (hero.getHealth() <= 20000000) {
@@ -156,7 +154,7 @@ public class Tank extends GameObject {
 
 	public void render(GraphicsContext gc) {
 		if (readyToDead) {
-			gc.drawImage(dead[deadFrame], posX, posY - 100);
+			gc.drawImage(dead[deadFrame % 21], posX, posY - 100);
 			deadFrame++;
 			if (deadFrame == 21) {
 				isHit = true;

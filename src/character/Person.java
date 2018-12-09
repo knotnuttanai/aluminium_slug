@@ -13,7 +13,6 @@ import weapon.Tank;
 
 public abstract class Person implements Movable, Damageable {
 
-	// protected boolean canShoot;
 	protected int walkDirection;
 	protected int health;
 	protected int maxHealth;
@@ -51,7 +50,6 @@ public abstract class Person implements Movable, Damageable {
 		maxHealth = this.health;
 		veloX = 0;
 		veloY = 0;
-		// canShoot = true;
 		baseY = posY;
 		baseX = posX;
 		isJump = false;

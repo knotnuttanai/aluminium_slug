@@ -4,8 +4,7 @@ import application.GameEntity;
 
 public class TankHpBar extends HpBar {
 	public void update() {
-		if(GameEntity.hero.isInTheTank()) {
-			
+		if (GameEntity.hero.isInTheTank()) {
 		}
 	}
 }

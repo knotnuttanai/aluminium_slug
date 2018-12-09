@@ -10,7 +10,7 @@ public class ExpBar extends ProgressBar {
 
 	public ExpBar() {
 		super(1);
-		setPrefWidth(680);
+		setPrefWidth(640);
 		setPrefHeight(10);
 		setTranslateX(0);
 		setTranslateY(470);

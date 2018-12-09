@@ -59,7 +59,6 @@ public class Hero extends Person implements Shootable {
 		veloY = 0;
 		height = 75;
 		width = 45;
-		// canShoot = true;
 		isInTheTank = false;
 		requestToEnterTank = false;
 		isThrowingBomb = false;
@@ -250,7 +249,7 @@ public class Hero extends Person implements Shootable {
 	@Override
 	public void render(GraphicsContext gc) {
 		if (!isAlive) {
-			gc.drawImage(dead[(deadFrame / 5)], posX, posY + 38 - DeadAdjustPos());
+			gc.drawImage(dead[(deadFrame / 5) % 19], posX, posY + 38 - DeadAdjustPos());
 			deadFrame++;
 			if (deadFrame == 95) {
 				isAnimatedDead = true;
@@ -319,14 +318,14 @@ public class Hero extends Person implements Shootable {
 			}
 		} else if (isThrowingBomb) {
 			if (gun == 0) {
-				gc.drawImage(ThrowingBomb[throwingBombFrame], posX + walkPos, posY);
+				gc.drawImage(ThrowingBomb[throwingBombFrame % 5], posX + walkPos, posY);
 				throwingBombFrame++;
 				if (throwingBombFrame == 5) {
 					throwingBombFrame = 0;
 					isThrowingBomb = false;
 				}
 			} else {
-				gc.drawImage(MachThrowBomb[machBombFrame / 2], posX + walkPos, posY);
+				gc.drawImage(MachThrowBomb[(machBombFrame / 2) % 6], posX + walkPos, posY);
 				machBombFrame++;
 				if (machBombFrame == 12) {
 					machBombFrame = 0;
@@ -361,8 +360,6 @@ public class Hero extends Person implements Shootable {
 
 	@Override
 	public void shoot() throws NoMoreArmoException {
-
-		// if (canShoot) {
 		isShoot = true;
 		if (isInTheTank) {
 			gun = 0;
@@ -397,11 +394,9 @@ public class Hero extends Person implements Shootable {
 			bullet.addBullet();
 			SoundManager.play("pistolbullet", 1);
 		}
-		// }
 	}
 
 	public void throwBomb() throws NoMoreArmoException {
-
 		if (isThrowingBomb) {
 			if (maxGrenade == 0) {
 				throw new NoMoreArmoException();
@@ -485,5 +480,5 @@ public class Hero extends Person implements Shootable {
 	public void setMaxGrenade(int maxGrenade) {
 		this.maxGrenade = maxGrenade;
 	}
-	
+
 }

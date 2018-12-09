@@ -25,7 +25,7 @@ public class ScorePane {
 		Font font = Font.font("Tahoma", FontWeight.BOLD, 30);
 		gc.setFont(font);
 		gc.fillText(showScore, 320, 25);
-		if(MenuPane.running) {
+		if (MenuPane.running) {
 			gc.setFill(Color.BEIGE);
 			gc.setStroke(Color.BLACK);
 			Font font1 = Font.font("Tahoma", FontWeight.BOLD, 30);
@@ -34,7 +34,6 @@ public class ScorePane {
 			gc.fillText(level, 0, 95);
 			gc.setFill(Color.BEIGE);
 			gc.setStroke(Color.BLACK);
-			Font font2 = Font.font("Tahoma", FontWeight.BOLD, 30);
 			gc.setFont(font1);
 			String status = "Stat: " + Integer.toString(HeroStatusPane.statusPoint);
 			gc.fillText(status, 0, 140);
