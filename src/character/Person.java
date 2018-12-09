@@ -311,4 +311,12 @@ public abstract class Person implements Movable, Damageable {
 		this.damage = damage;
 	}
 
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+
+	public void setAnimatedDead(boolean isAnimatedDead) {
+		this.isAnimatedDead = isAnimatedDead;
+	}
+
 }
