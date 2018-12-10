@@ -24,7 +24,7 @@ public class GameEntity {
 	public static ArrayList<Terrain> terrains = new ArrayList<>();
 	public static List<GameObject> gameObjects = new CopyOnWriteArrayList<>();
 	public static List<Foreground> fgs = new ArrayList<>();
-	public static Hero hero = new Hero(200, 200, 20);
+	public static Hero hero = new Hero(200, 200, 200);
 
 	public static void createBullet(Bullet b) {
 		bullets.add(b);
@@ -192,7 +192,11 @@ public class GameEntity {
 		hero.setPosX(hero.getBaseX());
 		hero.setPosY(hero.getBaseY());
 		spawnManager.initWorld(0);
+		spawnManager.setLimitNumber(3);
+		spawnManager.setTankSpawnRate(0);
+		spawnManager.setMachineGunSpawnrate(0);
 		hero.walk(0);
+		hero.setGun(0);
 		hero.setIsWalk(false);
 		hero.setInTheTank(false);
 		hero.setHealth(200);
@@ -200,14 +204,14 @@ public class GameEntity {
 		hero.setMaxGrenade(10);
 		hero.setAlive(true);
 		hero.setAnimatedDead(false);
+		hero.setUseGunBullet(0);
+		hero.setDamage(0);
+		hero.setMoveSpeed(-5);
 		ExpBar.killCount = 0;
 		ExpBar.maxKillCount = 3;
 		ScorePane.score = 0;
 		ExpBar.level = 0;
 		HeroStatusPane.statusPoint = 0;
-		hero.setUseGunBullet(0);
-		hero.setDamage(0);
-		hero.setMoveSpeed(-5);
 		GameLoop.an.start();
 	}
 }

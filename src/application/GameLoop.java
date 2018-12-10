@@ -52,9 +52,8 @@ public class GameLoop implements Runnable {
 							MenuPane.imageView1.setDisable(false);
 							MenuPane.imageView0.setVisible(true);
 							MenuPane.imageView0.setDisable(false);
-							MenuPane.running = false;
 							MenuPane.run();
-							an.start();
+							
 						}
 						updateContent(now);
 						renderContent();
@@ -71,8 +70,14 @@ public class GameLoop implements Runnable {
 		score.update();
 		gameScene.getHeroStatusPane().update();
 		bullet1.update();
-		if (GameEntity.getCurrentFg().getPosX() <= -8550 + 640) {
-			GameEntity.spawnManager.initWorld(640);
+		if (GameEntity.getCurrentFg().getPosX() <= -8550 + 2640) {
+			GameEntity.spawnManager.initWorld(2640);
+			GameEntity.spawnManager.increaseEnemyPower();
+			if (!GameEntity.hero.isInTheTank()) {
+				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());
+			}
+		}
+		if (GameEntity.getCurrentFg().getPosX() <= -8550 ) {
 			GameEntity.spawnManager.increaseEnemyPower();
 			if (!GameEntity.hero.isInTheTank()) {
 				GameEntity.hero.setHealth(GameEntity.hero.getMaxHealth());

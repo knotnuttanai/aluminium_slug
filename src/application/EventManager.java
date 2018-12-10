@@ -92,7 +92,7 @@ public class EventManager {
 			scene.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					if (!isPaused) {
+					if (!isPaused&&MenuPane.running) {
 						thread = new Thread(() -> {
 							try {
 								while (true) {
